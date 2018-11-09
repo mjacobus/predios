@@ -4,6 +4,9 @@ require 'hanami/model'
 require_relative '../lib/predios'
 require_relative '../apps/web/application'
 
+require 'dotenv'
+Dotenv.load
+
 Hanami.configure do
   mount Web::Application, at: '/'
 
@@ -43,7 +46,7 @@ Hanami.configure do
     logger level: :info, formatter: :json, filter: []
 
     mailer do
-      delivery :smtp, address: ENV.fetch('SMTP_HOST'), port: ENV.fetch('SMTP_PORT')
+      # delivery :smtp, address: ENV.fetch('SMTP_HOST'), port: ENV.fetch('SMTP_PORT')
     end
   end
 end
