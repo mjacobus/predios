@@ -4,6 +4,9 @@ require 'hanami/model'
 require_relative '../lib/predios'
 require_relative '../apps/web/application'
 
+require 'dotenv'
+Dotenv.load
+
 Hanami.configure do
   mount Web::Application, at: '/'
 
