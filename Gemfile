@@ -11,6 +11,11 @@ group :development do
   # See: http://hanamirb.org/guides/projects/code-reloading
   gem 'shotgun', platforms: :ruby
   gem 'hanami-webconsole'
+
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-chruby', require: false
+  gem 'capistrano-hanami', require: false
 end
 
 group :test, :development do
