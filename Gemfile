@@ -5,6 +5,7 @@ gem 'hanami',       '~> 1.3'
 gem 'hanami-model', '~> 1.3'
 
 gem 'mysql2'
+gem 'dotenv', '~> 2.4'
 
 group :development do
   # Code reloading
@@ -16,10 +17,6 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano-chruby', require: false
   gem 'capistrano-hanami', require: false
-end
-
-group :test, :development do
-  gem 'dotenv', '~> 2.4'
 end
 
 group :test do
