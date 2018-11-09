@@ -2,11 +2,14 @@
 
 module Web
   module Controllers
-    module Home
-      class Index
+    module Sessions
+      class Destroy
         include Web::Action
 
-        def call(_params); end
+        def call(_params)
+          user_session.destroy
+          redirect_to '/'
+        end
 
         private
 

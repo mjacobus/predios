@@ -6,3 +6,5 @@
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
 get '/', to: 'home#index'
+get '/auth/:provider/callback', to: 'sessions#create'
+get 'logout', to: 'sessions#destroy'
