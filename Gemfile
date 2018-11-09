@@ -9,6 +9,11 @@ gem 'rake'
 gem 'dotenv', '~> 2.4'
 gem 'mysql2'
 
+# authentication
+gem 'omniauth', '~> 1.8.1'
+gem 'omniauth-facebook', '~> 5.0.0'
+gem 'omniauth-google-oauth2', '~> 0.5.3'
+
 # frontend
 gem 'babel-transpiler'
 gem 'sass'
@@ -37,6 +42,7 @@ end
 group :test, :development do
   # code coverage
   gem 'coveralls', '~> 0.8.22', require: false
+  gem 'object_comparator', '~> 0.1.3'
   gem 'simplecov', '~> 0.16.1', require: false
 end
 

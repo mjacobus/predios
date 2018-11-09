@@ -81,11 +81,20 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/rack/Rack/Session/Cookie
       #
-      # sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
+      sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
 
       # Configure Rack middleware for this application
       #
       # middleware.use Rack::Protection
+      middleware.use OmniAuth::Builder do
+        if ENV['OAUTH_GOOGLE_KEY']
+          provider :google_oauth2, ENV['OAUTH_GOOGLE_KEY'], ENV['OAUTH_GOOGLE_SECRET']
+        end
+
+        if ENV['OAUTH_FACEBOOK_KEY']
+          provider :facebook, ENV['OAUTH_FACEBOOK_KEY'], ENV['OAUTH_FACEBOOK_SECRET']
+        end
+      end
 
       # Default format for the requests that don't specify an HTTP_ACCEPT header
       # Argument: A symbol representation of a mime type, defaults to :html
@@ -258,18 +267,23 @@ module Web
       # This is useful for sharing common functionality
       #
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
+      require_relative './controllers/user_session_aware'
+
       controller.prepare do
         # include MyAuthentication # included in all the actions
         # before :authenticate!    # run an authentication before callback
+        include Web::UserSessionAware
       end
 
       # Configure the code that will yield each time Web::View is included
       # This is useful for sharing common functionality
       #
       # See: http://www.rubydoc.info/gems/hanami-view#Configuration
+      require_relative './views/view_helpers'
       view.prepare do
         include Hanami::Helpers
         include Web::Assets::Helpers
+        include Web::ViewHelpers
       end
     end
 
