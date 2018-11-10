@@ -40,8 +40,15 @@ GEM
       xpath (~> 3.2)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
+    coveralls (0.8.22)
+      json (>= 1.8, < 3)
+      simplecov (~> 0.16.1)
+      term-ansicolor (~> 1.3)
+      thor (~> 0.19.4)
+      tins (~> 1.6)
     debug_inspector (0.0.3)
     diff-lcs (1.3)
+    docile (1.3.1)
     dotenv (2.5.0)
     dry-configurable (0.7.0)
       concurrent-ruby (~> 1.0)
@@ -139,6 +146,7 @@ GEM
     ice_nine (0.11.2)
     inflecto (0.0.2)
     jaro_winkler (1.5.1)
+    json (2.1.0)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     mini_mime (1.0.1)
@@ -217,10 +225,19 @@ GEM
     sequel (4.49.0)
     shotgun (0.9.2)
       rack (>= 1.0)
+    simplecov (0.16.1)
+      docile (~> 1.1)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
     sshkit (1.18.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    term-ansicolor (1.7.0)
+      tins (~> 1.0)
+    thor (0.19.4)
     tilt (2.0.8)
+    tins (1.19.0)
     transproc (1.0.2)
     unicode-display_width (1.4.0)
     url_mount (0.2.1)
@@ -238,6 +255,7 @@ DEPENDENCIES
   capistrano-chruby
   capistrano-hanami
   capybara
+  coveralls (~> 0.8.22)
   dotenv (~> 2.4)
   hanami (~> 1.3)
   hanami-model (~> 1.3)
@@ -249,6 +267,7 @@ DEPENDENCIES
   rubocop-rspec (~> 1.30)
   sass
   shotgun
+  simplecov (~> 0.16.1)
 
 BUNDLED WITH
    1.16.3

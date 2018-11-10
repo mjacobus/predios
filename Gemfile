@@ -17,6 +17,7 @@ group :development do
   gem 'hanami-webconsole'
   gem 'shotgun', platforms: :ruby
 
+  # deployment
   gem 'capistrano', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-chruby', require: false
@@ -30,6 +31,13 @@ group :test do
   gem 'capybara'
   gem 'rspec'
 end
+
+group :test, :development do
+  # code coverage
+  gem 'simplecov', '~> 0.16.1', require: false
+  gem 'coveralls', '~> 0.8.22', require: false
+end
+
 
 group :production do
   # gem 'puma'
