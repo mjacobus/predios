@@ -1,5 +1,5 @@
 server 'demo.deutsch.dev',
-  roles: %w{web},
+  roles: %w[web],
   ssh_options: {
-    auth_methods: %w(publickey),
+    auth_methods: %w[publickey],
   }
