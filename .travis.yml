@@ -1,0 +1,25 @@
+language: ruby
+sudo: false
+cache: bundler
+
+rvm:
+  - 2.4.4
+
+env:
+  - DB=mysql HANAMI_ENV=test DATABASE_URL="mysql2://root@127.0.0.1:3306/predios_test"
+
+before_script:
+
+script:
+  - bundle exec hanami db create
+  - bundle exec hanami db migrate
+  - CODE_COVERAGE=1 bundle exec rake
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
+
