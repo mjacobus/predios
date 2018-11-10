@@ -1,6 +1,8 @@
 # Predios
 
-Welcome to your new Hanami project!
+Assistant for a special territory in my city.
+
+[![Build Status](https://travis-ci.org/mjacobus/predios.svg?branch=master)](https://travis-ci.org/mjacobus/predios)
 
 ## Setup
 
