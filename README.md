@@ -3,6 +3,7 @@
 Assistant for a special territory in my city.
 
 [![Build Status](https://travis-ci.org/mjacobus/predios.svg?branch=master)](https://travis-ci.org/mjacobus/predios)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5b75122bc3940aee70d9/maintainability)](https://codeclimate.com/github/mjacobus/predios/maintainability)
 
 ## Setup
 
