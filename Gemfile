@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'hanami', '~> 1.3'
@@ -34,10 +36,9 @@ end
 
 group :test, :development do
   # code coverage
-  gem 'simplecov', '~> 0.16.1', require: false
   gem 'coveralls', '~> 0.8.22', require: false
+  gem 'simplecov', '~> 0.16.1', require: false
 end
-
 
 group :production do
   # gem 'puma'

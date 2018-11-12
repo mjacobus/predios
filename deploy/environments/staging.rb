@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 set :application, "staging.#{fetch(:application)}"
 set :deploy_to, "/var/www/apps/#{fetch(:application)}"
 

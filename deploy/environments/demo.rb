@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 server 'demo.deutsch.dev',
   roles: %w[web],
   ssh_options: {

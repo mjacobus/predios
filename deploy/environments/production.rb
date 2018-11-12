@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 server fetch(:application),
   user: 'deploy',
   roles: %w[web app],
