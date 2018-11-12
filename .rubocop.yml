@@ -7,7 +7,6 @@ AllCops:
   Exclude:
     - config/environment.rb
     - apps/web/application.rb
-
 Layout/AlignParameters:
   Enabled: false
 
@@ -40,6 +39,9 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*_spec.rb'
 
+Metrics/LineLength:
+  Max: 100
+
 Style/CommentedKeyword:
   Enabled: false
 
@@ -67,6 +69,9 @@ FactoryBot/CreateList:
   Enabled: false
 
 RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MessageSpies:
   Enabled: false
 
 RSpec/MultipleExpectations:
