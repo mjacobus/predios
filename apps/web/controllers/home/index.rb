@@ -6,7 +6,9 @@ module Web
       class Index
         include Web::Action
 
-        def call(_params); end
+        def call(_params)
+          # Noop
+        end
 
         private
 

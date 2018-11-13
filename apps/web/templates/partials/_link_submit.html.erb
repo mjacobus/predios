@@ -1,0 +1,10 @@
+<div class="submit-link">
+  <form data-js action="<%= url %>" method="POST" accept-charset="utf-8">
+    <% if confirmation_message %>
+      <input type="hidden" data-confirmation value="<%= confirmation_message %>">
+    <% end %>
+    <input type="hidden" name="_method" value="<%= method %>">
+    <input type="hidden" name="_csrf_token" value="<%= csrf_token %>">
+    <button type="submit" class="btn btn-info"><%= label %></button>
+  </form>
+</div>
