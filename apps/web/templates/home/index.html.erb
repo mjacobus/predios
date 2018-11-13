@@ -1,18 +1,14 @@
-Yep. Under construction.
-
 <% unless logged_in? %>
-  <a href="<%= login_url %>">Login with google</a>
+<div class="alert alert-danger" role="alert">Logar com a minha conta do <a href="<%= login_url %>">Google</a></div>
 <% end %>
 
 <% if logged_in? %>
-  <p> Hello <%= current_user.name %>
+  <div class="alert alert-primary">Oi <%= current_user.name %>.</div>
   <% if current_user.master? %>
-    <p>Você é administrador deste sistema</p>
+    <div class="alert alert-success">Você é administrador deste sistema.</div>
   <% end %>
 
   <% unless current_user.enabled?  %>
-    <p>Sua conta ainda precisa ser autorizada pelo administrador.</p>
+    <div class="alert alert-warning">Você é administrador deste sistema.</div>
   <% end %>
-
-  <a href="<%= logout_url %>">Logout</a>
 <% end %>
