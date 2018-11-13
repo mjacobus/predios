@@ -1,0 +1,21 @@
+  <% if user.id != current_user.id  %>
+    <% if user.enabled? %>
+      <%=
+        render partial: 'partials/link_submit', locals: {
+          url: enable_url(user),
+          method: :delete,
+          confirmation_message: confirm_message_for_disable(user),
+          label: 'Desativar'
+        }
+      %>
+    <% else %>
+      <%=
+        render partial: 'partials/link_submit', locals: {
+          url: enable_url(user),
+          method: :post,
+          confirmation_message: confirm_message_for_enable(user),
+          label: 'Ativar'
+        }
+      %>
+    <% end %>
+  <% end %>

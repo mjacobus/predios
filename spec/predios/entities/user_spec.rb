@@ -56,6 +56,15 @@ RSpec.describe User, type: :entity do
     expect(user.enabled?).to be true
   end
 
+  it 'disables user' do
+    expected = User.new(attributes.merge(enabled: false))
+
+    user =  sample.enable.disable
+
+    expect(user).to be_equal_to(expected)
+    expect(user).not_to be_enabled
+  end
+
   it 'is not a master by default' do
     expect(User.new).not_to be_master
   end

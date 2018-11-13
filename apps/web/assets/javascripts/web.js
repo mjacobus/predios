@@ -1,5 +1,11 @@
-const debugMessage = (message) => {
-  console.log(message);
-}
+(() => {
+  $(document).ready(() => {
+    $('form[data-js]').submit((e) => {
+      const message = $(e.target).find('[data-confirmation]');
 
-debugMessage('Started!')
+      if (message && !confirm(message.val())) {
+        e.preventDefault();
+      }
+    });
+  })
+})(jQuery);

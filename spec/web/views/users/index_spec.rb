@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Web::Views::Sessions::Create, type: :view do
+RSpec.describe Web::Views::Users::Index, type: :view do
   let(:exposures) { Hash[format: :html] }
-  let(:template)  { Hanami::View::Template.new('apps/web/templates/sessions/create.html.erb') }
+  let(:template)  { Hanami::View::Template.new('apps/web/templates/users/index.html.erb') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 

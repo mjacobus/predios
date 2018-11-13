@@ -24,6 +24,10 @@ class User < Entity
     with_attribute(:enabled, true)
   end
 
+  def disable
+    with_attribute(:enabled, false)
+  end
+
   def master?
     master
   end
@@ -38,5 +42,9 @@ class User < Entity
 
   def logged_in?
     true
+  end
+
+  def avatar_url(size = 30)
+    "#{avatar}?sz=#{size}"
   end
 end

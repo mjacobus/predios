@@ -14,7 +14,7 @@ module Web
       @app_version ||= begin
         file = Hanami.root.join('REVISION')
 
-        unless File.exists?(file)
+        unless File.exist?(file)
           return false
         end
 
