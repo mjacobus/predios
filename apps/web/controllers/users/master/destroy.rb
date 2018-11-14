@@ -3,8 +3,8 @@
 module Web
   module Controllers
     module Users
-      module Enable
-        class Create
+      module Master
+        class Destroy < MasterAction
           include Web::Action
 
           def initialize(repository: UserRepository.new)
@@ -13,7 +13,7 @@ module Web
 
           def call(params)
             user = @repository.find(params[:user_id])
-            @repository.save(user.enable)
+            @repository.save(user.unmaster)
             redirect_to '/users'
           end
         end
