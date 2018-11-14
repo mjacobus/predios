@@ -20,6 +20,10 @@ class User < Entity
     with_attribute(:master, true)
   end
 
+  def unmaster
+    with_attribute(:master, false)
+  end
+
   def enable
     with_attribute(:enabled, true)
   end

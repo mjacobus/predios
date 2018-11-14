@@ -1,21 +1,43 @@
-  <% if user.id != current_user.id  %>
-    <% if user.enabled? %>
-      <%=
-        render partial: 'partials/link_submit', locals: {
-          url: enable_url(user),
-          method: :delete,
-          confirmation_message: confirm_message_for_disable(user),
-          label: 'Desativar'
-        }
-      %>
-    <% else %>
-      <%=
-        render partial: 'partials/link_submit', locals: {
-          url: enable_url(user),
-          method: :post,
-          confirmation_message: confirm_message_for_enable(user),
-          label: 'Ativar'
-        }
-      %>
-    <% end %>
-  <% end %>
+<% if enabable?(user) %>
+  <%=
+    render partial: 'partials/link_submit', locals: {
+      url: enable_url(user),
+      method: :post,
+      confirmation_message: confirm_message_for_enable(user),
+      label: 'Ativar'
+    }
+  %>
+<% end %>
+
+<% if disabable?(user) %>
+  <%=
+    render partial: 'partials/link_submit', locals: {
+      url: enable_url(user),
+      method: :delete,
+      confirmation_message: confirm_message_for_disable(user),
+      label: 'Desativar'
+    }
+  %>
+<% end %>
+
+<% if masterable?(user) %>
+  <%=
+    render partial: 'partials/link_submit', locals: {
+      url: master_url(user),
+      method: :post,
+      confirmation_message: confirm_message_for_master(user),
+      label: 'Fazer admin'
+    }
+  %>
+<% end %>
+
+<% if unmasterable?(user) %>
+  <%=
+    render partial: 'partials/link_submit', locals: {
+      url: master_url(user),
+      method: :delete,
+      confirmation_message: confirm_message_for_unmaster(user),
+      label: 'Remover admin'
+    }
+  %>
+<% end %>

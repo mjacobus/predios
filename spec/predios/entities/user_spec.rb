@@ -47,6 +47,12 @@ RSpec.describe User, type: :entity do
     expect(user.master?).to be true
   end
 
+  it 'can be unmastered' do
+    user = sample.as_master.unmaster
+
+    expect(user).not_to be_master
+  end
+
   it 'mutates enabled' do
     expected = User.new(attributes.merge(enabled: true))
 

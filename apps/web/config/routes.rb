@@ -11,4 +11,5 @@ get 'logout', to: 'sessions#destroy'
 
 resources :users, only: [:index] do
   resource :enable, only: %i[create destroy]
+  resource :master, only: %i[create destroy]
 end
