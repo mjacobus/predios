@@ -71,3 +71,17 @@ end
 # - persist aggregate
 # - mark aggregate aggregate
 # - aggregate version
+#
+
+EventSourcing::DomainEvent.new
+EventSourcing::AggregateRoot.new
+EventSourcing::AggregateRootRepository.new
+
+EventSourcing::EventStore.new(adapter, event_listener)
+item = EventSourcing::EventStoreItem.from_aggregate_root_and_domain_event(aggregate, domain_event)
+store.persist(item)
+event_listener.propagate(domain_event) # spread the word!
+store.by_uuid(uuid)
+
+
+events = store.all_by(aggregate_type: type, aggregate_id: uuid)
