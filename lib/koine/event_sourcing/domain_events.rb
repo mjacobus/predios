@@ -41,6 +41,10 @@ module Koine
       def persist_all
         unpersisted.map { |e| persist(e) }
       end
+
+      def length
+        @events.length
+      end
     end
   end
 end

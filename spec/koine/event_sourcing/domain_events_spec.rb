@@ -48,4 +48,8 @@ RSpec.describe Koine::EventSourcing::DomainEvents do
       expect(events.to_a).to eq([event1, event2, event3, new_event])
     end
   end
+
+  it 'has a length' do
+    expect(events.length).to eq(3)
+  end
 end
