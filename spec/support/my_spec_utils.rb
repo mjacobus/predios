@@ -21,4 +21,9 @@ module MySpecUtils
 
     output_object
   end
+
+  def sample_aggregate(overrides = {})
+    params = { title: 'the-title', body: 'the-body' }
+    Article::AggregateRoot.create(params.merge(overrides))
+  end
 end

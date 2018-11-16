@@ -22,6 +22,10 @@ module Koine
             end
           end
         end
+
+        def extract_events(aggregate)
+          aggregate.send(:domain_events)
+        end
       end
 
       private

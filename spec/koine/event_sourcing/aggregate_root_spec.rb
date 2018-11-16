@@ -5,7 +5,7 @@ require 'spec_helper'
 RSpec.describe Koine::EventSourcing::AggregateRoot do
   let(:aggregate_type) { Article::AggregateRoot }
   let(:aggregate) { aggregate_type.create(title: 'the title', body: 'the body') }
-  let(:events) { aggregate.send(:domain_events) }
+  let(:events) { described_class.extract_events(aggregate) }
 
   describe '#id' do
     it 'raises when one is not passed' do

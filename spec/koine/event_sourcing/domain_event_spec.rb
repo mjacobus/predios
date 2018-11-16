@@ -123,6 +123,16 @@ RSpec.describe Koine::EventSourcing::DomainEvent do
     end
   end
 
+  describe '#aggregate_class' do
+    it 'returns the aggregate root class' do
+      with = with_immutable(event) do |e|
+        e.with_aggregate_root(aggregate_root)
+      end
+
+      expect(with.aggregate_class).to eq(aggregate_root.class)
+    end
+  end
+
   describe '#aggregate_version' do
     it 'raises when there is not aggregate id' do
       event = event_type.new

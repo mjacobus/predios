@@ -37,6 +37,10 @@ module Koine
         @aggregate_type || raise(InvalidAggregateRoot)
       end
 
+      def aggregate_class
+        Object.const_get(aggregate_type)
+      end
+
       def aggregate_version
         @aggregate_version || raise(InvalidAggregateRoot)
       end
