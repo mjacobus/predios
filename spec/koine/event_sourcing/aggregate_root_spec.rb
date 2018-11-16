@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe Koine::EventSourcing::AggregateRoot do
   let(:aggregate_type) { Article::AggregateRoot }
-  let(:aggregate) { aggregate_type.new('the-id') }
+  let(:aggregate) { aggregate_type.create(title: 'the title', body: 'the body') }
   let(:events) { aggregate.send(:domain_events) }
 
   describe '#id' do
@@ -21,8 +21,6 @@ RSpec.describe Koine::EventSourcing::AggregateRoot do
   end
 
   describe '#record_that' do
-    let(:aggregate) { aggregate_type.create(title: 'the title', body: 'the body') }
-
     before { aggregate }
 
     it 'records events' do
@@ -61,6 +59,17 @@ RSpec.describe Koine::EventSourcing::AggregateRoot do
         expect(events.to_a[1].aggregate_version).to eq(2)
         expect(events.to_a[2].aggregate_version).to eq(3)
       end
+    end
+  end
+
+  describe '.from_event_stream' do
+    it 'reconstructs the aggregate' do
+      aggregate.title = 'new title'
+      aggregate.body = 'new body'
+
+      loaded = aggregate_type.from_event_stream(events)
+
+      expect(loaded).to be_equal_to(aggregate)
     end
   end
 end

@@ -17,6 +17,10 @@ module Article
 
   module Events
     class ArticleCreated < DomainEvent
+      def id
+        payload['id']
+      end
+
       def title
         payload['title']
       end
@@ -45,9 +49,14 @@ module Article
 
     class << self
       def create(title:, body:)
-        event = Events::ArticleCreated.new(title: title, body: body)
-        new('the-id').tap do |rec|
-          rec.send(:record_that, event)
+        event = Events::ArticleCreated.new(
+          id: 'the-id',
+          title: title,
+          body: body
+        )
+
+        new.tap do |aggregate_root|
+          aggregate_root.send(:record_that, event)
         end
       end
     end
@@ -69,6 +78,7 @@ module Article
     end
 
     def when_created(event)
+      @id = event.id
       @title = event.title
       @body = event.body
     end

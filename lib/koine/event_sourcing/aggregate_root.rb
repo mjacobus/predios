@@ -10,20 +10,26 @@ module Koine
 
       attr_reader :version
 
-      def initialize(id)
-        @id = id
-      end
-
       def id
         @id || raise(MissingAggregateIdError, "Missing id for #{self.class}")
+      end
+
+      class << self
+        def from_event_stream(events)
+          new.tap do |aggregate_root|
+            events.map do |event|
+              aggregate_root.send(:record_that, event)
+            end
+          end
+        end
       end
 
       private
 
       def record_that(event)
         increment_version
-        domain_events.append(event.with_aggregate_root(self))
         when_event(event)
+        domain_events.append(event.with_aggregate_root(self))
       end
 
       def when_event(_event)
