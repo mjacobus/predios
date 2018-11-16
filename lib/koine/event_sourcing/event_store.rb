@@ -13,10 +13,18 @@ module Koine
         events = @repository.find_by(type: type, id: id)
           .sort_by(&:aggregate_version)
 
-        DomainEvents.new(events)
+        DomainEvents.new(events).tap(&:persist_all)
       end
 
-      def add_unpersisted_events(events); end
+      def add_unpersisted_events(domain_events)
+        domain_events.unpersisted.each do |event|
+          @repository.store(event)
+          domain_events.persist(event)
+          if block_given?
+            yield(event)
+          end
+        end
+      end
     end
   end
 end
