@@ -7,8 +7,6 @@ module Koine
         @repository = repository
       end
 
-      def add(event); end
-
       def for_aggregate(type:, id:)
         events = @repository.find_by(type: type, id: id)
           .sort_by(&:aggregate_version)
