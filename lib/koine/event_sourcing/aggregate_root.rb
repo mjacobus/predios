@@ -21,16 +21,22 @@ module Koine
       private
 
       def record_that(event)
-        domain_events.append(event)
+        increment_version
+        domain_events.append(event.with_aggregate_root(self))
         when_event(event)
       end
 
-      def when_event(event)
+      def when_event(_event)
         raise "Method not implemented #{self.class}#when_event(event)"
       end
 
       def domain_events
         @domain_events ||= DomainEvents.new([])
+      end
+
+      def increment_version
+        @version ||= 0
+        @version += 1
       end
     end
   end

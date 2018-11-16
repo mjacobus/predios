@@ -33,5 +33,14 @@ RSpec.describe Koine::EventSourcing::AggregateRoot do
       expect(aggregate.title).to eq('the title')
       expect(aggregate.body).to eq('the body')
     end
+
+    it 'increases the version' do
+      expect(aggregate.version).to eq(2)
+    end
+
+    it 'sets the event aggregate verson in the event' do
+      expect(events.to_a.first.aggregate_version).to eq(1)
+      expect(events.to_a.last.aggregate_version).to eq(2)
+    end
   end
 end
