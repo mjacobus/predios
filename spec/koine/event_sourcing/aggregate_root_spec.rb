@@ -9,9 +9,9 @@ RSpec.describe Koine::EventSourcing::AggregateRoot do
 
   describe '#id' do
     it 'raises when one is not passed' do
-      expect { DummyAggregateNoId.new.id }.to raise_error(
+      expect { Article::AggregateRoot.new.id }.to raise_error(
         Koine::EventSourcing::Error,
-        'Missing id for DummyAggregateNoId'
+        'Missing id for Article::AggregateRoot'
       )
     end
 

@@ -3,10 +3,6 @@
 class DummyArticle < Koine::EventSourcing::AggregateRoot
 end
 
-class DummyAggregateNoId < Koine::EventSourcing::AggregateRoot
-  def initialize; end
-end
-
 module DummyEvents
   class DummyEvent < Koine::EventSourcing::DomainEvent
   end
