@@ -8,10 +8,12 @@ module Koine
       end
 
       def for_aggregate(type:, id:)
-        events = @repository.find_by(type: type, id: id)
-          .sort_by(&:aggregate_version)
+        from_repository(@repository.find_by(type: type, id: id))
+      end
 
-        DomainEvents.new(events).tap(&:persist_all)
+      def find_by_aggregate_id(id)
+        events = @repository.find_by(id: id)
+        from_repository(events)
       end
 
       def add_unpersisted_events(domain_events)
@@ -22,6 +24,13 @@ module Koine
             yield(event)
           end
         end
+      end
+
+      private
+
+      def from_repository(events)
+        events = events.sort_by(&:aggregate_version)
+        DomainEvents.new(events).tap(&:persist_all)
       end
     end
   end

@@ -54,6 +54,26 @@ RSpec.describe Koine::EventSourcing::EventStore do
     end
   end
 
+  describe '#find' do
+    context 'when events are found' do
+      before do
+        allow(repository).to receive(:find_by)
+          .with(id: 'the-id')
+          .and_return(raw_events)
+      end
+
+      let(:found) { store.find_by_aggregate_id('the-id') }
+
+      it 'returns a collection of ordered events' do
+        expect(found.to_a).to be_equal_to([event1, event2, event3])
+      end
+
+      it 'marks all events as persisted' do
+        expect(found).to be_all_persisted
+      end
+    end
+  end
+
   describe '#add_unpersisted_events' do
     before do
       allow(repository).to receive(:store)
