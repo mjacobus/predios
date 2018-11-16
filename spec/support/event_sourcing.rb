@@ -16,7 +16,7 @@ module Article
   DomainEvent = Class.new(Koine::EventSourcing::DomainEvent)
 
   module Events
-    class Created < DomainEvent
+    class ArticleCreated < DomainEvent
       def title
         payload['title']
       end
@@ -26,13 +26,13 @@ module Article
       end
     end
 
-    class TitleChanged < DomainEvent
+    class ArticleTitleChanged < DomainEvent
       def new_title
         payload['title']
       end
     end
 
-    class BodyChanged < DomainEvent
+    class ArticleBodyChanged < DomainEvent
       def new_body
         payload['body']
       end
@@ -43,27 +43,34 @@ module Article
     attr_reader :title
     attr_reader :body
 
-    def self.create(title:, body:)
-      new('the-id').tap do |record|
-        record.title = title
-        record.body = body
+    class << self
+      def create(title:, body:)
+        event = Events::ArticleCreated.new(title: title, body: body)
+        new('the-id').tap do |rec|
+          rec.send(:record_that, event)
+        end
       end
     end
 
     def title=(title)
-      record_that(Events::TitleChanged.new(title: title))
+      record_that(Events::ArticleTitleChanged.new(title: title))
     end
 
     def body=(title)
-      record_that(Events::BodyChanged.new(body: title))
+      record_that(Events::ArticleBodyChanged.new(body: title))
     end
 
     private
 
     def when_event(event)
       underscored = Hanami::Utils::String.underscore(event.class)
-      when_method = underscored.split('/').last
+      when_method = underscored.split('/').last.sub('article_', '')
       send("when_#{when_method}", event)
+    end
+
+    def when_created(event)
+      @title = event.title
+      @body = event.body
     end
 
     def when_title_changed(event)

@@ -6,7 +6,7 @@ RSpec.describe Koine::EventSourcing::DomainEvents do
   let(:event1) { DummyEvents::DummyEvent.new(name: 'one') }
   let(:event2) { DummyEvents::DummyEvent.new(name: 'two') }
   let(:event3) { DummyEvents::DummyEvent.new(name: 'three') }
-  let(:events) { described_class.new([event1, event2, event3 ]) }
+  let(:events) { described_class.new([event1, event2, event3]) }
 
   it 'has initially no events persisted' do
     expect(events.all_persisted?).to eq(false)

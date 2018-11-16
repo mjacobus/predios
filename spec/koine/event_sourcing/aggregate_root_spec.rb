@@ -26,7 +26,7 @@ RSpec.describe Koine::EventSourcing::AggregateRoot do
     before { aggregate }
 
     it 'records events' do
-      expect(events.length).to eq(2)
+      expect(events.length).to eq(1)
     end
 
     it 'runs when_event' do
@@ -35,12 +35,32 @@ RSpec.describe Koine::EventSourcing::AggregateRoot do
     end
 
     it 'increases the version' do
-      expect(aggregate.version).to eq(2)
+      expect(aggregate.version).to eq(1)
     end
 
     it 'sets the event aggregate verson in the event' do
-      expect(events.to_a.first.aggregate_version).to eq(1)
-      expect(events.to_a.last.aggregate_version).to eq(2)
+      expect(events.to_a.last.aggregate_version).to eq(1)
+    end
+
+    context 'when other events are triggered' do
+      before do
+        aggregate.title = 'new title'
+        aggregate.body = 'new body'
+      end
+
+      it 'changes the attributes' do
+        expect(aggregate.title).to eq('new title')
+        expect(aggregate.body).to eq('new body')
+      end
+
+      it 'changes the version of the aggregate' do
+        expect(aggregate.version).to eq(3)
+      end
+
+      it 'changes the version of the new events' do
+        expect(events.to_a[1].aggregate_version).to eq(2)
+        expect(events.to_a[2].aggregate_version).to eq(3)
+      end
     end
   end
 end
