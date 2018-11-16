@@ -83,5 +83,4 @@ store.persist(item)
 event_listener.propagate(domain_event) # spread the word!
 store.by_uuid(uuid)
 
-
 events = store.all_by(aggregate_type: type, aggregate_id: uuid)
