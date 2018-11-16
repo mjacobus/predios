@@ -52,4 +52,35 @@ RSpec.describe Koine::EventSourcing::AggregateRepository do
       end
     end
   end
+
+  describe '#find_by_aggregate_type_and_id' do
+    before do
+      allow(event_store)
+        .to receive(:for_aggregate)
+        .with(type: 'the-type', id: 'the-id')
+        .and_return(aggregate_events)
+
+      aggregate_root.title = 'new title'
+    end
+
+    let(:found) { repository.find_by_aggregate_type_and_id(type: 'the-type', id: 'the-id') }
+
+    context 'when record exists' do
+      it 'returns aggregate' do
+        expect(found).to be_equal_to(aggregate_root)
+        expect(found).not_to be(aggregate_root)
+      end
+    end
+
+    context 'when record does not exist' do
+      let(:aggregate_events) { Koine::EventSourcing::DomainEvents.new([]) }
+
+      it 'raises a not found error' do
+        expect { found }.to raise_error(
+          Koine::EventSourcing::Error,
+          'AggregateRoot not found (the-type:the-id)'
+        )
+      end
+    end
+  end
 end

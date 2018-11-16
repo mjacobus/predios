@@ -14,12 +14,16 @@ module Koine
 
       def find(aggregate_id)
         events = @event_store.find_by_aggregate_id(aggregate_id)
-
-        unless events.length.zero?
-          events.first.aggregate_class.from_event_stream(events)
+        build_aggregate_from_events_or(events) do
+          raise AggregateRootNotFound, "AggregateRoot not found by id #{aggregate_id}"
         end
+      end
 
-        raise AggregateRootNotFound, "AggregateRoot not found by id #{aggregate_id}"
+      def find_by_aggregate_type_and_id(type:, id:)
+        events = @event_store.for_aggregate(type: type, id: id)
+        build_aggregate_from_events_or(events) do
+          raise AggregateRootNotFound, "AggregateRoot not found (#{type}:#{id})"
+        end
       end
 
       def add(aggregate_root)
@@ -28,6 +32,14 @@ module Koine
       end
 
       private
+
+      def build_aggregate_from_events_or(events)
+        if events.length.zero?
+          return yield
+        end
+
+        events.first.aggregate_class.from_event_stream(events)
+      end
 
       def domain_events(aggregate_root)
         aggregate_root.class.extract_events(aggregate_root)
