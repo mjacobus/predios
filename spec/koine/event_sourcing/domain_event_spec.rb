@@ -151,19 +151,19 @@ RSpec.describe Koine::EventSourcing::DomainEvent do
     end
   end
 
-  describe '#created_at' do
+  describe '#event_time' do
     it 'defaults to now utc' do
-      expect(event.created_at.to_s).to eq(Time.now.utc.to_s)
+      expect(event.event_time.to_s).to eq(Time.now.utc.to_s)
     end
 
     it 'can be changed, but it keeps the utc' do
       seven_days_ago = Time.now - 7 * 24 * 60 * 60
 
       with = with_immutable(event) do |e|
-        e.with_created_at(seven_days_ago)
+        e.with_event_time(seven_days_ago)
       end
 
-      expect(with.created_at.to_s).to eq(seven_days_ago.utc.to_s)
+      expect(with.event_time.to_s).to eq(seven_days_ago.utc.to_s)
     end
   end
 

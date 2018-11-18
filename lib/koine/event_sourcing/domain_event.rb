@@ -8,7 +8,7 @@ module Koine
     # event_type
     # payload
     # metadata
-    # created_at
+    # event_time
     # aggregate_version
     # aggregate_id
     # aggregate_type
@@ -17,14 +17,14 @@ module Koine
       InvalidAggregateRoot = Class.new(DomainEventError)
 
       attr_reader :payload
-      attr_reader :created_at
+      attr_reader :event_time
       attr_reader :event_id
       attr_reader :metadata
 
       def initialize(payload = {})
         @payload = to_hash(payload)
         @metadata = {}
-        @created_at = Time.now.utc
+        @event_time = Time.now.utc
         @event_id = Uuid.new
         freeze
       end
@@ -61,8 +61,8 @@ module Koine
         with(:event_id, id)
       end
 
-      def with_created_at(created_at)
-        with(:created_at, created_at.utc)
+      def with_event_time(event_time)
+        with(:event_time, event_time.utc)
       end
 
       def with_aggregate_root(aggregate)
@@ -102,7 +102,7 @@ module Koine
       attr_writer :aggregate_id
       attr_writer :aggregate_version
       attr_writer :event_id
-      attr_writer :created_at
+      attr_writer :event_time
     end
   end
 end
