@@ -10,4 +10,9 @@ class DomainEventRepository < Hanami::Repository
 
     domain_events.where(params).to_a.map(&:to_event)
   end
+
+  def store(event)
+    entity = DomainEvent.from_domain_event(event)
+    create(entity)
+  end
 end

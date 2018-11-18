@@ -2,8 +2,8 @@
 
 RSpec.describe DomainEvent, type: :entity do
   let(:event_type) { Articles::Events::ArticleCreated }
-  let(:payload) { nil }
-  let(:metadata) { nil }
+  let(:payload) { '{"pay":"load"}' }
+  let(:metadata) { '{"meta":"data"}' }
 
   let(:entity) do
     DomainEvent.new(
@@ -77,6 +77,18 @@ RSpec.describe DomainEvent, type: :entity do
           expect(event.metadata).to eq data
         end
       end
+    end
+  end
+
+  describe '.from_domain_event' do
+    let(:event) { entity.to_event }
+
+    it 'converts event to entity' do
+      converted = DomainEvent.from_domain_event(event)
+
+      expect(converted.payload).to eq(payload)
+      expect(converted).to eq entity
+      expect(converted).not_to be entity
     end
   end
 end

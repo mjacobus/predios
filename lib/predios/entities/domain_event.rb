@@ -11,7 +11,21 @@ class DomainEvent < Entity
       .with_metadata(unserialized_metadata)
   end
 
-  def self.from_domain_event(event); end
+  # rubocop:disable Metrics/MethodLength
+  def self.from_domain_event(event)
+    attributes = {
+      uuid: event.event_id,
+      event_type: event.event_type,
+      payload: JSON.dump(event.payload),
+      metadata: JSON.dump(event.metadata),
+      event_time: event.event_time,
+      aggregate_type: event.aggregate_type,
+      aggregate_id: event.aggregate_id,
+      aggregate_version: event.aggregate_version,
+    }
+
+    new(attributes)
+  end
 
   def event_class
     Object.const_get(event_type)

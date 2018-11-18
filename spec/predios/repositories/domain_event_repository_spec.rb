@@ -38,5 +38,10 @@ RSpec.describe DomainEventRepository, type: :repository do
   end
 
   describe '#store' do
+    let(:event) { factory.sample(aggregate_id: aggregate_root.id).to_event }
+
+    it 'stores an event' do
+      expect { repository.store(event) }.to change { repository.all.count }.to(1)
+    end
   end
 end
