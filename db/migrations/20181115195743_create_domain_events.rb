@@ -8,7 +8,7 @@ Hanami::Model.migration do
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false
 
-      column :uuid, String, null: false, index: true
+      column :event_id, String, null: false, index: true
       column :event_type, String, null: false, index: true
       column :payload, String, null: false
       column :metadata, String, null: false

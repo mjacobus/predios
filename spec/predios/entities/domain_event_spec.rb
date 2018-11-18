@@ -7,7 +7,7 @@ RSpec.describe DomainEvent, type: :entity do
 
   let(:entity) do
     DomainEvent.new(
-      uuid: 'the-uuid',
+      event_id: 'the-uuid',
       payload: payload,
       metadata: metadata,
       aggregate_type: 'Articles::AggregateRoot',
@@ -22,7 +22,7 @@ RSpec.describe DomainEvent, type: :entity do
     let(:event) { entity.to_event }
 
     it 'sets event_id' do
-      expect(event.event_id).to eq entity.uuid
+      expect(event.event_id).to eq entity.event_id
     end
 
     it 'creates a domain with the correct class' do
