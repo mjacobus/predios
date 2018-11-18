@@ -66,9 +66,21 @@ module Koine
       end
 
       def with_aggregate_root(aggregate)
-        with(:aggregate_type, aggregate.class.to_s)
-          .with(:aggregate_id, aggregate.id)
-          .with(:aggregate_version, aggregate.version)
+        with_aggregate_type(aggregate.class)
+          .with_aggregate_id(aggregate.id)
+          .with_aggregate_version(aggregate.version)
+      end
+
+      def with_aggregate_type(type)
+        with(:aggregate_type, type.to_s)
+      end
+
+      def with_aggregate_id(id)
+        with(:aggregate_id, id.to_s)
+      end
+
+      def with_aggregate_version(version)
+        with(:aggregate_version, version.to_s)
       end
 
       protected
