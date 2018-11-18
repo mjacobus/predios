@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable all
+
 Buildings::Events::BuildingCreated.new
 Buildings::Events::BuildingUpdated.new
 Buildings::Events::BuildingAssignedToPublisher.new
