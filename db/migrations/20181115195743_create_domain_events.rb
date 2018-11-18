@@ -15,7 +15,7 @@ Hanami::Model.migration do
       column :event_time, DateTime, null: false
       column :aggregate_type, String, null: false, index: true
       column :aggregate_id, String, null: false, index: true
-      column :aggregate_version, String, null: false
+      column :aggregate_version, Integer, null: false
     end
   end
 end

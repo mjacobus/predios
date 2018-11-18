@@ -28,6 +28,10 @@ class DomainEventFactory < EntityFactory
     Articles::Events::ArticleCreated.to_s
   end
 
+  def sample_aggregate_version(seq)
+    seq
+  end
+
   def sample_aggregate_type(_seq)
     Articles::AggregateRoot.to_s
   end

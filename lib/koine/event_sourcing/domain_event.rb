@@ -80,7 +80,7 @@ module Koine
       end
 
       def with_aggregate_version(version)
-        with(:aggregate_version, version.to_s)
+        with(:aggregate_version, Integer(version))
       end
 
       protected

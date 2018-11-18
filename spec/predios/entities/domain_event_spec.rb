@@ -12,7 +12,7 @@ RSpec.describe DomainEvent, type: :entity do
       metadata: metadata,
       aggregate_type: 'Articles::AggregateRoot',
       aggregate_id: 'aggregate-id',
-      aggregate_version: 'aggregate-version',
+      aggregate_version: 3,
       event_type: event_type.to_s,
       event_time: Time.parse('2001-02-03')
     )

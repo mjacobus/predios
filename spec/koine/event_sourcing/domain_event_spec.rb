@@ -6,7 +6,7 @@ RSpec.describe Koine::EventSourcing::DomainEvent do
   let(:event_type) { DummyEvents::DummyEvent }
   let(:event) { event_type.new(payload) }
   let(:aggregate_root) do
-    instance_double(DummyArticle, id: 'the-id', version: 'the-version')
+    instance_double(DummyArticle, id: 'the-id', version: 555)
   end
   let(:payload) { stringify_keys(foo: :bar) }
 
@@ -147,7 +147,7 @@ RSpec.describe Koine::EventSourcing::DomainEvent do
         e.with_aggregate_root(aggregate_root)
       end
 
-      expect(with.aggregate_version).to eq('the-version')
+      expect(with.aggregate_version).to eq(555)
     end
   end
 
