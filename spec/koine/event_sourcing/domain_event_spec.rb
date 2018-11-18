@@ -167,9 +167,9 @@ RSpec.describe Koine::EventSourcing::DomainEvent do
     end
   end
 
-  describe '#event_name' do
+  describe '#event_type' do
     it 'returns the class name as string' do
-      expect(event.event_name).to eq('DummyEvents::DummyEvent')
+      expect(event.event_type).to eq('DummyEvents::DummyEvent')
     end
   end
 

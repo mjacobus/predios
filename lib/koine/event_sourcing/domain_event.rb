@@ -5,7 +5,7 @@ require_relative './error.rb'
 module Koine
   module EventSourcing
     # event_id
-    # event_name
+    # event_type
     # payload
     # metadata
     # created_at
@@ -45,7 +45,7 @@ module Koine
         @aggregate_version || raise(InvalidAggregateRoot)
       end
 
-      def event_name
+      def event_type
         self.class.to_s
       end
 
