@@ -36,7 +36,7 @@ class EntityFactory
     yield(sequence)
   end
 
-  def sample_email(_email, sequence)
+  def sample_email(sequence)
     "email#{sequence}@email.com"
   end
 
