@@ -2,7 +2,7 @@
 
 Hanami::Model.migration do
   change do
-    create_table :domain_events do
+    create_table :domain_events_store do
       primary_key :id
 
       column :created_at, DateTime, null: false
