@@ -8,7 +8,7 @@ module DummyEvents
   end
 end
 
-module Article
+module Articles
   DomainEvent = Class.new(Koine::EventSourcing::DomainEvent)
 
   module Events
