@@ -40,6 +40,10 @@ class EntityFactory
     "email#{sequence}@email.com"
   end
 
+  def sample_uuid(sequence)
+    UniqueId.new
+  end
+
   # rubocop:disable Metrics/MethodLength
   def sample_attributes
     {}.tap do |data|
