@@ -2,7 +2,7 @@
 
 require_relative './entity_factory'
 
-class DomainEventFactory < EntityFactory
+class EventStoreEventFactory < EntityFactory
   private
 
   # rubocop:disable Metrics/MethodLength

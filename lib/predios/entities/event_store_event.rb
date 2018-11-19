@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DomainEvent < Entity
+class EventStoreEvent < Entity
   def to_event
     event_class.new(unserialized_payload)
       .with_aggregate_type(aggregate_type)
