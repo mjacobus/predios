@@ -6,12 +6,12 @@ module Koine
   module EventSourcing
     # event_id
     # event_type
+    # event_time
+    # aggregate_type
+    # aggregate_id
+    # aggregate_version
     # payload
     # metadata
-    # event_time
-    # aggregate_version
-    # aggregate_id
-    # aggregate_type
     class DomainEvent
       DomainEventError = Class.new(Error)
       InvalidAggregateRoot = Class.new(DomainEventError)
