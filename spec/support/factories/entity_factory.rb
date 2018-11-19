@@ -40,7 +40,7 @@ class EntityFactory
     "email#{sequence}@email.com"
   end
 
-  def sample_uuid(sequence)
+  def sample_uuid(_sequence)
     UniqueId.new
   end
 
