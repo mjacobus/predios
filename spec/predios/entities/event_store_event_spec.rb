@@ -84,11 +84,13 @@ RSpec.describe EventStoreEvent, type: :entity do
     let(:event) { entity.to_event }
 
     it 'converts event to entity' do
-      converted = EventStoreEvent.from_domain_event(event)
+      data = EventStoreEvent.from_domain_event(event)
 
-      expect(converted.payload).to eq(payload)
-      expect(converted).to eq entity
-      expect(converted).not_to be entity
+      copy = described_class.new(data)
+
+      expect(copy.payload).to eq(payload)
+      expect(copy).to eq entity
+      expect(copy).not_to be entity
     end
   end
 end

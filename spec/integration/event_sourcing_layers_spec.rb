@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 # rubocop:disable RSpec/DescribeClass
+
+require 'spec_helper'
 
 RSpec.describe 'event sourcing layers' do
   let(:dependencies) { TestDependencies.new }
@@ -28,7 +28,7 @@ RSpec.describe 'event sourcing layers' do
 
       expect(found.title).to be_equal_to(aggregate.title)
       expect(found.body).to be_equal_to(aggregate.body)
-      expect(found.id).to be_equal_to(aggregate.id)
+      expect(found.id).to be_equal_to(aggregate.id.to_s)
       expect(found.version).to be_equal_to(aggregate.version)
       expect(found.created_at).to be_equal_to(aggregate.created_at)
       expect(found.updated_at).to be_equal_to(aggregate.updated_at)

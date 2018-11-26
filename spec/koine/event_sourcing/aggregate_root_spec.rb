@@ -17,7 +17,8 @@ RSpec.describe Koine::EventSourcing::AggregateRoot do
 
     it 'can be set in the initializer' do
       expect(aggregate.id).not_to be_nil
-      expect(aggregate.id.length).to eq 36
+      expect(aggregate.id).to be_a(Koine::EventSourcing::Uuid)
+      expect(aggregate.id.to_s.length).to eq 36
     end
   end
 

@@ -48,7 +48,7 @@ module Articles
     class << self
       def create(title:, body:)
         event = Events::ArticleCreated.new(
-          id: Koine::EventSourcing::Uuid.new.to_s,
+          id: Koine::EventSourcing::Uuid.new,
           title: title,
           body: body
         )

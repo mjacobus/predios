@@ -58,7 +58,7 @@ module Koine
       end
 
       def with_event_id(id)
-        with(:event_id, id)
+        with(:event_id, Uuid.new(id.to_s))
       end
 
       def with_event_time(event_time)

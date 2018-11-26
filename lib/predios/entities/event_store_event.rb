@@ -10,21 +10,17 @@ class EventStoreEvent < Entity
       .with_event_id(event_id)
       .with_metadata(unserialized_metadata)
   end
-
-  # rubocop:disable Metrics/MethodLength
   def self.from_domain_event(event)
-    attributes = {
-      event_id: event.event_id,
-      event_type: event.event_type,
+    {
+      event_id: event.event_id.to_s,
+      event_type: event.event_type.to_s,
       payload: JSON.dump(event.payload),
       metadata: JSON.dump(event.metadata),
       event_time: event.event_time,
-      aggregate_type: event.aggregate_type,
-      aggregate_id: event.aggregate_id,
-      aggregate_version: event.aggregate_version,
+      aggregate_type: event.aggregate_type.to_s,
+      aggregate_id: event.aggregate_id.to_s,
+      aggregate_version: event.aggregate_version.to_i,
     }
-
-    new(attributes)
   end
 
   def event_class
