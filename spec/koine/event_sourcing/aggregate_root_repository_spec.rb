@@ -5,10 +5,12 @@ require 'spec_helper'
 RSpec.describe Koine::EventSourcing::AggregateRootRepository do
   let(:event_store) { instance_double(Koine::EventSourcing::EventStore) }
   let(:projections) { instance_double(Koine::EventSourcing::NullProjections) }
+  let(:processors) { instance_double(Koine::EventSourcing::NullProcessors) }
   let(:repository) do
     described_class.new(
       event_store: event_store,
-      projections: projections
+      projections: projections,
+      processors: processors
     )
   end
   let(:aggregate_events) { aggregate_root.class.extract_events(aggregate_root) }
@@ -17,6 +19,7 @@ RSpec.describe Koine::EventSourcing::AggregateRootRepository do
   describe '#add' do
     before do
       allow(projections).to receive(:project)
+      allow(processors).to receive(:process)
       allow(event_store).to receive(:add_unpersisted_events)
         .and_return([:unpersisted_event])
     end
@@ -33,6 +36,12 @@ RSpec.describe Koine::EventSourcing::AggregateRootRepository do
       repository.add(aggregate_root)
 
       expect(projections).to have_received(:project).with([:unpersisted_event])
+    end
+
+    it 'processes the unpersisted events' do
+      repository.add(aggregate_root)
+
+      expect(processors).to have_received(:process).with([:unpersisted_event])
     end
   end
 
