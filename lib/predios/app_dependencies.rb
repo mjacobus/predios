@@ -7,6 +7,10 @@ class AppDependencies < Nurse::DependencyContainer
     super
 
     add_factory(CommandBusFactory.new)
+
+    add_repository('event') do
+      EventStoreEventRepository.new
+    end
   end
 
   def repository(name)
@@ -15,5 +19,11 @@ class AppDependencies < Nurse::DependencyContainer
 
   def service(name)
     get("services.#{name}")
+  end
+
+  private
+
+  def add_repository(name, &block)
+    share("repositories.#{name}_repository", &block)
   end
 end

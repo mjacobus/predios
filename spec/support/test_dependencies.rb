@@ -4,8 +4,6 @@ class TestDependencies < AppDependencies
   def initialize
     super
 
-    define('repositories.article_repository') do
-      TestArticleRepository.new
-    end
+    add_repository('article') { TestArticleRepository.new }
   end
 end
