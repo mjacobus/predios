@@ -42,11 +42,12 @@ module Articles
   class AggregateRoot < Koine::EventSourcing::AggregateRoot
     attr_reader :title
     attr_reader :body
+    attr_reader :updated_at
 
     class << self
       def create(title:, body:)
         event = Events::ArticleCreated.new(
-          id: 'the-id',
+          id: Koine::EventSourcing::Uuid.new.to_s,
           title: title,
           body: body
         )
@@ -71,6 +72,7 @@ module Articles
       underscored = Hanami::Utils::String.underscore(event.class)
       when_method = underscored.split('/').last.sub('article_', '')
       send("when_#{when_method}", event)
+      @updated_at = event.event_time
     end
 
     def when_created(event)
