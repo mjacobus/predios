@@ -36,9 +36,11 @@ module Koine
         domain_events.append(event.with_aggregate_root(self))
       end
 
+      # :nocov:
       def when_event(_event)
         raise "Method not implemented #{self.class}#when_event(event)"
       end
+      # :nocov:
 
       def domain_events
         @domain_events ||= DomainEvents.new([])
