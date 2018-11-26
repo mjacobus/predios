@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-RSpec.describe Koine::EventSourcing::Projections do
+RSpec.describe Koine::EventSourcing::Projectors do
   let(:event_manager) { instance_double(Koine::EventManager::EventManager) }
-  let(:projections) { described_class.new(event_manager: event_manager) }
+  let(:projectors) { described_class.new(event_manager: event_manager) }
   let(:event) { Koine::EventSourcing::DomainEvent.new(payload: :yep) }
   let(:events) { event }
 
@@ -14,7 +14,7 @@ RSpec.describe Koine::EventSourcing::Projections do
 
   describe '#project' do
     it 'calls triggers the events on the event manager' do
-      projections.project(events)
+      projectors.project(events)
 
       expect(event_manager).to have_received(:trigger).with(event)
     end

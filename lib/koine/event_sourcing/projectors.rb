@@ -2,7 +2,7 @@
 
 module Koine
   module EventSourcing
-    class Projections
+    class Projectors
       def initialize(event_manager:)
         @event_manager = event_manager
       end

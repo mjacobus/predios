@@ -2,7 +2,7 @@
 
 module Koine
   module EventSourcing
-    class NullProjections
+    class NullProjectors
       def project(events); end
     end
   end
