@@ -10,6 +10,7 @@ class EventStoreEvent < Entity
       .with_event_id(event_id)
       .with_metadata(unserialized_metadata)
   end
+
   def self.from_domain_event(event)
     {
       event_id: event.event_id.to_s,
