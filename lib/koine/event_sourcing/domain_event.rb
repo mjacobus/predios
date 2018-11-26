@@ -76,7 +76,7 @@ module Koine
       end
 
       def with_aggregate_id(id)
-        with(:aggregate_id, id.to_s)
+        with(:aggregate_id, Uuid.new(id.to_s))
       end
 
       def with_aggregate_version(version)

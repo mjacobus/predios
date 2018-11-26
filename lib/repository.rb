@@ -11,6 +11,6 @@ module Repository
 
   def by_uuid(uuid)
     relation = relations.to_h.keys.first
-    send(relation).where(uuid: uuid).first
+    send(relation).where(uuid: uuid.to_s).first
   end
 end
