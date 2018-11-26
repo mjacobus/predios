@@ -4,6 +4,7 @@ require 'hanami/model'
 require_relative '../lib/predios'
 require_relative '../apps/web/application'
 require_relative '../lib/repository'
+require_relative '../config/initializers/include_path'
 
 require 'dotenv'
 Dotenv.load
