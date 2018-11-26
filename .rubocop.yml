@@ -79,3 +79,6 @@ RSpec/MultipleExpectations:
 
 RSpec/NestedGroups:
   Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: false
