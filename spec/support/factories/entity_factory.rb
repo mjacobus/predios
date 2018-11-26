@@ -36,8 +36,12 @@ class EntityFactory
     yield(sequence)
   end
 
-  def sample_email(_email, sequence)
+  def sample_email(sequence)
     "email#{sequence}@email.com"
+  end
+
+  def sample_uuid(_sequence)
+    UniqueId.new
   end
 
   # rubocop:disable Metrics/MethodLength
@@ -46,9 +50,12 @@ class EntityFactory
       with_sequence do |seq|
         sampled_attributes.each do |attr_name|
           value = "#{attr_name} #{seq}"
-          if respond_to?("sample_#{attr_name}")
-            value = send("sample_#{attr_name}", seq)
+          sample_method = "sample_#{attr_name}"
+
+          if respond_to?(sample_method, true)
+            value = send(sample_method, seq)
           end
+
           data[attr_name] = value
         end
       end
