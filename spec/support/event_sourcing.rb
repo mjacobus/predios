@@ -39,7 +39,7 @@ module Articles
     end
   end
 
-  class AggregateRoot < Koine::EventSourcing::AggregateRoot
+  class Article < Koine::EventSourcing::AggregateRoot
     attr_reader :title
     attr_reader :body
     attr_reader :created_at

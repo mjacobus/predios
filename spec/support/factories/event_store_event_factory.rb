@@ -33,7 +33,7 @@ class EventStoreEventFactory < EntityFactory
   end
 
   def sample_aggregate_type(_seq)
-    Articles::AggregateRoot.to_s
+    Articles::Article.to_s
   end
 
   def sample_metadata(_seq)

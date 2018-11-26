@@ -103,7 +103,7 @@ RSpec.describe Koine::EventSourcing::AggregateRootRepository do
       it 'raises a not found error' do
         expect { found }.to raise_error(
           Koine::EventSourcing::Error,
-          'AggregateRoot not found (the-type:the-id)'
+          'Aggregate Root not found (the-type:the-id)'
         )
       end
     end

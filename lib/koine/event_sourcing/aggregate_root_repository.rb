@@ -24,7 +24,7 @@ module Koine
       def find_by_aggregate_type_and_id(type:, id:)
         events = @event_store.for_aggregate(type: type, id: id)
         build_aggregate_from_events_or(events) do
-          raise AggregateRootNotFound, "AggregateRoot not found (#{type}:#{id})"
+          raise AggregateRootNotFound, "Aggregate Root not found (#{type}:#{id})"
         end
       end
 

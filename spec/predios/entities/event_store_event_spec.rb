@@ -10,7 +10,7 @@ RSpec.describe EventStoreEvent, type: :entity do
       event_id: 'the-uuid',
       payload: payload,
       metadata: metadata,
-      aggregate_type: 'Articles::AggregateRoot',
+      aggregate_type: 'Articles::Article',
       aggregate_id: 'aggregate-id',
       aggregate_version: 3,
       event_type: event_type.to_s,
