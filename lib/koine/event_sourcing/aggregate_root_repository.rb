@@ -28,7 +28,7 @@ module Koine
         end
       end
 
-      def add(aggregate_root)
+      def save(aggregate_root)
         events = domain_events(aggregate_root)
         unpersisted_events = @event_store.add_unpersisted_events(events)
         @projectors.project(unpersisted_events)

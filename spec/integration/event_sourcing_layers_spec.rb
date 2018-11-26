@@ -15,7 +15,7 @@ RSpec.describe 'event sourcing layers' do
   before do
     articles.clear
     events.clear
-    aggregates.add(aggregate)
+    aggregates.save(aggregate)
   end
 
   describe 'creating an aggregate root' do
@@ -30,7 +30,21 @@ RSpec.describe 'event sourcing layers' do
       expect(found.body).to be_equal_to(aggregate.body)
       expect(found.id).to be_equal_to(aggregate.id)
       expect(found.version).to be_equal_to(aggregate.version)
+      expect(found.created_at).to be_equal_to(aggregate.created_at)
       expect(found.updated_at).to be_equal_to(aggregate.updated_at)
+    end
+
+    it 'creates projections' do
+      aggregate.title = 'other title'
+      aggregates.save(aggregate)
+
+      article = articles.first
+
+      expect(articles.all.length).to eq(1)
+      expect(article.title).to eq(aggregate.title)
+      expect(article.body).to eq(aggregate.body)
+      expect(article.updated_at.to_s).to eq(aggregate.updated_at.to_s)
+      expect(article.created_at.to_s).to eq(aggregate.created_at.to_s)
     end
   end
 end

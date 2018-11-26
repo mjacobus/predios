@@ -42,6 +42,7 @@ module Articles
   class AggregateRoot < Koine::EventSourcing::AggregateRoot
     attr_reader :title
     attr_reader :body
+    attr_reader :created_at
     attr_reader :updated_at
 
     class << self
@@ -79,6 +80,7 @@ module Articles
       @id = event.id
       @title = event.title
       @body = event.body
+      @created_at = event.event_time
     end
 
     def when_title_changed(event)
@@ -87,6 +89,52 @@ module Articles
 
     def when_body_changed(event)
       @body = event.new_body
+    end
+  end
+
+  class ProjectionsListener < Koine::EventManager::EventListener
+    def initialize(repository:)
+      @repository = repository
+      super()
+      add_listeners
+      subscriber = EventSubscribers::AttributeChangedSubscriber.new(
+        repository: repository
+      )
+      subscribe(subscriber, to: [
+        Events::ArticleTitleChanged,
+        Events::ArticleBodyChanged,
+      ])
+    end
+
+    private
+
+    def add_listeners
+      listen_to(Events::ArticleCreated) do |event|
+        article = TestArticle.new(
+          title: event.title,
+          body: event.body,
+          uuid: event.aggregate_id,
+          created_at: event.event_time,
+          updated_at: event.event_time
+        )
+        @repository.create(article)
+      end
+    end
+  end
+
+  module EventSubscribers
+    class AttributeChangedSubscriber
+      def initialize(repository:)
+        @repository = repository
+      end
+
+      def publish(event)
+        article = @repository.by_uuid(event.aggregate_id)
+        new_attributes = event.payload.dup
+        new_attributes.delete(:id)
+        changed = article.with_attributes(new_attributes)
+        @repository.save(changed)
+      end
     end
   end
 end

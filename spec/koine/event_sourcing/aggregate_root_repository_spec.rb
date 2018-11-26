@@ -16,7 +16,7 @@ RSpec.describe Koine::EventSourcing::AggregateRootRepository do
   let(:aggregate_events) { aggregate_root.class.extract_events(aggregate_root) }
   let(:aggregate_root) { sample_aggregate }
 
-  describe '#add' do
+  describe '#save' do
     before do
       allow(projectors).to receive(:project)
       allow(processors).to receive(:process)
@@ -25,7 +25,7 @@ RSpec.describe Koine::EventSourcing::AggregateRootRepository do
     end
 
     it 'adds all unpersisted events' do
-      repository.add(aggregate_root)
+      repository.save(aggregate_root)
 
       expect(event_store)
         .to have_received(:add_unpersisted_events)
@@ -33,13 +33,13 @@ RSpec.describe Koine::EventSourcing::AggregateRootRepository do
     end
 
     it 'projects the unpersisted events' do
-      repository.add(aggregate_root)
+      repository.save(aggregate_root)
 
       expect(projectors).to have_received(:project).with([:unpersisted_event])
     end
 
     it 'processes the unpersisted events' do
-      repository.add(aggregate_root)
+      repository.save(aggregate_root)
 
       expect(processors).to have_received(:process).with([:unpersisted_event])
     end
