@@ -1,36 +1,6 @@
 # frozen_string_literal: true
 
 module Articles
-  module Events
-    DomainEvent = Class.new(Koine::EventSourcing::DomainEvent)
-    class DummyEvent < DomainEvent; end
-    class ArticleCreated < DomainEvent
-      def id
-        payload['id']
-      end
-
-      def title
-        payload['title']
-      end
-
-      def body
-        payload['body']
-      end
-    end
-
-    class ArticleTitleChanged < DomainEvent
-      def new_title
-        payload['title']
-      end
-    end
-
-    class ArticleBodyChanged < DomainEvent
-      def new_body
-        payload['body']
-      end
-    end
-  end
-
   class ProjectionsListener < Koine::EventManager::EventListener
     def initialize(repository:)
       @repository = repository
