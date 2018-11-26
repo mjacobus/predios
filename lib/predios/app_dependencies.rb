@@ -8,4 +8,12 @@ class AppDependencies < Nurse::DependencyContainer
 
     add_factory(CommandBusFactory.new)
   end
+
+  def repository(name)
+    get("repositories.#{name}_repository")
+  end
+
+  def service(name)
+    get("services.#{name}")
+  end
 end
