@@ -1,52 +1,16 @@
 # frozen_string_literal: true
 
-class DummyArticle < Koine::EventSourcing::AggregateRoot
-end
-
-module DummyEvents
-  class DummyEvent < Koine::EventSourcing::DomainEvent
-  end
-end
-
 module Articles
-  DomainEvent = Class.new(Koine::EventSourcing::DomainEvent)
-
-  module Events
-    class ArticleCreated < DomainEvent
-      def id
-        payload['id']
-      end
-
-      def title
-        payload['title']
-      end
-
-      def body
-        payload['body']
-      end
-    end
-
-    class ArticleTitleChanged < DomainEvent
-      def new_title
-        payload['title']
-      end
-    end
-
-    class ArticleBodyChanged < DomainEvent
-      def new_body
-        payload['body']
-      end
-    end
-  end
-
-  class AggregateRoot < Koine::EventSourcing::AggregateRoot
+  class Article < Koine::EventSourcing::AggregateRoot
     attr_reader :title
     attr_reader :body
+    attr_reader :created_at
+    attr_reader :updated_at
 
     class << self
       def create(title:, body:)
         event = Events::ArticleCreated.new(
-          id: 'the-id',
+          id: Koine::EventSourcing::Uuid.new,
           title: title,
           body: body
         )
@@ -71,12 +35,14 @@ module Articles
       underscored = Hanami::Utils::String.underscore(event.class)
       when_method = underscored.split('/').last.sub('article_', '')
       send("when_#{when_method}", event)
+      @updated_at = event.event_time
     end
 
     def when_created(event)
       @id = event.id
       @title = event.title
       @body = event.body
+      @created_at = event.event_time
     end
 
     def when_title_changed(event)

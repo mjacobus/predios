@@ -17,6 +17,7 @@ SimpleCov.start do
   add_filter '/spec'
   add_group 'koine', 'lib/koine'
   add_group 'domain', 'lib/predios/domain'
+  add_group 'factories', 'lib/predios/factories'
   add_group 'repos', 'lib/predios/repositories'
   add_group 'entities', 'lib/predios/entities'
   add_group 'web/controllers', 'apps/web/controllers'

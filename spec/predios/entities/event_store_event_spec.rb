@@ -10,7 +10,7 @@ RSpec.describe EventStoreEvent, type: :entity do
       event_id: 'the-uuid',
       payload: payload,
       metadata: metadata,
-      aggregate_type: 'Articles::AggregateRoot',
+      aggregate_type: 'Articles::Article',
       aggregate_id: 'aggregate-id',
       aggregate_version: 3,
       event_type: event_type.to_s,
@@ -84,11 +84,13 @@ RSpec.describe EventStoreEvent, type: :entity do
     let(:event) { entity.to_event }
 
     it 'converts event to entity' do
-      converted = EventStoreEvent.from_domain_event(event)
+      data = EventStoreEvent.from_domain_event(event)
 
-      expect(converted.payload).to eq(payload)
-      expect(converted).to eq entity
-      expect(converted).not_to be entity
+      copy = described_class.new(data)
+
+      expect(copy.payload).to eq(payload)
+      expect(copy).to eq entity
+      expect(copy).not_to be entity
     end
   end
 end

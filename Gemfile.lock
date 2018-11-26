@@ -152,7 +152,7 @@ GEM
     json (2.1.0)
     jwt (2.1.0)
     koine-command_bus (1.0.0)
-    koine-event_manager (2.1)
+    koine-event_manager (2.1.1)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     mini_mime (1.0.1)
@@ -290,7 +290,7 @@ DEPENDENCIES
   hanami-model (~> 1.3)
   hanami-webconsole
   koine-command_bus (~> 1.0)
-  koine-event_manager (~> 2.1)
+  koine-event_manager (~> 2.1.1)
   mysql2
   nurse-rb (~> 2.1)
   object_comparator (~> 0.1.3)

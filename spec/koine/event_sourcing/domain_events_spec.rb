@@ -3,9 +3,9 @@
 require 'spec_helper'
 
 RSpec.describe Koine::EventSourcing::DomainEvents do
-  let(:event1) { DummyEvents::DummyEvent.new(name: 'one') }
-  let(:event2) { DummyEvents::DummyEvent.new(name: 'two') }
-  let(:event3) { DummyEvents::DummyEvent.new(name: 'three') }
+  let(:event1) { Articles::Events::DummyEvent.new(name: 'one') }
+  let(:event2) { Articles::Events::DummyEvent.new(name: 'two') }
+  let(:event3) { Articles::Events::DummyEvent.new(name: 'three') }
   let(:events) { described_class.new([event1, event2, event3]) }
 
   it 'has initially no events persisted' do
@@ -41,7 +41,7 @@ RSpec.describe Koine::EventSourcing::DomainEvents do
 
   describe '#append' do
     it 'appends an event' do
-      new_event = DummyEvents::DummyEvent.new(name: 'four')
+      new_event = Articles::Events::DummyEvent.new(name: 'four')
 
       events.append(new_event)
 

@@ -3,20 +3,22 @@
 require 'spec_helper'
 
 RSpec.describe Koine::EventSourcing::AggregateRoot do
-  let(:aggregate_type) { Articles::AggregateRoot }
+  let(:aggregate_type) { Articles::Article }
   let(:aggregate) { aggregate_type.create(title: 'the title', body: 'the body') }
   let(:events) { described_class.extract_events(aggregate) }
 
   describe '#id' do
     it 'raises when one is not passed' do
-      expect { Articles::AggregateRoot.new.id }.to raise_error(
+      expect { Articles::Article.new.id }.to raise_error(
         Koine::EventSourcing::Error,
-        'Missing id for Articles::AggregateRoot'
+        'Missing id for Articles::Article'
       )
     end
 
     it 'can be set in the initializer' do
-      expect(aggregate.id).to eq('the-id')
+      expect(aggregate.id).not_to be_nil
+      expect(aggregate.id).to be_a(Koine::EventSourcing::Uuid)
+      expect(aggregate.id.to_s.length).to eq 36
     end
   end
 

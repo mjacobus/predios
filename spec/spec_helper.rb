@@ -5,7 +5,12 @@ ENV['HANAMI_ENV'] ||= 'test'
 
 require_relative '../spec/code_coverage'
 require_relative '../config/environment'
+require_relative './support/dummy_domain/repositories/test_article_repository'
+require_relative './support/dummy_domain/entities/test_article'
 Hanami.boot
+
+require_relative './support/dummy_domain/config'
+
 Hanami::Utils.require!("#{__dir__}/support")
 
 require 'object_comparator/rspec'
