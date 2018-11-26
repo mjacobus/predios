@@ -9,6 +9,9 @@ gem 'rake'
 gem 'dotenv', '~> 2.4'
 gem 'mysql2'
 
+# domain
+gem 'koine-event_manager', '~> 2.1'
+
 # authentication
 gem 'omniauth', '~> 1.8.1'
 gem 'omniauth-facebook', '~> 5.0.0'
