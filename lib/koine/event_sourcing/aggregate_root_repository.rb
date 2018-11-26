@@ -8,8 +8,9 @@ module Koine
       AggregateRootRepositoryError = Class.new(Error)
       AggregateRootNotFound = Class.new(AggregateRootRepositoryError)
 
-      def initialize(event_store:)
+      def initialize(event_store:, projections:)
         @event_store = event_store
+        @projections = projections
       end
 
       def find(aggregate_id)
@@ -28,7 +29,8 @@ module Koine
 
       def add(aggregate_root)
         events = domain_events(aggregate_root)
-        @event_store.add_unpersisted_events(events)
+        unpersisted_events = @event_store.add_unpersisted_events(events)
+        @projections.project(unpersisted_events)
       end
 
       private
