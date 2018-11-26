@@ -4,7 +4,7 @@ require_relative './error'
 
 module Koine
   module EventSourcing
-    class AggregateRepository
+    class AggregateRootRepository
       AggregateRootRepositoryError = Class.new(Error)
       AggregateRootNotFound = Class.new(AggregateRootRepositoryError)
 

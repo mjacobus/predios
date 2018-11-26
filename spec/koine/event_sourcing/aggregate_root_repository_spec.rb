@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Koine::EventSourcing::AggregateRepository do
+RSpec.describe Koine::EventSourcing::AggregateRootRepository do
   let(:event_store) { instance_double(Koine::EventSourcing::EventStore) }
   let(:repository) { described_class.new(event_store: event_store) }
   let(:aggregate_events) { aggregate_root.class.extract_events(aggregate_root) }
