@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable RSpec/VerifiedDoubles
-
 require 'spec_helper'
 
 RSpec.describe Koine::EventSourcing::EventStore do
