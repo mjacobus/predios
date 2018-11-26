@@ -63,7 +63,9 @@ RSpec.describe Koine::EventSourcing::AggregateRepository do
       aggregate_root.title = 'new title'
     end
 
-    let(:found) { repository.find_by_aggregate_type_and_id(type: 'the-type', id: 'the-id') }
+    let(:found) do
+      repository.find_by_aggregate_type_and_id(type: 'the-type', id: 'the-id')
+    end
 
     context 'when record exists' do
       it 'returns aggregate' do

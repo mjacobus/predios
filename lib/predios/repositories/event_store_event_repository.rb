@@ -2,7 +2,6 @@
 
 class EventStoreEventRepository < Hanami::Repository
   self.relation = :domain_events_store
-  # self.entity = EventStoreEvent
 
   def find_by(id:, type: nil)
     params = { aggregate_id: id }

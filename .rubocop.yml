@@ -40,7 +40,7 @@ Metrics/BlockLength:
     - 'spec/**/*_spec.rb'
 
 Metrics/LineLength:
-  Max: 100
+  Max: 90
 
 Style/CommentedKeyword:
   Enabled: false

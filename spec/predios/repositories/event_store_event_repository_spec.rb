@@ -12,8 +12,6 @@ RSpec.describe EventStoreEventRepository, type: :repository do
     factory.clear
   end
 
-  # store(type:, id:)
-
   describe '#find_by' do
     before do
       factory.create(aggregate_id: aggregate_root.id)
