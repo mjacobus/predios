@@ -10,7 +10,9 @@ gem 'dotenv', '~> 2.4'
 gem 'mysql2'
 
 # domain
+gem 'koine-command_bus', '~> 1.0'
 gem 'koine-event_manager', '~> 2.1'
+gem 'nurse-rb', '~> 2.1'
 
 # authentication
 gem 'omniauth', '~> 1.8.1'
