@@ -1,17 +1,9 @@
 # frozen_string_literal: true
 
-class DummyArticle < Koine::EventSourcing::AggregateRoot
-end
-
-module DummyEvents
-  class DummyEvent < Koine::EventSourcing::DomainEvent
-  end
-end
-
 module Articles
-  DomainEvent = Class.new(Koine::EventSourcing::DomainEvent)
-
   module Events
+    DomainEvent = Class.new(Koine::EventSourcing::DomainEvent)
+    class DummyEvent < DomainEvent; end
     class ArticleCreated < DomainEvent
       def id
         payload['id']

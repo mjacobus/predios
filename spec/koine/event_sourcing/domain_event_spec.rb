@@ -3,10 +3,10 @@
 require 'spec_helper'
 
 RSpec.describe Koine::EventSourcing::DomainEvent do
-  let(:event_type) { DummyEvents::DummyEvent }
+  let(:event_type) { Articles::Events::DummyEvent }
   let(:event) { event_type.new(payload) }
   let(:aggregate_root) do
-    instance_double(DummyArticle, id: 'the-id', version: 555)
+    instance_double(Articles::Article, id: 'the-id', version: 555)
   end
   let(:payload) { stringify_keys(foo: :bar) }
 
@@ -169,7 +169,7 @@ RSpec.describe Koine::EventSourcing::DomainEvent do
 
   describe '#event_type' do
     it 'returns the class name as string' do
-      expect(event.event_type).to eq('DummyEvents::DummyEvent')
+      expect(event.event_type).to eq('Articles::Events::DummyEvent')
     end
   end
 

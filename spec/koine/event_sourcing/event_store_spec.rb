@@ -7,7 +7,7 @@ RSpec.describe Koine::EventSourcing::EventStore do
   let(:repository) { double(:repository) }
   let(:event1) do
     instance_double(
-      DummyEvents::DummyEvent,
+      Articles::Events::DummyEvent,
       :event1,
       aggregate_version: 1,
       event_id: 'event01'
@@ -15,7 +15,7 @@ RSpec.describe Koine::EventSourcing::EventStore do
   end
   let(:event2) do
     instance_double(
-      DummyEvents::DummyEvent,
+      Articles::Events::DummyEvent,
       :event2,
       aggregate_version: 2,
       event_id: 'event02'
@@ -23,7 +23,7 @@ RSpec.describe Koine::EventSourcing::EventStore do
   end
   let(:event3) do
     instance_double(
-      DummyEvents::DummyEvent,
+      Articles::Events::DummyEvent,
       :event3,
       aggregate_version: 3,
       event_id: 'event03'
