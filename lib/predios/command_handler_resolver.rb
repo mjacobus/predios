@@ -13,8 +13,14 @@ class CommandHandlerResolver
 
   def from_dependencies(command)
     path = Hanami::Utils::String.underscore(command.class.to_s)
-    path = path.sub('/commands/', '.').tr('/', '.')
-    key = "command_handlers.#{path}"
+    prefix = 'command_handlers'
+
+    if path.split('/')[1] == 'queries'
+      prefix = 'query_handlers'
+    end
+
+    path = path.sub('/commands/', '.').sub('/queries/', '.').tr('/', '.')
+    key = "#{prefix}.#{path}"
 
     if @dependencies.defined?(key)
       @dependencies.get(key)
@@ -22,7 +28,9 @@ class CommandHandlerResolver
   end
 
   def from_constant(command)
-    handler_class = command.class.to_s.sub('Commands', 'CommandHandlers')
+    handler_class = command.class.to_s
+      .sub('Commands', 'CommandHandlers')
+      .sub('Queries', 'QueryHandlers')
 
     if Object.const_defined?(handler_class)
       Object.const_get(handler_class).new
