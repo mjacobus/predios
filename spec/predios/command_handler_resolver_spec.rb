@@ -5,7 +5,15 @@ require 'spec_helper'
 RSpec.describe CommandHandlerResolver do
   let(:dependencies) { instance_double(AppDependencies) }
   let(:resolver) { described_class.new(dependencies: dependencies) }
-  let(:command) { double(:command, class: 'SomeParentClass::Commands::DoSomethingNice') }
+  let(:fake_class) do
+    double(
+      :fake_class,
+      to_s: 'SomeParentClass::Commands::DoSomethingNice',
+      new: fake_handler
+    )
+  end
+  let(:fake_handler) { nil }
+  let(:command) { double(:command, class: fake_class) }
   let(:is_defined) { false }
   let(:key) { 'command_handlers.some_parent_class.do_something_nice' }
   let(:resolved) { resolver.resolve(command) }
@@ -40,7 +48,6 @@ RSpec.describe CommandHandlerResolver do
 
     context 'when handler type exists' do
       let(:fake_handler) { double(:fake_handler) }
-      let(:fake_class) { double(:klass, new: fake_handler) }
       let(:type_exists) { true }
 
       before do

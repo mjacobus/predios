@@ -22,7 +22,7 @@ class CommandHandlerResolver
   end
 
   def from_constant(command)
-    handler_class = command.class.sub('Commands', 'CommandHandlers')
+    handler_class = command.class.to_s.sub('Commands', 'CommandHandlers')
 
     if Object.const_defined?(handler_class)
       Object.const_get(handler_class).new
