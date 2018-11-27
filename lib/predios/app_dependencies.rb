@@ -47,6 +47,13 @@ class AppDependencies < Nurse::DependencyContainer
       )
     end
 
+    add_command_handler('buildings.create_building') do |container|
+      Buildings::CommandHandlers::CreateBuilding.new(
+        repository: container.repository('aggregate_root'),
+        validator: NullValidator.new
+      )
+    end
+
     add_service('csv_parser') do
       CsvParser.new
     end
