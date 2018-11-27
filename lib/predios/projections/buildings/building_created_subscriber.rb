@@ -2,18 +2,26 @@
 
 module Buildings
   class BuildingCreatedSubscriber
+    # rubocop:disable Metrics/MethodLength
     def publish(event)
-      entity = Projections::Building.new(
-        uuid: event.aggregate_id
-      )
+      event.payload.symbolize.tap do |payload|
+        entity = BuildingProjection.new(
+          uuid: event.aggregate_id,
+          address: payload.fetch(:address),
+          number: payload.fetch(:number),
+          number_of_apartments: payload.fetch(:number_of_apartments),
+          building_name: payload.fetch(:building_name),
+          neighborhood: payload.fetch(:neighborhood)
+        )
 
-      repository.save(entity)
+        repository.save(entity)
+      end
     end
 
     private
 
     def repository
-      @repository ||= Projections::BuildingRepository.new
+      @repository ||= BuildingProjectionRepository.new
     end
   end
 end
