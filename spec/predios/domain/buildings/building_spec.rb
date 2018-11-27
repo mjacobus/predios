@@ -45,7 +45,7 @@ RSpec.describe Buildings::Building do
     end
 
     it 'has a created at' do
-      expect(building.created_at.to_s).to eq Time.now.to_s
+      expect(building.created_at.to_s).to eq Time.now.utc.to_s
     end
   end
 end

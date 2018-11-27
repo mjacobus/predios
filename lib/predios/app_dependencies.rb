@@ -37,7 +37,9 @@ class AppDependencies < Nurse::DependencyContainer
     end
 
     share('es.projection_events') do |_container|
-      Koine::EventManager::EventManager.new
+      Koine::EventManager::EventManager.new.tap do |manager|
+        manager.attach_listener(Buildings::BuildingsProjections)
+      end
     end
 
     add_command_handler('buildings.import_buildings_from_csv_file') do |container|

@@ -24,7 +24,7 @@ module Buildings
     private
 
     def when_created(event)
-      @created_at = Time.now
+      @created_at = event.event_time
       @id = event.payload[:id]
       @number = event.payload[:number]
       @number_of_apartments = event.payload[:number_of_apartments]
