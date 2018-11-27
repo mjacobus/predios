@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('../../lib', __dir__)
+dirs = [
+  File.expand_path('../../lib', __dir__),
+  File.expand_path('../../lib/predios/domain', __dir__),
+]
 
-unless $LOAD_PATH.include?(lib)
-  $LOAD_PATH.unshift(lib)
+dirs.each do |dir|
+  unless $LOAD_PATH.include?(dir)
+    $LOAD_PATH.unshift(dir)
+  end
 end

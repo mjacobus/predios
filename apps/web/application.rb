@@ -1,5 +1,6 @@
 require 'hanami/helpers'
 require 'hanami/assets'
+require_relative '../../config/initializers/include_path'
 
 module Web
   class Application < Hanami::Application

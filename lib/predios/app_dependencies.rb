@@ -39,6 +39,13 @@ class AppDependencies < Nurse::DependencyContainer
     share('es.projection_events') do |_container|
       Koine::EventManager::EventManager.new
     end
+
+    add_command_handler('buildings.import_apartment_from_csv_file') do |container|
+      Buildings::CommandHandlers::ImportApartmentsFromCsvFile.new(
+        command_bus: container.command_bus,
+        csv_parser: container.service('csv_parser')
+      )
+    end
   end
 
   def repository(name)
@@ -49,9 +56,17 @@ class AppDependencies < Nurse::DependencyContainer
     get("services.#{name}")
   end
 
+  def command_bus
+    service('command_bus')
+  end
+
   private
 
   def add_repository(name, &block)
     share("repositories.#{name}_repository", &block)
+  end
+
+  def add_command_handler(name, &block)
+    share("command_handlers.#{name}", &block)
   end
 end
