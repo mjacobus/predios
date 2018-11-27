@@ -1,0 +1,3 @@
+number,name,address,neighborhood,number_of_apartments,phones,itercoms,letters,Recomendado para,publisher,Folheto
+1,Building name 1,"Address 1, 1",NB1,123,X,,,TELEFONE,Publisher 1,
+2,Building name 2,"Address 2, 2",NB1,456,X,,,TELEFONE,Publisher 2,
