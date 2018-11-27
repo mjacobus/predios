@@ -46,7 +46,7 @@ RSpec.describe EventStoreEvent, type: :entity do
         let(:payload) {}
 
         it 'returns empty hash when payload is nil' do
-          expect(event.payload).to eq Hash[]
+          expect(event.payload.to_h).to eq Hash[]
         end
       end
 
@@ -55,7 +55,7 @@ RSpec.describe EventStoreEvent, type: :entity do
         let(:payload) { data.to_json }
 
         it 'returns empty hash when payload is nil' do
-          expect(event.payload).to eq data
+          expect(event.payload.to_h).to eq data
         end
       end
     end
@@ -65,7 +65,7 @@ RSpec.describe EventStoreEvent, type: :entity do
         let(:metadata) {}
 
         it 'returns empty hash when metadata is nil' do
-          expect(event.metadata).to eq Hash[]
+          expect(event.metadata.to_h).to eq Hash[]
         end
       end
 
@@ -74,7 +74,7 @@ RSpec.describe EventStoreEvent, type: :entity do
         let(:metadata) { data.to_json }
 
         it 'returns empty hash when metadata is nil' do
-          expect(event.metadata).to eq data
+          expect(event.metadata.to_h).to eq data
         end
       end
     end

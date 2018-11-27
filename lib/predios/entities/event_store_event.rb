@@ -11,12 +11,13 @@ class EventStoreEvent < Entity
       .with_metadata(unserialized_metadata)
   end
 
+  # rubocop:disable Metrics/AbcSize
   def self.from_domain_event(event)
     {
       event_id: event.event_id.to_s,
       event_type: event.event_type.to_s,
-      payload: JSON.dump(event.payload),
-      metadata: JSON.dump(event.metadata),
+      payload: JSON.dump(event.payload.to_h),
+      metadata: JSON.dump(event.metadata.to_h),
       event_time: event.event_time,
       aggregate_type: event.aggregate_type.to_s,
       aggregate_id: event.aggregate_id.to_s,

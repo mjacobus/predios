@@ -9,7 +9,7 @@ module Articles
 
       def publish(event)
         article = @repository.by_uuid(event.aggregate_id)
-        new_attributes = event.payload.dup
+        new_attributes = event.payload.to_h
         new_attributes.delete(:id)
         changed = article.with_attributes(new_attributes)
         @repository.save(changed)

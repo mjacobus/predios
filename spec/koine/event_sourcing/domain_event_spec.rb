@@ -5,61 +5,49 @@ require 'spec_helper'
 RSpec.describe Koine::EventSourcing::DomainEvent do
   let(:event_type) { Articles::Events::DummyEvent }
   let(:event) { event_type.new(payload) }
+  let(:data_bag) { Koine::EventSourcing::DataBag }
   let(:aggregate_root) do
     instance_double(Articles::Article, id: 'the-id', version: 555)
   end
-  let(:payload) { stringify_keys(foo: :bar) }
+  let(:payload) { Hash[foo: :bar] }
 
   context 'when payload is nil' do
     let(:payload) { nil }
 
     it 'converts to empty hash' do
-      expect(event.payload).to eq({})
+      expect(event.payload.to_h).to eq({})
     end
   end
 
   context 'when payload is a hash' do
     let(:payload) { Hash[foo: :bar, bar: { one: :two }] }
 
-    it 'stringifies the keys' do
-      expected = stringify_keys(payload)
-
-      expect(event.payload).to eq(expected)
+    it 'transforms it in a databag' do
+      expect(event.payload).to be_equal_to(data_bag.new(payload))
     end
 
-    it 'copies the hash' do
+    it 'copies the data bag' do
       expect(event.payload).not_to be(payload)
       expect(event.payload).to be_frozen
     end
   end
 
   describe '#with_payload' do
-    let(:new_payload) { stringify_keys(new: :payload) }
+    let(:new_payload) { Hash[new: :payload] }
 
     it 'modifies the payload' do
       with = with_immutable(event) do |e|
         e.with_payload(payload)
       end
 
-      expect(with.payload).to eq(payload)
-    end
-
-    it 'stringifies the keys' do
-      modified = event.with_payload(symbolize_keys(new_payload))
-
-      expect(modified.payload).to eq(new_payload)
-    end
-
-    it 'creates a copy of the hash' do
-      modified = event.with_payload(new_payload)
-
-      expect(modified.payload).not_to be(new_payload)
+      expect(with.payload).to be_a data_bag
+      expect(with.payload.to_h).to eq(payload)
     end
   end
 
   describe '#metadata' do
-    it 'defaults to empty hash' do
-      expect(event.metadata).to eq({})
+    it 'defaults to empty' do
+      expect(event.metadata.to_h).to eq({})
     end
 
     it 'can be mutated' do
@@ -69,11 +57,11 @@ RSpec.describe Koine::EventSourcing::DomainEvent do
         e.with_metadata(metadata)
       end
 
-      expect(with.metadata).to eq(stringify_keys(metadata))
+      expect(with.metadata.to_h).to eq(metadata)
     end
 
-    it 'converts nil to hash' do
-      expect(event.with_metadata(nil).metadata).to eq({})
+    it 'converts nil to empty data bag' do
+      expect(event.with_metadata(nil).metadata.to_h).to eq({})
     end
   end
 
@@ -83,7 +71,7 @@ RSpec.describe Koine::EventSourcing::DomainEvent do
         e.with_aggregate_root(aggregate_root)
       end
 
-      expect(changed.payload).to eq(payload)
+      expect(changed.payload.to_h).to eq(payload)
     end
   end
 
