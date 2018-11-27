@@ -11,7 +11,7 @@ class AppDependencies < Nurse::DependencyContainer
     add_factory(CommandBusFactory.new)
 
     add_repository('event') do
-      EventStoreEventRepository.new
+      EventEntityRepository.new
     end
 
     add_repository('aggregate_root') do |container|

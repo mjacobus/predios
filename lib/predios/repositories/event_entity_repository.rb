@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class EventStoreEventRepository < Hanami::Repository
+class EventEntityRepository < Hanami::Repository
   self.relation = :domain_events_store
   self.entity_name = Hanami::Model::EntityName.new('EventEntity')
 

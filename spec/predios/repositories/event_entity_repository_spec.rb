@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe EventStoreEventRepository, type: :repository do
+RSpec.describe EventEntityRepository, type: :repository do
   let(:payload) { Hash[id: UniqueId.new, title: 'a-title', body: 'a-body'] }
   let(:event_sample) { Articles::Article.extract_events(aggregate_root).first }
   let(:aggregate_root) { sample_aggregate }
