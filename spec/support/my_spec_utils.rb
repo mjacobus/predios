@@ -29,4 +29,9 @@ module MySpecUtils
     params = { title: 'the-title', body: 'the-body' }
     Articles::Article.create(params.merge(overrides))
   end
+
+  def command_type
+    type = described_class.to_s.sub('CommandHandlers', 'Commands')
+    Object.const_get(type)
+  end
 end

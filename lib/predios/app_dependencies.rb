@@ -15,7 +15,7 @@ class AppDependencies < Nurse::DependencyContainer
     end
 
     add_repository('aggregate_root') do |container|
-      Koine::EventSourcing::AggregateRootRepository.new(
+      AggregateRootRepository.new(
         event_store: container.get('es.event_store'),
         projectors: container.get('es.projectors'),
         processors: container.get('es.processors')
@@ -37,7 +37,27 @@ class AppDependencies < Nurse::DependencyContainer
     end
 
     share('es.projection_events') do |_container|
-      Koine::EventManager::EventManager.new
+      Koine::EventManager::EventManager.new.tap do |manager|
+        manager.attach_listener(Buildings::BuildingsProjections.new)
+      end
+    end
+
+    add_command_handler('buildings.import_buildings_from_csv_file') do |container|
+      Buildings::CommandHandlers::ImportBuildingsFromCsvFile.new(
+        command_bus: container.command_bus,
+        csv_parser: container.service('csv_parser')
+      )
+    end
+
+    add_command_handler('buildings.create_building') do |container|
+      Buildings::CommandHandlers::CreateBuilding.new(
+        repository: container.repository('aggregate_root'),
+        validator: NullValidator.new
+      )
+    end
+
+    add_service('csv_parser') do
+      CsvParser.new
     end
   end
 
@@ -49,9 +69,21 @@ class AppDependencies < Nurse::DependencyContainer
     get("services.#{name}")
   end
 
+  def command_bus
+    service('command_bus')
+  end
+
   private
 
   def add_repository(name, &block)
     share("repositories.#{name}_repository", &block)
+  end
+
+  def add_command_handler(name, &block)
+    share("command_handlers.#{name}", &block)
+  end
+
+  def add_service(name, &block)
+    share("services.#{name}", &block)
   end
 end

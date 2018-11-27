@@ -7,6 +7,6 @@ class CommandBusFactory < ServiceFactory
 
   def create_service(container)
     resolver = CommandHandlerResolver.new(dependencies: container)
-    Koine::CommandBus::CommandBus.new([resolver])
+    CommandBus.new([resolver])
   end
 end

@@ -9,7 +9,7 @@ RSpec.describe CommandBusFactory, type: :factory do
 
   it 'returns a command bus' do
     resolver = CommandHandlerResolver.new(dependencies: container)
-    expected = Koine::CommandBus::CommandBus.new([resolver])
+    expected = CommandBus.new([resolver])
 
     expect(service).to be_equal_to(expected)
   end
