@@ -43,5 +43,9 @@ RSpec.describe Buildings::Building do
     it 'has a neighborhood' do
       expect(building.neighborhood).to be data.fetch(:neighborhood)
     end
+
+    it 'has a created at' do
+      expect(building.created_at.to_s).to eq Time.now.to_s
+    end
   end
 end
