@@ -15,7 +15,7 @@ class AppDependencies < Nurse::DependencyContainer
     end
 
     add_repository('aggregate_root') do |container|
-      Koine::EventSourcing::AggregateRootRepository.new(
+      AggregateRootRepository.new(
         event_store: container.get('es.event_store'),
         projectors: container.get('es.projectors'),
         processors: container.get('es.processors')

@@ -9,7 +9,10 @@ module Buildings
       end
 
       def handle(command)
-        puts command
+        @csv_parser.parse_file(command.filename).each do |csv_row|
+          new_command = Commands::CreateBuilding.new(csv_row)
+          @command_bus.handle(new_command)
+        end
       end
     end
   end
