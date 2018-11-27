@@ -4,7 +4,7 @@ RSpec.describe EventStoreEventRepository, type: :repository do
   let(:payload) { Hash[id: UniqueId.new, title: 'a-title', body: 'a-body'] }
   let(:event_sample) { Articles::Article.extract_events(aggregate_root).first }
   let(:aggregate_root) { sample_aggregate }
-  let(:factory) { EventStoreEventFactory.new }
+  let(:factory) { EventEntityFactory.new }
   let(:repository) { factory.repository }
   let(:found) { repository.find_by(id: payload[:id]) }
 
