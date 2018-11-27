@@ -2,7 +2,7 @@
 
 module Buildings
   module Commands
-    class ImportApartmentsFromCsvFile
+    class ImportBuildingsFromCsvFile
       attr_reader :filename
 
       def initialize(filename)

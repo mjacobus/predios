@@ -40,11 +40,15 @@ class AppDependencies < Nurse::DependencyContainer
       Koine::EventManager::EventManager.new
     end
 
-    add_command_handler('buildings.import_apartment_from_csv_file') do |container|
-      Buildings::CommandHandlers::ImportApartmentsFromCsvFile.new(
+    add_command_handler('buildings.import_buildings_from_csv_file') do |container|
+      Buildings::CommandHandlers::ImportBuildingsFromCsvFile.new(
         command_bus: container.command_bus,
         csv_parser: container.service('csv_parser')
       )
+    end
+
+    add_service('csv_parser') do
+      CsvParser.new
     end
   end
 
@@ -68,5 +72,9 @@ class AppDependencies < Nurse::DependencyContainer
 
   def add_command_handler(name, &block)
     share("command_handlers.#{name}", &block)
+  end
+
+  def add_service(name, &block)
+    share("services.#{name}", &block)
   end
 end

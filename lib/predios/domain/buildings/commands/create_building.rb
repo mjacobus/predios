@@ -9,4 +9,3 @@ module Buildings
     end
   end
 end
-

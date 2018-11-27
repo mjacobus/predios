@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe CommandHandlers::ImportApartmentsFromCsvFile do
+RSpec.describe CommandHandlers::ImportBuildingsFromCsvFile do
   let(:command_bus) { instance_double(CommandBus) }
   let(:repository) { instance_double(CommandBus) }
 

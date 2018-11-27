@@ -2,7 +2,7 @@
 
 module Buildings
   module CommandHandlers
-    class ImportApartmentsFromCsvFile
+    class ImportBuildingsFromCsvFile
       def initialize(command_bus:, csv_parser:)
         @command_bus = command_bus
         @csv_parser = csv_parser
