@@ -39,6 +39,18 @@ module Koine
       def fetch(*args, &block)
         @values.send(:fetch, *args, &block)
       end
+
+      def key?(key)
+        @values.key?(key) || @values.key?(key.to_s) || @values.key?(key.to_sym)
+      end
+
+      def only(*keys)
+        keys = keys.flatten.map { |key| [key.to_s, key.to_sym] }.flatten.uniq
+        data = @values.select do |key, _value|
+          keys.include?(key)
+        end
+        self.class.new(data)
+      end
     end
   end
 end

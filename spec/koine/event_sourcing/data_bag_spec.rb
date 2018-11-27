@@ -3,7 +3,8 @@
 require 'spec_helper'
 
 RSpec.describe Koine::EventSourcing::DataBag do
-  let(:bag) { described_class.new('name' => 'john', last_name: :doe) }
+  let(:data) { Hash['name' => 'john', last_name: :doe] }
+  let(:bag) { described_class.new(data) }
 
   def collect(bag)
     [].tap do |collection|
@@ -45,10 +46,28 @@ RSpec.describe Koine::EventSourcing::DataBag do
     expect { bag.fetch(:foo) }.to raise_error(KeyError)
   end
 
-  it 'hash indifferent access' do
+  it 'has indifferent access' do
     expect(bag['name']).to eq('john')
     expect(bag[:name]).to eq('john')
     expect(bag[:last_name]).to eq(:doe)
     expect(bag['last_name']).to eq(:doe)
+  end
+
+  it 'has indifferent access for key? method' do
+    expect(bag).to be_key('name')
+    expect(bag).to be_key(:name)
+    expect(bag).to be_key(:last_name)
+    expect(bag).to be_key('last_name')
+    expect(bag).not_to be_key('nops')
+  end
+
+  describe '#only' do
+    let(:data) { Hash['name' => 'john', last_name: :doe, other: true] }
+
+    it 'returns only the desired attributes' do
+      filtered = bag.only(:name, :last_name)
+
+      expect(filtered.to_h).to eq('name' => 'john', last_name: :doe)
+    end
   end
 end
