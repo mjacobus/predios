@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe EventStoreEvent, type: :entity do
+RSpec.describe EventEntity, type: :entity do
   let(:event_type) { Articles::Events::ArticleCreated }
   let(:payload) { '{"pay":"load"}' }
   let(:metadata) { '{"meta":"data"}' }
 
   let(:entity) do
-    EventStoreEvent.new(
+    EventEntity.new(
       event_id: 'the-uuid',
       payload: payload,
       metadata: metadata,
@@ -84,7 +84,7 @@ RSpec.describe EventStoreEvent, type: :entity do
     let(:event) { entity.to_event }
 
     it 'converts event to entity' do
-      data = EventStoreEvent.from_domain_event(event)
+      data = EventEntity.from_domain_event(event)
 
       copy = described_class.new(data)
 

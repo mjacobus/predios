@@ -2,6 +2,7 @@
 
 class EventStoreEventRepository < Hanami::Repository
   self.relation = :domain_events_store
+  self.entity_name = Hanami::Model::EntityName.new('EventEntity')
 
   def find_by(id:, type: nil)
     params = { aggregate_id: id.to_s }
@@ -14,7 +15,7 @@ class EventStoreEventRepository < Hanami::Repository
   end
 
   def store(event)
-    entity = EventStoreEvent.from_domain_event(event)
+    entity = EventEntity.from_domain_event(event)
     create(entity)
   end
 end

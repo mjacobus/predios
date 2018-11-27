@@ -2,7 +2,11 @@
 
 require_relative './entity_factory'
 
-class EventStoreEventFactory < EntityFactory
+class EventEntityFactory < EntityFactory
+  def repository
+    @repository ||= EventStoreEventRepository.new
+  end
+
   private
 
   # rubocop:disable Metrics/MethodLength
