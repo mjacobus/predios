@@ -16,10 +16,8 @@ module Koine
       DomainEventError = Class.new(Error)
       InvalidAggregateRoot = Class.new(DomainEventError)
 
-      attr_reader :payload
       attr_reader :event_time
       attr_reader :event_id
-      attr_reader :metadata
 
       def initialize(payload = {})
         @payload = to_hash(payload)
@@ -27,6 +25,14 @@ module Koine
         @event_time = Time.now.utc
         @event_id = Uuid.new
         freeze
+      end
+
+      def payload
+        DataBag.new(@payload)
+      end
+
+      def metadata
+        DataBag.new(@metadata)
       end
 
       def aggregate_id
@@ -93,7 +99,7 @@ module Koine
       end
 
       def to_hash(hash)
-        Koine::Utils.hash.stringify(Hash(hash)).freeze
+        Hash(hash)
       end
 
       attr_writer :payload
