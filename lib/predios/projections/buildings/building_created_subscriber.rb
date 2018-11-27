@@ -10,7 +10,7 @@ module Buildings
           address: payload.fetch(:address),
           number: payload.fetch(:number),
           number_of_apartments: payload.fetch(:number_of_apartments),
-          building_name: payload.fetch(:building_name),
+          name: payload.fetch(:name),
           neighborhood: payload.fetch(:neighborhood)
         )
 

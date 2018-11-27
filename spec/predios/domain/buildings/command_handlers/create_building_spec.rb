@@ -11,7 +11,7 @@ RSpec.describe Buildings::CommandHandlers::CreateBuilding do
   let(:data) do
     {
       number: 123,
-      building_name: 'The building name',
+      name: 'The building name',
       address: 'The address',
       number_of_apartments: 27,
       neighborhood: 'the-hood',

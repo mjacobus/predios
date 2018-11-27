@@ -20,7 +20,7 @@ RSpec.describe Buildings::BuildingsProjections do
       {
         number: 'the-number',
         number_of_apartments: 23,
-        building_name: 'the-building-name',
+        name: 'the-building-name',
         neighborhood: 'the-hood',
         address: 'the-address',
       }
@@ -38,7 +38,7 @@ RSpec.describe Buildings::BuildingsProjections do
       expect(projection.address).to eq(event.payload.fetch(:address))
       expect(projection.number_of_apartments)
         .to eq(event.payload.fetch(:number_of_apartments))
-      expect(projection.building_name).to eq(event.payload.fetch(:building_name))
+      expect(projection.name).to eq(event.payload.fetch(:name))
       expect(projection.neighborhood).to eq(event.payload.fetch(:neighborhood))
     end
   end

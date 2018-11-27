@@ -11,7 +11,7 @@ RSpec.describe Buildings::Building do
     let(:default_data) do
       {
         number: 123,
-        building_name: 'The building name',
+        name: 'The building name',
         address: 'The address',
         number_of_apartments: 27,
         neighborhood: 'the-hood',
@@ -28,8 +28,8 @@ RSpec.describe Buildings::Building do
       expect(building.number).to be data.fetch(:number)
     end
 
-    it 'has a building_name' do
-      expect(building.building_name).to be data.fetch(:building_name)
+    it 'has a name' do
+      expect(building.name).to be data.fetch(:name)
     end
 
     it 'has a address' do

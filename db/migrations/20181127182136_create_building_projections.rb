@@ -9,7 +9,7 @@ Hanami::Model.migration do
       column :address, String, null: false, unique: true
       column :number, String, null: false, unique: true
       column :number_of_apartments, Integer, null: false, unique: true
-      column :building_name, String, null: false, unique: true
+      column :name, String, null: false, unique: true
       column :neighborhood, String, null: false, unique: true, index: true
 
       column :created_at, DateTime, null: false

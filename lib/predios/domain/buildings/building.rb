@@ -3,7 +3,7 @@
 module Buildings
   class Building < AggregateRoot
     attr_reader :number
-    attr_reader :building_name
+    attr_reader :name
     attr_reader :number_of_apartments
     attr_reader :address
     attr_reader :neighborhood
@@ -13,7 +13,7 @@ module Buildings
         id: UniqueId.new,
         number: data.fetch(:number),
         number_of_apartments: data.fetch(:number_of_apartments),
-        building_name: data.fetch(:building_name),
+        name: data.fetch(:name),
         neighborhood: data.fetch(:neighborhood),
         address: data.fetch(:address)
       )
@@ -29,7 +29,7 @@ module Buildings
       @number = event.payload[:number]
       @number_of_apartments = event.payload[:number_of_apartments]
       @address = event.payload[:address]
-      @building_name = event.payload[:building_name]
+      @name = event.payload[:name]
       @neighborhood = event.payload[:neighborhood]
     end
   end
