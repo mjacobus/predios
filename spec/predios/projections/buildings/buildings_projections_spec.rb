@@ -23,6 +23,8 @@ RSpec.describe Buildings::BuildingsProjections do
         name: 'the-building-name',
         neighborhood: 'the-hood',
         address: 'the-address',
+        has_individual_letterboxes: true,
+        has_individual_intercoms: false,
       }
     end
 
@@ -40,6 +42,12 @@ RSpec.describe Buildings::BuildingsProjections do
         .to eq(event.payload.fetch(:number_of_apartments))
       expect(projection.name).to eq(event.payload.fetch(:name))
       expect(projection.neighborhood).to eq(event.payload.fetch(:neighborhood))
+
+      expect(projection.has_individual_intercoms)
+        .to eq(event.payload.fetch(:has_individual_intercoms))
+
+      expect(projection.has_individual_letterboxes)
+        .to eq(event.payload.fetch(:has_individual_letterboxes))
     end
   end
 end

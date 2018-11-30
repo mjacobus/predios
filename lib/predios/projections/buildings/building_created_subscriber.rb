@@ -11,7 +11,9 @@ module Buildings
           number: payload.fetch(:number),
           number_of_apartments: payload.fetch(:number_of_apartments),
           name: payload.fetch(:name),
-          neighborhood: payload.fetch(:neighborhood)
+          neighborhood: payload.fetch(:neighborhood),
+          has_individual_letterboxes: payload.fetch(:has_individual_letterboxes),
+          has_individual_intercoms: payload.fetch(:has_individual_intercoms)
         )
 
         repository.save(entity)

@@ -15,6 +15,8 @@ RSpec.describe Buildings::Building do
         address: 'The address',
         number_of_apartments: 27,
         neighborhood: 'the-hood',
+        has_individual_letterboxes: true,
+        has_individual_intercoms: false,
       }
     end
     let(:data) { default_data }
@@ -34,6 +36,14 @@ RSpec.describe Buildings::Building do
 
     it 'has a address' do
       expect(building.address).to be data.fetch(:address)
+    end
+
+    it 'has a has_individual_letterboxes' do
+      expect(building.has_individual_letterboxes).to be true
+    end
+
+    it 'has a has_individual_intercoms' do
+      expect(building.has_individual_intercoms).to be false
     end
 
     it 'has a number_of_apartments' do
