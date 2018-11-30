@@ -10,6 +10,7 @@ module Buildings
     attr_reader :has_individual_letterboxes
     attr_reader :has_individual_intercoms
 
+    # rubocop:disable Metrics/MethodLength
     def self.create(data)
       event = Events::BuildingCreated.new(
         id: UniqueId.new,
@@ -27,6 +28,7 @@ module Buildings
 
     private
 
+    # rubocop:disable Metrics/AbcSize
     def when_created(event)
       @created_at = event.event_time
       @id = event.payload[:id]
