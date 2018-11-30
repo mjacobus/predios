@@ -10,8 +10,10 @@ Hanami::Model.migration do
 
       column :event_id, String, null: false, index: true
       column :event_type, String, null: false, index: true
-      column :payload, String, null: false
-      column :metadata, String, null: false
+
+      column :payload, String, null: false, text: true
+      column :metadata, String, null: false, text: true
+
       column :event_time, DateTime, null: false
       column :aggregate_type, String, null: false, index: true
       column :aggregate_id, String, null: false, index: true
