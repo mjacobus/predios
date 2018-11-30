@@ -15,6 +15,8 @@ RSpec.describe Buildings::CommandHandlers::CreateBuilding do
       address: 'The address',
       number_of_apartments: 27,
       neighborhood: 'the-hood',
+      has_individual_letterboxes: true,
+      has_individual_intercoms: true,
     }
   end
 

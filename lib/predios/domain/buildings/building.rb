@@ -7,7 +7,10 @@ module Buildings
     attr_reader :number_of_apartments
     attr_reader :address
     attr_reader :neighborhood
+    attr_reader :has_individual_letterboxes
+    attr_reader :has_individual_intercoms
 
+    # rubocop:disable Metrics/MethodLength
     def self.create(data)
       event = Events::BuildingCreated.new(
         id: UniqueId.new,
@@ -15,7 +18,9 @@ module Buildings
         number_of_apartments: data.fetch(:number_of_apartments),
         name: data.fetch(:name),
         neighborhood: data.fetch(:neighborhood),
-        address: data.fetch(:address)
+        address: data.fetch(:address),
+        has_individual_letterboxes: data.fetch(:has_individual_letterboxes),
+        has_individual_intercoms: data.fetch(:has_individual_intercoms)
       )
 
       create_with_event(event)
@@ -23,6 +28,7 @@ module Buildings
 
     private
 
+    # rubocop:disable Metrics/AbcSize
     def when_created(event)
       @created_at = event.event_time
       @id = event.payload[:id]
@@ -31,6 +37,8 @@ module Buildings
       @address = event.payload[:address]
       @name = event.payload[:name]
       @neighborhood = event.payload[:neighborhood]
+      @has_individual_letterboxes = event.payload[:has_individual_letterboxes]
+      @has_individual_intercoms = event.payload[:has_individual_intercoms]
     end
   end
 end

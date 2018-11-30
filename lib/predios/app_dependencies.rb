@@ -44,6 +44,7 @@ class AppDependencies < Nurse::DependencyContainer
 
     add_command_handler('buildings.import_buildings_from_csv_file') do |container|
       Buildings::CommandHandlers::ImportBuildingsFromCsvFile.new(
+        filter: Buildings::Filters::BuildingCsvRowFilter.new,
         command_bus: container.command_bus,
         csv_parser: container.service('csv_parser')
       )
