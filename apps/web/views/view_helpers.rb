@@ -29,5 +29,9 @@ module Web
 
       "https://github.com/mjacobus/predios/commit/#{app_version}"
     end
+
+    def presence_color(presence)
+      { true => 'green', false => 'red', nil => 'gray' }.fetch(presence)
+    end
   end
 end
