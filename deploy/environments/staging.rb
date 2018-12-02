@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-set :application, "staging.#{fetch(:application)}"
+set :application, fetch(:application).sub('predios', 'predios-staging')
 set :deploy_to, "/var/www/apps/#{fetch(:application)}"
 
 server fetch(:application),
