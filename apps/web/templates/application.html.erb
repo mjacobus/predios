@@ -20,7 +20,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <meta name="turbolinks-cache-control" content="no-cache">
   </head>
-  <body class="<%= routes.root_url.to_s.match('staging') ? 'staging' : '' %> <%= routes.root_url.to_s.match('localhost') ? 'development' : '' %>">
+  <body class="<%= routes.buildings_url.to_s.match('staging') ? 'staging' : '' %> <%= routes.buildings_url.to_s.match('localhost') ? 'staging' : '' %>">
     <% if current_user.enabled? %>
       <%= render partial: 'partials/menu' %>
     <% end %>
