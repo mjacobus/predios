@@ -16,3 +16,4 @@ resources :users, only: [:index] do
 end
 
 resources :buildings, only: [:index]
+get '/buildings/:id', to: 'buildings#show'

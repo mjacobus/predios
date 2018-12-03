@@ -10,7 +10,12 @@
         <%= render partial: 'partials/icons/user', locals: { size: 16, color: 'black' } %>
         <%= building.number_of_apartments %>
       </div>
-      <div> <%= building.address %></div>
+      <div>
+
+        <a href="<%= link_to_building(building) %>">
+          <%= building.address %>
+        </a>
+      </div>
       <div> <small> <%= building.neighborhood %></small> </div>
       <div> <small> <%= building.name %></small> </div>
     </div>
