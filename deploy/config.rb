@@ -8,7 +8,7 @@ Dotenv.load
 
 set :application, ENV['DEPLOY_HOST']
 set :repo_url, 'git@github.com:mjacobus/predios.git'
-ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :deploy_to, "/var/www/apps/#{fetch(:application)}"
 set :chruby_ruby, 'ruby-2.4.0'
 set :pty, true
