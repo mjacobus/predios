@@ -3,3 +3,6 @@
 #
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
+resources :buildings do
+  resources :apartments, controller: :apartments
+end

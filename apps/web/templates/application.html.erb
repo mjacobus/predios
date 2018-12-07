@@ -12,6 +12,7 @@
     <title>Prédios</title>
     <%= stylesheet 'web' %>
     <%= javascript 'controllers/hello', defer: true %>
+    <%= javascript 'controllers/apartments_controller', defer: true %>
     <%= javascript 'application', defer: true %>
     <%= javascript 'vendor/turbolinks', defer: true %>
     <!-- Optional JavaScript -->
@@ -31,12 +32,6 @@
 
     <div class="container">
       <%= yield %>
-    </div>
-    <div data-controller="hello">
-      <form action="" method="post" data-action="submit->hello#greet">
-      <input data-target="hello.name" type="text">
-      <button type="submit" data-action="click->hello#submitForm">Greet</button>
-      </form>
     </div>
   </body>
 </html>
