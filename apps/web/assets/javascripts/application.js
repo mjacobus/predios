@@ -9,3 +9,8 @@
     });
   })
 })(jQuery);
+
+(() => {
+  const application = Stimulus.Application.start()
+  application.register("hello", Hello);
+})()

@@ -248,7 +248,7 @@ module Web
         frame-ancestors 'self';
         base-uri 'self';
         default-src 'none';
-        script-src 'self' cdnjs.cloudflare.com stackpath.bootstrapcdn.com code.jquery.com;
+        script-src 'self' cdnjs.cloudflare.com stackpath.bootstrapcdn.com code.jquery.com unpkg.com;
         connect-src 'self';
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;
