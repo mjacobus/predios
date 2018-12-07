@@ -29,10 +29,12 @@ class ApartmentsController extends Stimulus.Controller {
   createApartment() {
     const feedback = this.codeTarget;
     apiPost(this.url, this.payload)
-      .then((response) => {
-        console.log('response', response)
+      .then((response, other) => {
+        console.log(response.status)
+        return response.json();
       })
-      .catch((error) => alert('error', error));
+      .then(response => feedback.innerHTML = JSON.stringify(response))
+    .catch(error => alert('error'))
   }
 
   payload() {

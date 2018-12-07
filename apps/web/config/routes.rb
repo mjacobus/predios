@@ -14,6 +14,4 @@ resources :users, only: [:index] do
   resource :master, only: %i[create destroy]
 end
 
-resources :buildings, only: [:index, :show, :create] do
-  resources :apartments, controller: 'apartments'
-end
+resources :buildings, only: [:index, :show]
