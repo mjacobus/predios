@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Web
+module Actions
   module UserSessionAware
     def self.included(action)
       action.class_eval do

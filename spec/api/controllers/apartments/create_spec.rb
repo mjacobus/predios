@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 RSpec.describe Api::Controllers::Apartments::Create, type: :action do
-  let(:action) { described_class.new }
-  let(:params) { Hash[] }
+  context 'with a guest user' do
+    it 'responds with unauthorized' do
+      expect(response).to be_unauthorized
+    end
+  end
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 200
+  context 'with a guest user' do
+    let(:current_user) { active_user }
+
+    it 'responds with successful' do
+      expect(response).to be_successful
+    end
   end
 end

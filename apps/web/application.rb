@@ -1,6 +1,8 @@
 require 'hanami/helpers'
 require 'hanami/assets'
 require_relative '../../config/initializers/include_path'
+require_relative '../../lib/actions/user_session_aware'
+require_relative './views/view_helpers'
 
 module Web
   class Application < Hanami::Application
@@ -268,19 +270,17 @@ module Web
       # This is useful for sharing common functionality
       #
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
-      require_relative './controllers/user_session_aware'
 
       controller.prepare do
         # include MyAuthentication # included in all the actions
         # before :authenticate!    # run an authentication before callback
-        include Web::UserSessionAware
+        include Actions::UserSessionAware
       end
 
       # Configure the code that will yield each time Web::View is included
       # This is useful for sharing common functionality
       #
       # See: http://www.rubydoc.info/gems/hanami-view#Configuration
-      require_relative './views/view_helpers'
       view.prepare do
         include Hanami::Helpers
         include Web::Assets::Helpers
