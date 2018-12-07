@@ -20,7 +20,6 @@ module Api
       #
       load_paths << [
         'controllers',
-        'views'
       ]
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
@@ -81,7 +80,7 @@ module Api
       #
       # See: http://www.rubydoc.info/gems/rack/Rack/Session/Cookie
       #
-      sessions :cookie, secret: ENV['API_SESSIONS_SECRET']
+      sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
 
       # Configure Rack middleware for this application
       #
@@ -103,7 +102,7 @@ module Api
       #             (only `:json` is supported)
       #           Object, the parser
       #
-      # body_parsers :json
+      body_parsers :json
 
       # When it's true and the router receives a non-encrypted request (http),
       # it redirects to the secure equivalent (https). Disabled by default.
