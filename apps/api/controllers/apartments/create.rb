@@ -6,7 +6,7 @@ module Api
 
         def call(params)
           self.body = {foo: :bar}.to_json
-          self.status = 422
+          self.status = 200
         end
 
         def handle_invalid_csrf_token
