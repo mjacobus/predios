@@ -89,7 +89,7 @@ module Api
       # Default format for the requests that don't specify an HTTP_ACCEPT header
       # Argument: A symbol representation of a mime type, defaults to :html
       #
-      # default_request_format :html
+      default_request_format :json
 
       # Default format for responses that don't consider the request format
       # Argument: A symbol representation of a mime type, defaults to :html
@@ -120,44 +120,6 @@ module Api
       # The relative path to templates
       #
       # templates 'templates'
-
-      ##
-      # ASSETS
-      #
-      # assets do
-      #   # JavaScript compressor
-      #   #
-      #   # Supported engines:
-      #   #
-      #   #   * :builtin
-      #   #   * :uglifier
-      #   #   * :yui
-      #   #   * :closure
-      #   #
-      #   # See: http://hanamirb.org/guides/assets/compressors
-      #   #
-      #   # In order to skip JavaScript compression comment the following line
-      #   javascript_compressor :builtin
-      #
-      #   # Stylesheet compressor
-      #   #
-      #   # Supported engines:
-      #   #
-      #   #   * :builtin
-      #   #   * :yui
-      #   #   * :sass
-      #   #
-      #   # See: http://hanamirb.org/guides/assets/compressors
-      #   #
-      #   # In order to skip stylesheet compression comment the following line
-      #   stylesheet_compressor :builtin
-      #
-      #   # Specify sources for assets
-      #   #
-      #   sources << [
-      #     'assets'
-      #   ]
-      # end
 
       ##
       # SECURITY
