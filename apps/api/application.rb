@@ -113,18 +113,6 @@ module Api
       # force_ssl true
 
       ##
-      # TEMPLATES
-      #
-
-      # The layout to be used by all views
-      #
-      # layout :application # It will load Api::Views::ApplicationLayout
-
-      # The relative path to templates
-      #
-      # templates 'templates'
-
-      ##
       # SECURITY
       #
 
@@ -162,58 +150,6 @@ module Api
       #
       security.x_xss_protection '1; mode=block'
 
-      # Content-Security-Policy (CSP) is a HTTP header supported by modern
-      # browsers. It determines trusted sources of execution for dynamic
-      # contents (JavaScript) or other web related assets: stylesheets, images,
-      # fonts, plugins, etc.
-      #
-      # Web applications can send this header to mitigate Cross Site Scripting
-      # (XSS) attacks.
-      #
-      # The default value allows images, scripts, AJAX, fonts and CSS from the
-      # same origin, and does not allow any other resources to load (eg object,
-      # frame, media, etc).
-      #
-      # Inline JavaScript is NOT allowed. To enable it, please use:
-      # "script-src 'unsafe-inline'".
-      #
-      # Content Security Policy introduction:
-      #
-      #  * http://www.html5rocks.com/en/tutorials/security/content-security-policy/
-      #  * https://www.owasp.org/index.php/Content_Security_Policy
-      #  * https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29
-      #
-      # Inline and eval JavaScript risks:
-      #
-      #   * http://www.html5rocks.com/en/tutorials/security/content-security-policy/#inline-code-considered-harmful
-      #   * http://www.html5rocks.com/en/tutorials/security/content-security-policy/#eval-too
-      #
-      # Content Security Policy usage:
-      #
-      #  * http://content-security-policy.com/
-      #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/Using_Content_Security_Policy
-      #
-      # Content Security Policy references:
-      #
-      #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives
-      #
-      security.content_security_policy %(
-        form-action 'self';
-        frame-ancestors 'self';
-        base-uri 'self';
-        default-src 'none';
-        script-src 'self';
-        connect-src 'self';
-        img-src 'self' https: data:;
-        style-src 'self' 'unsafe-inline' https:;
-        font-src 'self';
-        object-src 'none';
-        plugin-types application/pdf;
-        child-src 'self';
-        frame-src 'self';
-        media-src 'self'
-      )
-
       ##
       # FRAMEWORKS
       #
@@ -224,18 +160,7 @@ module Api
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
         include Actions::UserSessionAware
-        # include MyAuthentication # included in all the actions
-        # before :authenticate!    # run an authentication before callback
       end
-
-      # Configure the code that will yield each time Api::View is included
-      # This is useful for sharing common functionality
-      #
-      # See: http://www.rubydoc.info/gems/hanami-view#Configuration
-      # view.prepare do
-      #   include Hanami::Helpers
-      #   include Api::Assets::Helpers
-      # end
     end
 
     ##
@@ -261,31 +186,6 @@ module Api
       # scheme 'https'
       # host   'example.org'
       # port   443
-
-      # assets do
-      #   # Don't compile static assets in production mode (eg. Sass, ES6)
-      #   #
-      #   # See: http://www.rubydoc.info/gems/hanami-assets#Configuration
-      #   compile false
-      #
-      #   # Use fingerprint file name for asset paths
-      #   #
-      #   # See: http://hanamirb.org/guides/assets/overview
-      #   fingerprint true
-      #
-      #   # Content Delivery Network (CDN)
-      #   #
-      #   # See: http://hanamirb.org/guides/assets/content-delivery-network
-      #   #
-      #   # scheme 'https'
-      #   # host   'cdn.example.org'
-      #   # port   443
-      #
-      #   # Subresource Integrity
-      #   #
-      #   # See: http://hanamirb.org/guides/assets/content-delivery-network/#subresource-integrity
-      #   subresource_integrity :sha256
-      # end
     end
   end
 end
