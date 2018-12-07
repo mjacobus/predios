@@ -12,6 +12,5 @@
 
 (() => {
   const application = Stimulus.Application.start()
-  application.register("hello", Hello);
   application.register("apartments", ApartmentsController);
 })()

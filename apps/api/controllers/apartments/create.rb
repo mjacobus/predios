@@ -7,7 +7,10 @@ module Api
         include Api::Action
 
         def call(_params)
-          self.body = { foo: :bar }.to_json
+          self.body = {
+            building_id: params[:building_id],
+            number: params[:number]
+          }.to_json
           self.status = 201
         end
 
