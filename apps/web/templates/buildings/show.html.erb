@@ -15,3 +15,13 @@
     </div>
   </div>
 </div>
+
+<hr>
+
+<%=
+  form_for :appartment, routes.building_apartments_path(building_id: building.id), method: :post do
+    text_field :title
+
+    submit 'Adicionar Apartmento'
+  end
+%>
