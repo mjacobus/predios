@@ -38,8 +38,6 @@ RSpec.describe Web::Controllers::Users::Enable::Create, type: :action do
     let(:current_user) { User.new.enable }
 
     it 'shows forbidden' do
-      response = action.call(params)
-
       expect(response[0]).to eq 401
     end
   end
