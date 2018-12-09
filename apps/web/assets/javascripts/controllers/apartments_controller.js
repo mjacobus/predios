@@ -18,23 +18,42 @@ const apiPost = (url, data) => {
 
 class ApartmentsController extends Stimulus.Controller {
   static get targets() {
-    return ["number", "code", "buildingId"];
+    return ["number", "code", "buildingId", "submitButton"];
   }
 
   submitForm(e) {
     e.preventDefault();
+
+    if (this.formDisabled) {
+      return;
+    }
+
     this.createApartment();
   }
 
   createApartment() {
+    this.disableForm();
+    const enableForm = this.enableForm.bind(this);
+
     const feedback = this.codeTarget;
     apiPost(this.url, this.payload)
       .then((response, other) => {
-        console.log(response.status)
+        enableForm();
         return response.json();
       })
       .then(response => feedback.innerHTML = JSON.stringify(response))
     .catch(error => alert('error'))
+  }
+
+  enableForm() {
+    this.formDisabled = false;
+    this.submitButtonTarget.disabled = false;
+  }
+
+  disableForm() {
+    this.formDisabled = true;
+    console.log(this.submitButtonTarget)
+    this.submitButtonTarget.disabled = true;
   }
 
   payload() {

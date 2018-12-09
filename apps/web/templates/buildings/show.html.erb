@@ -23,7 +23,7 @@
   <form data-action="submit->apartments#submitForm">
     <input type="hidden" data-target="apartments.buildingId" value="<%= building.id %>">
     <input value="" data-target="apartments.number">
-    <input type="submit" class="btn btn-success text" value="Criar">
+    <input data-target="apartments.submitButton" type="submit" class="btn btn-success text" value="Criar">
   </form>
 
   <pre data-target="apartments.code">
