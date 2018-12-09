@@ -4,7 +4,7 @@ module Web
   module Controllers
     module Users
       module Enable
-        class Create
+        class Create < MasterAction
           include Web::Action
 
           def initialize(repository: UserRepository.new)

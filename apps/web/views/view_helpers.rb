@@ -33,5 +33,23 @@ module Web
     def presence_color(presence)
       { true => 'green', false => 'red', nil => 'gray' }.fetch(presence)
     end
+
+    def custom_stylesheet(file, options = {})
+      file = remote_or_local_vendor_file(file)
+      stylesheet(file, options)
+    end
+
+    def custom_javascript(file, options = {})
+      file = remote_or_local_vendor_file(file)
+      javascript(file, options)
+    end
+
+    def remote_or_local_vendor_file(file)
+      if ENV['LOCAL_ASSETS']
+        return "vendor/#{file.to_s.split('/').last}"
+      end
+
+      file
+    end
   end
 end

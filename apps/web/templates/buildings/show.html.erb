@@ -15,3 +15,23 @@
     </div>
   </div>
 </div>
+
+<hr>
+
+<div class="clearfix" data-controller="apartments">
+  <div class="float-right">
+    <form class="form-inline" data-action="submit->apartments#submitForm">
+      <div class="form-row">
+        <div class="col">
+          <input type="hidden" data-target="apartments.buildingId" value="<%= building.id %>">
+          <input class="form-control" placeholder="número" value="" data-target="apartments.number">
+        </div>
+
+        <div class="col">
+          <input data-target="apartments.submitButton" type="submit" class="btn btn-success text" value="Adicionar Apartamento" class="float-right">
+        </div>
+      </div>
+    </form>
+    <small style="display: none;" data-target="apartments.errorMessage" class="form-text text-muted"></small>
+  </div>
+</div>

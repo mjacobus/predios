@@ -14,5 +14,4 @@ resources :users, only: [:index] do
   resource :master, only: %i[create destroy]
 end
 
-resources :buildings, only: [:index]
-get '/buildings/:id', to: 'buildings#show'
+resources :buildings, only: %i[index show]

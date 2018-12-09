@@ -51,6 +51,7 @@ RSpec.configure do |config|
   end
 
   config.include MySpecUtils
+  config.include ActionsSpecHelper, type: :action
 
   # rspec-mocks config goes here. You can use an alternate test double
   # library (such as bogus or mocha) by changing the `mock_with` option here.
