@@ -8,8 +8,7 @@ module Api
 
         def call(_params)
           self.body = {
-            building_id: params[:building_id],
-            number: params[:number]
+            message: "Error creating #{params[:building_id]}/#{params[:number]}",
           }.to_json
           self.status = 201
         end
