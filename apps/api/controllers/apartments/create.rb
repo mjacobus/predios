@@ -8,12 +8,10 @@ module Api
 
         def call(_params)
           self.body = {
-            message: "Error creating #{params[:building_id]}/#{params[:number]}",
+            message: "Aguarde. Ainda não implementado #{params[:building_id]}/#{params[:number]}",
           }.to_json
           self.status = 201
         end
-
-        def handle_invalid_csrf_token; end
       end
     end
   end

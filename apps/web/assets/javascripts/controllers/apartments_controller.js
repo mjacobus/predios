@@ -1,6 +1,11 @@
 class ApartmentsController extends AppController {
   static get targets() {
-    return ["number", "code", "buildingId", "submitButton"];
+    return [
+      "number",
+      "errorMessage",
+      "buildingId",
+      "submitButton"
+    ];
   }
 
   submitForm(e) {
@@ -14,16 +19,12 @@ class ApartmentsController extends AppController {
   }
 
   createApartment() {
-    this.disableForm();
-    const enableForm = this.enableForm.bind(this);
-
-    const feedback = this.codeTarget;
-    apiPost(this.url, this.payload)
-      .then((response, other) => {
-        enableForm();
-        return response.json();
-      })
-      .then(response => feedback.innerHTML = JSON.stringify(response))
+    this.beforeCreate();
+    apiPost(this.url, this.payload).then((response, other) => {
+      return response.json().then(jsonResponse => {
+        this.handleResponse(jsonResponse, response);
+      });
+    })
     .catch(error => alert('error'))
   }
 
@@ -32,13 +33,24 @@ class ApartmentsController extends AppController {
     this.submitButtonTarget.disabled = false;
   }
 
+  beforeCreate() {
+    this.disableForm();
+    this.hideElement(this.errorMessageTarget);
+  }
+
   disableForm() {
     this.formDisabled = true;
-    console.log(this.submitButtonTarget)
     this.submitButtonTarget.disabled = true;
   }
 
-  payload() {
+  handleResponse(jsonResponse, response) {
+    this.enableForm();
+    const feedback = this.errorMessageTarget;
+    feedback.innerHTML = jsonResponse.message;
+    this.showElement(feedback);
+  }
+
+  get payload() {
     const number = this.number;
     return { number };
   }

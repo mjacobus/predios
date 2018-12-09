@@ -3,6 +3,7 @@
 require 'hanami/helpers'
 require 'hanami/assets'
 require_relative '../../lib/actions/user_session_aware'
+require_relative '../../lib/actions/api_actions'
 
 module Api
   class Application < Hanami::Application
@@ -160,6 +161,7 @@ module Api
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
         include Actions::UserSessionAware
+        include Actions::ApiActions
       end
     end
 
