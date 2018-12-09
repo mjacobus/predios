@@ -7,10 +7,13 @@ module Api
         include Api::Action
 
         def call(_params)
-          self.body = {
-            message: "Aguarde. Ainda não implementado #{params[:building_id]}/#{params[:number]}",
-          }.to_json
-          self.status = 201
+          body = {
+            message: 'Ainda não implementado',
+            building_id: params[:building_id],
+            number: params[:number],
+          }
+
+          render(body: body, status: 422)
         end
       end
     end

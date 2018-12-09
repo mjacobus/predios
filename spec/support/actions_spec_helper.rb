@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable Metrics/MethodLength
 module ActionsSpecHelper
   def self.included(base)
     base.class_eval do

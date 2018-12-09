@@ -65,7 +65,7 @@ RSpec::Matchers.define :redirect_to do |expected, status = nil|
   end
 end
 
-RSpec::Matchers.define :be_successful do |expected, status = nil|
+RSpec::Matchers.define :be_successful do |_expected, _status = nil|
   match do |response|
     response = RackResponse.wrap(response)
 
@@ -83,7 +83,7 @@ RSpec::Matchers.define :be_successful do |expected, status = nil|
   end
 end
 
-RSpec::Matchers.define :be_unauthorized do |expected, status = nil|
+RSpec::Matchers.define :be_unauthorized do |_expected, _status = nil|
   match do |response|
     response = RackResponse.wrap(response)
 
