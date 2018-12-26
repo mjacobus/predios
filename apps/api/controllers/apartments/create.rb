@@ -6,14 +6,12 @@ module Api
       class Create
         include Api::Action
 
-        def call(_params)
-          body = {
-            message: 'Ainda não implementado',
-            building_id: params[:building_id],
-            number: params[:number],
-          }
-
-          render(body: body, status: 422)
+        def call(params)
+          handle_errors do
+            command = ::Apartments::Commands::CreateApartment.new(params[:apartment])
+            execute(command)
+            render(status: 200)
+          end
         end
       end
     end

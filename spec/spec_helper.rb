@@ -13,6 +13,7 @@ require_relative './support/dummy_domain/config'
 
 FIXTURES_PATH = File.expand_path('./fixtures', __dir__)
 
+require_relative './support/factories/entity_factory'
 Hanami::Utils.require!("#{__dir__}/support")
 
 require 'object_comparator/rspec'
