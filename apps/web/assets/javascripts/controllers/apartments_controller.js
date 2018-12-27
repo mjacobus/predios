@@ -3,7 +3,9 @@ class ApartmentsController extends AppController {
     return [
       "number",
       "errorMessage",
+      "buildingNumber",
       "buildingId",
+      "buildingUuid",
       "submitButton"
     ];
   }
@@ -20,7 +22,7 @@ class ApartmentsController extends AppController {
 
   createApartment() {
     this.beforeCreate();
-    apiPost(this.url, this.payload).then((response, other) => {
+    apiPost(this.apartmentsEndpoint, this.payload).then((response, other) => {
       return response.json().then(jsonResponse => {
         this.handleResponse(jsonResponse, response);
       });
@@ -45,6 +47,12 @@ class ApartmentsController extends AppController {
 
   handleResponse(jsonResponse, response) {
     this.enableForm();
+
+    if (response.status >= 200 && response.status < 300) {
+      Turbolinks.visit(this.buildingUrl)
+      return
+    }
+
     const feedback = this.errorMessageTarget;
     feedback.innerHTML = jsonResponse.message;
     this.showElement(feedback);
@@ -52,11 +60,17 @@ class ApartmentsController extends AppController {
 
   get payload() {
     const number = this.number;
-    return { number };
+    const buildingUuid = this.buildingUuid;
+    const apartment = { number, building_id: buildingUuid };
+    return { apartment }
   }
 
-  get url() {
-    return `/api/buildings/${this.buildingId}/apartments`
+  get buildingUrl() {
+    return `/buildings/${this.buildingNumber}`
+  }
+
+  get apartmentsEndpoint() {
+    return `/api/buildings/${this.buildingNumber}/apartments`
   }
 
   get number() {
@@ -66,5 +80,12 @@ class ApartmentsController extends AppController {
   get buildingId() {
     return this.buildingIdTarget.value;
   }
-}
 
+  get buildingUuid() {
+    return this.buildingUuidTarget.value;
+  }
+
+  get buildingNumber() {
+    return this.buildingNumberTarget.value;
+  }
+}

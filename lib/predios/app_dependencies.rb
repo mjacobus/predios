@@ -39,6 +39,7 @@ class AppDependencies < Nurse::DependencyContainer
     share('es.projection_events') do |_container|
       Koine::EventManager::EventManager.new.tap do |manager|
         manager.attach_listener(Buildings::BuildingsProjections.new)
+        manager.attach_listener(Apartments::ApartmentsProjections.new)
       end
     end
 
@@ -54,6 +55,15 @@ class AppDependencies < Nurse::DependencyContainer
       Buildings::CommandHandlers::CreateBuilding.new(
         repository: container.repository('aggregate_root'),
         validator: NullValidator.new
+      )
+    end
+
+    add_command_handler('apartments.create_apartment') do |container|
+      Apartments::CommandHandlers::CreateApartment.new(
+        repository: container.repository('aggregate_root'),
+        validator: NewApartmentValidator.new(
+          apartment_repository: ApartmentProjectionRepository.new
+        )
       )
     end
 

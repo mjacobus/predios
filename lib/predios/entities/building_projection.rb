@@ -12,4 +12,8 @@ class BuildingProjection < Hanami::Entity
   def letter?
     has_individual_letterboxes
   end
+
+  def apartments
+    super.sort_by(&:number)
+  end
 end
