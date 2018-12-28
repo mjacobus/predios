@@ -2,6 +2,12 @@
 
 module Actions
   module ApiActions
+    def self.included(base)
+      base.class_eval do
+        before :register_metadata_strategy
+      end
+    end
+
     def handle_invalid_csrf_token; end
 
     private
@@ -30,6 +36,19 @@ module Actions
     rescue StandardError => error
       body = { message: error.message }
       render(body: body, status: 500)
+    end
+
+    def register_metadata_strategy
+      dependencies.set('es.metadata_strategy') do
+        Koine::EventSourcing::MetadataStrategy.new do |event|
+          metadata = {
+            current_user: current_user.uuid,
+            remote_ip: request.ip,
+          }
+
+          event.with_metadata(metadata)
+        end
+      end
     end
   end
 end
