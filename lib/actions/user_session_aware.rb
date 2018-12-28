@@ -33,5 +33,11 @@ module Actions
         halt 401
       end
     end
+
+    def require_master
+      unless current_user.master?
+        halt 401
+      end
+    end
   end
 end

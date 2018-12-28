@@ -3,9 +3,10 @@
 module Web
   module Controllers
     module Users
-      class Index < MasterAction
+      class Index
         include ::Web::Action
 
+        before :require_master
         expose :users
 
         def initialize(repository: UserRepository.new)

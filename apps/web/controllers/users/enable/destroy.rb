@@ -4,8 +4,10 @@ module Web
   module Controllers
     module Users
       module Enable
-        class Destroy < MasterAction
+        class Destroy
           include Web::Action
+
+          before :require_master
 
           def initialize(repository: UserRepository.new)
             @repository = repository
