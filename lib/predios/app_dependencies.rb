@@ -24,7 +24,10 @@ class AppDependencies < Nurse::DependencyContainer
 
     share('es.event_store') do |container|
       repository = container.repository('event')
-      Koine::EventSourcing::EventStore.new(repository: repository)
+      Koine::EventSourcing::EventStore.new(
+        repository: repository,
+        metadata_strategy: container.get('es.metadata_strategy')
+      )
     end
 
     share('es.processors') do

@@ -16,4 +16,8 @@ class LoggedOutUser
   def id
     0
   end
+
+  def uuid
+    'guest-0'
+  end
 end
