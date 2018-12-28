@@ -3,7 +3,13 @@
 require 'spec_helper'
 
 RSpec.describe Koine::EventSourcing::EventStore do
-  let(:store) { described_class.new(repository: repository) }
+  let(:store) do
+    described_class.new(
+      repository: repository,
+      metadata_strategy: metadata_strategy
+    )
+  end
+  let(:metadata_strategy) { DummyMetadataStrategy.new }
   let(:repository) { double(:repository) }
   let(:event1) do
     instance_double(
@@ -90,6 +96,14 @@ RSpec.describe Koine::EventSourcing::EventStore do
       store.add_unpersisted_events(domain_events)
 
       expect(domain_events).to be_all_persisted
+    end
+
+    it 'adds metadata to the event' do
+      store.add_unpersisted_events(domain_events)
+
+      expect(metadata_strategy.events).to include(event1)
+      expect(metadata_strategy.events).not_to include(event2)
+      expect(metadata_strategy.events).to include(event3)
     end
 
     it 'yields the newly persisted persisted events' do

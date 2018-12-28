@@ -3,8 +3,9 @@
 module Koine
   module EventSourcing
     class EventStore
-      def initialize(repository:)
+      def initialize(repository:, metadata_strategy: NullMetadataStrategy.new)
         @repository = repository
+        @metadata_strategy = metadata_strategy
       end
 
       def for_aggregate(type:, id:)
@@ -18,6 +19,7 @@ module Koine
 
       def add_unpersisted_events(domain_events)
         domain_events.unpersisted.each do |event|
+          event = @metadata_strategy.with_metadata(event)
           @repository.store(event)
           domain_events.persist(event)
           if block_given?
