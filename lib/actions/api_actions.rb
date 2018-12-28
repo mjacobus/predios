@@ -42,8 +42,8 @@ module Actions
       dependencies.set('es.metadata_strategy') do
         Koine::EventSourcing::MetadataStrategy.new do |event|
           metadata = {
-            current_user: current_user.uuid,
-            remote_ip: request.ip,
+            user_id: current_user.uuid,
+            ip_address: request.ip,
           }
 
           event.with_metadata(metadata)

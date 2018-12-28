@@ -18,4 +18,15 @@ class EventEntityRepository < Hanami::Repository
     entity = EventEntity.from_domain_event(event)
     create(entity)
   end
+
+  def paginate(page:, per_page: 100)
+    offset = page.to_i - 1
+    if offset.negative?
+      offset = 0
+    end
+
+    offset *= per_page
+    order = Hanami::Model::Sql.public_send(:desc, :id)
+    domain_events_store.order(order).limit(per_page).offset(offset)
+  end
 end

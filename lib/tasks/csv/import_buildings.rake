@@ -7,7 +7,7 @@ namespace :csv do
 
     dependencies.set('es.metadata_strategy') do
       Koine::EventSourcing::MetadataStrategy.new do |event|
-        metadata = { current_user: 'csv:import_buildings' }
+        metadata = { user_id: 'csv:import_buildings' }
         event.with_metadata(metadata)
       end
     end
