@@ -15,3 +15,4 @@ resources :users, only: [:index] do
 end
 
 resources :buildings, only: %i[index show]
+resources :audits, only: %i[index show]

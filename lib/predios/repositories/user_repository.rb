@@ -7,6 +7,10 @@ class UserRepository < Hanami::Repository
     users.where(oauth_provider: provider, oauth_uid: uid).first
   end
 
+  def find_by_uuid(uuid)
+    users.where(uuid: uuid).first
+  end
+
   def empty?
     all.count.zero?
   end

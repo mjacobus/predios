@@ -1,0 +1,28 @@
+<h1>Auditoria</h1>
+
+<%= render partial: 'pagination' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Evento</th>
+      <th>Aggregate</th>
+      <th>Aggregate Id</th>
+      <th>Hora</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% audits.each do |audit| %>
+      <tr>
+        <td><a href="<%= routes.audit_path(audit.id)%>"> <%= audit.id %></a></td>
+        <td> <%= audit.event_type %></td>
+        <td> <%= audit.aggregate_type %></td>
+        <td> <%= audit.aggregate_id %></td>
+        <td> <%= audit.event_time %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render partial: 'pagination' %>

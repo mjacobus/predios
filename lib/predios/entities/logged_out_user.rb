@@ -20,4 +20,12 @@ class LoggedOutUser
   def uuid
     'guest-0'
   end
+
+  def name
+    'Loggout out'
+  end
+
+  def email
+    'no-email'
+  end
 end

@@ -1,0 +1,36 @@
+<h1>Auditoria</h1>
+
+<h4>Event Time</h4>
+<%= audit.event_time %>
+<hr>
+
+<h4>Event Tipe</h4>
+<%= audit.event_type %>
+<hr>
+
+<h4>Event Id</h4>
+<%= audit.event_id %>
+<hr>
+
+<h4>Aggregate Root</h4>
+<%= audit.aggregate_type %>
+<hr>
+
+<h4>Aggregate Id</h4>
+<%= audit.aggregate_id %>
+<hr>
+
+<h4>Payload</h4>
+<pre><%= format_json(audit.payload) %></pre>
+<hr>
+
+<h4>Metadata</h4>
+<pre><%= format_json(audit.metadata) %></pre>
+<hr>
+
+<h4>Usuário</h4>
+<%= user.name %> (<%= user.email %>)
+<hr>
+
+<h4>Ip</h4>
+<%= ip_address %>
