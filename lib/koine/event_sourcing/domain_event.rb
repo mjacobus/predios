@@ -89,6 +89,10 @@ module Koine
         with(:aggregate_version, Integer(version))
       end
 
+      def [](attribute)
+        payload.fetch(attribute)
+      end
+
       protected
 
       def with(attribute, value)
