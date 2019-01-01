@@ -1,16 +1,15 @@
 <div class="row" data-uuid="apartment-<%= apartment.uuid %>">
-  <div class="col-4">
+  <div class="col-2">
     <h2> <%= apartment.number %> </h2>
   </div>
 
-  <div class="col-8">
+  <div class="col-10">
     <div data-controller="contact-attempt">
       <a href="#" class="btn btn-light float-right" data-action="contact-attempt#showForm" data-target="contact-attempt.showForm">Tentar Contato</a>
       <div style="display: none;" data-target="contact-attempt.formContainer">
-        <strong>Contatado?</strong>
-        <div>
-          <a href="#" data-action="contact-attempt#confirm" class="btn btn-light">Sim</a>
-          <a href="#" data-action="contact-attempt#confirm" class="btn btn-light">Não</a>
+        <div class="float-right">
+          <a href="#" data-action="contact-attempt#confirm" class="checked-on btn btn-light">&#x2713;</a>
+          <a href="#" data-action="contact-attempt#confirm" class="checked-off btn btn-light">&#x2717;</a>
           <a href="#" data-action="contact-attempt#cancel" class="btn btn-light">Cancelar</a>
         </div>
       </div>
