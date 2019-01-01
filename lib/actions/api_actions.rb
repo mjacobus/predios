@@ -34,7 +34,10 @@ module Actions
       body = { message: error.message, errors: error.errors }
       render(body: body, status: 422)
     rescue StandardError => error
-      body = { message: error.message }
+      backtrace = error.backtrace.select do |line|
+        line.match(Hanami.root.to_s)
+      end
+      body = { message: error.message, backtrace: backtrace }
       render(body: body, status: 500)
     end
 

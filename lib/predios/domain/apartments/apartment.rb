@@ -38,8 +38,8 @@ module Apartments
 
     def when_contact_attempt_assigned(event)
       attempt = ContactAttempt.new(
-        outcome: event.payload.fetch(:outcome),
-        time: event.payload.fetch(:time)
+        outcome: event.outcome,
+        time: event.time
       )
 
       @contact_attempts << attempt
