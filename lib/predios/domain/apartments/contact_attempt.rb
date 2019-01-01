@@ -4,6 +4,7 @@ module Apartments
   class ContactAttempt
     attr_reader :time
     attr_reader :outcome
+
     VALID_OUTCOMES = %w[
       failed
       contacted
