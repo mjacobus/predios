@@ -41,10 +41,6 @@
 <hr>
 
 <% building.apartments.each do |apartment| %>
-  <div class="row">
-    <div class="col-1">
-      <%= apartment.number %>
-    </div>
-  </div>
+  <%= render partial: 'apartment', locals: { apartment: apartment } %>
   <hr>
 <% end %>

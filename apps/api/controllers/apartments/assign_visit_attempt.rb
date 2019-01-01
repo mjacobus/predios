@@ -8,7 +8,8 @@ module Api
 
         def call(params)
           handle_errors do
-            command = ::Apartments::Commands::AssignContactAttempt.new(params[:contact_attempt])
+            payload = params[:contact_attempt]
+            command = ::Apartments::Commands::AssignContactAttempt.new(payload)
             execute(command)
             render(status: 201)
           end
