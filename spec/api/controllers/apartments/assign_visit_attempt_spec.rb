@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Api::Controllers::Apartments::AssignVisitAttempt, type: :action do
   let(:params) { Hash[contact_attempt: contact_attempt] }
   let(:contact_attempt) do

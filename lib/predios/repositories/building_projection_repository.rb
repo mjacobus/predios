@@ -7,6 +7,10 @@ class BuildingProjectionRepository < Hanami::Repository
 
   associations do
     has_many :projection_apartments, foreign_key: :building_id, as: :apartments
+    has_many :projection_apartment_contact_attempts,
+      through: :projection_apartments,
+      foreign_key: :building_id,
+      as: :contact_requests
   end
 
   def find_by_number(number)

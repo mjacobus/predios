@@ -11,13 +11,13 @@ RSpec.describe ApartmentProjectionRepository, type: :repository do
     [
       contact_attempt_factory.create(
         apartment_id: apartment.id,
-        outcome: 'failed',
-        time: time('2001-02-04')
+        outcome: 'contacted',
+        time: time('2001-02-05')
       ),
       contact_attempt_factory.create(
         apartment_id: apartment.id,
-        outcome: 'contacted',
-        time: time('2001-02-05')
+        outcome: 'failed',
+        time: time('2001-02-04')
       ),
     ]
   end
@@ -38,8 +38,20 @@ RSpec.describe ApartmentProjectionRepository, type: :repository do
         expect(found).to eq(apartment)
       end
 
-      it 'contact_attempts return them' do
-        expect(found.contact_attempts.map(&:id)).to eq(contact_attempts.map(&:id))
+      it 'contact_attempts return them ordered by time' do
+        expect(found.contact_attempts.map(&:id)).to eq([
+          contact_attempts[1].id,
+          contact_attempts[0].id,
+        ])
+      end
+
+      it 'has a last contacted time' do
+        expect(found.last_contacted_time).to eq(contact_attempts[0].time)
+        expect(found.ever_contacted?).to be true
+      end
+
+      it 'has a last failed contact attempt tme' do
+        expect(found.last_failed_contact_attempt_time).to eq(contact_attempts[1].time)
       end
 
       context 'when there are no contact contact_attempts' do
@@ -47,6 +59,15 @@ RSpec.describe ApartmentProjectionRepository, type: :repository do
 
         it 'defaults to empty' do
           expect(found.contact_attempts).to eq []
+        end
+
+        it 'has nil last contacted time' do
+          expect(found.last_contacted_time).to be nil
+          expect(found.ever_contacted?).to be false
+        end
+
+        it 'has nil last failed contact attempt tme' do
+          expect(found.last_failed_contact_attempt_time).to be nil
         end
       end
     end
