@@ -24,8 +24,18 @@ class ContactAttemptController extends AppController {
     this.showElement(this.showFormTarget);
   }
 
-  confirm(e) {
+  confirmContacted(e) {
     e.preventDefault();
-    confirm('foo bar baz?')
+    if (!confirm(e.target.getAttribute('data-confirm'))) {
+      this.cancel(e);
+    }
+  }
+
+  confirmFailed(e) {
+    e.preventDefault();
+
+    if (!confirm(e.target.getAttribute('data-confirm'))) {
+      this.cancel(e);
+    }
   }
 }

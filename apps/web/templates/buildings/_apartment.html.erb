@@ -8,9 +8,9 @@
       <a href="#" class="btn btn-light float-right" data-action="contact-attempt#showForm" data-target="contact-attempt.showForm">Tentar Contato</a>
       <div style="display: none;" data-target="contact-attempt.formContainer">
         <div class="float-right">
-          <a href="#" data-action="contact-attempt#confirm" class="checked-on btn btn-light">&#x2713;</a>
-          <a href="#" data-action="contact-attempt#confirm" class="checked-off btn btn-light">&#x2717;</a>
-          <a href="#" data-action="contact-attempt#cancel" class="btn btn-light">Cancelar</a>
+          <a href="#" data-action="contact-attempt#cancel" class="btn ">Cancelar</a>
+          <a href="#" data-confirm="Marcar o apartamento <%= apartment.number %> como NÃO EM CASA?"  data-action="contact-attempt#confirmFailed" class="checked-off btn-lg btn-light">&#x2717;</a>
+          <a href="#" data-confirm="Marcar o apartamento <%= apartment.number %> como CONTATADO?" data-action="contact-attempt#confirmContacted" class="checked-on btn-lg btn-light">&#x2713;</a>
         </div>
       </div>
     </div>
