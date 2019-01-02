@@ -60,7 +60,7 @@ class ContactAttemptController extends AppController {
     this.enableActions();
 
     if (response.status >= 200 && response.status < 300) {
-      const url = `/api/buildings/${this.buildingNumber}/apartments/${this.apartmentId}`
+      const url = `/buildings/${this.buildingNumber}`
       Turbolinks.visit(url)
       return
     }
@@ -90,7 +90,6 @@ class ContactAttemptController extends AppController {
       contact_attempt: {
         outcome,
         apartment_id,
-        time: '2001-02-03'
       }
     }
   }
