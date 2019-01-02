@@ -8,6 +8,7 @@ class AggregateRoot < Koine::EventSourcing::AggregateRoot
     private
 
     def create_with_event(event)
+      @created_at = event.event_time
       new.tap { |aggregate_root| aggregate_root.send(:record_that, event) }
     end
   end

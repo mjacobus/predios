@@ -41,7 +41,7 @@ class EntityFactory
   end
 
   def sample_uuid(_sequence)
-    UniqueId.new
+    UniqueId.new.to_s
   end
 
   # rubocop:disable Metrics/MethodLength

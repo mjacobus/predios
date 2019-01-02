@@ -51,5 +51,21 @@ module Web
 
       file
     end
+
+    def format_time(time)
+      unless time
+        return
+      end
+
+      time.localtime.strftime('%d/%m/%Y %H:%M')
+    end
+
+    def format_date(date)
+      unless date
+        return
+      end
+
+      date.strftime('%d/%m/%Y')
+    end
   end
 end

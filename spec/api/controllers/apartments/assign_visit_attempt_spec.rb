@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Api::Controllers::Apartments::Create, type: :action do
-  let(:params) { Hash[apartment: apartment] }
-  let(:apartment) do
+RSpec.describe Api::Controllers::Apartments::AssignVisitAttempt, type: :action do
+  let(:params) { Hash[contact_attempt: contact_attempt] }
+  let(:contact_attempt) do
     {
-      building_id: 'the-uuid',
-      number: 'the-number',
+      apartment_id: 'the-uuid',
+      outcome: 'success',
+      time: '2001-02-03 04:05:06',
     }
   end
 
@@ -29,7 +30,7 @@ RSpec.describe Api::Controllers::Apartments::Create, type: :action do
     it 'executes proper action' do
       response
 
-      expected_command = Apartments::Commands::CreateApartment.new(apartment)
+      expected_command = Apartments::Commands::AssignContactAttempt.new(contact_attempt)
 
       expect(action).to have_received(:execute) do |command|
         expect(command).to be_equal_to(expected_command)

@@ -7,6 +7,10 @@ module Apartments
     def initialize
       super
       subscribe(ApartmentCreatedSubscriber.new, to: Apartments::Events::ApartmentCreated)
+      subscribe(
+        ContactAttemptAssignedSubscriber.new,
+        to: Apartments::Events::ContactAttemptAssigned
+      )
     end
   end
 end

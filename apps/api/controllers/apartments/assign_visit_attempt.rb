@@ -3,12 +3,13 @@
 module Api
   module Controllers
     module Apartments
-      class Create
+      class AssignVisitAttempt
         include Api::Action
 
         def call(params)
           handle_errors do
-            command = ::Apartments::Commands::CreateApartment.new(params[:apartment])
+            payload = params[:contact_attempt]
+            command = ::Apartments::Commands::AssignContactAttempt.new(payload)
             execute(command)
             render(status: 201)
           end

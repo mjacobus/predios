@@ -2,8 +2,15 @@
 
 module Apartments
   class Apartment < AggregateRoot
+    attr_reader :created_at
     attr_reader :number
     attr_reader :building_id
+    attr_reader :contact_attempts
+
+    def initialize(*args)
+      super
+      @contact_attempts = []
+    end
 
     def self.create(attributes)
       event = Events::ApartmentCreated.new(
@@ -14,12 +21,28 @@ module Apartments
       create_with_event(event)
     end
 
+    def assign_contact_attempt(contact_attempt)
+      record_that(Events::ContactAttemptAssigned.new(
+        outcome: contact_attempt.outcome,
+        time: contact_attempt.time
+      ))
+    end
+
     private
 
     def when_created(event)
       @id = event.payload[:id]
       @number = event.payload[:number]
       @building_id = event.payload[:building_id]
+    end
+
+    def when_contact_attempt_assigned(event)
+      attempt = ContactAttempt.new(
+        outcome: event.outcome,
+        time: event.time
+      )
+
+      @contact_attempts << attempt
     end
   end
 end
