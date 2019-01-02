@@ -13,6 +13,10 @@ class ApartmentProjection < Entity
     contact_attempts.reject(&:successful?).last&.time
   end
 
+  def last_contact_attempt
+    contact_attempts.last
+  end
+
   def ever_contacted?
     !last_contacted_time.nil?
   end

@@ -6,6 +6,18 @@
   <div class="col-10">
     <div data-controller="contact-attempt">
       <a href="#" class="btn btn-light float-right" data-action="contact-attempt#showForm" data-target="contact-attempt.showForm">Tentar Contato</a>
+
+      <% if apartment.last_contact_attempt %>
+        <div>
+          <%= format_time(apartment.last_contact_attempt.time) %>
+          <% if apartment.last_contact_attempt.successful? %>
+            <span class="checked-on">&#x2713;</span>
+          <% else %>
+            <span class="checked-off">&#x2717;</span>
+          <% end %>
+        </div>
+      <% end %>
+
       <div style="display: none;" data-target="contact-attempt.formContainer">
         <input type="hidden" value="<%= building.number %>" data-target="contact-attempt.buildingNumber">
         <input type="hidden" value="<%= apartment.id %>" data-target="contact-attempt.apartmentId">

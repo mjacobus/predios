@@ -52,7 +52,7 @@ RSpec.describe Apartments::CommandHandlers::AssignContactAttempt do
       it 'saves apartment' do
         expected_attempt = Apartments::ContactAttempt.new(
           outcome: 'contacted',
-          time: Time.parse('2001-02-03')
+          time: Time.parse('2001-02-03').utc
         )
 
         expect(repository).to have_received(:save) do |saved|

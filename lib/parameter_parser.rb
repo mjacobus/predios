@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module ParameterParser
-  def to_time(time_string)
-    Time.parse(time_string)
+  def to_time(time_or_string)
+    TimeCoercer.new.coerce(time_or_string)
   end
 
   def to_boolean(string_value)
