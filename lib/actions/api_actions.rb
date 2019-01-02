@@ -25,6 +25,7 @@ module Actions
       @dependencies ||= AppDependencies.new
     end
 
+    # rubocop:disable Metrics/MethodLength
     def handle_errors
       yield
     rescue Errors::NotFound => error
