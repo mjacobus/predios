@@ -65,13 +65,20 @@ RSpec.describe Koine::EventSourcing::AggregateRoot do
   end
 
   describe '.from_event_stream' do
-    it 'reconstructs the aggregate' do
+    before do
       aggregate.title = 'new title'
       aggregate.body = 'new body'
+    end
 
-      loaded = aggregate_type.from_event_stream(events)
+    let(:loaded) { aggregate_type.from_event_stream(events) }
 
+    it 'reconstructs the aggregate' do
+      aggregate.send(:persist_events)
       expect(loaded).to be_equal_to(aggregate)
+    end
+
+    it 'marks all the events as persisted' do
+      expect(loaded.send(:domain_events)).to be_all_persisted
     end
   end
 end
