@@ -34,6 +34,12 @@ RSpec.describe 'event sourcing layers' do
       expect(found.updated_at).to be_equal_to(aggregate.updated_at)
     end
 
+    it 'finds retrieves with all persisted events' do
+      found = aggregates.find(aggregate.id)
+
+      expect(found.send(:domain_events)).to be_all_persisted
+    end
+
     it 'creates projections' do
       aggregate.title = 'other title'
       aggregates.save(aggregate)

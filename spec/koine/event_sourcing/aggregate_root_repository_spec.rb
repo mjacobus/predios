@@ -59,6 +59,7 @@ RSpec.describe Koine::EventSourcing::AggregateRootRepository do
 
     context 'when record exists' do
       it 'returns aggregate' do
+        aggregate_root.send(:persist_events)
         expect(found).to be_equal_to(aggregate_root)
         expect(found).not_to be(aggregate_root)
       end
@@ -92,6 +93,7 @@ RSpec.describe Koine::EventSourcing::AggregateRootRepository do
 
     context 'when record exists' do
       it 'returns aggregate' do
+        aggregate_root.send(:persist_events)
         expect(found).to be_equal_to(aggregate_root)
         expect(found).not_to be(aggregate_root)
       end

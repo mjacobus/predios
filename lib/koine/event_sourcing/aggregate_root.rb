@@ -20,6 +20,8 @@ module Koine
             events.map do |event|
               aggregate_root.send(:record_that, event)
             end
+
+            aggregate_root.send(:persist_events)
           end
         end
 
@@ -49,6 +51,10 @@ module Koine
       def increment_version
         @version ||= 0
         @version += 1
+      end
+
+      def persist_events
+        domain_events.persist_all
       end
     end
   end
