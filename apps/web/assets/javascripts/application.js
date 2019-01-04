@@ -7,6 +7,10 @@
         e.preventDefault();
       }
     });
+
+    $('.datetime').datetimepicker({
+      locale: 'pt-br'
+    });
   })
 })(jQuery);
 

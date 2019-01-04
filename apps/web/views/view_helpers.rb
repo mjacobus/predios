@@ -35,18 +35,19 @@ module Web
     end
 
     def custom_stylesheet(file, options = {})
-      file = remote_or_local_vendor_file(file)
+      file = remote_or_local_vendor_file(file, options.delete(:alternative))
       stylesheet(file, options)
     end
 
     def custom_javascript(file, options = {})
-      file = remote_or_local_vendor_file(file)
+      file = remote_or_local_vendor_file(file, options.delete(:alternative))
       javascript(file, options)
     end
 
-    def remote_or_local_vendor_file(file)
+    def remote_or_local_vendor_file(file, alternative)
       if ENV['LOCAL_ASSETS']
-        return "vendor/#{file.to_s.split('/').last}"
+        alternative ||= file.to_s.split('/').last
+        return "vendor/#{alternative}"
       end
 
       file

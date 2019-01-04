@@ -254,7 +254,7 @@ module Web
         connect-src 'self';
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;
-        font-src 'self';
+        font-src 'self' use.fontawesome.com;
         object-src 'none';
         plugin-types application/pdf;
         child-src 'self';
