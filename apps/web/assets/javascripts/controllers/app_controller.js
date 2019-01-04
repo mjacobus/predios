@@ -4,6 +4,6 @@ class AppController extends Stimulus.Controller {
   }
 
   showElement(element) {
-    element.style.display = null;
+    element.style.display = 'block';
   }
 }
