@@ -23,31 +23,44 @@
   </div>
 
   <div class="fullscreen" style="display: none;" data-target="contact-attempt.formContainer">
-    <input type="hidden" value="<%= building.number %>" data-target="contact-attempt.buildingNumber">
-    <input type="hidden" value="<%= apartment.id %>" data-target="contact-attempt.apartmentId">
-    <input type="hidden" value="<%= apartment.uuid %>" data-target="contact-attempt.apartmentUuid">
-    <input type="hidden" value="<%= apartment.number %>" data-target="contact-attempt.number">
-    <div class="float-right">
-      <a href="#" data-target="contact-attempt.cancelButton" data-action="contact-attempt#cancel" class="btn-lg btn-light">
-        <i class="fa fa-undo-alt"></i>
-      </a>
-      <div class="float-left"> <%= render partial: 'datetime_picker', locals: { id: apartment.id } %> </div>
-      <div class="float-left">
-        <a href="#"
-           data-target="contact-attempt.failButton"
-           data-confirm="Marcar o apartamento <%= apartment.number %> como NÃO EM CASA?"
-           data-action="contact-attempt#confirmFailure"
-           class="checked-off btn-lg btn-light">
-           <icon class="fa fa-times" data-confirm="Marcar o apartamento <%= apartment.number %> como NÃO EM CASA?"></i>
-        </a>
+    <div class="container">
+      <div class="title-bar float-right">
+        <i class="far fa-times-circle" data-target="contact-attempt.cancelButton" data-action="click->contact-attempt#cancel"></i>
+      </div>
+      <div class="body">
+        <p class="text-center">
+          Tentativa de contato
+          <br>
+          Prédio <%= building.number %>, <%= building.address %>,
+          <br><strong>apartamento <%= apartment.number %></strong>
+        </p>
+        <input type="hidden" value="<%= building.number %>" data-target="contact-attempt.buildingNumber">
+        <input type="hidden" value="<%= apartment.id %>" data-target="contact-attempt.apartmentId">
+        <input type="hidden" value="<%= apartment.uuid %>" data-target="contact-attempt.apartmentUuid">
+        <input type="hidden" value="<%= apartment.number %>" data-target="contact-attempt.number">
+        <div class="actions">
+          <a href="#"
+             data-target="contact-attempt.failButton"
+             data-confirm="Marcar o apartamento <%= apartment.number %> como NÃO EM CASA?"
+             data-action="contact-attempt#confirmFailure"
+             class="btn btn-light align-center">
+             <i class="checked-off fa fa-times" data-confirm="Marcar o apartamento <%= apartment.number %> como NÃO EM CASA?"></i>
+             Não em casa
+          </a>
 
-        <a href="#"
-           data-target="contact-attempt.confirmButton"
-           data-confirm="Marcar o apartamento <%= apartment.number %> como CONTATADO?"
-           data-action="contact-attempt#confirmContact"
-           class="checked-on btn-lg btn-light">
-           <icon class="fa fa-check" data-confirm="Marcar o apartamento <%= apartment.number %> como CONTATADO?"></i>
-        </a>
+          <a href="#"
+             data-target="contact-attempt.confirmButton"
+             data-confirm="Marcar o apartamento <%= apartment.number %> como CONTATADO?"
+             data-action="contact-attempt#confirmContact"
+             class="btn btn-light">
+             <i class="checked-on fa fa-check" data-confirm="Marcar o apartamento <%= apartment.number %> como CONTATADO?"></i>
+             Contatado
+          </a>
+
+          <div class="actions">
+            <a href="#" class="btn" data-action="click->contact-attempt#cancel">Cancelar</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

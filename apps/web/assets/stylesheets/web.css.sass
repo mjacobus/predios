@@ -13,7 +13,8 @@
 
 .staging
   .env-indicator
-    background-color: #eab48a !important
+    a
+      color: blue !important
 
 .development
   .env-indicator
@@ -30,13 +31,29 @@
   color: red!important
 
 .fullscreen
-  position: absolute
+  position: fixed
   width: 100%
-  height: 100%
+  min-height: 100vh
   background: white
-  top: 40px // menu
+  top: 0
   left: 0
   bottom: 0
   right: 0
-  padding-top: 40px
-  z-index: 1010
+  z-index: 91010
+  padding-top: 10px
+  height: 100%
+  overflow-y: auto
+
+  .title
+    margin: 10px 0
+  .actions
+    padding: 10px
+    width: 100%
+    margin: 0 auto
+    text-align: center
+    .btn
+      width: 150px
+
+.call-options
+  i
+    color: green
