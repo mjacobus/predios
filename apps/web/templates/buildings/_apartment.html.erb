@@ -8,15 +8,15 @@
         <div>
           <%= format_time(apartment.last_contact_attempt.time) %>
           <% if apartment.last_contact_attempt.successful? %>
-            <span class="checked-on">&#x2713;</span>
+            <i class="checked-on fa fa-check"></i>
           <% else %>
-            <span class="checked-off">&#x2717;</span>
+            <i class="checked-off fa fa-times"></i>
           <% end %>
         </div>
       <% end %>
     </div>
     <div class="col-2">
-      <a href="#" class="btn-lg btn-light float-right" data-action="contact-attempt#showForm" data-target="contact-attempt.showForm">
+      <a href="#" class="btn-lg btn-light float-right contact-attempt-button" data-action="contact-attempt#showForm" data-target="contact-attempt.showForm">
         <i class="fa fa-bell"></i>
       </a>
     </div>
@@ -28,6 +28,7 @@
         <i class="far fa-times-circle" data-target="contact-attempt.cancelButton" data-action="click->contact-attempt#cancel"></i>
       </div>
       <div class="body">
+        <div class="alert alert-danger text-center" data-target="contact-attempt.errorMessage" style="display: none;"></div>
         <p class="text-center">
           Tentativa de contato
           <br>

@@ -6,6 +6,7 @@ class ContactAttemptController extends AppController {
       "confirmButton",
       "failButton",
       "cancel",
+      "errorMessage",
       "formContainer",
       "number",
       "time",
@@ -68,7 +69,7 @@ class ContactAttemptController extends AppController {
       return
     }
 
-    console.log("Oops, algo deu errado");
+    this.showError(jsonResponse.message)
   }
 
   get endpoint() {
@@ -103,10 +104,16 @@ class ContactAttemptController extends AppController {
     return { contact_attempt };
   }
 
+  showError(message) {
+    this.showElement(this.errorMessageTarget);
+    this.errorMessageTarget.innerHTML = message;
+  }
+
   disableActions() {
     this.failButtonTarget.disabled = false;
     this.cancelButtonTarget.disabled = false;
     this.confirmButtonTarget.disabled = false;
+    this.hideElement(this.errorMessageTarget);
   }
 
   enableActions() {
