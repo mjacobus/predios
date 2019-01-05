@@ -22,19 +22,14 @@
 <div class="clearfix" data-controller="apartments">
   <div class="float-right">
     <form class="form-inline" data-action="submit->apartments#submitForm">
-      <div class="form-row">
-        <div class="col">
-          <input type="hidden" data-target="apartments.buildingUuid" value="<%= building.uuid %>">
-          <input type="hidden" data-target="apartments.buildingId" value="<%= building.id %>">
-          <input type="hidden" data-target="apartments.buildingNumber" value="<%= building.number %>">
-          <input autofocus class="form-control" placeholder="número" value="" data-target="apartments.number">
-        </div>
-
-        <div class="col">
-          <button  data-target="apartments.submitButton" class="btn btn-success text" class="float-right">
-            <i class="fa fa-plus"></i> Apartamento
-           </button>
-        </div>
+      <input type="hidden" data-target="apartments.buildingUuid" value="<%= building.uuid %>">
+      <input type="hidden" data-target="apartments.buildingId" value="<%= building.id %>">
+      <input type="hidden" data-target="apartments.buildingNumber" value="<%= building.number %>">
+      <div>
+        <input autofocus  class="form-control float-left input-apartment-number" placeholder="número" value="" data-target="apartments.number">
+        <button data-target="apartments.submitButton" class="btn btn-success float-left">
+          <i class="fa fa-plus"></i> Apartamento
+        </button>
       </div>
     </form>
     <small style="display: none;" data-target="apartments.errorMessage" class="form-text text-muted"></small>

@@ -1,9 +1,9 @@
 <div data-controller="contact-attempt">
   <div class="row" data-uuid="apartment-<%= apartment.uuid %>">
-    <div class="col-xs-2 col-sm-2 col-md-4">
+    <div class="col">
       <h5> <%= apartment.number %> </h5>
     </div>
-    <div class="col-xs-8 col-sm-8 col-md-4">
+    <div class="col">
       <% if apartment.last_contact_attempt %>
         <div>
           <%= format_time(apartment.last_contact_attempt.time) %>
@@ -15,7 +15,7 @@
         </div>
       <% end %>
     </div>
-    <div class="col-xs-2 col-sm-2 col-md-4">
+    <div class="col">
       <a href="#" class="btn-lg btn-light float-right" data-action="contact-attempt#showForm" data-target="contact-attempt.showForm">
         <i class="fa fa-bell"></i>
       </a>
