@@ -6,8 +6,10 @@ class ContactAttemptController extends AppController {
       "confirmButton",
       "failButton",
       "cancel",
+      "errorMessage",
       "formContainer",
       "number",
+      "time",
       "buildingNumber",
       "apartmentId",
       "apartmentUuid",
@@ -48,6 +50,7 @@ class ContactAttemptController extends AppController {
   }
 
   submit(outcome) {
+    this.startLoader();
     this.disableActions();
     apiPost(this.endpoint, this.payload(outcome)).then((response, other) => {
       return response.json().then(jsonResponse => {
@@ -58,6 +61,7 @@ class ContactAttemptController extends AppController {
 
   handleResponse(jsonResponse, response) {
     this.enableActions();
+    this.stopLoader();
 
     if (response.status >= 200 && response.status < 300) {
       const url = `/buildings/${this.buildingNumber}`
@@ -65,7 +69,7 @@ class ContactAttemptController extends AppController {
       return
     }
 
-    console.log("Oops, algo deu errado");
+    this.showError(jsonResponse.message)
   }
 
   get endpoint() {
@@ -84,20 +88,32 @@ class ContactAttemptController extends AppController {
     return this.buildingNumberTarget.value;
   }
 
+  get time() {
+    return this.timeTarget.value.toString();
+  }
+
   payload(outcome) {
     const apartment_id = this.apartmentUuid;
-    return {
-      contact_attempt: {
-        outcome,
-        apartment_id,
-      }
+    const time = this.time;
+    const contact_attempt = { outcome, apartment_id, time };
+
+    if (time == '') {
+      delete contact_attempt.time;
     }
+
+    return { contact_attempt };
+  }
+
+  showError(message) {
+    this.showElement(this.errorMessageTarget);
+    this.errorMessageTarget.innerHTML = message;
   }
 
   disableActions() {
     this.failButtonTarget.disabled = false;
     this.cancelButtonTarget.disabled = false;
     this.confirmButtonTarget.disabled = false;
+    this.hideElement(this.errorMessageTarget);
   }
 
   enableActions() {

@@ -12,6 +12,7 @@ class ApartmentsController extends AppController {
 
   submitForm(e) {
     e.preventDefault();
+    this.startLoader();
 
     if (this.formDisabled) {
       return;
@@ -38,6 +39,7 @@ class ApartmentsController extends AppController {
   beforeCreate() {
     this.disableForm();
     this.hideElement(this.errorMessageTarget);
+    this.stopLoader();
   }
 
   disableForm() {

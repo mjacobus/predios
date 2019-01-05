@@ -18,29 +18,28 @@
 
 <hr>
 
+<% if building.has_all_apartments? %>
 <div class="clearfix" data-controller="apartments">
   <div class="float-right">
     <form class="form-inline" data-action="submit->apartments#submitForm">
-      <div class="form-row">
-        <div class="col">
-          <input type="hidden" data-target="apartments.buildingUuid" value="<%= building.uuid %>">
-          <input type="hidden" data-target="apartments.buildingId" value="<%= building.id %>">
-          <input type="hidden" data-target="apartments.buildingNumber" value="<%= building.number %>">
-          <input class="form-control" placeholder="número" value="" data-target="apartments.number">
-        </div>
-
-        <div class="col">
-          <input data-target="apartments.submitButton" type="submit" class="btn btn-success text" value="Adicionar Apartamento" class="float-right">
-        </div>
+      <input type="hidden" data-target="apartments.buildingUuid" value="<%= building.uuid %>">
+      <input type="hidden" data-target="apartments.buildingId" value="<%= building.id %>">
+      <input type="hidden" data-target="apartments.buildingNumber" value="<%= building.number %>">
+      <div>
+        <input autofocus  class="form-control float-left input-apartment-number" placeholder="número" value="" data-target="apartments.number">
+        <button data-target="apartments.submitButton" class="btn btn-blue float-left">
+          <i class="fa fa-plus"></i> Apartamento
+        </button>
       </div>
     </form>
     <small style="display: none;" data-target="apartments.errorMessage" class="form-text text-muted"></small>
   </div>
 </div>
+<% end %>
 
 <hr>
 
 <% building.apartments.each do |apartment| %>
-  <%= render partial: 'apartment', locals: { apartment: apartment } %>
+  <%= render partial: 'apartment', locals: { apartment: apartment, building: building } %>
   <hr>
 <% end %>

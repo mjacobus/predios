@@ -19,6 +19,7 @@ module Apartments
           outcome: command[:outcome],
           time: to_time(command.payload.fetch(:time, Time.now)).utc
         )
+
         apartment.assign_contact_attempt(attempt)
         @repository.save(apartment)
       end
