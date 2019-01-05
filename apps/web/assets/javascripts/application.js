@@ -8,9 +8,7 @@
       }
     });
 
-    $('.datetime').datetimepicker({
-      locale: 'ru'
-    });
+    $('.datetime').datetimepicker();
   })
 })(jQuery);
 
