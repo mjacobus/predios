@@ -9,7 +9,7 @@
     });
 
     $('.datetime').datetimepicker({
-      locale: 'pt-br'
+      locale: 'ru'
     });
   })
 })(jQuery);

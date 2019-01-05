@@ -38,6 +38,9 @@
         <input type="hidden" value="<%= apartment.id %>" data-target="contact-attempt.apartmentId">
         <input type="hidden" value="<%= apartment.uuid %>" data-target="contact-attempt.apartmentUuid">
         <input type="hidden" value="<%= apartment.number %>" data-target="contact-attempt.number">
+        <div class="action">
+          <%= render partial: 'datetime_picker', locals: { id: apartment.id } %>
+        </div>
         <div class="actions">
           <a href="#"
              data-target="contact-attempt.failButton"

@@ -8,6 +8,7 @@ class ContactAttemptController extends AppController {
       "cancel",
       "formContainer",
       "number",
+      "time",
       "buildingNumber",
       "apartmentId",
       "apartmentUuid",
@@ -86,14 +87,20 @@ class ContactAttemptController extends AppController {
     return this.buildingNumberTarget.value;
   }
 
+  get time() {
+    return this.timeTarget.value.toString();
+  }
+
   payload(outcome) {
     const apartment_id = this.apartmentUuid;
-    return {
-      contact_attempt: {
-        outcome,
-        apartment_id,
-      }
+    const time = this.time;
+    const contact_attempt = { outcome, apartment_id, time };
+
+    if (time == '') {
+      delete contact_attempt.time;
     }
+
+    return { contact_attempt };
   }
 
   disableActions() {

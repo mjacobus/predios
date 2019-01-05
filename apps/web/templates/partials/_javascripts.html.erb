@@ -24,7 +24,12 @@
   %>
 
 
-<%= custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment-with-locales.min.js' %>
+<%= custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js' %>
+
+<%=
+  custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/locale/pt-br.js',
+    alternative: 'moment-pt-br'
+%>
 <%= custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js' %>
 
 <%= custom_javascript 'https://unpkg.com/stimulus/dist/stimulus.umd.js' %>
