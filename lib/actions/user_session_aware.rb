@@ -30,7 +30,8 @@ module Actions
 
     def require_authentication
       unless current_user.enabled?
-        halt 401
+        session[:redirect_url] = request.url
+        redirect_to '/'
       end
     end
 
