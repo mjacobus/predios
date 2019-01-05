@@ -18,6 +18,7 @@
   const application = Stimulus.Application.start()
   application.register("apartments", ApartmentsController);
   application.register("contact-attempt", ContactAttemptController);
+  Turbolinks.setProgressBarDelay(0);
 })()
 
 const apiRequest = (url, data, method = 'POST') => {

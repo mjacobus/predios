@@ -48,6 +48,7 @@ class ContactAttemptController extends AppController {
   }
 
   submit(outcome) {
+    this.startLoader();
     this.disableActions();
     apiPost(this.endpoint, this.payload(outcome)).then((response, other) => {
       return response.json().then(jsonResponse => {
@@ -58,6 +59,7 @@ class ContactAttemptController extends AppController {
 
   handleResponse(jsonResponse, response) {
     this.enableActions();
+    this.stopLoader();
 
     if (response.status >= 200 && response.status < 300) {
       const url = `/buildings/${this.buildingNumber}`
