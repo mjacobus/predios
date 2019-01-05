@@ -15,6 +15,7 @@ class AppController extends Stimulus.Controller {
 
   startLoader() {
     if(!Turbolinks.supported) { return; }
+    Turbolinks.setProgressBarDelay(0);
     Turbolinks.controller.adapter.progressBar.setValue(0);
     Turbolinks.controller.adapter.progressBar.show();
   }
