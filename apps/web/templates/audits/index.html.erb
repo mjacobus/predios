@@ -19,7 +19,7 @@
         <td> <%= audit.event_type %></td>
         <td> <%= audit.aggregate_type %></td>
         <td> <%= audit.aggregate_id %></td>
-        <td> <%= audit.event_time %></td>
+        <td> <%= format_time(audit.event_time) %></td>
       </tr>
     <% end %>
   </tbody>
