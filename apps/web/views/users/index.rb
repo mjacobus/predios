@@ -5,9 +5,7 @@
 module Web
   module Views
     module Users
-      class Index
-        include Web::View
-
+      class Index < ::Views::Web
         def enable_url(user)
           "/users/#{user.id}/enable"
         end

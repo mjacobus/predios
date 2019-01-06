@@ -3,8 +3,7 @@
 module Web
   module Views
     module Buildings
-      class Show
-        include Web::View
+      class Show < ::Views::Web
       end
     end
   end

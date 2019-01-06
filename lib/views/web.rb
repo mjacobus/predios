@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
-module Web
-  module ViewHelpers
+module Views
+  class Web
+    def self.inherited(base)
+      base.class_eval do
+        include ::Web::View
+        include Hanami::Helpers
+        include ::Web::Assets::Helpers
+      end
+    end
+
     def login_url
       '/auth/google_oauth2'
     end
