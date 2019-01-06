@@ -10,6 +10,7 @@ module Actions
         include Traits::Dependencies
         include Traits::Commands
         include Traits::Json
+        include Traits::ErrorReporting
         include OverloadedInstanceMethods
       end
     end
@@ -42,6 +43,7 @@ module Actions
       body = { message: error.message, errors: error.errors }
       render(body: body, status: 422)
     rescue StandardError => error
+      report_error(error)
       backtrace = error.backtrace.select do |line|
         line.match(Hanami.root.to_s)
       end
