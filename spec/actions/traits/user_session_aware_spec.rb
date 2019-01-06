@@ -2,8 +2,9 @@
 
 require 'spec_helper'
 
-RSpec.describe Actions::UserSessionAware, type: :action do
+RSpec.describe Actions::Traits::UserSessionAware, type: :action do
   let(:action) { Web::Controllers::DummyAction.new }
+  let(:response) { unsafe_response }
 
   before do
     allow(action).to receive(:request).and_return(double(url: '/foo'))

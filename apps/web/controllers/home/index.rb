@@ -4,11 +4,11 @@ module Web
   module Controllers
     module Home
       class Index < Actions::Web
-        def call(_params)
+        private
+
+        def safe_call(params)
           # Noop
         end
-
-        private
 
         def require_authentication
           # Noop

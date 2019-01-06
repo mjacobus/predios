@@ -3,26 +3,21 @@
 RSpec.describe Web::Controllers::Users::Index, type: :action do
   let(:action) { described_class.new(repository: repository) }
   let(:repository) { instance_double(UserRepository, all: []) }
+  let(:response) { unsafe_response }
 
-  context 'with logged out users' do
-    it 'responds with unauthorized' do
-      expect(response).to redirect_to_root
-    end
+  it 'has proper superclass' do
+    expect(action).to be_a Actions::Web
   end
 
-  context 'with regular active user' do
-    let(:current_user) { active_user }
+  it 'is available to masters' do
+    stub_user(master_user)
 
-    it 'responds with unauthorized' do
-      expect(response).to redirect_to_root
-    end
+    expect(response).to be_successful
   end
 
-  context 'with logged authorized users' do
-    let(:current_user) { master_user }
+  it 'requires master user' do
+    stub_user(active_user)
 
-    it 'responds with success' do
-      expect(response).to be_successful
-    end
+    expect(response).to redirect_to_root
   end
 end

@@ -1,7 +1,6 @@
 require 'hanami/helpers'
 require 'hanami/assets'
 require_relative '../../config/initializers/include_path'
-require_relative '../../lib/actions/user_session_aware'
 require_relative './views/view_helpers'
 
 module Web

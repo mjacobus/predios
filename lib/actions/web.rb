@@ -5,8 +5,24 @@ module Actions
     def self.inherited(base)
       base.class_eval do
         include ::Web::Action
-        include UserSessionAware
+        include Traits::UserSessionAware
+        include OverloadedInstanceMethods
       end
+    end
+
+    module OverloadedInstanceMethods
+    end
+
+    private
+
+    def call(params)
+      handle_errors do
+        safe_call(params)
+      end
+    end
+
+    def handle_errors
+      yield
     end
   end
 end

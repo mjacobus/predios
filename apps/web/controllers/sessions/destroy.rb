@@ -4,12 +4,12 @@ module Web
   module Controllers
     module Sessions
       class Destroy < Actions::Web
-        def call(_params)
+        private
+
+        def safe_call(_params)
           user_session.destroy
           redirect_to '/'
         end
-
-        private
 
         def require_authentication
           # Noop

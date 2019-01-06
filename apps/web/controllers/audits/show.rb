@@ -7,7 +7,9 @@ module Web
         before :require_master
         expose :audit
 
-        def call(params)
+        private
+
+        def safe_call(params)
           @audit = EventEntityRepository.new.find(params[:id])
         end
       end

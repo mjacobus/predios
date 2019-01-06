@@ -11,7 +11,9 @@ module Web
             @repository = repository
           end
 
-          def call(params)
+          private
+
+          def safe_call(params)
             user = @repository.find(params[:user_id])
             @repository.save(user.unmaster)
             redirect_to '/users'
