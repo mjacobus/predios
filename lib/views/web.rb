@@ -13,5 +13,9 @@ module Views
         include Traits::UrlHelpers
       end
     end
+
+    def test_environment?
+      routes.buildings_url.match(/(localhost|staging)/)
+    end
   end
 end
