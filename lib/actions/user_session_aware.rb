@@ -35,21 +35,29 @@ module Actions
 
     def require_logged_in_user
       unless current_user.logged_in?
-        session[:redirect_url] = request.url
-        redirect_to '/'
+        save_forbidden_url
+        handle_unautorized
       end
     end
 
     def require_authorized_user
       unless current_user.enabled?
-        redirect_to '/'
+        handle_unautorized
       end
     end
 
     def require_master
       unless current_user.master?
-        redirect_to '/'
+        handle_unautorized
       end
+    end
+
+    def handle_unautorized
+      redirect_to '/'
+    end
+
+    def save_forbidden_url
+      session[:redirect_url] = request.url
     end
   end
 end

@@ -54,5 +54,13 @@ module Actions
         end
       end
     end
+
+    def handle_unautorized
+      halt 401
+    end
+
+    def save_forbidden_url
+      session[:redirect_url] = request.url
+    end
   end
 end
