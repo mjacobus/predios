@@ -15,7 +15,7 @@ module Views
     end
 
     def test_environment?
-      routes.buildings_url.match(/(localhost|staging)/)
+      hostname.match(/(localhost|staging)/)
     end
   end
 end

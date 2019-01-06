@@ -8,6 +8,8 @@ module Actions
         include Traits::UserSessionAware
         include Traits::ErrorReporting
         include OverloadedInstanceMethods
+
+        expose :hostname
       end
     end
 
@@ -27,6 +29,10 @@ module Actions
     rescue StandardError => error
       report_error(error)
       raise error
+    end
+
+    def hostname
+      request.host
     end
   end
 end
