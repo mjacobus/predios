@@ -3,9 +3,7 @@
 module Web
   module Views
     module Buildings
-      class Index
-        include Web::View
-
+      class Index < ::Views::Web
         def link_to_building(building)
           "#{routes.buildings_path}/#{building.number}"
         end

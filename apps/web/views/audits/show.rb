@@ -3,9 +3,7 @@
 module Web
   module Views
     module Audits
-      class Show
-        include Web::View
-
+      class Show < ::Views::Web
         def format_json(json_string)
           hash = JSON.parse(json_string)
           JSON.pretty_generate(hash)

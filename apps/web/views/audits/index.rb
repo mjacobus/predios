@@ -3,9 +3,7 @@
 module Web
   module Views
     module Audits
-      class Index
-        include Web::View
-
+      class Index < ::Views::Web
         def next_page
           page + 1
         end
