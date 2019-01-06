@@ -3,9 +3,7 @@
 module Web
   module Controllers
     module Buildings
-      class Show
-        include Web::Action
-
+      class Show < Actions::Web
         expose :building
 
         def initialize(repository: BuildingProjectionRepository.new)

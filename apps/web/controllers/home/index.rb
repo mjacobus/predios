@@ -3,9 +3,7 @@
 module Web
   module Controllers
     module Home
-      class Index
-        include Web::Action
-
+      class Index < Actions::Web
         def call(_params)
           # Noop
         end

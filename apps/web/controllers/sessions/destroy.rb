@@ -3,9 +3,7 @@
 module Web
   module Controllers
     module Sessions
-      class Destroy
-        include Web::Action
-
+      class Destroy < Actions::Web
         def call(_params)
           user_session.destroy
           redirect_to '/'

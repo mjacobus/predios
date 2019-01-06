@@ -3,9 +3,7 @@
 module Web
   module Controllers
     module Audits
-      class Show
-        include Web::Action
-
+      class Show < Actions::Web
         before :require_master
         expose :audit
 
