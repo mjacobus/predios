@@ -3,9 +3,7 @@
 module Api
   module Controllers
     module Apartments
-      class AssignVisitAttempt
-        include Api::Action
-
+      class AssignVisitAttempt < Actions::Api
         def call(params)
           handle_errors do
             payload = params[:contact_attempt]
