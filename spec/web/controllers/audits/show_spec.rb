@@ -5,7 +5,7 @@ RSpec.describe Web::Controllers::Audits::Show, type: :action do
     let(:current_user) { active_user }
 
     it 'is forbidden' do
-      expect(response).to be_unauthorized
+      expect(response).to redirect_to_root
     end
   end
 

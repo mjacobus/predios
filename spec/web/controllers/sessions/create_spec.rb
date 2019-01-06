@@ -34,5 +34,17 @@ RSpec.describe Web::Controllers::Sessions::Create, type: :action do
 
       expect(user_session).to have_received(:create_from_oauth).with(oauth)
     end
+
+    context 'when there is an url in the session' do
+      before do
+        stub_session(redirect_url: '/foo')
+      end
+
+      it 'redirects to that url' do
+        response = action.call(params)
+
+        expect(response).to redirect_to('/foo')
+      end
+    end
   end
 end
