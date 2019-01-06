@@ -15,7 +15,7 @@ RSpec.describe Api::Controllers::Apartments::Create, type: :action do
 
   context 'with a guest user' do
     it 'responds with unauthorized' do
-      expect(response).to be_unauthorized
+      expect(response).to redirect_to_root
     end
   end
 

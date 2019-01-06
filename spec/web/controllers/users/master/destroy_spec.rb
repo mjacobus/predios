@@ -40,7 +40,7 @@ RSpec.describe Web::Controllers::Users::Master::Destroy, type: :action do
     it 'shows forbidden' do
       response = action.call(params)
 
-      expect(response[0]).to eq 401
+      expect(response).to redirect_to_root
     end
   end
 end

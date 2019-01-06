@@ -16,7 +16,7 @@ RSpec.describe Api::Controllers::Apartments::AssignVisitAttempt, type: :action d
 
   context 'with a guest user' do
     it 'responds with unauthorized' do
-      expect(response).to be_unauthorized
+      expect(response).to redirect_to_root
     end
   end
 

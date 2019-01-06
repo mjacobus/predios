@@ -6,7 +6,7 @@ RSpec.describe Web::Controllers::Users::Index, type: :action do
 
   context 'with logged out users' do
     it 'responds with unauthorized' do
-      expect(response).to be_unauthorized
+      expect(response).to redirect_to_root
     end
   end
 
@@ -14,7 +14,7 @@ RSpec.describe Web::Controllers::Users::Index, type: :action do
     let(:current_user) { active_user }
 
     it 'responds with unauthorized' do
-      expect(response).to be_unauthorized
+      expect(response).to redirect_to_root
     end
   end
 

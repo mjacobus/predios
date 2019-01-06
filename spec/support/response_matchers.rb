@@ -100,3 +100,11 @@ RSpec::Matchers.define :be_unauthorized do |_expected, _status = nil|
     "Expected response to not to be unauthorized but it has status #{response.status}"
   end
 end
+
+RSpec::Matchers.define :redirect_to_root do |_expected, _status = nil|
+  match do |response|
+    response = RackResponse.wrap(response)
+
+    expect(response).to redirect_to('/')
+  end
+end

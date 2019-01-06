@@ -38,7 +38,7 @@ RSpec.describe Web::Controllers::Users::Enable::Create, type: :action do
     let(:current_user) { User.new.enable }
 
     it 'shows forbidden' do
-      expect(response[0]).to eq 401
+      expect(response).to redirect_to_root
     end
   end
 end
