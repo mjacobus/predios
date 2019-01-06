@@ -23,6 +23,9 @@ gem 'omniauth-google-oauth2', '~> 0.5.3'
 gem 'babel-transpiler'
 gem 'sass'
 
+# error reporting
+gem 'sentry-raven', '~> 2.7.4'
+
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading

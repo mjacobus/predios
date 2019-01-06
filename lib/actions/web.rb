@@ -6,6 +6,7 @@ module Actions
       base.class_eval do
         include ::Web::Action
         include Traits::UserSessionAware
+        include Traits::ErrorReporting
         include OverloadedInstanceMethods
       end
     end
@@ -23,6 +24,9 @@ module Actions
 
     def handle_errors
       yield
+    rescue StandardError => error
+      report_error(error)
+      raise error
     end
   end
 end
