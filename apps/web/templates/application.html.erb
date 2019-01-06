@@ -18,6 +18,10 @@
     <div id="before-container"></div>
 
     <div id="main-container" class="container">
+      <% if test_environment? %>
+        <div class="test-system-warning alert alert-warning">Este é um sistema de teste. Use-o a vontade</div>
+      <% end %>
+
       <%= yield %>
     </div>
   </body>
