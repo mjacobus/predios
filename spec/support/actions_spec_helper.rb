@@ -8,7 +8,8 @@ module ActionsSpecHelper
       let(:env) { {}.merge(params) }
       let(:action) { described_class.new }
       let(:current_user) { guest_user }
-      let(:response) { action.call(env) }
+      let(:response) { action.send(:safe_call, env) }
+      let(:unsafe_response) { action.call(env) }
       let(:params) { Hash[] }
       let(:master_user) { User.new.enable.as_master }
       let(:active_user) { User.new.enable }

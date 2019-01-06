@@ -7,7 +7,9 @@ module Web
         before :require_master
         expose :audits
 
-        def call(params)
+        private
+
+        def safe_call(params)
           @audits = EventEntityRepository.new.paginate(page: params[:page])
         end
       end

@@ -8,13 +8,13 @@ module Web
           @factory = oauth_factory
         end
 
-        def call(_params)
+        private
+
+        def safe_call(_params)
           oauth = @factory.create(request.env['omniauth.auth'])
           user_session.create_from_oauth(oauth)
           redirect_to session.fetch(:redirect_url) { '/' }
         end
-
-        private
 
         def require_authentication
           # Noop

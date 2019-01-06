@@ -11,7 +11,9 @@ module Web
           @repository = repository
         end
 
-        def call(_params)
+        private
+
+        def safe_call(_params)
           @users = @repository.all
         end
       end

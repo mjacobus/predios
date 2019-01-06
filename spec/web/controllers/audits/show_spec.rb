@@ -1,19 +1,13 @@
 # frozen_string_literal: true
 
 RSpec.describe Web::Controllers::Audits::Show, type: :action do
-  context 'with a regular user' do
-    let(:current_user) { active_user }
+  let(:current_user) { master_user }
 
-    it 'is forbidden' do
-      expect(response).to redirect_to_root
-    end
+  it 'has proper superclass' do
+    expect(action).to be_a Actions::Web
   end
 
-  context 'with a master user' do
-    let(:current_user) { master_user }
-
-    it 'is successful' do
-      expect(response).to be_successful
-    end
+  it 'is successful' do
+    expect(unsafe_response).to be_successful
   end
 end
