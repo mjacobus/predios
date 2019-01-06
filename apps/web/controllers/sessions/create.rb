@@ -3,9 +3,7 @@
 module Web
   module Controllers
     module Sessions
-      class Create
-        include Web::Action
-
+      class Create < Actions::Web
         def initialize(oauth_factory: Oauth::Factory.new)
           @factory = oauth_factory
         end

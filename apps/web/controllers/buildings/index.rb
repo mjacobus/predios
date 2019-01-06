@@ -3,9 +3,7 @@
 module Web
   module Controllers
     module Buildings
-      class Index
-        include Web::Action
-
+      class Index < Actions::Web
         expose :buildings
 
         def initialize(repository: BuildingProjectionRepository.new)

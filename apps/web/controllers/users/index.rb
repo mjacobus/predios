@@ -3,9 +3,7 @@
 module Web
   module Controllers
     module Users
-      class Index
-        include ::Web::Action
-
+      class Index < Actions::Web
         before :require_master
         expose :users
 
