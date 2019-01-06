@@ -23,12 +23,13 @@ class ApartmentsController extends AppController {
 
   createApartment() {
     this.beforeCreate();
-    apiPost(this.apartmentsEndpoint, this.payload).then((response, other) => {
-      return response.json().then(jsonResponse => {
-        this.handleResponse(jsonResponse, response);
-      });
-    })
-    .catch(error => alert('error'))
+    apiPost(this.apartmentsEndpoint, this.payload)
+      .then((response, other) => {
+        return response.json().then(jsonResponse => {
+          this.handleResponse(jsonResponse, response);
+        });
+      })
+      .catch(error => alert("error"));
   }
 
   enableForm() {
@@ -51,8 +52,8 @@ class ApartmentsController extends AppController {
     this.enableForm();
 
     if (response.status >= 200 && response.status < 300) {
-      Turbolinks.visit(this.buildingUrl)
-      return
+      Turbolinks.visit(this.buildingUrl);
+      return;
     }
 
     const feedback = this.errorMessageTarget;
@@ -64,15 +65,15 @@ class ApartmentsController extends AppController {
     const number = this.number;
     const buildingUuid = this.buildingUuid;
     const apartment = { number, building_id: buildingUuid };
-    return { apartment }
+    return { apartment };
   }
 
   get buildingUrl() {
-    return `/buildings/${this.buildingNumber}`
+    return `/buildings/${this.buildingNumber}`;
   }
 
   get apartmentsEndpoint() {
-    return `/api/buildings/${this.buildingNumber}/apartments`
+    return `/api/buildings/${this.buildingNumber}/apartments`;
   }
 
   get number() {
