@@ -7,7 +7,6 @@ RSpec.describe Web::Controllers::Sessions::Create, type: :action do
   let(:oauth_factory) { instance_double(Oauth::Factory) }
   let(:oauth) { instance_double(Oauth::Providers::GoogleOauth2) }
   let(:user_session) { instance_double(UserSessionService) }
-  let(:session) { Hash[] }
 
   before do
     allow(oauth_factory).to receive(:create)
@@ -19,7 +18,6 @@ RSpec.describe Web::Controllers::Sessions::Create, type: :action do
 
     allow(user_session).to receive(:create_from_oauth)
     allow(user_session).to receive(:current_user).and_return(current_user)
-    allow(action).to receive(:session).and_return(session)
   end
 
   context 'with a valid user' do
@@ -39,7 +37,7 @@ RSpec.describe Web::Controllers::Sessions::Create, type: :action do
 
     context 'when there is an url in the session' do
       before do
-        session[:redirect_url] = '/foo'
+        stub_session(redirect_url: '/foo')
       end
 
       it 'redirects to that url' do

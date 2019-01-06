@@ -13,6 +13,7 @@ module ActionsSpecHelper
       let(:master_user) { User.new.enable.as_master }
       let(:active_user) { User.new.enable }
       let(:guest_user) { LoggedOutUser.new }
+      let(:session) { action.session || {} }
 
       before do
         stub_user(current_user)
@@ -22,5 +23,9 @@ module ActionsSpecHelper
 
   def stub_user(user)
     allow(action).to receive(:current_user).and_return(user)
+  end
+
+  def stub_session(session = {})
+    allow(action).to receive(:session).and_return(session)
   end
 end

@@ -29,15 +29,26 @@ module Actions
     end
 
     def require_authentication
-      unless current_user.enabled?
+      require_logged_in_user
+      require_authorized_user
+    end
+
+    def require_logged_in_user
+      unless current_user.logged_in?
         session[:redirect_url] = request.url
+        redirect_to '/'
+      end
+    end
+
+    def require_authorized_user
+      unless current_user.enabled?
         redirect_to '/'
       end
     end
 
     def require_master
       unless current_user.master?
-        halt 401
+        redirect_to '/'
       end
     end
   end
