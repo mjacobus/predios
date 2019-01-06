@@ -32,21 +32,21 @@ class ContactAttemptController extends AppController {
   confirmContact(e) {
     e.preventDefault();
 
-    if (!confirm(e.target.getAttribute('data-confirm'))) {
+    if (!confirm(e.target.getAttribute("data-confirm"))) {
       return;
     }
 
-    this.submit('contacted');
+    this.submit("contacted");
   }
 
   confirmFailure(e) {
     e.preventDefault();
 
-    if (!confirm(e.target.getAttribute('data-confirm'))) {
+    if (!confirm(e.target.getAttribute("data-confirm"))) {
       return;
     }
 
-    this.submit('failed');
+    this.submit("failed");
   }
 
   submit(outcome) {
@@ -56,7 +56,7 @@ class ContactAttemptController extends AppController {
       return response.json().then(jsonResponse => {
         this.handleResponse(jsonResponse, response);
       });
-    })
+    });
   }
 
   handleResponse(jsonResponse, response) {
@@ -64,16 +64,18 @@ class ContactAttemptController extends AppController {
     this.stopLoader();
 
     if (response.status >= 200 && response.status < 300) {
-      const url = `/buildings/${this.buildingNumber}`
-      Turbolinks.visit(url)
-      return
+      const url = `/buildings/${this.buildingNumber}`;
+      Turbolinks.visit(url);
+      return;
     }
 
-    this.showError(jsonResponse.message)
+    this.showError(jsonResponse.message);
   }
 
   get endpoint() {
-    return `/api/buildings/${this.buildingNumber}/apartments/${this.apartmentId}/assign_visit_attempt`
+    return `/api/buildings/${this.buildingNumber}/apartments/${
+      this.apartmentId
+    }/assign_visit_attempt`;
   }
 
   get apartmentId() {
@@ -97,7 +99,7 @@ class ContactAttemptController extends AppController {
     const time = this.time;
     const contact_attempt = { outcome, apartment_id, time };
 
-    if (time == '') {
+    if (time == "") {
       delete contact_attempt.time;
     }
 

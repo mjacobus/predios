@@ -1,24 +1,24 @@
 (() => {
   $(document).ready(() => {
-    $('form[data-js]').submit((e) => {
-      const message = $(e.target).find('[data-confirmation]');
+    $("form[data-js]").submit(e => {
+      const message = $(e.target).find("[data-confirmation]");
 
       if (message && !confirm(message.val())) {
         e.preventDefault();
       }
     });
 
-    $('.datetime').datetimepicker();
-  })
+    $(".datetime").datetimepicker();
+  });
 })(jQuery);
 
 (() => {
-  const application = Stimulus.Application.start()
+  const application = Stimulus.Application.start();
   application.register("apartments", ApartmentsController);
   application.register("contact-attempt", ContactAttemptController);
-})()
+})();
 
-const apiRequest = (url, data, method = 'POST') => {
+const apiRequest = (url, data, method = "POST") => {
   const config = {
     method: method,
     mode: "cors", // no-cors, cors, *same-origin
@@ -27,11 +27,11 @@ const apiRequest = (url, data, method = 'POST') => {
     headers: { "Content-Type": "application/json; charset=utf-8" },
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
-    body: JSON.stringify(data), // body data type must match "Content-Type" header
-  }
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  };
   return fetch(url, config);
-}
+};
 
 const apiPost = (url, data) => {
-  return apiRequest(url, data, 'POST');
+  return apiRequest(url, data, "POST");
 };
