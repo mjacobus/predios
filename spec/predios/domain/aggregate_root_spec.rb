@@ -9,4 +9,3 @@ RSpec.describe AggregateRoot do
     expect(aggregate).to be_a Koine::EventSourcing::AggregateRoot
   end
 end
-
