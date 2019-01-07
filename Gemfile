@@ -11,8 +11,10 @@ gem 'mysql2'
 
 # domain
 gem 'koine-command_bus', '~> 1.0'
+gem 'koine-db_bkp'
 gem 'koine-event_manager', '~> 2.1.1'
 gem 'nurse-rb', '~> 2.1'
+gem 'sentry-raven', '~> 2.7.4'
 
 # authentication
 gem 'omniauth', '~> 1.8.1'
@@ -22,9 +24,6 @@ gem 'omniauth-google-oauth2', '~> 0.5.3'
 # frontend
 gem 'babel-transpiler'
 gem 'sass'
-
-# error reporting
-gem 'sentry-raven', '~> 2.7.4'
 
 group :development do
   # Code reloading
