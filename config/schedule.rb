@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+set :environment_variable, 'HANAMI_ENV'
+
 every 1.hours, roles: [:mysql_dump] do
   rake 'mysql:dump'
   rake 'mysql:dump_latest'
