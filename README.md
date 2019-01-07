@@ -41,3 +41,9 @@ Explore Hanami [guides](http://hanamirb.org/guides/), [API docs](http://docs.han
 - https://github.com/danklammer/bytesize-icons
 - https://github.com/turbolinks/turbolinks
 - https://getbootstrap.com/docs/4.1/components/buttons/
+
+## Tips
+
+### Dotenv loading
+
+Hanami first loads env, and then .env.{environment}. First to set env wins
