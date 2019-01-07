@@ -15,6 +15,9 @@ set :pty, true
 set :keep_releases, 10
 set :bundle_flags, '--deployment'
 
+set :whenever_environment, -> { fetch(:stage) }
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
+
 append :linked_files,
   '.env'
 
