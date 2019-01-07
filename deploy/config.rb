@@ -19,6 +19,7 @@ append :linked_files,
   '.env'
 
 append :linked_dirs,
+  'bkp',
   'log',
   'tmp/pids',
   'tmp/cache',

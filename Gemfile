@@ -13,6 +13,7 @@ gem 'mysql2'
 gem 'koine-command_bus', '~> 1.0'
 gem 'koine-db_bkp'
 gem 'koine-event_manager', '~> 2.1.1'
+gem 'mail', '~> 2.7.1'
 gem 'nurse-rb', '~> 2.1'
 gem 'sentry-raven', '~> 2.7.4'
 

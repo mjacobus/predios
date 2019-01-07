@@ -296,6 +296,7 @@ DEPENDENCIES
   koine-command_bus (~> 1.0)
   koine-db_bkp
   koine-event_manager (~> 2.1.1)
+  mail (~> 2.7.1)
   mysql2
   nurse-rb (~> 2.1)
   object_comparator (~> 0.1.3)
