@@ -5,9 +5,10 @@ require 'spec_helper'
 RSpec.describe Actions::Traits::UserSessionAware, type: :action do
   let(:action) { Web::Controllers::DummyAction.new }
   let(:response) { unsafe_response }
+  let(:request) { double(url: '/foo', host: 'the-hostname') }
 
   before do
-    allow(action).to receive(:request).and_return(double(url: '/foo'))
+    allow(action).to receive(:request).and_return(request)
   end
 
   describe '#require_authentication' do
