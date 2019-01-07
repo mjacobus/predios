@@ -37,7 +37,7 @@
         </p>
         <input type="hidden" value="<%= building.number %>" data-target="contact-attempt.buildingNumber">
         <input type="hidden" value="<%= apartment.id %>" data-target="contact-attempt.apartmentId">
-        <input type="hidden" value="<%= apartment.uuid %>" data-target="contact-attempt.apartmentUuid">
+       <input type="hidden" value="<%= apartment.uuid %>" data-target="contact-attempt.apartmentUuid">
         <input type="hidden" value="<%= apartment.number %>" data-target="contact-attempt.number">
         <div class="action">
           <%= render partial: 'datetime_picker', locals: { id: apartment.id } %>
@@ -62,8 +62,10 @@
           </a>
 
           <div class="actions">
-            <a href="#" class="btn" data-action="click->contact-attempt#cancel">Cancelar</a>
+            <a href="#" class="btn btn-light" data-action="click->contact-attempt#cancel">Cancelar</a>
           </div>
+
+          <%= render partial: 'history', locals: { apartment: apartment } %>
         </div>
       </div>
     </div>
