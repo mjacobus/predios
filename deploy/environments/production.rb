@@ -2,7 +2,7 @@
 
 server fetch(:application),
   user: 'deploy',
-  roles: %w[web app],
+  roles: %w[web app mysql_dump],
   ssh_options: {
     user: 'deploy', # overrides user setting above
     forward_agent: true,
