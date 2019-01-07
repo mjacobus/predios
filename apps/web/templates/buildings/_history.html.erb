@@ -1,0 +1,16 @@
+
+<% if apartment.contact_attempts.any? %>
+  <div class="history">
+      <h3>Histórico</h3>
+      <% apartment.contact_attempts.reverse.each do |attempt|  %>
+        <div>
+          <%= format_time(attempt.time) %>
+          <% if attempt.successful? %>
+            <i class="checked-on fa fa-check"></i>
+          <% else %>
+            <i class="checked-off fa fa-times"></i>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+<% end %>
