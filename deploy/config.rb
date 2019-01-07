@@ -60,3 +60,5 @@ namespace :logs do
     end
   end
 end
+
+before 'deploy:symlink:release', 'whenever:update_crontab'
