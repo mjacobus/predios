@@ -56,7 +56,7 @@ namespace :backup do
     strategy = Backup::Strategies::Email.new(
       recipients: recipients,
       from: from,
-      subject: "Backup do banco de dados dos prédios [#{Hanami.environment}]",
+      subject: "Backup do banco de dados dos prédios [#{Hanami.env}]",
       body: <<~BODY
         Olá queridos irmãos.
 
