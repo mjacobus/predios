@@ -13,7 +13,7 @@ before_script:
 script:
   - bundle exec hanami db create
   - bundle exec hanami db migrate
-  - COVERALLS=1 bundle exec rake
+  - COVERALLS=1 bundle exec rspec
 
 addons:
   apt:
