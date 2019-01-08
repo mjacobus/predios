@@ -1,17 +1,14 @@
 class ContactAttemptController extends AppController {
   static get targets() {
     return [
-      "showForm",
       "confirmButton",
       "failButton",
       "errorMessage",
-      "formContainer",
       "number",
       "time",
       "buildingNumber",
       "apartmentId",
       "apartmentUuid",
-      "submitButton"
     ];
   }
 
