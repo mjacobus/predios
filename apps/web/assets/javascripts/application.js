@@ -16,6 +16,7 @@
   const application = Stimulus.Application.start();
   application.register("apartments", ApartmentsController);
   application.register("contact-attempt", ContactAttemptController);
+  application.register("dialog", DialogController);
 })();
 
 const apiRequest = (url, data, method = "POST") => {

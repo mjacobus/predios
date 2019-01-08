@@ -1,32 +1,15 @@
 class ContactAttemptController extends AppController {
   static get targets() {
     return [
-      "showForm",
-      "cancelButton",
       "confirmButton",
       "failButton",
-      "cancel",
       "errorMessage",
-      "formContainer",
       "number",
       "time",
       "buildingNumber",
       "apartmentId",
       "apartmentUuid",
-      "submitButton"
     ];
-  }
-
-  showForm(e) {
-    e.preventDefault();
-    this.showElement(this.formContainerTarget);
-    this.hideElement(this.showFormTarget);
-  }
-
-  cancel(e) {
-    e.preventDefault();
-    this.hideElement(this.formContainerTarget);
-    this.showElement(this.showFormTarget);
   }
 
   confirmContact(e) {
@@ -113,14 +96,12 @@ class ContactAttemptController extends AppController {
 
   disableActions() {
     this.failButtonTarget.disabled = false;
-    this.cancelButtonTarget.disabled = false;
     this.confirmButtonTarget.disabled = false;
     this.hideElement(this.errorMessageTarget);
   }
 
   enableActions() {
     this.failButtonTarget.disabled = true;
-    this.cancelButtonTarget.disabled = true;
     this.confirmButtonTarget.disabled = true;
   }
 }
