@@ -6,6 +6,12 @@ require_relative '../apps/web/application'
 require_relative '../lib/repository'
 require_relative '../apps/api/application'
 
+# for some reason this is necessary during hanami db migrate
+ENV.fetch('DATABASE_URL') do
+  require 'dotenv'
+  Dotenv.load
+end
+
 Hanami.configure do
   mount Api::Application, at: '/api'
   mount Web::Application, at: '/'
