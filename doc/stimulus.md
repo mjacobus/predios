@@ -12,7 +12,7 @@
       </div>
       <h1>Sup</h1>
 
-      <div class="action">
+      <div class="centered">
         Some action
       </div>
     </div>

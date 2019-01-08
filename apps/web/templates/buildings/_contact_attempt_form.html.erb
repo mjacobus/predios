@@ -1,0 +1,55 @@
+<div data-controller="contact-attempt" class="float-left">
+  <div data-controller="dialog">
+    <a href="#" class="btn btn-light float-right contact-attempt-button" data-action="dialog#open">
+      <i class="fa fa-bell"></i>
+    </a>
+    <div class="dialog-frame" style="display: none;" data-target="dialog.container">
+      <div class="container">
+        <div class="title-bar float-right">
+          <i class="far fa-times-circle" data-action="click->dialog#close"></i>
+        </div>
+        <div class="body">
+          <div class="alert alert-danger text-center" data-target="contact-attempt.errorMessage" style="display: none;"></div>
+          <p class="text-center">
+            Tentativa de contato
+            <br>
+            Prédio <%= building.number %>, <%= building.address %>,
+            <br><strong>apartamento <%= apartment.number %></strong>
+          </p>
+          <input type="hidden" value="<%= building.number %>" data-target="contact-attempt.buildingNumber">
+          <input type="hidden" value="<%= apartment.id %>" data-target="contact-attempt.apartmentId">
+          <input type="hidden" value="<%= apartment.uuid %>" data-target="contact-attempt.apartmentUuid">
+          <input type="hidden" value="<%= apartment.number %>" data-target="contact-attempt.number">
+
+          <div class="centered">
+            <%= render partial: 'datetime_picker', locals: { id: apartment.id } %>
+          </div>
+
+          <div class="centered">
+            <a href="#"
+               data-target="contact-attempt.failButton"
+               data-confirm="Marcar o apartamento <%= apartment.number %> como NÃO EM CASA?"
+               data-action="contact-attempt#confirmFailure"
+               class="btn btn-light align-center">
+               <i class="checked-off fa fa-times" data-confirm="Marcar o apartamento <%= apartment.number %> como NÃO EM CASA?"></i>
+               Não em casa
+            </a>
+
+            <a href="#"
+               data-target="contact-attempt.confirmButton"
+               data-confirm="Marcar o apartamento <%= apartment.number %> como CONTATADO?"
+               data-action="contact-attempt#confirmContact"
+               class="btn btn-light">
+               <i class="checked-on fa fa-check" data-confirm="Marcar o apartamento <%= apartment.number %> como CONTATADO?"></i>
+               Contatado
+            </a>
+          </div>
+
+          <div class="centered">
+            <a href="#" class="btn btn-light" data-action="click->dialog#close">Cancelar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
