@@ -1,9 +1,9 @@
 <nav>
   <ul class="pagination">
     <% if previous_page? %>
-      <li class="page-item"><a class="page-link" href="<%= routes.audits_url(page: previous_page) %>">Anterior</a></li>
+      <li class="page-item"><a class="page-link" href="<%= routes.audits_path(page: previous_page) %>">Anterior</a></li>
     <% end %>
-    <li class="page-item"><a class="page-link" href="<%= routes.audits_url(page: next_page) %>">Próxima</a></li>
+    <li class="page-item"><a class="page-link" href="<%= routes.audits_path(page: next_page) %>">Próxima</a></li>
   </ul>
 </nav>
 

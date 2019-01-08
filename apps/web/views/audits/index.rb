@@ -13,7 +13,7 @@ module Web
         end
 
         def page
-          params[:page].to_i
+          params.to_h.fetch(:page, 1).to_i
         end
 
         def previous_page?
