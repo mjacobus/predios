@@ -1,8 +1,8 @@
 <div class="row" data-uuid="apartment-<%= apartment.uuid %>">
-  <div class="col-3">
+  <div class="col-2">
     <h5> <%= apartment.number %> </h5>
   </div>
-  <div class="col-7">
+  <div class="col-6">
     <% if apartment.last_contact_attempt %>
       <div>
         <%= format_time(apartment.last_contact_attempt.time) %>
@@ -14,10 +14,12 @@
       </div>
     <% end %>
   </div>
-  <div class="col-2">
-    <div class="float-right row-actions">
-      <%= render partial: 'history' %>
-      <%= render partial: 'contact_attempt_form' %>
+  <div class="col-4">
+    <div class="row-actions">
+      <div class="float-right">
+        <%= render partial: 'history' %>
+        <%= render partial: 'contact_attempt_form' %>
+      </div>
     </div>
   </div>
 </div>
