@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <div class="fullscreen" style="display: none;" data-target="dialog.container">
+    <div class="dialog-frame" style="display: none;" data-target="dialog.container">
       <div class="container">
         <div class="title-bar float-right">
           <i class="far fa-times-circle" data-action="click->dialog#close"></i>
@@ -41,11 +41,11 @@
           <input type="hidden" value="<%= apartment.uuid %>" data-target="contact-attempt.apartmentUuid">
           <input type="hidden" value="<%= apartment.number %>" data-target="contact-attempt.number">
 
-          <div class="action">
+          <div class="centered">
             <%= render partial: 'datetime_picker', locals: { id: apartment.id } %>
           </div>
 
-          <div class="actions">
+          <div class="centered">
             <a href="#"
                data-target="contact-attempt.failButton"
                data-confirm="Marcar o apartamento <%= apartment.number %> como NÃO EM CASA?"
@@ -65,11 +65,11 @@
             </a>
           </div>
 
-          <div class="actions">
+          <div class="centered">
             <a href="#" class="btn btn-light" data-action="click->dialog#close">Cancelar</a>
           </div>
 
-          <div class="actions">
+          <div class="centered">
             <%= render partial: 'history', locals: { apartment: apartment } %>
           </div>
         </div>
