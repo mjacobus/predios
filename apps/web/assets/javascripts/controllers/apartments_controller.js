@@ -38,9 +38,9 @@ class ApartmentsController extends AppController {
   }
 
   beforeCreate() {
+    this.startLoader();
     this.disableForm();
     this.hideElement(this.errorMessageTarget);
-    this.stopLoader();
   }
 
   disableForm() {
@@ -59,6 +59,7 @@ class ApartmentsController extends AppController {
     const feedback = this.errorMessageTarget;
     feedback.innerHTML = jsonResponse.message;
     this.showElement(feedback);
+    this.stopLoader();
   }
 
   get payload() {

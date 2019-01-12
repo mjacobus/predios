@@ -8,6 +8,8 @@ class AppController extends Stimulus.Controller {
   }
 
   stopLoader() {
+    this.hideElement(this.loader);
+
     if (!Turbolinks.supported) {
       return;
     }
@@ -16,11 +18,17 @@ class AppController extends Stimulus.Controller {
   }
 
   startLoader() {
+    this.showElement(this.loader);
+
     if (!Turbolinks.supported) {
       return;
     }
     Turbolinks.setProgressBarDelay(0);
     Turbolinks.controller.adapter.progressBar.setValue(0);
     Turbolinks.controller.adapter.progressBar.show();
+  }
+
+  get loader() {
+    return document.getElementById("ajax-loader");
   }
 }
