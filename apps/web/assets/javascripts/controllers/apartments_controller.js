@@ -6,7 +6,6 @@ class ApartmentsController extends AppController {
       "buildingNumber",
       "buildingId",
       "buildingUuid",
-      "submitButton"
     ];
   }
 
@@ -22,7 +21,7 @@ class ApartmentsController extends AppController {
   }
 
   createApartment() {
-    this.beforeCreate();
+    this.beforeSubmit();
     apiPost(this.apartmentsEndpoint, this.payload)
       .then((response, other) => {
         return response.json().then(jsonResponse => {
@@ -32,25 +31,12 @@ class ApartmentsController extends AppController {
       .catch(error => alert("error"));
   }
 
-  enableForm() {
-    this.formDisabled = false;
-    this.submitButtonTarget.disabled = false;
-  }
-
-  beforeCreate() {
+  beforeSubmit() {
     this.startLoader();
-    this.disableForm();
     this.hideElement(this.errorMessageTarget);
   }
 
-  disableForm() {
-    this.formDisabled = true;
-    this.submitButtonTarget.disabled = true;
-  }
-
   handleResponse(jsonResponse, response) {
-    this.enableForm();
-
     if (response.status >= 200 && response.status < 300) {
       Turbolinks.visit(this.buildingUrl);
       return;
