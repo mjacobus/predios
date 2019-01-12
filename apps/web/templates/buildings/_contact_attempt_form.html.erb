@@ -22,8 +22,14 @@
           <input type="hidden" value="<%= apartment.number %>" data-target="contact-attempt.number">
 
           <div class="centered">
-            <%= render partial: 'datetime_picker', locals: { id: apartment.id } %>
-            <small>Deixe em branco para data e hora atual</small>
+            <label>Data/Hora</label>
+            <div class="form-group form-inline datetime-form-group">
+              <input data-target="contact-attempt.date" type="date" class="form-control" pattern="\d\d-\d\d-\d\d\d\d" placeholder="dd/mm/aaaa" />&nbsp;:&nbsp;
+              <input data-target="contact-attempt.time" type="time" class="form-control" />
+              <small class="form-text form-text text-muted">
+                Deixe em branco para data e hora atual. Se preencher a data, preencha a hora também
+              </small>
+            </div>
           </div>
 
           <div class="centered">

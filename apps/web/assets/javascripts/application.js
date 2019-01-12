@@ -7,8 +7,6 @@
         e.preventDefault();
       }
     });
-
-    $(".datetime").datetimepicker();
   });
 })(jQuery);
 

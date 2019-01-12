@@ -5,6 +5,7 @@ class ContactAttemptController extends AppController {
       "failButton",
       "errorMessage",
       "number",
+      "date",
       "time",
       "buildingNumber",
       "apartmentId",
@@ -74,7 +75,10 @@ class ContactAttemptController extends AppController {
   }
 
   get time() {
-    return this.timeTarget.value.toString();
+    return [
+      this.timeTarget.value.toString(),
+      this.timeTarget.value.toString(),
+    ].join(" ").trim();
   }
 
   payload(outcome) {
