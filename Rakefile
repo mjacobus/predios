@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Lint/HandleExceptions
-
 require 'dotenv'
 Dotenv.load('.env.development')
 Dotenv.load('.env')
