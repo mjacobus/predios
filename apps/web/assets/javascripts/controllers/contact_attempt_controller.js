@@ -8,7 +8,7 @@ class ContactAttemptController extends AppController {
       "time",
       "buildingNumber",
       "apartmentId",
-      "apartmentUuid",
+      "apartmentUuid"
     ];
   }
 
@@ -44,7 +44,6 @@ class ContactAttemptController extends AppController {
 
   handleResponse(jsonResponse, response) {
     this.enableActions();
-    this.stopLoader();
 
     if (response.status >= 200 && response.status < 300) {
       const url = `/buildings/${this.buildingNumber}`;
@@ -53,6 +52,7 @@ class ContactAttemptController extends AppController {
     }
 
     this.showError(jsonResponse.message);
+    this.stopLoader();
   }
 
   get endpoint() {
