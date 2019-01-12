@@ -27,21 +27,12 @@
           </div>
 
           <div class="centered">
-            <a href="#"
-               data-target="contact-attempt.failButton"
-               data-confirm="Marcar o apartamento <%= apartment.number %> como NÃO EM CASA?"
-               data-action="contact-attempt#confirmFailure"
-               class="btn btn-light align-center">
-               <i class="checked-off fa fa-times" data-confirm="Marcar o apartamento <%= apartment.number %> como NÃO EM CASA?"></i>
-               Não em casa
+            <a href="#" data-action="contact-attempt#submitFailure" class="btn btn-light align-center">
+              <i class="checked-off fa fa-times"></i> Não em casa
             </a>
 
-            <a href="#"
-               data-target="contact-attempt.confirmButton"
-               data-confirm="Marcar o apartamento <%= apartment.number %> como CONTATADO?"
-               data-action="contact-attempt#confirmContact"
-               class="btn btn-light">
-               <i class="checked-on fa fa-check" data-confirm="Marcar o apartamento <%= apartment.number %> como CONTATADO?"></i>
+            <a href="#" data-action="contact-attempt#confirmContact" class="btn btn-light">
+               <i class="checked-on fa fa-check"></i>
                Contatado
             </a>
           </div>
