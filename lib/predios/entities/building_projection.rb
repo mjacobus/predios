@@ -19,6 +19,6 @@ class BuildingProjection < Hanami::Entity
 
   # rubocop:disable Naming/PredicateName
   def has_all_apartments?
-    number_of_apartments >= apartments.length
+    apartments.length >= number_of_apartments
   end
 end

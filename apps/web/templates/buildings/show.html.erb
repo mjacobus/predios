@@ -16,9 +16,8 @@
   </div>
 </div>
 
+<% unless building.has_all_apartments? %>
 <hr>
-
-<% if building.has_all_apartments? %>
 <div class="clearfix" data-controller="apartments">
   <div class="float-right">
     <form class="form-inline" data-action="submit->apartments#submitForm">
@@ -38,7 +37,6 @@
 <% end %>
 
 <hr>
-
 <% building.apartments.each do |apartment| %>
   <%= render partial: 'apartment', locals: { apartment: apartment, building: building } %>
   <hr>
