@@ -1,8 +1,6 @@
 class ContactAttemptController extends AppController {
   static get targets() {
     return [
-      "confirmButton",
-      "failButton",
       "errorMessage",
       "number",
       "time",
@@ -14,27 +12,16 @@ class ContactAttemptController extends AppController {
 
   confirmContact(e) {
     e.preventDefault();
-
-    if (!confirm(e.target.getAttribute("data-confirm"))) {
-      return;
-    }
-
     this.submit("contacted");
   }
 
-  confirmFailure(e) {
+  submitFailure(e) {
     e.preventDefault();
-
-    if (!confirm(e.target.getAttribute("data-confirm"))) {
-      return;
-    }
-
     this.submit("failed");
   }
 
   submit(outcome) {
     this.startLoader();
-    this.disableActions();
     apiPost(this.endpoint, this.payload(outcome)).then((response, other) => {
       return response.json().then(jsonResponse => {
         this.handleResponse(jsonResponse, response);
@@ -43,8 +30,6 @@ class ContactAttemptController extends AppController {
   }
 
   handleResponse(jsonResponse, response) {
-    this.enableActions();
-
     if (response.status >= 200 && response.status < 300) {
       const url = `/buildings/${this.buildingNumber}`;
       Turbolinks.visit(url);
@@ -92,16 +77,5 @@ class ContactAttemptController extends AppController {
   showError(message) {
     this.showElement(this.errorMessageTarget);
     this.errorMessageTarget.innerHTML = message;
-  }
-
-  disableActions() {
-    this.failButtonTarget.disabled = false;
-    this.confirmButtonTarget.disabled = false;
-    this.hideElement(this.errorMessageTarget);
-  }
-
-  enableActions() {
-    this.failButtonTarget.disabled = true;
-    this.confirmButtonTarget.disabled = true;
   }
 }
