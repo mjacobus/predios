@@ -7,3 +7,5 @@ REVISION
 node_modules
 /bkp
 /.bundle
+/.env.development
+/.env.test
