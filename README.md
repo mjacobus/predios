@@ -8,10 +8,23 @@ Assistant for a special territory in my city.
 
 ## Setup
 
+
+Link the sample files. If you need to change, copy it instead
+
+```
+ln -s env.development.sample env.development
+ln -s env.test.sample env.test
+
+# or
+
+cp env.development.sample env.development
+cp env.test.sample env.test
+```
+
 How to run tests:
 
 ```
-% bundle exec rake
+% bundle exec rspec
 ```
 
 How to run the development console:
@@ -23,7 +36,11 @@ How to run the development console:
 How to run the development server:
 
 ```
-% bundle exec hanami server
+% bunlde exec hanami server
+
+# or, if you are offline need cdn files to be local
+
+% LOCLAL_ASSETS=true bundle exec hanami server
 ```
 
 How to prepare (create and migrate) DB for `development` and `test` environments:
