@@ -3,12 +3,13 @@
 require 'spec_helper'
 
 RSpec.describe BuildingProjection, type: :repository do
-  let(:building) { buildings.create(number_of_apartments: 2) }
+  let(:building) { building_factory.create(number_of_apartments: 2) }
   let(:found) { buildings.find_by_number(building.number) }
 
   describe '#has_all_apartments' do
     before do
-      apartments.create(building: building)
+      clear_all
+      apartment_factory.create(building: building)
     end
 
     context 'when has less apartments' do
