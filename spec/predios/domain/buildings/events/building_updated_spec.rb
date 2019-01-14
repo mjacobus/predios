@@ -23,7 +23,7 @@ RSpec.describe Buildings::Events::BuildingUpdated, type: :domain_event do
       expected = payload.dup
       expected.delete(:unwanted_attribute)
 
-      expect(event.attributes.to_h).to eq(expected)
+      expect(event.given_attributes.to_h).to eq(expected)
     end
   end
 end

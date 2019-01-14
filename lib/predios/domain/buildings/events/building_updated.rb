@@ -6,33 +6,10 @@ require 'domain_event'
 module Buildings
   module Events
     class BuildingUpdated < DomainEvent
-      def attributes
-        values = {}
-
-        payload.each do |attribute, _value|
-          if respond_to?(attribute, true)
-            values[attribute] = send(attribute)
-          end
-        end
-
-        DataBag.new(values)
-      end
-
-      def address
-        payload[:address]
-      end
-
-      def number
-        payload[:number]
-      end
-
-      def name
-        payload[:name]
-      end
-
-      def neighborhood
-        payload[:neighborhood]
-      end
+      has_attribute :address
+      has_attribute :number
+      has_attribute :name
+      has_attribute :neighborhood
 
       def has_individual_letterboxes
         BooleanCoercer.new.coerce(payload[:has_individual_letterboxes])

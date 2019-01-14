@@ -19,16 +19,6 @@ class AggregateRoot < Koine::EventSourcing::AggregateRoot
     @updated_at = event.event_time
   end
 
-  def update_attribute(attribute, value)
-    method = "update_#{attribute}"
-
-    if respond_to?(method, true)
-      return send(method, value)
-    end
-
-    write_attribute(attribute, value)
-  end
-
   def write_attribute(attribute, value)
     instance_variable_set("@#{attribute}", value)
   end

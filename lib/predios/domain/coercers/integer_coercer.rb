@@ -7,4 +7,3 @@ class IntegerCoercer < BaseCoercer
     end
   end
 end
-

@@ -7,7 +7,7 @@ module EventSpecHelper
     end
   end
 
-  def create_event(payload, metadata: {})
+  def create_event(payload)
     event_class.new(payload)
   end
 end

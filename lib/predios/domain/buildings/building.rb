@@ -57,22 +57,21 @@ module Buildings
 
     private
 
-    # rubocop:disable Metrics/AbcSize
     def when_created(event)
       @created_at = event.event_time
-      @id = event.payload[:id]
-      @number = event.payload[:number]
-      @number_of_apartments = event.payload[:number_of_apartments]
-      @address = event.payload[:address]
-      @name = event.payload[:name]
-      @neighborhood = event.payload[:neighborhood]
-      @has_individual_letterboxes = event.payload[:has_individual_letterboxes]
-      @has_individual_intercoms = event.payload[:has_individual_intercoms]
+      @id = event.id
+      @number = event.number
+      @number_of_apartments = event.number_of_apartments
+      @address = event.address
+      @name = event.name
+      @neighborhood = event.neighborhood
+      @has_individual_letterboxes = event.has_individual_letterboxes
+      @has_individual_intercoms = event.has_individual_intercoms
     end
 
     def when_updated(event)
-      event.attributes.each do |attr, value|
-        update_attribute(attr, value)
+      event.given_attributes.each do |attr, value|
+        write_attribute(attr, value)
       end
     end
 
