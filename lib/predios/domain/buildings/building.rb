@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Naming/PredicateName
 module Buildings
   class Building < AggregateRoot
     attr_reader :number
@@ -9,6 +10,34 @@ module Buildings
     attr_reader :neighborhood
     attr_reader :has_individual_letterboxes
     attr_reader :has_individual_intercoms
+
+    def number=(number)
+      updated(:number, number)
+    end
+
+    def name=(name)
+      updated(:name, name)
+    end
+
+    def address=(address)
+      updated(:address, address)
+    end
+
+    def number_of_apartments=(number)
+      updated(:number_of_apartments, number)
+    end
+
+    def neighborhood=(neighborhood)
+      updated(:neighborhood, neighborhood)
+    end
+
+    def has_individual_letterboxes=(boolean)
+      updated(:has_individual_letterboxes, boolean)
+    end
+
+    def has_individual_intercoms=(boolean)
+      updated(:has_individual_intercoms, boolean)
+    end
 
     # rubocop:disable Metrics/MethodLength
     def self.create(data)
@@ -39,6 +68,16 @@ module Buildings
       @neighborhood = event.payload[:neighborhood]
       @has_individual_letterboxes = event.payload[:has_individual_letterboxes]
       @has_individual_intercoms = event.payload[:has_individual_intercoms]
+    end
+
+    def when_updated(event)
+      event.attributes.each do |attr, value|
+        update_attribute(attr, value)
+      end
+    end
+
+    def updated(attr, value)
+      record_that(Events::BuildingUpdated.new(attr => value))
     end
   end
 end

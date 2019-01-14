@@ -13,9 +13,9 @@ RSpec.describe Buildings::Events::BuildingUpdated, type: :domain_event do
         address: 'new_address',
         name: 'new name',
         neighborhood: 'new neighborhood',
-        has_individual_letterboxes: 'new has_individual_letterboxes',
-        has_individual_intercoms: 'new has_individual_intercoms',
-        number_of_apartments: 'new number_of_apartments',
+        has_individual_letterboxes: false,
+        has_individual_intercoms: true,
+        number_of_apartments: 1,
       }
     end
 
