@@ -70,4 +70,49 @@ RSpec.describe Koine::EventSourcing::DataBag do
       expect(filtered.to_h).to eq('name' => 'john', last_name: :doe)
     end
   end
+
+  describe '#empty_to_nil' do
+    let(:input) do
+      {
+        name: 'the-name',
+        last_name: ' ',
+        age: nil,
+        city: 'A City',
+      }
+    end
+
+    it 'replaces empty string values with nil' do
+      actual = described_class.new(input).empty_to_nil
+
+      expected = described_class.new(
+        name: 'the-name',
+        last_name: nil,
+        age: nil,
+        city: 'A City'
+      )
+
+      expect(actual).to be_equal_to(expected)
+    end
+  end
+
+  describe '#compact' do
+    let(:input) do
+      {
+        name: 'the-name',
+        last_name: '',
+        age: nil,
+      }
+    end
+
+    it 'rejects nil values' do
+      actual = described_class.new(input).compact
+
+      expected = described_class.new(
+        name: 'the-name',
+        last_name: ''
+      )
+
+      expect(actual).to be_equal_to(expected)
+    end
+  end
 end
