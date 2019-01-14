@@ -2,8 +2,9 @@
 
 module Buildings
   module Commands
-    class CreateBuilding
+    class UpdateBuilding < Command
       ALLOWED_ATTRIBUTES = %i[
+        id
         number
         number_of_apartments
         name
@@ -14,12 +15,12 @@ module Buildings
         has_individual_intercoms
       ].freeze
 
-      def initialize(attributes)
-        @attributes = DataBag.new(attributes).only(ALLOWED_ATTRIBUTES).empty_to_nil
+      def initialize(payload)
+        @payload = DataBag.new(payload).only(ALLOWED_ATTRIBUTES).empty_to_nil
       end
 
-      def building_attributes
-        @attributes.symbolize.to_h
+      def payload
+        @payload.symbolize.to_h
       end
     end
   end
