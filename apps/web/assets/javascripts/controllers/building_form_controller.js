@@ -6,11 +6,14 @@ class BuildingFormController extends AppController {
       "name",
       "hasIndividualLetterboxes",
       "hasIndividualIntercoms",
-      "intercoms",
       "address",
       "numberOfApartments",
       "neighborhood"
     ];
+  }
+
+  get name() {
+    return this.nameTarget.value;
   }
 
   get buildingUuid() {
@@ -28,26 +31,30 @@ class BuildingFormController extends AppController {
   get address() {
     return this.addressTarget.value;
   }
+
   get numberOfApartments() {
     return this.numberOfApartmentsTarget.value;
   }
-  get neiborhood() {
+
+  get neighborhood() {
     return this.neighborhoodTarget.value;
   }
 
   get payload() {
-    const { neiborhood, address, name } = this;
+    const { neighborhood, address, name } = this;
     const number_of_apartments = this.numberOfApartments;
     const has_individual_letterboxes = this.hasIndividualLetterboxes;
     const has_individual_intercoms = this.hasIndividualIntercoms;
 
     return {
-      name,
-      neiborhood,
-      address,
-      number_of_apartments,
-      has_individual_letterboxes,
-      has_individual_intercoms
+      building: {
+        name,
+        neighborhood,
+        address,
+        number_of_apartments,
+        has_individual_letterboxes,
+        has_individual_intercoms
+      }
     };
   }
 

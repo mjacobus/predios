@@ -7,8 +7,6 @@
 
   <form action="" method="post" data-action="building_form#saveBuilding">
     <input type="hidden" class="text" data-target="building_form.buildingUuid" value="<%= building.uuid %>">
-    <input type="hidden" class="text" data-target="building_form.hasIndividualLetterboxes" value="<%= building.has_individual_letterboxes %>">
-    <input type="hidden" class="text" data-target="building_form.hasIndividualIntercoms" value="<%= building.has_individual_intercoms %>">
 
     <div class="form-group">
       <label>Número de Registro (controle interno)</label>
@@ -37,7 +35,7 @@
 
     <div class="form-group">
       <label>Caixas de corrêio individual?</label>
-      <select class="form-control" data-target="building_form.letterboxes">
+      <select class="form-control" data-target="building_form.hasIndividualLetterboxes">
         <option value="" <%= building.has_individual_letterboxes.nil? ? 'selected' : '' %> >Não sabemos</option>
         <option value="1" <%= building.has_individual_letterboxes == true ? 'selected' : '' %> >Sim</option>
         <option value="0" <%= building.has_individual_letterboxes == false ? 'selected' : '' %> >Não</option>
@@ -46,7 +44,7 @@
 
     <div class="form-group">
       <label>Interfones individuais?</label>
-      <select class="form-control" data-target="building_form.intercoms">
+      <select class="form-control" data-target="building_form.hasIndividualIntercoms">
         <option value="" <%= building.has_individual_intercoms.nil? ? 'selected' : '' %> >Não sabemos</option>
         <option value="1" <%= building.has_individual_intercoms == true ? 'selected' : '' %> >Sim</option>
         <option value="0" <%= building.has_individual_intercoms == false ? 'selected' : '' %> >Não</option>

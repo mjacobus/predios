@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
-class BuildingProjection < Hanami::Entity
+class BuildingProjection < Entity
+  mutator_for :address
+  mutator_for :name
+  mutator_for :number_of_apartments
+  mutator_for :has_individual_intercoms
+  mutator_for :has_individual_letterboxes
+  mutator_for :neighborhood
+
   def phone?
     !(intercom? && letter?)
   end
