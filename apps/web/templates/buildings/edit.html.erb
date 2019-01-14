@@ -1,0 +1,61 @@
+<h1>Atualizar prédio</h1>
+
+<div data-controller="building_form">
+
+  <div style="display: none;" data-target="building_form.errorMessages" class="alert alert-danger">
+  </div>
+
+  <form action="" method="post" data-action="">
+    <input type="hidden" class="text" data-target="building_form.buildingUuid" value="<%= building.uuid %>">
+    <input type="hidden" class="text" data-target="building_form.hasIndividualLetterbox" value="<%= building.has_individual_letterboxes %>">
+    <input type="hidden" class="text" data-target="building_form.hasIndividualIntercoms" value="<%= building.has_individual_intercoms %>">
+
+    <div class="form-group">
+      <label>Número de Registro (controle interno)</label>
+      <input type="text" readonly="readonly" class="form-control" value="<%= escape_html_attribute(building.number) %>" data-target="building_form.number">
+    </div>
+
+    <div class="form-group">
+      <label>Nome do Condomínio</label>
+      <input type="text" class="form-control" value="<%= escape_html_attribute(building.name) %>" data-target="building_form.name">
+    </div>
+
+    <div class="form-group">
+      <label>Endereço</label>
+      <input type="text" class="form-control" value="<%= escape_html_attribute(building.address) %>" data-target="building_form.address">
+    </div>
+
+    <div class="form-group">
+      <label>Númeor de Apartamentos</label>
+      <input type="text" class="form-control" value="<%= escape_html_attribute(building.number_of_apartments) %>" data-target="building_form.number_of_apartments">
+    </div>
+
+    <div class="form-group">
+      <label>Bairro</label>
+      <input type="text" class="form-control" value="<%= escape_html_attribute(building.neighborhood) %>" data-target="building_form.neighborhood">
+    </div>
+
+    <div class="form-group">
+      <label>Caixas de corrêio individual?</label>
+      <select class="form-control" data-target="building_form.letterboxes">
+        <option value="" <%= building.has_individual_letterboxes.nil? ? 'selected' : '' %> >Não sabemos</option>
+        <option value="1" <%= building.has_individual_letterboxes == true ? 'selected' : '' %> >Sim</option>
+        <option value="0" <%= building.has_individual_letterboxes == false ? 'selected' : '' %> >Não</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Interfones individuais?</label>
+      <select class="form-control" data-target="building_form.intercoms">
+        <option value="" <%= building.has_individual_intercoms.nil? ? 'selected' : '' %> >Não sabemos</option>
+        <option value="1" <%= building.has_individual_intercoms == true ? 'selected' : '' %> >Sim</option>
+        <option value="0" <%= building.has_individual_intercoms == false ? 'selected' : '' %> >Não</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-light">Atualizar</button>
+      <a href="<%= routes.buildings_path %>" class="btn btn-light">Cancelar</a>
+    </div>
+  </form>
+</div>

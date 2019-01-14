@@ -4,8 +4,8 @@ RSpec.describe Web::Controllers::Buildings::Edit, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 
-  it 'is successful' do
+  it 'is protected' do
     response = action.call(params)
-    expect(response[0]).to eq 200
+    expect(response).to redirect_to_root
   end
 end

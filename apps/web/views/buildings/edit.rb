@@ -3,8 +3,7 @@
 module Web
   module Views
     module Buildings
-      class Edit
-        include Web::View
+      class Edit < ::Views::Web
       end
     end
   end
