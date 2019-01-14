@@ -17,9 +17,13 @@
   application.register("apartments", ApartmentsController);
   application.register("contact-attempt", ContactAttemptController);
   application.register("dialog", DialogController);
+  application.register("building_form", BuildingFormController);
 })();
 
 const apiRequest = (url, data, method = "POST") => {
+  console.log('method', method)
+  console.log('url', url)
+  console.log('data', data)
   const config = {
     method: method,
     mode: "cors", // no-cors, cors, *same-origin
@@ -35,4 +39,12 @@ const apiRequest = (url, data, method = "POST") => {
 
 const apiPost = (url, data) => {
   return apiRequest(url, data, "POST");
+};
+
+const apiPut = (url, data) => {
+  return apiRequest(url, data, "PUT");
+};
+
+const apiPatch = (url, data) => {
+  return apiRequest(url, data, "PATCH");
 };

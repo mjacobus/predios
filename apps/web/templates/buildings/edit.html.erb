@@ -5,9 +5,9 @@
   <div style="display: none;" data-target="building_form.errorMessages" class="alert alert-danger">
   </div>
 
-  <form action="" method="post" data-action="">
+  <form action="" method="post" data-action="building_form#saveBuilding">
     <input type="hidden" class="text" data-target="building_form.buildingUuid" value="<%= building.uuid %>">
-    <input type="hidden" class="text" data-target="building_form.hasIndividualLetterbox" value="<%= building.has_individual_letterboxes %>">
+    <input type="hidden" class="text" data-target="building_form.hasIndividualLetterboxes" value="<%= building.has_individual_letterboxes %>">
     <input type="hidden" class="text" data-target="building_form.hasIndividualIntercoms" value="<%= building.has_individual_intercoms %>">
 
     <div class="form-group">
@@ -27,7 +27,7 @@
 
     <div class="form-group">
       <label>Númeor de Apartamentos</label>
-      <input type="text" class="form-control" value="<%= escape_html_attribute(building.number_of_apartments) %>" data-target="building_form.number_of_apartments">
+      <input type="text" class="form-control" value="<%= escape_html_attribute(building.number_of_apartments) %>" data-target="building_form.numberOfApartments">
     </div>
 
     <div class="form-group">
