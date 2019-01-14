@@ -14,5 +14,5 @@ resources :users, only: [:index] do
   resource :master, only: %i[create destroy]
 end
 
-resources :buildings, only: %i[index show]
+resources :buildings, only: %i[index show edit]
 resources :audits, only: %i[index show]
