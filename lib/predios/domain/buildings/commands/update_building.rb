@@ -4,7 +4,6 @@ module Buildings
   module Commands
     class UpdateBuilding < Command
       ALLOWED_ATTRIBUTES = %i[
-        id
         number
         number_of_apartments
         name
@@ -15,7 +14,10 @@ module Buildings
         has_individual_intercoms
       ].freeze
 
-      def initialize(payload)
+      attr_reader :aggregate_id
+
+      def initialize(aggregate_id, payload)
+        @aggregate_id = aggregate_id
         @payload = DataBag.new(payload).only(ALLOWED_ATTRIBUTES).empty_to_nil
       end
 
