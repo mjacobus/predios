@@ -7,6 +7,7 @@ class BuildingProjection < Entity
   mutator_for :has_individual_intercoms
   mutator_for :has_individual_letterboxes
   mutator_for :neighborhood
+  mutator_for :updated_at
 
   def phone?
     !(intercom? && letter?)
