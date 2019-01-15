@@ -21,9 +21,6 @@
 })();
 
 const apiRequest = (url, data, method = "POST") => {
-  console.log('method', method)
-  console.log('url', url)
-  console.log('data', data)
   const config = {
     method: method,
     mode: "cors", // no-cors, cors, *same-origin
