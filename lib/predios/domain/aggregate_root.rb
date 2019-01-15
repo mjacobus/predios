@@ -22,4 +22,8 @@ class AggregateRoot < Koine::EventSourcing::AggregateRoot
   def write_attribute(attribute, value)
     instance_variable_set("@#{attribute}", value)
   end
+
+  def will_attrbute_change?(attribute, value)
+    instance_variable_get("@#{attribute}") != value
+  end
 end

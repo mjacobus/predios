@@ -76,7 +76,11 @@ module Buildings
     end
 
     def updated(attr, value)
-      record_that(Events::BuildingUpdated.new(attr => value))
+      event = Events::BuildingUpdated.new(attr => value)
+
+      if will_attrbute_change?(attr, event.send(attr))
+        record_that(event)
+      end
     end
   end
 end

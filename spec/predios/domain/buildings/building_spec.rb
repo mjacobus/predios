@@ -16,6 +16,7 @@ RSpec.describe Buildings::Building do
   end
   let(:data) { default_data }
   let(:building) { described_class.create(data) }
+  let(:domain_events) { building.send(:domain_events) }
 
   it 'is an aggregate root' do
     expect(described_class.new).to be_a(AggregateRoot)
@@ -99,5 +100,20 @@ RSpec.describe Buildings::Building do
     building.has_individual_intercoms = 1
 
     expect(building.has_individual_intercoms).to be true
+  end
+
+  context 'when the same attribute is updated several times' do
+    it 'only creates one new event' do
+      expect do
+        building.number = building.number
+        building.name = building.name
+        building.neighborhood = building.neighborhood
+        building.has_individual_letterboxes = building.has_individual_letterboxes
+        building.has_individual_intercoms = building.has_individual_intercoms
+        building.address = building.address
+        building.number_of_apartments = building.number_of_apartments.to_s
+        building.number_of_apartments = building.number_of_apartments + 1
+      end.to change { domain_events.length }.by(1)
+    end
   end
 end
