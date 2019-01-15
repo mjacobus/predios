@@ -9,6 +9,8 @@ module Buildings
         entity = entity.send("with_#{attr}", value)
       end
 
+      entity = entity.with_updated_at(event.event_time)
+
       repository.save(entity)
     end
 

@@ -3,6 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe Buildings::BuildingUpdatedSubscriber, type: :subscriber do
+  let(:time) { Time.parse('2011-02-03') }
   let(:event) do
     Buildings::Events::BuildingUpdated.new(
       address: 'the-address',
@@ -11,7 +12,9 @@ RSpec.describe Buildings::BuildingUpdatedSubscriber, type: :subscriber do
       has_individual_letterboxes: true,
       has_individual_intercoms: nil,
       number_of_apartments: 1
-    ).with_aggregate_id(UniqueId.new(building.uuid))
+    )
+      .with_aggregate_id(UniqueId.new(building.uuid))
+      .with_event_time(time)
   end
   let(:building) { building_factory.create }
   let(:publish) { described_class.new.publish(event) }
@@ -45,5 +48,9 @@ RSpec.describe Buildings::BuildingUpdatedSubscriber, type: :subscriber do
 
   it 'saves has_individual_intercoms' do
     expect(publish.has_individual_intercoms).to be_nil
+  end
+
+  it 'assigns the event time as the update time' do
+    expect(publish.updated_at).to be_within(1).of(time)
   end
 end
