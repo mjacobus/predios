@@ -64,7 +64,7 @@ class AppDependencies < Nurse::DependencyContainer
     add_command_handler('buildings.update_building') do |container|
       Buildings::CommandHandlers::UpdateBuilding.new(
         repository: container.repository('aggregate_root'),
-        validator: NullValidator.new
+        validator: BuildingUpdateValidator.new
       )
     end
 

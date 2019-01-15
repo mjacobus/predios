@@ -9,12 +9,12 @@ module Buildings
       end
 
       def handle(command)
-        @validator.validate(command)
-
         @repository.find(command.aggregate_id).tap do |building|
           command.payload.each do |attr, value|
             building.send("#{attr}=", value)
           end
+
+          @validator.validate(building)
 
           @repository.save(building)
         end

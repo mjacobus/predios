@@ -21,7 +21,7 @@ RSpec.describe Buildings::CommandHandlers::UpdateBuilding do
   end
   let(:data) do
     {
-      number: 123,
+      number_of_apartments: 123,
     }
   end
 
@@ -36,7 +36,7 @@ RSpec.describe Buildings::CommandHandlers::UpdateBuilding do
       before do
         allow(validator)
           .to receive(:validate)
-          .with(command).and_raise(ValidationError)
+          .with(building).and_raise(ValidationError)
       end
 
       it 'raises error' do
@@ -46,7 +46,7 @@ RSpec.describe Buildings::CommandHandlers::UpdateBuilding do
 
     context 'when it is valid' do
       before do
-        allow(validator).to receive(:validate).with(command)
+        allow(validator).to receive(:validate).with(building)
         allow(repository).to receive(:save)
       end
 
@@ -54,13 +54,13 @@ RSpec.describe Buildings::CommandHandlers::UpdateBuilding do
         handled
 
         expect(repository).to have_received(:save).with(building)
-        expect(building.number).to eq 123
+        expect(building.number_of_apartments).to eq 123
       end
 
-      it 'validates command' do
+      it 'validates building' do
         handled
 
-        expect(validator).to have_received(:validate).with(command)
+        expect(validator).to have_received(:validate).with(building)
       end
 
       it 'returns the aggregate' do
