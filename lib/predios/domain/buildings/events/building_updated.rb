@@ -7,7 +7,6 @@ module Buildings
   module Events
     class BuildingUpdated < DomainEvent
       has_attribute :address
-      has_attribute :number
       has_attribute :name
       has_attribute :neighborhood
 

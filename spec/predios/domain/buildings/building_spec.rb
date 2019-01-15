@@ -113,7 +113,7 @@ RSpec.describe Buildings::Building do
         building.address = building.address
         building.number_of_apartments = building.number_of_apartments.to_s
         building.number_of_apartments = building.number_of_apartments + 1
-      end.to change { domain_events.length }.by(1)
+      end.to change(domain_events, :length).by(1)
     end
   end
 end

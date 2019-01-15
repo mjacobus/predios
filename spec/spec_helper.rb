@@ -54,6 +54,7 @@ RSpec.configure do |config|
   config.include MySpecUtils
   config.include ActionsSpecHelper, type: :action
   config.include RepositorySpecHelper, type: :repository
+  config.include RepositorySpecHelper, type: :subscriber
   config.include EventSpecHelper, type: :domain_event
 
   # rspec-mocks config goes here. You can use an alternate test double
