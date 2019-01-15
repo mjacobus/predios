@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class BuildingUpdateValidator
+  # rubocop:disable Metrics/MethodLength
   def validate(building)
     unless building.name
       missing('Nome do Condomínio')
@@ -22,7 +23,6 @@ class BuildingUpdateValidator
   private
 
   def missing(field)
-      raise ValidationError, "#{field} não pode ficar em branco"
+    raise ValidationError, "#{field} não pode ficar em branco"
   end
 end
-
