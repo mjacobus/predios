@@ -8,7 +8,6 @@ class AggregateRoot < Koine::EventSourcing::AggregateRoot
     private
 
     def create_with_event(event)
-      @created_at = event.event_time
       new.tap { |aggregate_root| aggregate_root.send(:record_that, event) }
     end
   end
@@ -18,5 +17,13 @@ class AggregateRoot < Koine::EventSourcing::AggregateRoot
   def when_event(event)
     EventWhenMethodResolver.new.call(event: event, aggregate_root: self)
     @updated_at = event.event_time
+  end
+
+  def write_attribute(attribute, value)
+    instance_variable_set("@#{attribute}", value)
+  end
+
+  def will_attrbute_change?(attribute, value)
+    instance_variable_get("@#{attribute}") != value
   end
 end

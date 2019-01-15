@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Naming/PredicateName
 module Buildings
   class Building < AggregateRoot
     attr_reader :number
@@ -9,6 +10,30 @@ module Buildings
     attr_reader :neighborhood
     attr_reader :has_individual_letterboxes
     attr_reader :has_individual_intercoms
+
+    def name=(name)
+      updated(:name, name)
+    end
+
+    def address=(address)
+      updated(:address, address)
+    end
+
+    def number_of_apartments=(number)
+      updated(:number_of_apartments, number)
+    end
+
+    def neighborhood=(neighborhood)
+      updated(:neighborhood, neighborhood)
+    end
+
+    def has_individual_letterboxes=(boolean)
+      updated(:has_individual_letterboxes, boolean)
+    end
+
+    def has_individual_intercoms=(boolean)
+      updated(:has_individual_intercoms, boolean)
+    end
 
     # rubocop:disable Metrics/MethodLength
     def self.create(data)
@@ -28,17 +53,30 @@ module Buildings
 
     private
 
-    # rubocop:disable Metrics/AbcSize
     def when_created(event)
       @created_at = event.event_time
-      @id = event.payload[:id]
-      @number = event.payload[:number]
-      @number_of_apartments = event.payload[:number_of_apartments]
-      @address = event.payload[:address]
-      @name = event.payload[:name]
-      @neighborhood = event.payload[:neighborhood]
-      @has_individual_letterboxes = event.payload[:has_individual_letterboxes]
-      @has_individual_intercoms = event.payload[:has_individual_intercoms]
+      @id = event.id
+      @number = event.number
+      @number_of_apartments = event.number_of_apartments
+      @address = event.address
+      @name = event.name
+      @neighborhood = event.neighborhood
+      @has_individual_letterboxes = event.has_individual_letterboxes
+      @has_individual_intercoms = event.has_individual_intercoms
+    end
+
+    def when_updated(event)
+      event.given_attributes.each do |attr, value|
+        write_attribute(attr, value)
+      end
+    end
+
+    def updated(attr, value)
+      event = Events::BuildingUpdated.new(attr => value)
+
+      if will_attrbute_change?(attr, event.send(attr))
+        record_that(event)
+      end
     end
   end
 end

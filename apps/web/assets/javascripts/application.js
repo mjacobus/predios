@@ -17,6 +17,7 @@
   application.register("apartments", ApartmentsController);
   application.register("contact-attempt", ContactAttemptController);
   application.register("dialog", DialogController);
+  application.register("building_form", BuildingFormController);
 })();
 
 const apiRequest = (url, data, method = "POST") => {
@@ -35,4 +36,12 @@ const apiRequest = (url, data, method = "POST") => {
 
 const apiPost = (url, data) => {
   return apiRequest(url, data, "POST");
+};
+
+const apiPut = (url, data) => {
+  return apiRequest(url, data, "PUT");
+};
+
+const apiPatch = (url, data) => {
+  return apiRequest(url, data, "PATCH");
 };

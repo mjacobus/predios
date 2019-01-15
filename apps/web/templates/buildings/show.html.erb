@@ -7,6 +7,9 @@
     <div><small><%= building.name %></small> </div>
     <div>
       <%= building.number_of_apartments %> <small>apartamentos</small>, <small><%= building.apartments.count %> registrados</small>
+      <% if current_user.master? %>
+        <a class="btn" href="<%= routes.edit_building_path(building.number) %>">Editar</a>
+      <% end %>
     </div>
   </div>
   <div class="col-2">

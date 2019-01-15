@@ -5,10 +5,8 @@ require 'domain_event'
 # rubocop:disable Naming/PredicateName
 module Buildings
   module Events
-    class BuildingCreated < DomainEvent
-      has_attribute :id
+    class BuildingUpdated < DomainEvent
       has_attribute :address
-      has_attribute :number
       has_attribute :name
       has_attribute :neighborhood
 

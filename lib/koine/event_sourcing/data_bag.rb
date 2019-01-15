@@ -51,6 +51,24 @@ module Koine
         end
         self.class.new(data)
       end
+
+      def empty_to_nil
+        filtered = {}
+
+        each do |attr, value|
+          if value.is_a?(String) && value.strip.empty?
+            value = nil
+          end
+
+          filtered[attr] = value
+        end
+
+        self.class.new(filtered)
+      end
+
+      def compact
+        self.class.new(@values.compact)
+      end
     end
   end
 end
