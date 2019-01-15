@@ -9,7 +9,6 @@ RSpec.describe Buildings::Events::BuildingUpdated, type: :domain_event do
     let(:payload) do
       {
         unwanted_attribute: 'unwanted',
-        number: nil,
         address: 'new_address',
         name: 'new name',
         neighborhood: 'new neighborhood',

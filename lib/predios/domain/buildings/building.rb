@@ -11,10 +11,6 @@ module Buildings
     attr_reader :has_individual_letterboxes
     attr_reader :has_individual_intercoms
 
-    def number=(number)
-      updated(:number, number)
-    end
-
     def name=(name)
       updated(:name, name)
     end

@@ -60,12 +60,6 @@ RSpec.describe Buildings::Building do
     end
   end
 
-  it 'updates number' do
-    building.number = 'other-number'
-
-    expect(building.number).to eq 'other-number'
-  end
-
   it 'updates name' do
     building.name = 'other-name'
 
@@ -105,7 +99,6 @@ RSpec.describe Buildings::Building do
   context 'when the same attribute is updated several times' do
     it 'only creates one new event' do
       expect do
-        building.number = building.number
         building.name = building.name
         building.neighborhood = building.neighborhood
         building.has_individual_letterboxes = building.has_individual_letterboxes
