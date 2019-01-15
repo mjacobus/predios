@@ -18,6 +18,7 @@
   application.register("contact-attempt", ContactAttemptController);
   application.register("dialog", DialogController);
   application.register("building_form", BuildingFormController);
+  application.register("apartment_removal", ApartamentRemovalController);
 })();
 
 const apiRequest = (url, data, method = "POST") => {
@@ -44,4 +45,8 @@ const apiPut = (url, data) => {
 
 const apiPatch = (url, data) => {
   return apiRequest(url, data, "PATCH");
+};
+
+const apiDelete = (url, data) => {
+  return apiRequest(url, data, "DELETE");
 };

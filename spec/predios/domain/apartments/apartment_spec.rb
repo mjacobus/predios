@@ -55,4 +55,14 @@ RSpec.describe Apartments::Apartment do
       expect(apartment.contact_attempts).to be_equal_to([attempt1, attempt2])
     end
   end
+
+  describe '#delete' do
+    it 'marks the apartment as deleted' do
+      expect { apartment.delete }.to change(apartment, :deleted?).to true
+    end
+
+    it 'updates updated_at' do
+      expect { apartment.delete }.to change(apartment, :updated_at)
+    end
+  end
 end
