@@ -4,7 +4,6 @@ module Buildings
   module Commands
     class UpdateBuilding < Command
       ALLOWED_ATTRIBUTES = %i[
-        number
         number_of_apartments
         name
         neighborhood
