@@ -17,6 +17,7 @@ set :bundle_flags, '--deployment'
 
 set :whenever_environment, -> { fetch(:stage) }
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
+set :whenever_roles, [:mysql_dump]
 
 append :linked_files,
   '.env'
@@ -61,4 +62,4 @@ namespace :logs do
   end
 end
 
-before 'deploy:symlink:release', 'whenever:update_crontab'
+after 'deploy:symlink:release', 'whenever:update_crontab'
