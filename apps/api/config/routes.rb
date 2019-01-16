@@ -6,7 +6,7 @@
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
 resources :buildings do
-  resources :apartments, controller: :apartments do
+  resources :apartments, only: %i[create destroy], controller: :apartments do
     member do
       post :assign_visit_attempt
     end

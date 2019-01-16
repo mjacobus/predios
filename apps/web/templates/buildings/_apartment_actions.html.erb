@@ -1,0 +1,41 @@
+<div data-controller="apartment_removal" class="float-left" data-target="apartment_removal.container">
+  <div data-controller="dialog" class="float-left">
+    <input type="hidden" class="text" value="<%= apartment.uuid %>" data-target="apartment_removal.apartmentUuid">
+
+    <a href="#" class="btn btn-light float-right contact-attempt-button" data-action="dialog#open">
+      <i class="fa fa-trash-alt"></i>
+    </a>
+    <div class="dialog-frame" style="display: none;" data-target="dialog.container">
+      <div class="container">
+        <div class="title-bar float-right">
+          <i class="far fa-times-circle" data-action="click->dialog#close"></i>
+        </div>
+        <div class="body">
+          <div class="centered">
+            <div class="alert alert-danger text-center">
+              <h3> Atenção!</h3>
+            </div>
+
+            <p class="text-center">
+              Tem certeza que quer excluir apartamento?
+              <br>
+              Prédio <%= building.number %>, <%= building.address %>,
+              <br><strong>apartamento <%= apartment.number %></strong>
+            </p>
+          </div>
+
+          <div class="alert alert-danger text-center" data-target="apartment_removal.errorMessage" style="display: none;"></div>
+
+          <div class="centered">
+            <a href="#" data-action="apartment_removal#submit" class="btn btn-light btn-block btn-lg">
+              <i class="checked-on fa fa-check"></i> Sim </a>
+
+            <a href="#" data-action="click->dialog#close" class="btn btn-lg btn-light align-center btn-block">
+              Cancelar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

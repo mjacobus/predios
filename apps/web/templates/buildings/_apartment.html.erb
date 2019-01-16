@@ -1,4 +1,4 @@
-<div class="row" data-uuid="apartment-<%= apartment.uuid %>">
+<div class="row with-bottom-separator" id="apartment-<%= apartment.uuid %>">
   <div class="col-2">
     <h5> <%= apartment.number %> </h5>
   </div>
@@ -19,6 +19,9 @@
       <div class="float-right">
         <%= render partial: 'history' %>
         <%= render partial: 'contact_attempt_form' %>
+        <% if current_user.master? %>
+          <%= render partial: 'apartment_actions' %>
+        <% end %>
       </div>
     </div>
   </div>

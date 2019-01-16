@@ -21,6 +21,14 @@ module Apartments
       create_with_event(event)
     end
 
+    def delete
+      record_that(Events::ApartmentDeleted.new)
+    end
+
+    def deleted?
+      @deleted
+    end
+
     def assign_contact_attempt(contact_attempt)
       record_that(Events::ContactAttemptAssigned.new(
         outcome: contact_attempt.outcome,
@@ -43,6 +51,10 @@ module Apartments
       )
 
       @contact_attempts << attempt
+    end
+
+    def when_deleted(_event)
+      @deleted = true
     end
   end
 end

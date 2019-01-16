@@ -77,6 +77,12 @@ class AppDependencies < Nurse::DependencyContainer
       )
     end
 
+    add_command_handler('apartments.delete_apartment') do |container|
+      Apartments::CommandHandlers::DeleteApartment.new(
+        repository: container.repository('aggregate_root')
+      )
+    end
+
     add_command_handler('apartments.assign_contact_attempt') do |container|
       Apartments::CommandHandlers::AssignContactAttempt.new(
         repository: container.repository('aggregate_root'),

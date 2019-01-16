@@ -13,4 +13,18 @@ module Repository
     relation = relations.to_h.keys.first
     send(relation).where(uuid: uuid.to_s).first
   end
+
+  def delete_by_uuid(uuid)
+    entity = by_uuid(uuid)
+    delete(entity.id)
+  end
+
+  # should be used in test only, since it counts all records
+  def count
+    unless Hanami.env == 'test'
+      raise 'Should not be used in production'
+    end
+
+    all.length
+  end
 end
