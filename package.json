@@ -11,12 +11,15 @@
     "stimulus": "^1.1.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
     "parcel-bundler": "^1.11.0",
     "prettier": "^1.15.3"
   },
   "scripts": {
     "demo": "./node_modules/.bin/parcel start frontend/demos/parcel.html",
     "demo-stimulus": "./node_modules/.bin/parcel start frontend/demos/stimulus.html",
+    "build-demo-stimulus": "./node_modules/.bin/parcel build --no-content-hash frontend/demos/stimulus.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
