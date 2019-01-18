@@ -1,11 +1,15 @@
-class ApartmentsController extends AppController {
+import BaseController from "./base_controller";
+
+import { apiPost } from "../utils";
+
+export default class ApartmentsController extends BaseController {
   static get targets() {
     return [
       "number",
       "errorMessage",
       "buildingNumber",
       "buildingId",
-      "buildingUuid",
+      "buildingUuid"
     ];
   }
 

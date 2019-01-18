@@ -1,11 +1,5 @@
-<%= javascript 'controllers/app_controller', defer: true %>
-<%= javascript 'controllers/apartments_controller', defer: true %>
-<%= javascript 'controllers/apartment_removal_controller', defer: true %>
-<%= javascript 'controllers/contact_attempt_controller', defer: true %>
-<%= javascript 'controllers/dialog_controller', defer: true %>
-<%= javascript 'controllers/building_form_controller', defer: true %>
 <%= javascript 'vendor/turbolinks', defer: true %>
-<%= javascript 'application', defer: true %>
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <%=
@@ -20,14 +14,14 @@
     crossorigin: 'anonymous'
   %>
 
+<% if current_user.master? %>
+  <%= custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js' %>
+  <%=
+    custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/locale/pt-br.js',
+      alternative: 'moment-pt-br'
+    %>
+  <%= custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js' %>
+  <%= javascript 'datetimepicker', defer: true %>
+<% end %>
 
-<%= custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js' %>
-
-<%=
-  custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/locale/pt-br.js',
-    alternative: 'moment-pt-br'
-%>
-<%= custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js' %>
-
-<%= custom_javascript 'https://unpkg.com/stimulus/dist/stimulus.umd.js' %>
-
+<%= javascript 'buildings.28b9b9cc', defer: true %>

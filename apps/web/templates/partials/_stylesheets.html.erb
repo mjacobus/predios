@@ -7,10 +7,12 @@
   crossorigin: 'anonymous'
 %>
 
-<%=
-  custom_stylesheet 'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css',
-  crossorigin: 'anonymous'
-%>
+<% if current_user.master? %>
+  <%=
+    custom_stylesheet 'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css',
+      crossorigin: 'anonymous'
+    %>
+<% end %>
 
 <%=
   custom_stylesheet 'https://use.fontawesome.com/releases/v5.6.3/css/all.css',

@@ -1,4 +1,8 @@
-class ApartamentRemovalController extends AppController {
+import BaseController from "./base_controller";
+
+import { apiDelete } from "../utils";
+
+export default class ApartamentRemovalController extends BaseController {
   static get targets() {
     return ["apartmentUuid", "errorMessage", "container"];
   }
@@ -26,7 +30,9 @@ class ApartamentRemovalController extends AppController {
 
   handleResponse(jsonResponse, response) {
     if (response.status == 202) {
-      this.hideElement(document.getElementById(`apartment-${this.apartmentUuid}`));
+      this.hideElement(
+        document.getElementById(`apartment-${this.apartmentUuid}`)
+      );
       this.stopLoader();
       return;
     }
