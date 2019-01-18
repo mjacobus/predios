@@ -244,13 +244,25 @@ module Web
       #
       #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives
       #
+      script = [].tap do |s|
+        if Hanami.env == 'development'
+          s << "'unsafe-eval'"
+        end
+      end.join(' ')
+
+      connect = [].tap do |s|
+        if Hanami.env == 'development'
+          s << 'ws:'
+        end
+      end.join(' ')
+
       security.content_security_policy %{
         form-action 'self';
         frame-ancestors 'self';
         base-uri 'self';
         default-src 'none';
-        script-src 'self' cdnjs.cloudflare.com stackpath.bootstrapcdn.com code.jquery.com unpkg.com;
-        connect-src 'self';
+        script-src 'self' #{script} cdnjs.cloudflare.com stackpath.bootstrapcdn.com code.jquery.com unpkg.com;
+        connect-src 'self' #{connect};
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;
         font-src 'self' use.fontawesome.com;
