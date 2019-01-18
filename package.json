@@ -13,6 +13,7 @@
     "prettier": "^1.15.3"
   },
   "scripts": {
+    "demo": "./node_modules/.bin/parcel start frontend/demos/parcel.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
