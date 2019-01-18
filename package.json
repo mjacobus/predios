@@ -7,13 +7,16 @@
     "doc": "doc",
     "lib": "lib"
   },
-  "dependencies": {},
+  "dependencies": {
+    "stimulus": "^1.1.1"
+  },
   "devDependencies": {
     "parcel-bundler": "^1.11.0",
     "prettier": "^1.15.3"
   },
   "scripts": {
     "demo": "./node_modules/.bin/parcel start frontend/demos/parcel.html",
+    "demo-stimulus": "./node_modules/.bin/parcel start frontend/demos/stimulus.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
