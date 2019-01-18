@@ -10,8 +10,11 @@
   "dependencies": {
     "prettier": "^1.15.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "parcel-bundler": "^1.11.0"
+  },
   "scripts": {
+    "start" : "./node_modules/.bin/parcel frontend/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

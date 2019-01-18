@@ -9,3 +9,4 @@ node_modules
 /.bundle
 /.env.development
 /.env.test
+/dist
