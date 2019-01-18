@@ -29,4 +29,20 @@ class BuildingProjection < Entity
   def has_all_apartments?
     apartments.length >= number_of_apartments
   end
+
+  def call_options
+    [].tap do |options|
+      if intercom?
+        options << 'intercom'
+      end
+
+      if phone?
+        options << 'phone'
+      end
+
+      if letter?
+        options << 'letter'
+      end
+    end
+  end
 end
