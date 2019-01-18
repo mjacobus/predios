@@ -8,6 +8,7 @@
     "lib": "lib"
   },
   "dependencies": {
+    "@stimulus/polyfills": "^1.1.1",
     "stimulus": "^1.1.1"
   },
   "devDependencies": {
