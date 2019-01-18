@@ -1,1 +1,5 @@
-console.log( 'hello world' )
+const foo = dude => {
+  return `sup ${dude}`;
+};
+
+console.log(foo("Marcelo"));
