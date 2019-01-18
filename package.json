@@ -1,5 +1,28 @@
 {
-  "devDependencies": {
+  "name": "predios",
+  "version": "1.0.0",
+  "description": "Assistant for a special territory in my city.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "lib": "lib"
+  },
+  "dependencies": {
     "prettier": "^1.15.3"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjacobus/predios.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjacobus/predios/issues"
+  },
+  "homepage": "https://github.com/mjacobus/predios#readme"
 }
