@@ -1,5 +1,37 @@
 {
+  "name": "predios",
+  "version": "1.0.0",
+  "description": "Assistant for a special territory in my city.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "lib": "lib"
+  },
+  "dependencies": {
+    "@stimulus/polyfills": "^1.1.1",
+    "glamor": "^2.20.40",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "stimulus": "^1.1.1"
+  },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "parcel-bundler": "^1.11.0",
     "prettier": "^1.15.3"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjacobus/predios.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjacobus/predios/issues"
+  },
+  "homepage": "https://github.com/mjacobus/predios#readme"
 }
