@@ -4,12 +4,12 @@ import { Component } from "react";
 import { css } from "glamor";
 
 const red = css({
-  color: 'red'
+  color: "red"
 });
 
 class HelloWorld extends Component {
   render() {
-    return <h1 className={ red }>Hello World from react</h1>;
+    return <h1 className={red}>Hello World from react</h1>;
   }
 }
 

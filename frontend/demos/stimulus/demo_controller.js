@@ -8,6 +8,6 @@ export default class extends Controller {
 
     const element = this.containerTarget;
 
-    element.innerHTML += '<p>It works!<p>';
+    element.innerHTML += "<p>It works!<p>";
   }
 }
