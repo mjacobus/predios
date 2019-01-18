@@ -1,4 +1,6 @@
-class DialogController extends AppController {
+import BaseController from "./base_controller";
+
+export default class DialogController extends BaseController {
   static get targets() {
     return ["container"];
   }

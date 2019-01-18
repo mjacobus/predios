@@ -1,4 +1,8 @@
-class ContactAttemptController extends AppController {
+import BaseController from "./base_controller";
+
+import { apiPost } from "../utils";
+
+export default class ContactAttemptController extends BaseController {
   static get targets() {
     return [
       "errorMessage",

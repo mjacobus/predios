@@ -1,4 +1,8 @@
-class BuildingFormController extends AppController {
+import BaseController from "./base_controller";
+
+import { apiPatch } from "../utils";
+
+export default class BuildingFormController extends BaseController {
   static get targets() {
     return [
       "errorMessages",

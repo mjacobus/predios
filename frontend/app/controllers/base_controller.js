@@ -1,4 +1,6 @@
-class AppController extends Stimulus.Controller {
+import { Controller } from "stimulus";
+
+export default class BaseController extends Controller {
   hideElement(element) {
     element.style.display = "none";
   }
