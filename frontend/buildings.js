@@ -1,4 +1,5 @@
 import { Application } from "stimulus";
+import Turbolinks from "turbolinks";
 
 import ApartamentRemovalController from "./app/controllers/apartment_removal_controller";
 import ApartmentsController from "./app/controllers/apartments_controller";
@@ -12,3 +13,5 @@ application.register("contact-attempt", ContactAttemptController);
 application.register("dialog", DialogController);
 application.register("building_form", BuildingFormController);
 application.register("apartment_removal", ApartamentRemovalController);
+
+Turbolinks.start();

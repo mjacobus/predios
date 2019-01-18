@@ -1,4 +1,5 @@
 import BaseController from "./base_controller";
+import Turbolinks from "turbolinks";
 
 import { apiPost } from "../utils";
 
