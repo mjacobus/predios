@@ -6,31 +6,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= render partial: 'partials/stylesheets' %>
-    <%= render partial: 'partials/javascripts' %>
     <meta name="turbolinks-cache-control" content="no-cache">
+    <%= javascript 'buildings.app.d2e579e0', defer: true %>
   </head>
   <body class="<%= routes.buildings_url.to_s.match('staging') ? 'staging' : '' %> <%= routes.buildings_url.to_s.match('localhost') ? 'staging' : '' %>">
-    <% if current_user.enabled? %>
-      <%= render partial: 'partials/menu' %>
-    <% end %>
-
-    <div id="before-container"></div>
-
-    <div id="main-container" class="container">
-      <% if test_environment? %>
-        <div class="test-system-warning alert alert-warning">Este é um sistema de teste. Use-o a vontade</div>
-      <% end %>
-
-      <%= yield %>
-    </div>
-
-    <div id="ajax-loader" style="display: none;">
-      <div class="message">
-        <p>Carregando...</p>
-      </div>
-      <div class="background">
-      </div>
+    <div id="react-app">
+      Oops, algo deu errado
     </div>
   </body>
 </html>
