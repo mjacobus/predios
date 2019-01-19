@@ -10,9 +10,7 @@
     <%= javascript 'buildings.app.d2e579e0', defer: true %>
   </head>
   <body class="<%= routes.buildings_url.to_s.match('staging') ? 'staging' : '' %> <%= routes.buildings_url.to_s.match('localhost') ? 'staging' : '' %>">
-    <div id="react-app">
-      Oops, algo deu errado
-    </div>
+    <div id="react-app">Carregando...</div>
   </body>
 </html>
 
