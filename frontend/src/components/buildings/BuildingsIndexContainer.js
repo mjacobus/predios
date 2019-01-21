@@ -15,8 +15,8 @@ const mockBuildings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i =>
 
 const Apartment = ({ apartment }) => <div>{apartment.name}</div>;
 
-const buildings = mockBuildings.map(apartment => (
-  <Apartment apartment={apartment} />
+const buildings = mockBuildings.map((apartment, i) => (
+  <Apartment apartment={apartment} key={i} />
 ));
 
 export default function BuildingsIndexContainer() {

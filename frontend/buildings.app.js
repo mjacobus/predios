@@ -9,7 +9,7 @@ const Apartments = () => <h1>Apartments</h1>;
 const app = (
   <BrowserRouter>
     <div>
-      <TopMenu/>
+      <TopMenu />
       <Route exact path="/app/buildings" component={BuildingsIndex} />
       <Route
         exact
