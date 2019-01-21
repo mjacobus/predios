@@ -3,7 +3,6 @@
 require 'nurse'
 
 class AppDependencies < Nurse::DependencyContainer
-  # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/AbcSize
   def initialize
     super

@@ -32,8 +32,6 @@ module Actions
     end
 
     private
-
-    # rubocop:disable Metrics/MethodLength
     def handle_errors
       yield
     rescue Errors::NotFound => error

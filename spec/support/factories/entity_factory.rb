@@ -43,8 +43,6 @@ class EntityFactory
   def sample_uuid(_sequence)
     UniqueId.new.to_s
   end
-
-  # rubocop:disable Metrics/MethodLength
   def sample_attributes
     {}.tap do |data|
       with_sequence do |seq|

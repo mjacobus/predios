@@ -2,7 +2,6 @@
 
 module Buildings
   class BuildingCreatedSubscriber
-    # rubocop:disable Metrics/MethodLength
     def publish(event)
       event.payload.symbolize.tap do |payload|
         entity = BuildingProjection.new(
