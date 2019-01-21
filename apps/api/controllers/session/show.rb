@@ -16,6 +16,8 @@ module Api
             email: user.email,
             master: user.master?,
             enabled: user.enabled?,
+            avatar: user.avatar,
+            avatar_url: user.avatar_url('SIZE')
           }
         end
       end

@@ -7,6 +7,7 @@ RSpec.describe Api::Controllers::Session::Show, type: :action do
       name: 'John',
       email: 'the-email',
       master: true,
+      avatar: 'the-avatar',
     }
   end
 
@@ -30,6 +31,8 @@ RSpec.describe Api::Controllers::Session::Show, type: :action do
       expect(json_response[:email]).to eq attributes.fetch(:email)
       expect(json_response[:master]).to be true
       expect(json_response[:enabled]).to be true
+      expect(json_response[:avatar]).to eq 'the-avatar'
+      expect(json_response[:avatar_url]).to eq 'the-avatar?sz=SIZE'
     end
   end
 end
