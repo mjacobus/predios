@@ -1,12 +1,13 @@
 import React from "react";
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from "react-bootstrap";
 
-export default function AppNavbar() {
+export default function AppNavbar(props) {
+  const user = props.currentUser;
   return (
     <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="/">Página inicial</a>
+          <a href="/">Home</a>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
@@ -16,15 +17,22 @@ export default function AppNavbar() {
             {" "}
             Prédios{" "}
           </NavItem>
-          <NavItem eventKey={2} href="/Users">
-            {" "}
-            Usuários{" "}
-          </NavItem>
-          <NavDropdown eventKey={3} title="Perfil" id="basic-nav-dropdown">
-            <MenuItem eventKey={3.2}>Template</MenuItem>
-            <MenuItem eventKey={3.3}>Template</MenuItem>
+          {user.master && (
+            <NavItem eventKey={2} href="/Users">
+              {" "}
+              Usuários{" "}
+            </NavItem>
+          )}
+          {user.master && (
+            <NavItem eventKey={3} href="/audits">
+              {" "}
+              Auditoria{" "}
+            </NavItem>
+          )}
+          <NavDropdown eventKey={4} title={user.name} id="basic-nav-dropdown">
+            <MenuItem eventKey={4.1}>{user.email}</MenuItem>
             <MenuItem divider />
-            <MenuItem eventKey={3.1} href="/logout">
+            <MenuItem eventKey={4.3} href="/logout">
               Sair
             </MenuItem>
           </NavDropdown>

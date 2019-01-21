@@ -1,32 +1,19 @@
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 import TopMenu from "./library/TopMenu";
+import { fetchCurrentuser } from "../processes/userProcesses";
 
 function mapStateToProps(state) {
   return {
-    currentUser: {
-      name: 'The name of the user',
-      email: 'user@email.com',
-      master: true,
-      enabled: true,
-    }
+    currentUser: state.currentUser
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    // fetchTerritory: (slug) => {
-    //   dispatch(fetchTerritory(slug));
-    // },
-    //
-    // submitValues: (slug, values) => {
-    //   dispatch(updateTerritory(slug, values));
-    // },
-    //
-    // resetPersisted: () => {
-    //   dispatch(resetPersisted());
-    // }
-  };
+  return {};
 }
 
-export const TopMenuContainer = connect(mapStateToProps, mapDispatchToProps)(TopMenu);
+export const TopMenuContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TopMenu);
 export default TopMenuContainer;

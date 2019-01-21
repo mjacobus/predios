@@ -6,18 +6,27 @@ import BuildingsIndex from "./src/components/buildings/BuildingsIndexContainer";
 import { Grid, Col, Row } from "react-bootstrap";
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import thunk from 'redux-thunk';
+import thunk from "redux-thunk";
 import currentUserReducer from "./src/reducers/currentUserReducer";
 
 const reducers = combineReducers({
-  currentUser: currentUserReducer,
+  currentUser: currentUserReducer
 });
+
+const initialState = {
+  currentUser: {
+    name: "Marcelo Jacobus",
+    email: "user@email.com",
+    master: true,
+    enabled: true
+  }
+};
 
 // This is necessary for making the the redux store available on the browser's dev tools pannel
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 let store = createStore(
   reducers,
-  undefined,
+  initialState,
   composeEnhancers(applyMiddleware(thunk))
 );
 
