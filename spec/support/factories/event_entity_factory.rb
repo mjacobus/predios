@@ -4,8 +4,6 @@ require_relative './entity_factory'
 
 class EventEntityFactory < EntityFactory
   private
-
-  # rubocop:disable Metrics/MethodLength
   def sampled_attributes
     %i[
       uuid

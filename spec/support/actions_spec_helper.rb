@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # rubocop:disable Metrics/AbcSize
-# rubocop:disable Metrics/MethodLength
 module ActionsSpecHelper
   def self.included(base)
     base.class_eval do
@@ -15,6 +14,7 @@ module ActionsSpecHelper
       let(:active_user) { User.new.enable }
       let(:guest_user) { LoggedOutUser.new }
       let(:session) { action.session || {} }
+      let(:json_response) { symbolize_keys(JSON.parse(unsafe_response[2].join(''))) }
 
       before do
         stub_user(current_user)

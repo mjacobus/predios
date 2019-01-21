@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class BuildingUpdateValidator
-  # rubocop:disable Metrics/MethodLength
   def validate(building)
     unless building.name
       missing('Nome do Condomínio')

@@ -2,7 +2,6 @@
 
 module RepositorySpecHelper
   # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/MethodLength
   def self.included(base)
     base.class_eval do
       let(:building_factory) { BuildingProjectionFactory.new }
