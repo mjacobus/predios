@@ -14,12 +14,7 @@ const reducers = combineReducers({
 });
 
 const initialState = {
-  currentUser: {
-    name: "Marcelo Jacobus",
-    email: "user@email.com",
-    master: true,
-    enabled: true
-  }
+  currentUser: window.__DATA__.currentUser
 };
 
 // This is necessary for making the the redux store available on the browser's dev tools pannel

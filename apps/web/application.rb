@@ -248,6 +248,7 @@ module Web
         if Hanami.env == 'development'
           s << "'unsafe-eval'"
         end
+        s << "'unsafe-inline'"
       end.join(' ')
 
       connect = [].tap do |s|

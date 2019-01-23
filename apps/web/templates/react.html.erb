@@ -12,6 +12,9 @@
 
   </head>
   <body class="<%= routes.buildings_url.to_s.match('staging') ? 'staging' : '' %> <%= routes.buildings_url.to_s.match('localhost') ? 'staging' : '' %>">
+    <script type="text/javascript" charset="utf-8">
+      window.__DATA__ = <%= raw app_data.to_json %>;
+    </script>
     <div id="react-app">Carregando...</div>
   </body>
 </html>
