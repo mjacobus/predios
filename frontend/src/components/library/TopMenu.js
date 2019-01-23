@@ -7,12 +7,16 @@ export default function AppNavbar(props) {
     <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="/">Home</a>
+          <img src={`${user.avatar}?sz=25`} />
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav>
+          <NavItem eventKey={1} href="/">
+            {" "}
+            Home{" "}
+          </NavItem>
           <NavItem eventKey={1} href="/buildings">
             {" "}
             Prédios{" "}
