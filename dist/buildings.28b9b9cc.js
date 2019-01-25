@@ -2789,7 +2789,7 @@ exports.default = BaseController;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.apiDelete = exports.apiPatch = exports.apiPost = void 0;
+exports.apiDelete = exports.apiPatch = exports.apiPost = exports.apiGet = void 0;
 
 var apiRequest = function apiRequest(url, data) {
   var method = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "POST";
@@ -2813,6 +2813,12 @@ var apiRequest = function apiRequest(url, data) {
   };
   return fetch(url, config);
 };
+
+var apiGet = function apiGet(url, data) {
+  return apiRequest(url, data, "POST");
+};
+
+exports.apiGet = apiGet;
 
 var apiPost = function apiPost(url, data) {
   return apiRequest(url, data, "POST");

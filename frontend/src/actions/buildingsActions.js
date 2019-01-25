@@ -1,12 +1,16 @@
+import { apiGet } from '../utils/api.js';
+
 const fetchBuildings = (dispatch) => ()  => {
+  apiGet("/api/buildings").then(resp => console.log(resp));
+
   dispatch({
     type: 'BUILDINGS_FETCHED',
-    publications: [
+    buildings: [
       {
-        name: "Publication 1"
+        name: "Building 1"
       },
       {
-        name: "Publication 2"
+        name: "Building 2"
       },
     ]
   })
