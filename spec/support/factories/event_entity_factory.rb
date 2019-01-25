@@ -4,6 +4,7 @@ require_relative './entity_factory'
 
 class EventEntityFactory < EntityFactory
   private
+
   def sampled_attributes
     %i[
       uuid

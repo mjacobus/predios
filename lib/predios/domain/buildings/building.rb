@@ -34,6 +34,7 @@ module Buildings
     def has_individual_intercoms=(boolean)
       updated(:has_individual_intercoms, boolean)
     end
+
     def self.create(data)
       event = Events::BuildingCreated.new(
         id: UniqueId.new,
