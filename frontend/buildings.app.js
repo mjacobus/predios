@@ -10,15 +10,31 @@ import thunk from "redux-thunk";
 import currentUserReducer from "./src/reducers/currentUserReducer";
 import buildingsReducer from "./src/reducers/buildingsReducer";
 
+const mockApartment = number => {
+  return {
+    name: `Nome ${number}`,
+    address: `The Address Foo Bar number ${number}`,
+    neighborhood: `Bairro ${number}`,
+    number: `Bairro ${number}`
+  };
+};
+
+const mockBuildings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i =>
+  mockApartment(i)
+);
+
 const reducers = combineReducers({
   currentUser: currentUserReducer,
-  entities: {
+  entities: combineReducers({
     buildings: buildingsReducer
-  }
+  })
 });
 
 const initialState = {
-  currentUser: window.__DATA__.currentUser
+  currentUser: window.__DATA__.currentUser,
+  entities: {
+    buildings: mockBuildings
+  }
 };
 
 // This is necessary for making the the redux store available on the browser's dev tools pannel
