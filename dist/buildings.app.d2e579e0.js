@@ -54179,16 +54179,11 @@ var _api = require("../utils/api.js");
 
 var fetchBuildings = function fetchBuildings(dispatch) {
   return function () {
-    (0, _api.apiGet)("/api/buildings").then(function (resp) {
-      return console.log(resp);
-    });
-    dispatch({
-      type: 'BUILDINGS_FETCHED',
-      buildings: [{
-        name: "Building 1"
-      }, {
-        name: "Building 2"
-      }]
+    (0, _api.apiGet)("/api/buildings").end(function (erro, resp) {
+      dispatch({
+        type: 'BUILDINGS_FETCHED',
+        buildings: resp.body
+      });
     });
   };
 };
@@ -54376,18 +54371,6 @@ var _buildingsReducer = _interopRequireDefault(require("./src/reducers/buildings
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mockApartment = function mockApartment(number) {
-  return {
-    name: "Nome ".concat(number),
-    address: "The Address Foo Bar number ".concat(number),
-    neighborhood: "Bairro ".concat(number),
-    number: "Bairro ".concat(number)
-  };
-};
-
-var mockBuildings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(function (i) {
-  return mockApartment(i);
-});
 var reducers = (0, _redux.combineReducers)({
   currentUser: _currentUserReducer.default,
   entities: (0, _redux.combineReducers)({
@@ -54397,7 +54380,7 @@ var reducers = (0, _redux.combineReducers)({
 var initialState = {
   currentUser: window.__DATA__.currentUser,
   entities: {
-    buildings: mockBuildings
+    buildings: []
   }
 }; // This is necessary for making the the redux store available on the browser's dev tools pannel
 
