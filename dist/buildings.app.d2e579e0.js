@@ -52060,7 +52060,29 @@ function BuildingsIndex(props) {
     });
   }));
 }
-},{"react":"../node_modules/react/index.js"}],"src/components/buildings/BuildingsIndexContainer.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"src/actions/buildingsActions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchBuildings = void 0;
+
+var fetchBuildings = function fetchBuildings(dispatch) {
+  return function () {
+    dispatch({
+      type: 'BUILDINGS_FETCHED',
+      publications: [{
+        name: "Publication 1"
+      }, {
+        name: "Publication 2"
+      }]
+    });
+  };
+};
+
+exports.fetchBuildings = fetchBuildings;
+},{}],"src/components/buildings/BuildingsIndexContainer.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52068,40 +52090,87 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _react = _interopRequireDefault(require("react"));
+
 var _reactRedux = require("react-redux");
 
 var _BuildingsIndex = _interopRequireDefault(require("./BuildingsIndex"));
 
+var _buildingsActions = require("../../actions/buildingsActions");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mockApartment = function mockApartment(number) {
-  return {
-    name: "Nome ".concat(number),
-    address: "The Address Foo Bar number ".concat(number),
-    neighborhood: "Bairro ".concat(number),
-    number: "Bairro ".concat(number)
-  };
-};
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function mapStateToProps(state) {
   return {
-    // buildings: state.entities.buildings,
-    buildings: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(function (i) {
-      return mockApartment(i);
-    })
+    buildings: state.entities.buildings
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchBuildings: function fetchBuildings(params) {}
+    fetchBuildings: (0, _buildingsActions.fetchBuildings)(dispatch)
   };
 }
 
-var BuildingsIndexContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_BuildingsIndex.default);
-var _default = BuildingsIndexContainer;
+var BuildingsContainer =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(BuildingsContainer, _React$Component);
+
+  function BuildingsContainer(props) {
+    var _this;
+
+    _classCallCheck(this, BuildingsContainer);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BuildingsContainer).call(this, props));
+    _this.fetchBuildings = _this.fetchBuildings.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(BuildingsContainer, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.fetchBuildings();
+    }
+  }, {
+    key: "fetchBuildings",
+    value: function fetchBuildings() {
+      this.props.fetchBuildings();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react.default.createElement(_BuildingsIndex.default, {
+        buildings: this.props.buildings
+      });
+    }
+  }]);
+
+  return BuildingsContainer;
+}(_react.default.Component);
+
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(BuildingsContainer);
+
 exports.default = _default;
-},{"react-redux":"../node_modules/react-redux/es/index.js","./BuildingsIndex":"src/components/buildings/BuildingsIndex.js"}],"../node_modules/redux-thunk/es/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","./BuildingsIndex":"src/components/buildings/BuildingsIndex.js","../../actions/buildingsActions":"src/actions/buildingsActions.js"}],"../node_modules/redux-thunk/es/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52190,14 +52259,29 @@ var _buildingsReducer = _interopRequireDefault(require("./src/reducers/buildings
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var mockApartment = function mockApartment(number) {
+  return {
+    name: "Nome ".concat(number),
+    address: "The Address Foo Bar number ".concat(number),
+    neighborhood: "Bairro ".concat(number),
+    number: "Bairro ".concat(number)
+  };
+};
+
+var mockBuildings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(function (i) {
+  return mockApartment(i);
+});
 var reducers = (0, _redux.combineReducers)({
   currentUser: _currentUserReducer.default,
-  entities: {
+  entities: (0, _redux.combineReducers)({
     buildings: _buildingsReducer.default
-  }
+  })
 });
 var initialState = {
-  currentUser: window.__DATA__.currentUser
+  currentUser: window.__DATA__.currentUser,
+  entities: {
+    buildings: mockBuildings
+  }
 }; // This is necessary for making the the redux store available on the browser's dev tools pannel
 
 var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || _redux.compose;
