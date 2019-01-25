@@ -8,9 +8,13 @@ import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import currentUserReducer from "./src/reducers/currentUserReducer";
+import buildingsReducer from "./src/reducers/buildingsReducer";
 
 const reducers = combineReducers({
-  currentUser: currentUserReducer
+  currentUser: currentUserReducer,
+  entities: {
+    buildings: buildingsReducer
+  }
 });
 
 const initialState = {

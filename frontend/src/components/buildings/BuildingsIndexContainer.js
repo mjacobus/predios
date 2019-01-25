@@ -1,4 +1,5 @@
-import React from "react";
+import { connect } from "react-redux";
+import BuildingsIndex from "./BuildingsIndex";
 
 const mockApartment = number => {
   return {
@@ -9,21 +10,22 @@ const mockApartment = number => {
   };
 };
 
-const mockBuildings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i =>
-  mockApartment(i)
-);
-
-const Apartment = ({ apartment }) => <div>{apartment.name}</div>;
-
-const buildings = mockBuildings.map((apartment, i) => (
-  <Apartment apartment={apartment} key={i} />
-));
-
-export default function BuildingsIndexContainer() {
-  return (
-    <div>
-      <h1>buildings</h1>
-      {buildings}
-    </div>
-  );
+function mapStateToProps(state) {
+  return {
+    // buildings: state.entities.buildings,
+    buildings: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => mockApartment(i))
+  };
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchBuildings: params => {}
+  };
+}
+
+const BuildingsIndexContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BuildingsIndex);
+
+export default BuildingsIndexContainer;
