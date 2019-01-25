@@ -32,6 +32,7 @@ module Actions
     end
 
     private
+
     def handle_errors
       yield
     rescue Errors::NotFound => error

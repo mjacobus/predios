@@ -16,3 +16,5 @@ end
 
 resources :buildings, only: %i[index show edit]
 resources :audits, only: %i[index show]
+
+get '/app/*', to: 'frontend#index'

@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
-RSpec.describe Api::Controllers::Buildings::Index, type: :action do
-  let(:params) { Hash[id: 'the-id'] }
+RSpec.describe Web::Controllers::Frontend::Index, type: :action do
+  let(:action) { described_class.new }
+  let(:params) { Hash[] }
 
   it 'has proper superclass' do
-    expect(action).to be_a(Actions::Api)
+    expect(action).to be_a(Actions::Web)
   end
 
   context 'with valid user' do
     let(:current_user) { active_user }
 
-    it 'executes proper action' do
+    it 'responds with success' do
       expect(unsafe_response).to be_successful
     end
   end

@@ -17,5 +17,18 @@ module Views
     def test_environment?
       hostname.match(/(localhost|staging)/)
     end
+
+    def app_data
+      {
+        currentUser: {
+          name: current_user.name,
+          email: current_user.email,
+          master: current_user.master?,
+          enabled: current_user.enabled?,
+          avatar: current_user.avatar,
+          avatar_url: current_user.avatar_url('SIZE'),
+        },
+      }
+    end
   end
 end
