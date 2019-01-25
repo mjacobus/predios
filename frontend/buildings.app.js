@@ -8,13 +8,22 @@ import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import currentUserReducer from "./src/reducers/currentUserReducer";
+import buildingsReducer from "./src/reducers/buildingsReducer";
+import buildingsListReducer from "./src/reducers/buildingsListReducer";
 
 const reducers = combineReducers({
-  currentUser: currentUserReducer
+  currentUser: currentUserReducer,
+  buildingsList: buildingsListReducer,
+  entities: combineReducers({
+    buildings: buildingsReducer
+  })
 });
 
 const initialState = {
-  currentUser: window.__DATA__.currentUser
+  currentUser: window.__DATA__.currentUser,
+  entities: {
+    buildings: []
+  }
 };
 
 // This is necessary for making the the redux store available on the browser's dev tools pannel
@@ -25,7 +34,7 @@ let store = createStore(
   composeEnhancers(applyMiddleware(thunk))
 );
 
-const Apartments = () => <h1>Apartments</h1>;
+const Apartments = () => <h1>Apartamentos</h1>;
 
 const app = (
   <Provider store={store}>

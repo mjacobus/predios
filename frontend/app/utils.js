@@ -12,6 +12,10 @@ const apiRequest = (url, data, method = "POST") => {
   return fetch(url, config);
 };
 
+export const apiGet = (url, data) => {
+  return apiRequest(url, data, "POST");
+};
+
 export const apiPost = (url, data) => {
   return apiRequest(url, data, "POST");
 };

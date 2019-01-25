@@ -1,29 +1,44 @@
 import React from "react";
+import { connect } from "react-redux";
+import BuildingsIndex from "./BuildingsIndex";
+import { fetchBuildings } from "../../actions/buildingsActions";
 
-const mockApartment = number => {
+function mapStateToProps(state) {
   return {
-    name: `Nome ${number}`,
-    address: `The Address Foo Bar number ${number}`,
-    neighborhood: `Bairro ${number}`,
-    number: `Bairro ${number}`
+    fetching: state.buildingsList.fetching,
+    currentUser: state.currentUser,
+    buildings: state.entities.buildings
   };
-};
-
-const mockBuildings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i =>
-  mockApartment(i)
-);
-
-const Apartment = ({ apartment }) => <div>{apartment.name}</div>;
-
-const buildings = mockBuildings.map((apartment, i) => (
-  <Apartment apartment={apartment} key={i} />
-));
-
-export default function BuildingsIndexContainer() {
-  return (
-    <div>
-      <h1>buildings</h1>
-      {buildings}
-    </div>
-  );
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchBuildings: fetchBuildings(dispatch)
+  };
+}
+
+class BuildingsContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.fetchBuildings = this.fetchBuildings.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchBuildings();
+  }
+
+  fetchBuildings() {
+    this.props.fetchBuildings();
+  }
+
+  render() {
+    const { buildings, currentUser, fetching } = this.props;
+    const props = { buildings, currentUser, fetching };
+    return <BuildingsIndex {...props} />;
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BuildingsContainer);
