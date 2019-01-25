@@ -6,10 +6,11 @@ export default function Icon(props) {
   const type = props.type;
   const style = props.style || "fa";
   const text = props.text || "";
+  const className = props.className;
 
   const iconStyle = css({
     color: colors.jwBlue
-  });
+  }, className);
 
   return (
     <span>

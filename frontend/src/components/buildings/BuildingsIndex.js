@@ -2,6 +2,7 @@ import React from "react";
 import Loader from "../library/Loader";
 import { colors } from "../library/styles";
 import Icon from "../library/Icon";
+import CallOptions from "../library/CallOptions";
 import { H1 } from "../library/html";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
@@ -40,7 +41,7 @@ const Building = ({ building }) => {
             <div>{building.neighborhood}</div>
             <div>{building.name}</div>
           </Col>
-          <Col xs={2}>Modalidades</Col>
+            <Col xs={2}><CallOptions options={ building.call_options }/></Col>
         </Row>
       </Grid>
     </div>
