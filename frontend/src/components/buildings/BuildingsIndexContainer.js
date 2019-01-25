@@ -5,13 +5,15 @@ import { fetchBuildings } from "../../actions/buildingsActions";
 
 function mapStateToProps(state) {
   return {
+    fetching: state.buildingsList.fetching,
+    currentUser: state.currentUser,
     buildings: state.entities.buildings
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchBuildings: fetchBuildings(dispatch),
+    fetchBuildings: fetchBuildings(dispatch)
   };
 }
 
@@ -30,7 +32,9 @@ class BuildingsContainer extends React.Component {
   }
 
   render() {
-    return <BuildingsIndex buildings={this.props.buildings} />;
+    const { buildings, currentUser, fetching } = this.props;
+    const props = { buildings, currentUser, fetching };
+    return <BuildingsIndex {...props} />;
   }
 }
 

@@ -9,9 +9,11 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import currentUserReducer from "./src/reducers/currentUserReducer";
 import buildingsReducer from "./src/reducers/buildingsReducer";
+import buildingsListReducer from "./src/reducers/buildingsListReducer";
 
 const reducers = combineReducers({
   currentUser: currentUserReducer,
+  buildingsList: buildingsListReducer,
   entities: combineReducers({
     buildings: buildingsReducer
   })
@@ -32,7 +34,7 @@ let store = createStore(
   composeEnhancers(applyMiddleware(thunk))
 );
 
-const Apartments = () => <h1>Apartments</h1>;
+const Apartments = () => <h1>Apartamentos</h1>;
 
 const app = (
   <Provider store={store}>
