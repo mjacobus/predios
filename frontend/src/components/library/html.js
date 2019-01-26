@@ -1,6 +1,12 @@
 import React from "react";
 import { css } from "glamor";
 import { fontSizes } from "./styles";
+import {
+  Form,
+  FormControl,
+  ControlLabel,
+  Button as BootstrapButton
+} from "react-bootstrap";
 
 export const H1 = props => {
   const { children, className, ...otherProps } = props;
@@ -13,4 +19,16 @@ export const H1 = props => {
       {children}
     </h1>
   );
+};
+
+export const Input = props => {
+  return <FormControl {...props} />;
+};
+
+export const Label = props => {
+  return <ControlLabel {...props} />;
+};
+
+export const Button = props => {
+  return <BootstrapButton {...props} />;
 };
