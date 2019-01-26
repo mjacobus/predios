@@ -18,3 +18,7 @@ resources :buildings, only: %i[index show edit]
 resources :audits, only: %i[index show]
 
 get '/app/*', to: 'frontend#index'
+
+if Hanami.env == 'development'
+  get '/dev/login', to: 'dev#login'
+end
