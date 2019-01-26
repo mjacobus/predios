@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import BuildingsIndex from "./BuildingsIndex";
 import { fetchBuildings } from "../../actions/buildingsActions";
+import { debug } from "../../utils/log";
 
 function mapStateToProps(state) {
   return {
@@ -44,11 +45,11 @@ class BuildingsContainer extends React.Component {
   }
 
   filter(filter) {
-    this.setState({ filter });
+    this.setState({ filter: filter.toString().toLowerCase() });
   }
 
   filteredBuildings(buildings) {
-    const filter = this.state.filter.toString();
+    const filter = this.state.filter;
 
     if (filter == "") {
       return buildings;
@@ -76,6 +77,7 @@ class BuildingsContainer extends React.Component {
     const props = { currentUser, fetching };
     props.filter = this.filter;
     props.buildings = this.filteredBuildings(buildings);
+    debug(`Filtered with ${this.state.filter}`, props.buildings);
     return <BuildingsIndex {...props} />;
   }
 }

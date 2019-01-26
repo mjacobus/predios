@@ -51,23 +51,27 @@ const Building = ({ building }) => {
 };
 
 const Filter = props => {
+  const className = css({
+    padding: "30px 15px",
+    border: "1px solid #ddd",
+    margin: "30px 15px",
+    background: colors.lightGray
+  });
+
   return (
-    <form>
-    <Grid>
-      <Row>
-        <Col xs={8}>
-            <Input
-              placeholder="Filtro"
-              type="text"
-              onKeyUp={e => props.filter(e.target.value)}
-            />
-        </Col>
-        <Col xs={4}>
-          <Button type="reset" onClick={ () => props.filter('') } >Limpar</Button>
-        </Col>
-      </Row>
-    </Grid>
-</form>
+    <div className={className}>
+      <form>
+        <Input
+          className={css({ width: "70%", marginRight: "15px" })}
+          placeholder="Filtro"
+          type="text"
+          onKeyUp={e => props.filter(e.target.value)}
+        />
+        <Button type="reset" color={"jwBlue"} onClick={() => props.filter("")}>
+          Limpar
+        </Button>
+      </form>
+    </div>
   );
 };
 

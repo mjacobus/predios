@@ -29,7 +29,8 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/parcel start frontend/buildings.html",
-    "build": "./node_modules/.bin/parcel build --no-content-hash frontend/buildings.html",
+    "build": "./node_modules/.bin/parcel build --no-content-hash --no-source-maps frontend/buildings.html",
+    "build-react": "./node_modules/.bin/parcel build --no-content-hash  --no-source-maps frontend/buildings.app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

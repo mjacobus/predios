@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "glamor";
-import { fontSizes } from "./styles";
+import { fontSizes, colors } from "./styles";
 import {
   Form,
   FormControl,
@@ -22,7 +22,19 @@ export const H1 = props => {
 };
 
 export const Input = props => {
-  return <FormControl {...props} />;
+  const { className, ...otherProps } = props;
+  const inputClass = css(
+    {
+      lineHeight: "32px",
+      outline: "none",
+      height: "32px",
+      padding: "0 4px",
+      margin: "none",
+      border: "1px solid #ddd"
+    },
+    className
+  );
+  return <input className={inputClass} {...otherProps} />;
 };
 
 export const Label = props => {
@@ -30,5 +42,24 @@ export const Label = props => {
 };
 
 export const Button = props => {
-  return <BootstrapButton {...props} />;
+  const { color, className, ...otherProps } = props;
+  const background = colors[color];
+  const buttonClass = css(
+    {
+      background,
+      border: "none",
+      color: "white",
+      padding: "0px 12px",
+      fontSize: "14px",
+      textAlign: "center",
+      verticalAlign: "middle",
+      lineHeight: "32px",
+      height: "32px",
+      cursor: "pointer",
+      whiteSpace: "nowrap"
+    },
+    className
+  );
+
+  return <button className={buttonClass} {...otherProps} />;
 };
