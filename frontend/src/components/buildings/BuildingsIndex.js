@@ -3,7 +3,7 @@ import Loader from "../library/Loader";
 import { colors } from "../library/styles";
 import Icon from "../library/Icon";
 import CallOptions from "../library/CallOptions";
-import { H1, Input, Label } from "../library/html";
+import { H1, Input, Label, Button } from "../library/html";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 
@@ -52,17 +52,22 @@ const Building = ({ building }) => {
 
 const Filter = props => {
   return (
+    <form>
     <Grid>
       <Row>
-        <Col xs={12}>
-          <Input
-            placeholder="Filtro"
-            type="text"
-            onKeyUp={e => props.filter(e.target.value)}
-          />
+        <Col xs={8}>
+            <Input
+              placeholder="Filtro"
+              type="text"
+              onKeyUp={e => props.filter(e.target.value)}
+            />
+        </Col>
+        <Col xs={4}>
+          <Button type="reset" onClick={ () => props.filter('') } >Limpar</Button>
         </Col>
       </Row>
     </Grid>
+</form>
   );
 };
 
