@@ -4,7 +4,7 @@ import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from "react-bootstrap";
 export default function AppNavbar(props) {
   const user = props.currentUser;
   return (
-    <Navbar>
+    <Navbar fixedTop={ true }>
       <Navbar.Header>
         <Navbar.Brand>
           <img src={`${user.avatar}?sz=25`} />
