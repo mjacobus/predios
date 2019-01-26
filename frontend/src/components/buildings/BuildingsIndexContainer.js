@@ -17,10 +17,22 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+const compactFilter = element => {
+  return !!element;
+};
+
+const toString = value => {
+  return value.toString().toLowerCase();
+};
+
 class BuildingsContainer extends React.Component {
   constructor(props) {
     super(props);
     this.fetchBuildings = this.fetchBuildings.bind(this);
+    this.filter = this.filter.bind(this);
+    this.state = {
+      filter: ""
+    };
   }
 
   componentDidMount() {
@@ -31,9 +43,39 @@ class BuildingsContainer extends React.Component {
     this.props.fetchBuildings();
   }
 
+  filter(filter) {
+    this.setState({ filter });
+  }
+
+  filteredBuildings(buildings) {
+    const filter = this.state.filter.toString();
+
+    if (filter == "") {
+      return buildings;
+    }
+
+    return buildings.filter(building => {
+      const values = [
+        building.number,
+        building.address,
+        building.neighborhood,
+        building.name
+      ];
+
+      const string = values
+        .filter(compactFilter)
+        .map(toString)
+        .join(" ");
+
+      return string.search(filter) >= 0;
+    });
+  }
+
   render() {
     const { buildings, currentUser, fetching } = this.props;
-    const props = { buildings, currentUser, fetching };
+    const props = { currentUser, fetching };
+    props.filter = this.filter;
+    props.buildings = this.filteredBuildings(buildings);
     return <BuildingsIndex {...props} />;
   }
 }

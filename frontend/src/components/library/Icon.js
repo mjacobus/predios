@@ -8,9 +8,12 @@ export default function Icon(props) {
   const text = props.text || "";
   const className = props.className;
 
-  const iconStyle = css({
-    color: colors.jwBlue
-  }, className);
+  const iconStyle = css(
+    {
+      color: colors.jwBlue
+    },
+    className
+  );
 
   return (
     <span>
