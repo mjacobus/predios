@@ -8,13 +8,5 @@ const defaultContainer = css({
 });
 
 export default function DefaultLayout(props) {
-  return (
-    <div className={defaultContainer}>
-      <Grid fluid={true}>
-        <Row>
-          <Col sm={12}>{props.children}</Col>
-        </Row>
-      </Grid>
-    </div>
-  );
+  return <div className={defaultContainer}>{props.children}</div>;
 }
