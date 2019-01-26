@@ -4,7 +4,9 @@ import { css } from "glamor";
 
 const defaultContainer = css({
   maxWidth: "1170px",
-  margin: "0 auto"
+  margin: "0 auto",
+  marginTop: "51px",
+  paddingTop: "15px"
 });
 
 export default function DefaultLayout(props) {
