@@ -4,7 +4,7 @@ import { colors } from "../library/styles";
 import { A } from "../library/html";
 import Icon from "../library/Icon";
 
-export const ApartmentNumber = props => {
+export const BuildingNumber = props => {
   const className = css({
     width: "35px",
     lineHeight: "35px",

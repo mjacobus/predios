@@ -3,7 +3,7 @@ import Loader from "../library/Loader";
 import { Grid, Col, Row } from "react-bootstrap";
 
 import {
-  ApartmentNumber,
+  BuildingNumber,
   CallOptions,
   NumberOfApartments,
   BuildingAddress,
@@ -42,7 +42,7 @@ export default function BuildingView(props) {
         <Row>
           <Col xs={2}>
             <BuildingLink number={building.number}>
-              <ApartmentNumber>{building.number}</ApartmentNumber>
+              <BuildingNumber>{building.number}</BuildingNumber>
             </BuildingLink>
             <NumberOfApartments>
               {building.number_of_apartments}

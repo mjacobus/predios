@@ -6,7 +6,7 @@ import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 
 import {
-  ApartmentNumber,
+  BuildingNumber,
   NumberOfApartments,
   BuildingAddress,
   Neighborhood,
@@ -27,7 +27,7 @@ const Building = ({ building }) => {
         <Row>
           <Col xs={2}>
             <BuildingLink number={building.number}>
-              <ApartmentNumber>{building.number}</ApartmentNumber>
+              <BuildingNumber>{building.number}</BuildingNumber>
             </BuildingLink>
             <NumberOfApartments>
               {building.number_of_apartments}
