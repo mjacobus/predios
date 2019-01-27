@@ -87,14 +87,14 @@ export const CallOptions = props => {
 };
 
 export const ContactAttempt = props => {
-  const { contactAttempt } = props;
+  const { contactAttempt, otherProps } = props;
 
   if (!contactAttempt) {
     return <span />;
   }
 
   return (
-    <div>
+    <div {...otherProps}>
       <CheckIcon on={contactAttempt.successful}>
         <DateTime>{contactAttempt.time}</DateTime>
       </CheckIcon>
