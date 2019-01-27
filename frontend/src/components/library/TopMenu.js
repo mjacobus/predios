@@ -22,7 +22,7 @@ export default function AppNavbar(props) {
             Prédios{" "}
           </NavItem>
           {user.master && (
-            <NavItem eventKey={2} href="/Users">
+            <NavItem eventKey={2} href="/users">
               {" "}
               Usuários{" "}
             </NavItem>

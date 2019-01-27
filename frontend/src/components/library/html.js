@@ -63,3 +63,9 @@ export const Button = props => {
 
   return <button className={buttonClass} {...otherProps} />;
 };
+
+export const A = props => {
+  const { className, ...otherProps } = props;
+  const linkStyle = css({ color: colors.jwBlue }, className);
+  return <a className={linkStyle} {...otherProps} />
+}

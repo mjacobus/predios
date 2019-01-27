@@ -3,7 +3,7 @@ import Loader from "../library/Loader";
 import { colors } from "../library/styles";
 import Icon from "../library/Icon";
 import CallOptions from "../library/CallOptions";
-import { H1, Input, Label, Button } from "../library/html";
+import { H1, Input, Label, Button, A } from "../library/html";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 
@@ -37,7 +37,9 @@ const Building = ({ building }) => {
             <NumberOfApartments number={building.number_of_apartments} />
           </Col>
           <Col xs={8}>
-            <div>{building.address}</div>
+            <div>
+              <A href={`/buildings/${building.number}`}> {building.address}</A>
+            </div>
             <div>{building.neighborhood}</div>
             <div>{building.name}</div>
           </Col>
