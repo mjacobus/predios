@@ -7,6 +7,7 @@ AllCops:
   Exclude:
     - config/environment.rb
     - apps/web/application.rb
+    - node_modules/**/*
 Layout/AlignParameters:
   Enabled: false
 
