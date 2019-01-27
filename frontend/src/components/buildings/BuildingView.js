@@ -58,7 +58,6 @@ const Apartment = props => {
   const { apartment } = props;
   const className = css({
     padding: "15px 0",
-    margin: "54px 0",
     borderBottom: "1px solid #ddd"
   });
 
@@ -110,9 +109,11 @@ export default function BuildingView(props) {
           </Col>
         </Row>
       </Grid>
-      {building.apartments.map(a => (
-        <Apartment apartment={a} key={a.uuid} />
-      ))}
+      <div className={css({ marginTop: "32px" })}>
+        {building.apartments.map(a => (
+          <Apartment apartment={a} key={a.uuid} />
+        ))}
+      </div>
     </div>
   );
 }
