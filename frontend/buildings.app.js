@@ -42,7 +42,7 @@ const app = (
       <div>
         <TopMenu />
         <DefaultLayout>
-          <Route exact path="/app/buildings" component={BuildingsIndex} />
+          <Route exact path="/buildings" component={BuildingsIndex} />
           <Route
             exact
             path="/app/buildings/:number/apartments"
