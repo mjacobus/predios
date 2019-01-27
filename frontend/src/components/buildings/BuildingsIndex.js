@@ -1,7 +1,6 @@
 import React from "react";
 import Loader from "../library/Loader";
 import { colors } from "../library/styles";
-import CallOptions from "../library/CallOptions";
 import { H1, Input, Label, Button, A } from "../library/html";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
@@ -12,6 +11,7 @@ import {
   BuildingAddress,
   Neighborhood,
   BuildingLink,
+  CallOptions,
   BuildingName
 } from "./index";
 
