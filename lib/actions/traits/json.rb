@@ -8,6 +8,7 @@ module Actions
       def render(body: {}, status: 200)
         self.body = body.to_json
         self.status = status
+        self.format = :json
       end
     end
   end
