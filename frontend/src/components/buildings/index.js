@@ -29,6 +29,10 @@ export const BuildingName = props => {
   return <strong>{props.children}</strong>;
 };
 
+export const ApartmentNumber = props => {
+  return <strong>{props.children}</strong>;
+};
+
 export const BuildingAddress = props => {
   return <div>{props.children}</div>;
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import Loader from "../library/Loader";
 import { Grid, Col, Row } from "react-bootstrap";
+import { css } from "glamor";
 
 import {
   BuildingNumber,
@@ -9,25 +10,32 @@ import {
   BuildingAddress,
   Neighborhood,
   BuildingLink,
+  ApartmentNumber,
   BuildingName
 } from "./index";
 
-const Apartment = (props) => {
+const Apartment = props => {
   const { apartment } = props;
+  const className = css({
+    padding: "15px 0",
+    margin: "10px 0",
+    borderBottom: "1px solid #ddd"
+  });
 
-  return <Grid>
+  return (
+    <div className={className}>
+      <Grid>
         <Row>
           <Col xs={2}>
-            {apartment.number}
+            <ApartmentNumber>{apartment.number}</ApartmentNumber>
           </Col>
-          <Col xs={6}>
-          </Col>
-          <Col xs={4}>
-          </Col>
+          <Col xs={6} />
+          <Col xs={4} />
         </Row>
-    </Grid>
-      
-}
+      </Grid>
+    </div>
+  );
+};
 
 export default function BuildingView(props) {
   const { fetching, building } = props;
@@ -41,9 +49,7 @@ export default function BuildingView(props) {
       <Grid>
         <Row>
           <Col xs={2}>
-            <BuildingLink number={building.number}>
-              <BuildingNumber>{building.number}</BuildingNumber>
-            </BuildingLink>
+            <BuildingNumber>{building.number}</BuildingNumber>
             <NumberOfApartments>
               {building.number_of_apartments}
             </NumberOfApartments>
