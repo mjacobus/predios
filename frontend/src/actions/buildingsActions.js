@@ -11,4 +11,15 @@ const fetchBuildings = dispatch => () => {
   });
 };
 
-export { fetchBuildings };
+const fetchBuildingByNumber = dispatch => number => {
+  dispatch({ type: "FETCHING_BUILDING" });
+
+  apiGet(`/api/buildings/${number}`).end((erro, resp) => {
+    dispatch({
+      type: "BUILDING_FETCHED",
+      building: resp.body
+    });
+  });
+};
+
+export { fetchBuildings, fetchBuildingByNumber };
