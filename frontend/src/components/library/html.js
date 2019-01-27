@@ -66,6 +66,15 @@ export const Button = props => {
 
 export const A = props => {
   const { className, ...otherProps } = props;
-  const linkStyle = css({ color: colors.jwBlue }, className);
+  const linkStyle = css(
+    {
+      color: colors.jwBlue,
+      textDecoration: "",
+      ":hover": {
+        textDecoration: "none"
+      }
+    },
+    className
+  );
   return <a className={linkStyle} {...otherProps} />;
 };

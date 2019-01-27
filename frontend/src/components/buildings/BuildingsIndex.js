@@ -1,26 +1,19 @@
 import React from "react";
 import Loader from "../library/Loader";
 import { colors } from "../library/styles";
-import Icon from "../library/Icon";
 import CallOptions from "../library/CallOptions";
 import { H1, Input, Label, Button, A } from "../library/html";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 
-const NumberOfApartments = props => <Icon type="users" text={props.number} />;
-
-const ApartmentNumber = props => {
-  const className = css({
-    width: "35px",
-    lineHeight: "35px",
-    display: "block",
-    color: "white",
-    background: colors.jwBlue,
-    textAlign: "center",
-    verticalAlign: "middle"
-  });
-  return <span className={className}>{props.number}</span>;
-};
+import {
+  ApartmentNumber,
+  NumberOfApartments,
+  BuildingAddress,
+  Neighborhood,
+  BuildingLink,
+  BuildingName
+} from "./index";
 
 const Building = ({ building }) => {
   const buildingClass = css({
@@ -33,15 +26,21 @@ const Building = ({ building }) => {
       <Grid>
         <Row>
           <Col xs={2}>
-            <ApartmentNumber number={building.number} />
-            <NumberOfApartments number={building.number_of_apartments} />
+            <BuildingLink number={building.number}>
+              <ApartmentNumber>{building.number}</ApartmentNumber>
+            </BuildingLink>
+            <NumberOfApartments>
+              {building.number_of_apartments}
+            </NumberOfApartments>
           </Col>
           <Col xs={8}>
-            <div>
-              <A href={`/buildings/${building.number}`}> {building.address}</A>
-            </div>
-            <div>{building.neighborhood}</div>
-            <div>{building.name}</div>
+            <BuildingLink number={building.number}>
+              <BuildingName>{building.name}</BuildingName>
+            </BuildingLink>
+            <BuildingLink number={building.number}>
+              <BuildingAddress>{building.address}</BuildingAddress>
+            </BuildingLink>
+            <Neighborhood>{building.neighborhood}</Neighborhood>
           </Col>
           <Col xs={2}>
             <CallOptions options={building.call_options} />
