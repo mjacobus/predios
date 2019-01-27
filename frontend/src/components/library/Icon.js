@@ -7,10 +7,12 @@ export default function Icon(props) {
   const style = props.style || "fa";
   const text = props.text || "";
   const className = props.className;
+  const children = props.children;
 
   const iconStyle = css(
     {
-      color: colors.jwBlue
+      color: colors.jwBlue,
+      marginRight: "4px"
     },
     className
   );
@@ -18,7 +20,7 @@ export default function Icon(props) {
   return (
     <span>
       <i className={`${style} fa-${type} ${iconStyle}`} />
-      &nbsp;{text}
+      {children}
     </span>
   );
 }

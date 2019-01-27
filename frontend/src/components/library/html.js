@@ -8,6 +8,8 @@ import {
   Button as BootstrapButton
 } from "react-bootstrap";
 
+import Icon from "./Icon";
+
 export const H1 = props => {
   const { children, className, ...otherProps } = props;
   const classNames = css(
@@ -77,4 +79,17 @@ export const A = props => {
     className
   );
   return <a className={linkStyle} {...otherProps} />;
+};
+
+export const CheckIcon = props => {
+  const { on, ...otherProps } = props;
+  const type = on ? "check" : "times";
+  const className = css({
+    color: on ? colors.green : colors.red
+  });
+  return <Icon className={className} type={type} {...otherProps} />;
+};
+
+export const DateTime = props => {
+  return <span>{props.children}</span>;
 };

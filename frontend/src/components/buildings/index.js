@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "glamor";
 import { colors } from "../library/styles";
-import { A } from "../library/html";
+import { A, CheckIcon, DateTime } from "../library/html";
 import Icon from "../library/Icon";
 
 export const BuildingNumber = props => {
@@ -17,8 +17,33 @@ export const BuildingNumber = props => {
   return <span className={className}>{props.children}</span>;
 };
 
+const recentlyContacted = () => {
+  return true;
+};
+
+export const ApartmentNumber = props => {
+  const { contactAttempts, children, otherProps } = props;
+  const background = recentlyContacted(contactAttempts)
+    ? colors.green
+    : colors.red;
+  const className = css({
+    width: "35px",
+    lineHeight: "35px",
+    display: "block",
+    color: "white",
+    background: background,
+    textAlign: "center",
+    verticalAlign: "middle"
+  });
+  return (
+    <span className={className} {...otherProps}>
+      {children}
+    </span>
+  );
+};
+
 export const NumberOfApartments = props => (
-  <Icon type="users" text={props.children} />
+  <Icon type="users">{props.children}</Icon>
 );
 
 export const Neighborhood = props => {
@@ -26,10 +51,6 @@ export const Neighborhood = props => {
 };
 
 export const BuildingName = props => {
-  return <strong>{props.children}</strong>;
-};
-
-export const ApartmentNumber = props => {
   return <strong>{props.children}</strong>;
 };
 
@@ -63,4 +84,20 @@ export const CallOptions = props => {
   }
 
   return <span className={className}>{elements}</span>;
+};
+
+export const ContactAttempt = props => {
+  const { contactAttempt } = props;
+
+  if (!contactAttempt) {
+    return <span />;
+  }
+
+  return (
+    <div>
+      <CheckIcon on={contactAttempt.successful}>
+        <DateTime>{contactAttempt.time}</DateTime>
+      </CheckIcon>
+    </div>
+  );
 };

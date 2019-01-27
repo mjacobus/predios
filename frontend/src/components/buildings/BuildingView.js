@@ -11,6 +11,7 @@ import {
   Neighborhood,
   BuildingLink,
   ApartmentNumber,
+  ContactAttempt,
   BuildingName
 } from "./index";
 
@@ -18,7 +19,7 @@ const Apartment = props => {
   const { apartment } = props;
   const className = css({
     padding: "15px 0",
-    margin: "10px 0",
+    margin: "54px 0",
     borderBottom: "1px solid #ddd"
   });
 
@@ -27,9 +28,13 @@ const Apartment = props => {
       <Grid>
         <Row>
           <Col xs={2}>
-            <ApartmentNumber>{apartment.number}</ApartmentNumber>
+            <ApartmentNumber contactAttempts={apartment.contact_attempts}>
+              {apartment.number}
+            </ApartmentNumber>
           </Col>
-          <Col xs={6} />
+          <Col xs={6}>
+            <ContactAttempt contactAttempt={apartment.last_contact_attempt} />
+          </Col>
           <Col xs={4} />
         </Row>
       </Grid>
