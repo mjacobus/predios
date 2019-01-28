@@ -103,5 +103,5 @@ export const ContactAttempt = props => {
 };
 
 export const DoorBell = (props) => {
-  return <Button color="#ddd"><Icon css={ css({ color: 'white' }) } type="bell" /></Button>
+  return <Button color="#ddd" {...props}><Icon css={ css({ color: 'white' }) } type="bell" /></Button>
 }

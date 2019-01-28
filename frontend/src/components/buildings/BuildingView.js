@@ -73,7 +73,7 @@ const Apartment = props => {
             <ContactAttempts contactAttempts={apartment.contact_attempts} />
           </Col>
           <Col xs={4}>
-            <DoorBell />
+            <DoorBell className={ css({ float: 'right' }) } />
           </Col>
         </Row>
       </Grid>
