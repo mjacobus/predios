@@ -73,7 +73,7 @@ const Apartment = props => {
             <ContactAttempts contactAttempts={apartment.contact_attempts} />
           </Col>
           <Col xs={4}>
-            <DoorBell className={ css({ float: 'right' }) } />
+            <DoorBell onClick={ () => this.props.bellClick(apartment.uuid) } className={ css({ float: 'right' }) } />
           </Col>
         </Row>
       </Grid>
@@ -81,42 +81,54 @@ const Apartment = props => {
   );
 };
 
-export default function BuildingView(props) {
-  const { fetching, building } = props;
-
-  if (fetching) {
-    return <Loader />;
+export default class BuildingView extends React.Component {
+  constructor(props) {
+    super(props);
   }
 
-  return (
-    <div>
-      <Grid>
-        <Row>
-          <Col xs={2}>
-            <BuildingNumber>{building.number}</BuildingNumber>
-            <NumberOfApartments>
-              {building.number_of_apartments}
-            </NumberOfApartments>
-          </Col>
-          <Col xs={8}>
-            <BuildingLink number={building.number}>
-              <BuildingName>{building.name}</BuildingName>
-            </BuildingLink>
-            <BuildingLink number={building.number}>
-              <BuildingAddress>{building.address}</BuildingAddress>
-            </BuildingLink>
-            <Neighborhood>{building.neighborhood}</Neighborhood>
-          </Col>
-          <Col xs={2}>
-            <CallOptions options={building.call_options} />
-          </Col>
-        </Row>
-      </Grid>
-      <div className={css({ marginTop: "32px" })}>
-        {building.apartments.map(a => (
-          <Apartment apartment={a} key={a.uuid} />
-        ))}
+  render() {
+    const { fetching, building } = this.props;
+
+    if (fetching) {
+      return <Loader />;
+    }
+
+    return (
+      <div>
+        <Grid>
+          <Row>
+            <Col xs={2}>
+              <BuildingNumber>{building.number}</BuildingNumber>
+              <NumberOfApartments>
+                {building.number_of_apartments}
+              </NumberOfApartments>
+            </Col>
+            <Col xs={8}>
+              <BuildingLink number={building.number}>
+                <BuildingName>{building.name}</BuildingName>
+              </BuildingLink>
+              <BuildingLink number={building.number}>
+                <BuildingAddress>{building.address}</BuildingAddress>
+              </BuildingLink>
+              <Neighborhood>{building.neighborhood}</Neighborhood>
+            </Col>
+            <Col xs={2}>
+              <CallOptions options={building.call_options} />
+            </Col>
+          </Row>
+        </Grid>
+        <div className={css({ marginTop: "32px" })}>
+          {building.apartments.map(a => (
+            <Apartment apartment={a} key={a.uuid} />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+//   tryContact(apartment_uuid) {
+//     console.log(uuid);
+//   }
+//  bellClick={ this.tryContact }
+//
