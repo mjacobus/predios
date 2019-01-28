@@ -45,7 +45,7 @@ export const Label = props => {
 
 export const Button = props => {
   const { color, className, ...otherProps } = props;
-  const background = colors[color];
+  const background = colors[color] || color;
   const buttonClass = css(
     {
       background,

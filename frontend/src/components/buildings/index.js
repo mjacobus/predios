@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "glamor";
 import { colors } from "../library/styles";
-import { A, CheckIcon, DateTime } from "../library/html";
+import { Button, A, CheckIcon, DateTime } from "../library/html";
 import Icon from "../library/Icon";
 
 export const BuildingNumber = props => {
@@ -101,3 +101,7 @@ export const ContactAttempt = props => {
     </div>
   );
 };
+
+export const DoorBell = (props) => {
+  return <Button color="#ddd"><Icon css={ css({ color: 'white' }) } type="bell" /></Button>
+}

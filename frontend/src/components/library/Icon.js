@@ -12,15 +12,18 @@ export default function Icon(props) {
   const iconStyle = css(
     {
       color: colors.jwBlue,
-      marginRight: "4px"
     },
     className
   );
 
+  const spanClass = css({
+    marginLeft: children ? '4px' : ''
+  });
+
   return (
     <span>
       <i className={`${style} fa-${type} ${iconStyle}`} />
-      {children}
+      <span className={ spanClass }>{children}</span>
     </span>
   );
 }

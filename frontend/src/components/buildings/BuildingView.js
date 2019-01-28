@@ -12,6 +12,7 @@ import {
   BuildingLink,
   ApartmentNumber,
   ContactAttempt,
+  DoorBell,
   BuildingName
 } from "./index";
 
@@ -71,7 +72,9 @@ const Apartment = props => {
           <Col xs={6}>
             <ContactAttempts contactAttempts={apartment.contact_attempts} />
           </Col>
-          <Col xs={4} />
+          <Col xs={4}>
+            <DoorBell />
+          </Col>
         </Row>
       </Grid>
     </div>
