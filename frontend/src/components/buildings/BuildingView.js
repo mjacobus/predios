@@ -157,11 +157,11 @@ export default function BuildingView(props) {
 const ContactAttemptView = props => {
   const { apartment } = props;
   const actionsClass = css({
-    ' button': {
-      width: '100px',
-      margin: '10px'
+    " button": {
+      width: "100px",
+      margin: "10px"
     }
-  })
+  });
 
   return (
     <div>
@@ -176,11 +176,11 @@ const ContactAttemptView = props => {
         </Row>
         <Row>
           <Col xs={12}>
-            <div className={ actionsClass }>
+            <div className={actionsClass}>
               <Button
                 color="green"
                 onClick={e =>
-                    props.handleCreateContactAttempt(apartment, "contacted")
+                  props.handleCreateContactAttempt(apartment, "contacted")
                 }
               >
                 Sim
@@ -188,7 +188,7 @@ const ContactAttemptView = props => {
               <Button
                 color="red"
                 onClick={e =>
-                    props.handleCreateContactAttempt(apartment, "failed")
+                  props.handleCreateContactAttempt(apartment, "failed")
                 }
               >
                 Não
@@ -198,8 +198,10 @@ const ContactAttemptView = props => {
         </Row>
         <Row>
           <Col xs={12}>
-            <div className={ actionsClass }>
-              <Button onClick={e => props.cancelContactAttempt()}>Cancelar</Button>
+            <div className={actionsClass}>
+              <Button onClick={e => props.cancelContactAttempt()}>
+                Cancelar
+              </Button>
             </div>
           </Col>
         </Row>

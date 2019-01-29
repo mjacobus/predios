@@ -24,15 +24,12 @@ const recentlyContacted = () => {
 
 export const ApartmentNumber = props => {
   const { contactAttempts, children, otherProps } = props;
-  const background = recentlyContacted(contactAttempts)
-    ? colors.green
-    : colors.red;
   const className = css({
     width: "35px",
     lineHeight: "35px",
     display: "block",
     color: "white",
-    background: background,
+    background: colors.jwBlue,
     textAlign: "center",
     verticalAlign: "middle"
   });
@@ -103,6 +100,10 @@ export const ContactAttempt = props => {
   );
 };
 
-export const DoorBell = (props) => {
-  return <Button color="#ddd" {...props}><Icon css={ css({ color: 'white' }) } type="bell" /></Button>
-}
+export const DoorBell = props => {
+  return (
+    <Button color="#ddd" {...props}>
+      <Icon css={css({ color: "white" })} type="bell" />
+    </Button>
+  );
+};
