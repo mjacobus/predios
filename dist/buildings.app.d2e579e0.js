@@ -54610,11 +54610,20 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.apiGet = apiGet;
+exports.apiPost = apiPost;
 
 var _superagent = require("superagent");
 
+var apiRequest = function apiRequest(request) {
+  return request.type("json").accept("json");
+};
+
 function apiGet(url) {
-  return (0, _superagent.get)(url).type("json").accept("json");
+  return apiRequest((0, _superagent.get)(url));
+}
+
+function apiPost(url) {
+  return apiRequest((0, _superagent.post)(url));
 }
 },{"superagent":"../node_modules/superagent/lib/client.js"}],"src/actions/buildingsActions.js":[function(require,module,exports) {
 "use strict";
@@ -54622,7 +54631,7 @@ function apiGet(url) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchBuildingByNumber = exports.fetchBuildings = void 0;
+exports.createContactAttempt = exports.attemptContactOn = exports.fetchBuildingByNumber = exports.fetchBuildings = void 0;
 
 var _api = require("../utils/api.js");
 
@@ -54657,6 +54666,46 @@ var fetchBuildingByNumber = function fetchBuildingByNumber(dispatch) {
 };
 
 exports.fetchBuildingByNumber = fetchBuildingByNumber;
+
+var attemptContactOn = function attemptContactOn(dispatch) {
+  return function (apartment) {
+    dispatch({
+      type: "ATTEMPT_CONTACT_ON",
+      apartment: apartment
+    });
+  };
+};
+
+exports.attemptContactOn = attemptContactOn;
+
+var createContactAttempt = function createContactAttempt(dispatch) {
+  return function (_ref) {
+    var building = _ref.building,
+        apartment = _ref.apartment,
+        outcome = _ref.outcome;
+    dispatch({
+      type: "CREATING_CONTACT_ATTEMPT"
+    });
+    var payload = {
+      contact_attempt: {
+        apartment_id: apartment.uuid,
+        outcome: outcome
+      }
+    };
+    (0, _api.apiPost)("/api/buildings/".concat(building.number, "/apartments/").concat(apartment.id, "/assign_visit_attempt")).send(payload).end(function (error, resp) {
+      if (error) {
+        throw new Error(error);
+      }
+
+      dispatch({
+        type: "CONTACT_ATTEMPT_CREATED"
+      });
+      fetchBuildingByNumber(dispatch)(building.number);
+    });
+  };
+};
+
+exports.createContactAttempt = createContactAttempt;
 },{"../utils/api.js":"src/utils/api.js"}],"src/utils/log.js":[function(require,module,exports) {
 "use strict";
 
@@ -54826,7 +54875,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = BuildingView;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -54945,111 +54994,56 @@ var Apartment = function Apartment(props) {
   })))));
 };
 
-var BuildingView =
-/*#__PURE__*/
-function (_React$Component2) {
-  _inherits(BuildingView, _React$Component2);
+function BuildingView(props) {
+  var fetching = props.fetching,
+      building = props.building,
+      cancelContactAttempt = props.cancelContactAttempt,
+      createContactAttempt = props.createContactAttempt;
+  var _bellClick = props.bellClick;
 
-  function BuildingView(props) {
-    var _this2;
-
-    _classCallCheck(this, BuildingView);
-
-    _this2 = _possibleConstructorReturn(this, _getPrototypeOf(BuildingView).call(this, props));
-    _this2.bellClick = _this2.bellClick.bind(_assertThisInitialized(_assertThisInitialized(_this2)));
-    _this2.cancelContactAttempt = _this2.cancelContactAttempt.bind(_assertThisInitialized(_assertThisInitialized(_this2)));
-    _this2.setContacted = _this2.setContacted.bind(_assertThisInitialized(_assertThisInitialized(_this2)));
-    _this2.setNotHome = _this2.setNotHome.bind(_assertThisInitialized(_assertThisInitialized(_this2)));
-    _this2.state = {
-      contactAttemptOn: null
-    };
-    return _this2;
+  if (fetching) {
+    return _react.default.createElement(_Loader.default, null);
   }
 
-  _createClass(BuildingView, [{
-    key: "bellClick",
-    value: function bellClick(apartment) {
-      this.setState({
-        contactAttemptOn: apartment
-      });
-    }
-  }, {
-    key: "cancelContactAttempt",
-    value: function cancelContactAttempt() {
-      this.setState({
-        contactAttemptOn: null
-      });
-    }
-  }, {
-    key: "setContacted",
-    value: function setContacted(apartment) {
-      console.log("contacted");
-    }
-  }, {
-    key: "setNotHome",
-    value: function setNotHome(apartment) {
-      console.log("not home");
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          fetching = _this$props.fetching,
-          building = _this$props.building;
-      var _bellClick = this.bellClick;
+  var apartments = building.apartments;
+  var apartment = props.contactAttemptOn;
+  var handleCreateContactAttempt = props.handleCreateContactAttempt;
+  var contactAttemptProps = {
+    apartment: apartment,
+    handleCreateContactAttempt: handleCreateContactAttempt,
+    cancelContactAttempt: cancelContactAttempt
+  };
 
-      if (fetching) {
-        return _react.default.createElement(_Loader.default, null);
+  if (props.contactAttemptOn) {
+    apartments = [];
+  }
+
+  return _react.default.createElement("div", null, _react.default.createElement(_reactBootstrap.Grid, null, _react.default.createElement(_reactBootstrap.Row, null, _react.default.createElement(_reactBootstrap.Col, {
+    xs: 2
+  }, _react.default.createElement(_index.BuildingNumber, null, building.number), _react.default.createElement(_index.NumberOfApartments, null, building.number_of_apartments)), _react.default.createElement(_reactBootstrap.Col, {
+    xs: 8
+  }, _react.default.createElement(_index.BuildingLink, {
+    number: building.number
+  }, _react.default.createElement(_index.BuildingName, null, building.name)), _react.default.createElement(_index.BuildingLink, {
+    number: building.number
+  }, _react.default.createElement(_index.BuildingAddress, null, building.address)), _react.default.createElement(_index.Neighborhood, null, building.neighborhood)), _react.default.createElement(_reactBootstrap.Col, {
+    xs: 2
+  }, _react.default.createElement(_index.CallOptions, {
+    options: building.call_options
+  })))), _react.default.createElement("div", {
+    className: (0, _glamor.css)({
+      marginTop: "32px"
+    })
+  }, props.contactAttemptOn && _react.default.createElement(ContactAttemptView, contactAttemptProps), apartments.map(function (a) {
+    return _react.default.createElement(Apartment, {
+      apartment: a,
+      key: a.uuid,
+      bellClick: function bellClick() {
+        return _bellClick(a);
       }
-
-      var apartments = building.apartments;
-      var apartment = this.state.contactAttemptOn;
-      var cancelContactAttempt = this.cancelContactAttempt;
-      var setContacted = this.setContacted;
-      var setNotHome = this.setNotHome;
-      var contactAttemptProps = {
-        apartment: apartment,
-        cancelContactAttempt: cancelContactAttempt,
-        setContacted: setContacted,
-        setNotHome: setNotHome
-      };
-
-      if (this.state.contactAttemptOn) {
-        apartments = [];
-      }
-
-      return _react.default.createElement("div", null, _react.default.createElement(_reactBootstrap.Grid, null, _react.default.createElement(_reactBootstrap.Row, null, _react.default.createElement(_reactBootstrap.Col, {
-        xs: 2
-      }, _react.default.createElement(_index.BuildingNumber, null, building.number), _react.default.createElement(_index.NumberOfApartments, null, building.number_of_apartments)), _react.default.createElement(_reactBootstrap.Col, {
-        xs: 8
-      }, _react.default.createElement(_index.BuildingLink, {
-        number: building.number
-      }, _react.default.createElement(_index.BuildingName, null, building.name)), _react.default.createElement(_index.BuildingLink, {
-        number: building.number
-      }, _react.default.createElement(_index.BuildingAddress, null, building.address)), _react.default.createElement(_index.Neighborhood, null, building.neighborhood)), _react.default.createElement(_reactBootstrap.Col, {
-        xs: 2
-      }, _react.default.createElement(_index.CallOptions, {
-        options: building.call_options
-      })))), _react.default.createElement("div", {
-        className: (0, _glamor.css)({
-          marginTop: "32px"
-        })
-      }, this.state.contactAttemptOn && _react.default.createElement(ContactAttemptView, contactAttemptProps), apartments.map(function (a) {
-        return _react.default.createElement(Apartment, {
-          apartment: a,
-          key: a.uuid,
-          bellClick: function bellClick() {
-            return _bellClick(a);
-          }
-        });
-      })));
-    }
-  }]);
-
-  return BuildingView;
-}(_react.default.Component);
-
-exports.default = BuildingView;
+    });
+  })));
+}
 
 var ContactAttemptView = function ContactAttemptView(props) {
   var apartment = props.apartment;
@@ -55063,15 +55057,103 @@ var ContactAttemptView = function ContactAttemptView(props) {
     }
   }, "Cancelar"), _react.default.createElement(_html.A, {
     onClick: function onClick(e) {
-      return props.setNotHome(apartment);
+      return props.handleCreateContactAttempt(apartment, "failed");
     }
   }, "N\xE3o"), _react.default.createElement(_html.A, {
     onClick: function onClick(e) {
-      return props.setContacted(apartment);
+      return props.handleCreateContactAttempt(apartment, "contacted");
     }
   }, "Sim")))));
 };
-},{"react":"../node_modules/react/index.js","../library/Loader":"src/components/library/Loader.js","react-bootstrap":"../node_modules/react-bootstrap/es/index.js","glamor":"../node_modules/glamor/lib/index.js","../library/html":"src/components/library/html.js","./index":"src/components/buildings/index.js"}],"src/components/buildings/BuildingViewContainer.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../library/Loader":"src/components/library/Loader.js","react-bootstrap":"../node_modules/react-bootstrap/es/index.js","glamor":"../node_modules/glamor/lib/index.js","../library/html":"src/components/library/html.js","./index":"src/components/buildings/index.js"}],"../node_modules/react-router/es/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "MemoryRouter", {
+  enumerable: true,
+  get: function () {
+    return _MemoryRouter2.default;
+  }
+});
+Object.defineProperty(exports, "Prompt", {
+  enumerable: true,
+  get: function () {
+    return _Prompt2.default;
+  }
+});
+Object.defineProperty(exports, "Redirect", {
+  enumerable: true,
+  get: function () {
+    return _Redirect2.default;
+  }
+});
+Object.defineProperty(exports, "Route", {
+  enumerable: true,
+  get: function () {
+    return _Route2.default;
+  }
+});
+Object.defineProperty(exports, "Router", {
+  enumerable: true,
+  get: function () {
+    return _Router2.default;
+  }
+});
+Object.defineProperty(exports, "StaticRouter", {
+  enumerable: true,
+  get: function () {
+    return _StaticRouter2.default;
+  }
+});
+Object.defineProperty(exports, "Switch", {
+  enumerable: true,
+  get: function () {
+    return _Switch2.default;
+  }
+});
+Object.defineProperty(exports, "generatePath", {
+  enumerable: true,
+  get: function () {
+    return _generatePath2.default;
+  }
+});
+Object.defineProperty(exports, "matchPath", {
+  enumerable: true,
+  get: function () {
+    return _matchPath2.default;
+  }
+});
+Object.defineProperty(exports, "withRouter", {
+  enumerable: true,
+  get: function () {
+    return _withRouter2.default;
+  }
+});
+
+var _MemoryRouter2 = _interopRequireDefault(require("./MemoryRouter"));
+
+var _Prompt2 = _interopRequireDefault(require("./Prompt"));
+
+var _Redirect2 = _interopRequireDefault(require("./Redirect"));
+
+var _Route2 = _interopRequireDefault(require("./Route"));
+
+var _Router2 = _interopRequireDefault(require("./Router"));
+
+var _StaticRouter2 = _interopRequireDefault(require("./StaticRouter"));
+
+var _Switch2 = _interopRequireDefault(require("./Switch"));
+
+var _generatePath2 = _interopRequireDefault(require("./generatePath"));
+
+var _matchPath2 = _interopRequireDefault(require("./matchPath"));
+
+var _withRouter2 = _interopRequireDefault(require("./withRouter"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./MemoryRouter":"../node_modules/react-router/es/MemoryRouter.js","./Prompt":"../node_modules/react-router/es/Prompt.js","./Redirect":"../node_modules/react-router/es/Redirect.js","./Route":"../node_modules/react-router/es/Route.js","./Router":"../node_modules/react-router/es/Router.js","./StaticRouter":"../node_modules/react-router/es/StaticRouter.js","./Switch":"../node_modules/react-router/es/Switch.js","./generatePath":"../node_modules/react-router/es/generatePath.js","./matchPath":"../node_modules/react-router/es/matchPath.js","./withRouter":"../node_modules/react-router/es/withRouter.js"}],"src/components/buildings/BuildingViewContainer.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55085,13 +55167,23 @@ var _reactRedux = require("react-redux");
 
 var _BuildingView = _interopRequireDefault(require("./BuildingView"));
 
-var _buildingsActions = require("../../actions/buildingsActions");
-
 var _log = require("../../utils/log");
+
+var _reactRouter = require("react-router");
+
+var _buildingsActions = require("../../actions/buildingsActions");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -55101,24 +55193,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function mapStateToProps(state) {
   return {
     building: state.buildingView.building,
-    fetching: state.buildingView.fetching
+    fetching: state.buildingView.fetching,
+    contactAttemptOn: state.buildingView.contactAttemptOn
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchBuildingByNumber: (0, _buildingsActions.fetchBuildingByNumber)(dispatch)
+    createContactAttempt: (0, _buildingsActions.createContactAttempt)(dispatch),
+    fetchBuildingByNumber: (0, _buildingsActions.fetchBuildingByNumber)(dispatch),
+    attemptContactOn: (0, _buildingsActions.attemptContactOn)(dispatch)
   };
 }
 
@@ -55128,9 +55223,18 @@ function (_React$Component) {
   _inherits(BuildingViewContainer, _React$Component);
 
   function BuildingViewContainer(props) {
+    var _this;
+
     _classCallCheck(this, BuildingViewContainer);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(BuildingViewContainer).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BuildingViewContainer).call(this, props));
+    _this.state = {
+      contactAttemptOn: null
+    };
+    _this.bellClick = _this.bellClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.cancelContactAttempt = _this.cancelContactAttempt.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleCreateContactAttempt = _this.handleCreateContactAttempt.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
   }
 
   _createClass(BuildingViewContainer, [{
@@ -55140,15 +55244,48 @@ function (_React$Component) {
       this.props.fetchBuildingByNumber(number);
     }
   }, {
+    key: "cancelContactAttempt",
+    value: function cancelContactAttempt() {
+      this.props.attemptContactOn(null);
+    }
+  }, {
+    key: "handleCreateContactAttempt",
+    value: function handleCreateContactAttempt(apartment, outcome) {
+      var building = this.props.building;
+      var payload = {
+        building: building,
+        apartment: apartment,
+        outcome: outcome
+      };
+      this.props.createContactAttempt(payload);
+    }
+  }, {
+    key: "bellClick",
+    value: function bellClick(apartment) {
+      this.props.attemptContactOn(apartment);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           fetching = _this$props.fetching,
-          building = _this$props.building;
-      return _react.default.createElement(_BuildingView.default, {
+          building = _this$props.building,
+          reload = _this$props.reload,
+          otherProps = _objectWithoutProperties(_this$props, ["fetching", "building", "reload"]);
+
+      var bellClick = this.bellClick;
+      var handleCreateContactAttempt = this.handleCreateContactAttempt;
+
+      var props = _objectSpread({
+        contactAttemptOn: this.props.contactAttemptOn,
+        cancelContactAttempt: this.cancelContactAttempt,
+        handleCreateContactAttempt: handleCreateContactAttempt,
+        bellClick: bellClick,
         building: building,
         fetching: fetching
-      });
+      }, otherProps);
+
+      return _react.default.createElement(_BuildingView.default, props);
     }
   }]);
 
@@ -55158,7 +55295,7 @@ function (_React$Component) {
 var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(BuildingViewContainer);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","./BuildingView":"src/components/buildings/BuildingView.js","../../actions/buildingsActions":"src/actions/buildingsActions.js","../../utils/log":"src/utils/log.js"}],"../node_modules/redux-thunk/es/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-redux":"../node_modules/react-redux/es/index.js","./BuildingView":"src/components/buildings/BuildingView.js","../../utils/log":"src/utils/log.js","react-router":"../node_modules/react-router/es/index.js","../../actions/buildingsActions":"src/actions/buildingsActions.js"}],"../node_modules/redux-thunk/es/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -55269,7 +55406,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var DEFAULT_STATE = {
   fetching: true,
-  building: null
+  building: null,
+  contactAttemptOn: null
 };
 
 function buildingsViewReducer() {
@@ -55285,7 +55423,26 @@ function buildingsViewReducer() {
   if (action.type == "BUILDING_FETCHED") {
     return _objectSpread({}, state, {
       building: action.building,
-      fetching: false
+      fetching: false,
+      contactAttemptOn: null
+    });
+  }
+
+  if (action.type == "CREATING_CONTACT_ATTEMPT") {
+    return _objectSpread({}, state, {
+      fetching: true
+    });
+  }
+
+  if (action.type == "CONTACT_ATTEMPT_CREATED") {
+    return _objectSpread({}, state, {
+      contactAttemptOn: null
+    });
+  }
+
+  if (action.type == "ATTEMPT_CONTACT_ON") {
+    return _objectSpread({}, state, {
+      contactAttemptOn: action.apartment
     });
   }
 

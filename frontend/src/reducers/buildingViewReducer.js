@@ -1,7 +1,7 @@
 const DEFAULT_STATE = {
   fetching: true,
   building: null,
-  reload: null,
+  contactAttemptOn: null
 };
 
 export default function buildingsViewReducer(state = DEFAULT_STATE, action) {
@@ -16,8 +16,8 @@ export default function buildingsViewReducer(state = DEFAULT_STATE, action) {
     return {
       ...state,
       building: action.building,
-      reload: false,
-      fetching: false
+      fetching: false,
+      contactAttemptOn: null
     };
   }
 
@@ -29,10 +29,16 @@ export default function buildingsViewReducer(state = DEFAULT_STATE, action) {
   }
 
   if (action.type == "CONTACT_ATTEMPT_CREATED") {
-    console.log('reloadeeeeeeeeeed')
     return {
       ...state,
-      reload: true,
+      contactAttemptOn: null
+    };
+  }
+
+  if (action.type == "ATTEMPT_CONTACT_ON") {
+    return {
+      ...state,
+      contactAttemptOn: action.apartment
     };
   }
 

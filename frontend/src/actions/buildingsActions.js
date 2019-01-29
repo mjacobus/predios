@@ -24,10 +24,15 @@ const fetchBuildingByNumber = dispatch => number => {
 
 export { fetchBuildings, fetchBuildingByNumber };
 
-export const createContactAttempt = dispatch => (
-  { building, apartment, outcome },
-  callback
-) => {
+export const attemptContactOn = dispatch => apartment => {
+  dispatch({ type: "ATTEMPT_CONTACT_ON", apartment });
+};
+
+export const createContactAttempt = dispatch => ({
+  building,
+  apartment,
+  outcome
+}) => {
   dispatch({ type: "CREATING_CONTACT_ATTEMPT" });
 
   const payload = {
@@ -46,5 +51,6 @@ export const createContactAttempt = dispatch => (
       }
 
       dispatch({ type: "CONTACT_ATTEMPT_CREATED" });
+      fetchBuildingByNumber(dispatch)(building.number);
     });
 };

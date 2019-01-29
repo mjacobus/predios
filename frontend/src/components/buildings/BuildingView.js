@@ -85,94 +85,73 @@ const Apartment = props => {
   );
 };
 
-export default class BuildingView extends React.Component {
-  constructor(props) {
-    super(props);
-    this.bellClick = this.bellClick.bind(this);
-    this.cancelContactAttempt = this.cancelContactAttempt.bind(this);
-    this.createContactAttempt = this.createContactAttempt.bind(this);
-    this.state = { contactAttemptOn: null };
+export default function BuildingView(props) {
+  const {
+    fetching,
+    building,
+    cancelContactAttempt,
+    createContactAttempt
+  } = props;
+
+  const bellClick = props.bellClick;
+
+  if (fetching) {
+    return <Loader />;
   }
 
-  bellClick(apartment) {
-    this.setState({ contactAttemptOn: apartment });
+  let apartments = building.apartments;
+  const apartment = props.contactAttemptOn;
+
+  const { handleCreateContactAttempt } = props;
+
+  const contactAttemptProps = {
+    apartment,
+    handleCreateContactAttempt,
+    cancelContactAttempt
+  };
+
+  if (props.contactAttemptOn) {
+    apartments = [];
   }
 
-  cancelContactAttempt() {
-    this.setState({ contactAttemptOn: null });
-  }
-
-  createContactAttempt(apartment, outcome) {
-    const { building } = this.props;
-    let payload = {
-      building,
-      apartment,
-      outcome
-    };
-    this.props.createContactAttempt(payload);
-  }
-
-  render() {
-    const { fetching, building } = this.props;
-    const bellClick = this.bellClick;
-
-    if (fetching) {
-      return <Loader />;
-    }
-
-    let apartments = building.apartments;
-    const apartment = this.state.contactAttemptOn;
-    const cancelContactAttempt = this.cancelContactAttempt;
-    const createContactAttempt = this.createContactAttempt;
-    const contactAttemptProps = {
-      apartment,
-      cancelContactAttempt,
-      createContactAttempt
-    };
-
-    if (this.state.contactAttemptOn) {
-      apartments = [];
-    }
-
-    return (
-      <div>
-        <Grid>
-          <Row>
-            <Col xs={2}>
-              <BuildingNumber>{building.number}</BuildingNumber>
-              <NumberOfApartments>
-                {building.number_of_apartments}
-              </NumberOfApartments>
-            </Col>
-            <Col xs={8}>
-              <BuildingLink number={building.number}>
-                <BuildingName>{building.name}</BuildingName>
-              </BuildingLink>
-              <BuildingLink number={building.number}>
-                <BuildingAddress>{building.address}</BuildingAddress>
-              </BuildingLink>
-              <Neighborhood>{building.neighborhood}</Neighborhood>
-            </Col>
-            <Col xs={2}>
-              <CallOptions options={building.call_options} />
-            </Col>
-          </Row>
-        </Grid>
-        <div className={css({ marginTop: "32px" })}>
-          {this.state.contactAttemptOn && (
-            <ContactAttemptView {...contactAttemptProps} />
-          )}
-          {apartments.map(a => (
-            <Apartment
-              apartment={a}
-              key={a.uuid}
-              bellClick={() => bellClick(a)}
-            />
-          ))}
-        </div>
+  return (
+    <div>
+      <Grid>
+        <Row>
+          <Col xs={2}>
+            <BuildingNumber>{building.number}</BuildingNumber>
+            <NumberOfApartments>
+              {building.number_of_apartments}
+            </NumberOfApartments>
+          </Col>
+          <Col xs={8}>
+            <BuildingLink number={building.number}>
+              <BuildingName>{building.name}</BuildingName>
+            </BuildingLink>
+            <BuildingLink number={building.number}>
+              <BuildingAddress>{building.address}</BuildingAddress>
+            </BuildingLink>
+            <Neighborhood>{building.neighborhood}</Neighborhood>
+          </Col>
+          <Col xs={2}>
+            <CallOptions options={building.call_options} />
+          </Col>
+        </Row>
+      </Grid>
+      <div className={css({ marginTop: "32px" })}>
+        {props.contactAttemptOn && (
+          <ContactAttemptView {...contactAttemptProps} />
+        )}
+        {apartments.map(a => (
+          <Apartment
+            apartment={a}
+            key={a.uuid}
+            bellClick={() => bellClick(a)}
+          />
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 const ContactAttemptView = props => {
@@ -192,11 +171,17 @@ const ContactAttemptView = props => {
         <Row>
           <Col xs={12}>
             <A onClick={e => props.cancelContactAttempt()}>Cancelar</A>
-            <A onClick={e => props.createContactAttempt(apartment, "failed")}>
+            <A
+              onClick={e =>
+                props.handleCreateContactAttempt(apartment, "failed")
+              }
+            >
               Não
             </A>
             <A
-              onClick={e => props.createContactAttempt(apartment, "contacted")}
+              onClick={e =>
+                props.handleCreateContactAttempt(apartment, "contacted")
+              }
             >
               Sim
             </A>
