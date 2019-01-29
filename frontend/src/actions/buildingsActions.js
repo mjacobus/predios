@@ -1,4 +1,4 @@
-import { apiGet } from "../utils/api.js";
+import { apiGet, apiPost } from "../utils/api.js";
 
 const fetchBuildings = dispatch => () => {
   dispatch({ type: "FETCHING_BUILDINGS" });
@@ -23,3 +23,28 @@ const fetchBuildingByNumber = dispatch => number => {
 };
 
 export { fetchBuildings, fetchBuildingByNumber };
+
+export const createContactAttempt = dispatch => (
+  { building, apartment, outcome },
+  callback
+) => {
+  dispatch({ type: "CREATING_CONTACT_ATTEMPT" });
+
+  const payload = {
+    contact_attempt: { apartment_id: apartment.uuid, outcome }
+  };
+
+  apiPost(
+    `/api/buildings/${building.number}/apartments/${
+      apartment.id
+    }/assign_visit_attempt`
+  )
+    .send(payload)
+    .end((error, resp) => {
+      if (error) {
+        throw new Error(error);
+      }
+
+      dispatch({ type: "CONTACT_ATTEMPT_CREATED" });
+    });
+};

@@ -2,6 +2,7 @@ import React from "react";
 import Loader from "../library/Loader";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
+import { A } from "../library/html";
 
 import {
   BuildingNumber,
@@ -73,7 +74,10 @@ const Apartment = props => {
             <ContactAttempts contactAttempts={apartment.contact_attempts} />
           </Col>
           <Col xs={4}>
-            <DoorBell onClick={ () => this.props.bellClick(apartment.uuid) } className={ css({ float: 'right' }) } />
+            <DoorBell
+              onClick={() => props.bellClick(apartment.uuid)}
+              className={css({ float: "right" })}
+            />
           </Col>
         </Row>
       </Grid>
@@ -84,13 +88,50 @@ const Apartment = props => {
 export default class BuildingView extends React.Component {
   constructor(props) {
     super(props);
+    this.bellClick = this.bellClick.bind(this);
+    this.cancelContactAttempt = this.cancelContactAttempt.bind(this);
+    this.createContactAttempt = this.createContactAttempt.bind(this);
+    this.state = { contactAttemptOn: null };
+  }
+
+  bellClick(apartment) {
+    this.setState({ contactAttemptOn: apartment });
+  }
+
+  cancelContactAttempt() {
+    this.setState({ contactAttemptOn: null });
+  }
+
+  createContactAttempt(apartment, outcome) {
+    const { building } = this.props;
+    let payload = {
+      building,
+      apartment,
+      outcome
+    };
+    this.props.createContactAttempt(payload);
   }
 
   render() {
     const { fetching, building } = this.props;
+    const bellClick = this.bellClick;
 
     if (fetching) {
       return <Loader />;
+    }
+
+    let apartments = building.apartments;
+    const apartment = this.state.contactAttemptOn;
+    const cancelContactAttempt = this.cancelContactAttempt;
+    const createContactAttempt = this.createContactAttempt;
+    const contactAttemptProps = {
+      apartment,
+      cancelContactAttempt,
+      createContactAttempt
+    };
+
+    if (this.state.contactAttemptOn) {
+      apartments = [];
     }
 
     return (
@@ -118,8 +159,15 @@ export default class BuildingView extends React.Component {
           </Row>
         </Grid>
         <div className={css({ marginTop: "32px" })}>
-          {building.apartments.map(a => (
-            <Apartment apartment={a} key={a.uuid} />
+          {this.state.contactAttemptOn && (
+            <ContactAttemptView {...contactAttemptProps} />
+          )}
+          {apartments.map(a => (
+            <Apartment
+              apartment={a}
+              key={a.uuid}
+              bellClick={() => bellClick(a)}
+            />
           ))}
         </div>
       </div>
@@ -127,8 +175,34 @@ export default class BuildingView extends React.Component {
   }
 }
 
-//   tryContact(apartment_uuid) {
-//     console.log(uuid);
-//   }
-//  bellClick={ this.tryContact }
-//
+const ContactAttemptView = props => {
+  const { apartment } = props;
+
+  return (
+    <div>
+      <Grid>
+        <Row>
+          <Col xs={12}>
+            <p>
+              Conseguiu falar com o morador do apartamento{" "}
+              <strong>{apartment.number}</strong>?
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <A onClick={e => props.cancelContactAttempt()}>Cancelar</A>
+            <A onClick={e => props.createContactAttempt(apartment, "failed")}>
+              Não
+            </A>
+            <A
+              onClick={e => props.createContactAttempt(apartment, "contacted")}
+            >
+              Sim
+            </A>
+          </Col>
+        </Row>
+      </Grid>
+    </div>
+  );
+};

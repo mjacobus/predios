@@ -1,6 +1,7 @@
 const DEFAULT_STATE = {
   fetching: true,
-  building: null
+  building: null,
+  reload: null,
 };
 
 export default function buildingsViewReducer(state = DEFAULT_STATE, action) {
@@ -15,7 +16,23 @@ export default function buildingsViewReducer(state = DEFAULT_STATE, action) {
     return {
       ...state,
       building: action.building,
+      reload: false,
       fetching: false
+    };
+  }
+
+  if (action.type == "CREATING_CONTACT_ATTEMPT") {
+    return {
+      ...state,
+      fetching: true
+    };
+  }
+
+  if (action.type == "CONTACT_ATTEMPT_CREATED") {
+    console.log('reloadeeeeeeeeeed')
+    return {
+      ...state,
+      reload: true,
     };
   }
 
