@@ -138,7 +138,7 @@ export default function BuildingView(props) {
           </Col>
         </Row>
       </Grid>
-      {props.apartmentForm}
+      {props.building.has_all_apartments || props.apartmentForm}
       <div className={css({ marginTop: "32px" })}>
         {props.contactAttemptOn && (
           <ContactAttemptView {...contactAttemptProps} />
