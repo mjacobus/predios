@@ -8,6 +8,7 @@ import {
   attemptContactOn,
   createContactAttempt
 } from "../../actions/buildingsActions";
+import ApartmentForm from "./ApartmentFormContainer";
 
 function mapStateToProps(state) {
   return {
@@ -67,6 +68,13 @@ class BuildingViewContainer extends React.Component {
   render() {
     const { fetching, building, reload, ...otherProps } = this.props;
 
+    const apartmentForm = (
+      <ApartmentForm
+        building={building}
+        submitHandler={this.props.createApartmentHandler}
+      />
+    );
+
     const bellClick = this.bellClick;
     const handleCreateContactAttempt = this.handleCreateContactAttempt;
     const props = {
@@ -76,6 +84,7 @@ class BuildingViewContainer extends React.Component {
       bellClick,
       building,
       fetching,
+      apartmentForm,
       ...otherProps
     };
 
