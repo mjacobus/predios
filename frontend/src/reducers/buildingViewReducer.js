@@ -1,6 +1,7 @@
 const DEFAULT_STATE = {
   fetching: true,
   building: null,
+  creatingApartment: null,
   contactAttemptOn: null
 };
 
@@ -39,6 +40,20 @@ export default function buildingsViewReducer(state = DEFAULT_STATE, action) {
     return {
       ...state,
       contactAttemptOn: action.apartment
+    };
+  }
+
+  if (action.type == "CREATING_APARTMENT") {
+    return {
+      ...state,
+      creatingApartment: true
+    };
+  }
+
+  if (action.type == "APARTMENT_CREATED") {
+    return {
+      ...state,
+      creatingApartment: null
     };
   }
 

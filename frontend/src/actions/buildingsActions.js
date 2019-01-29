@@ -54,3 +54,15 @@ export const createContactAttempt = dispatch => ({
       fetchBuildingByNumber(dispatch)(building.number);
     });
 };
+
+export const createApartment = dispatch => ({ building, number }) => {
+  dispatch({ type: "CREATING_APARTMENT" });
+
+  apiPost(`/api/buildings/${building.number}/apartments`)
+    .send({
+      apartment: { building_id: building.uuid, number }
+    })
+    .end((error, response) => {
+      dispatch({ type: "APARTMENT_CREATED" });
+    });
+};
