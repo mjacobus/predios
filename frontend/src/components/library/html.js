@@ -46,7 +46,7 @@ export const Label = props => {
 
 export const Button = props => {
   const { color, className, ...otherProps } = props;
-  const background = colors[color] || color;
+  const background = colors[color] || color || colors.jwBlue;
   const buttonClass = css(
     {
       background,

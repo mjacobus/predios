@@ -2,7 +2,7 @@ import React from "react";
 import Loader from "../library/Loader";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
-import { A } from "../library/html";
+import { A, Button } from "../library/html";
 
 import {
   BuildingNumber,
@@ -156,6 +156,12 @@ export default function BuildingView(props) {
 
 const ContactAttemptView = props => {
   const { apartment } = props;
+  const actionsClass = css({
+    ' button': {
+      width: '100px',
+      margin: '10px'
+    }
+  })
 
   return (
     <div>
@@ -170,21 +176,31 @@ const ContactAttemptView = props => {
         </Row>
         <Row>
           <Col xs={12}>
-            <A onClick={e => props.cancelContactAttempt()}>Cancelar</A>
-            <A
-              onClick={e =>
-                props.handleCreateContactAttempt(apartment, "failed")
-              }
-            >
-              Não
-            </A>
-            <A
-              onClick={e =>
-                props.handleCreateContactAttempt(apartment, "contacted")
-              }
-            >
-              Sim
-            </A>
+            <div className={ actionsClass }>
+              <Button
+                color="green"
+                onClick={e =>
+                    props.handleCreateContactAttempt(apartment, "contacted")
+                }
+              >
+                Sim
+              </Button>
+              <Button
+                color="red"
+                onClick={e =>
+                    props.handleCreateContactAttempt(apartment, "failed")
+                }
+              >
+                Não
+              </Button>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <div className={ actionsClass }>
+              <Button onClick={e => props.cancelContactAttempt()}>Cancelar</Button>
+            </div>
           </Col>
         </Row>
       </Grid>
