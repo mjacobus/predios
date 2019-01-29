@@ -2,7 +2,7 @@ import React from "react";
 import Loader from "../library/Loader";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
-import { A, Button } from "../library/html";
+import { A, Button, Input } from "../library/html";
 
 import {
   BuildingNumber,
@@ -85,6 +85,27 @@ const Apartment = props => {
   );
 };
 
+const ApartmentForm = props => {
+  return (
+    <div>
+      <Grid>
+        <Row>
+          <Col xs={12}>
+            <form onSubmit={props.submitHandler}>
+              <Input
+                className={css({ width: "70%", marginRight: "15px" })}
+                placeholder="número"
+                type="text"
+              />
+              <Input type="submit" value="Submit" />
+            </form>
+          </Col>
+        </Row>
+      </Grid>
+    </div>
+  );
+};
+
 export default function BuildingView(props) {
   const {
     fetching,
@@ -138,6 +159,10 @@ export default function BuildingView(props) {
           </Col>
         </Row>
       </Grid>
+      <ApartmentForm
+        building={building}
+        submitHandler={props.createApartmentHandler}
+      />
       <div className={css({ marginTop: "32px" })}>
         {props.contactAttemptOn && (
           <ContactAttemptView {...contactAttemptProps} />

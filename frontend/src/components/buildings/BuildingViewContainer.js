@@ -31,9 +31,14 @@ class BuildingViewContainer extends React.Component {
     this.state = { contactAttemptOn: null };
     this.bellClick = this.bellClick.bind(this);
     this.cancelContactAttempt = this.cancelContactAttempt.bind(this);
+    this.createApartmentHandler = this.createApartmentHandler.bind(this);
     this.handleCreateContactAttempt = this.handleCreateContactAttempt.bind(
       this
     );
+  }
+
+  createApartmentHandler() {
+    console.log();
   }
 
   componentDidMount() {
