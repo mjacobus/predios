@@ -12,11 +12,13 @@ import currentUserReducer from "./src/reducers/currentUserReducer";
 import buildingsReducer from "./src/reducers/buildingsReducer";
 import buildingsListReducer from "./src/reducers/buildingsListReducer";
 import buildingViewReducer from "./src/reducers/buildingViewReducer";
+import apartmentFormReducer from "./src/reducers/apartmentFormReducer";
 
 const reducers = combineReducers({
   currentUser: currentUserReducer,
   buildingsList: buildingsListReducer,
   buildingView: buildingViewReducer,
+  apartmentForm: apartmentFormReducer,
   entities: combineReducers({
     buildings: buildingsReducer
   })

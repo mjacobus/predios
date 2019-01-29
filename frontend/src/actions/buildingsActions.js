@@ -63,6 +63,15 @@ export const createApartment = dispatch => ({ building, number }) => {
       apartment: { building_id: building.uuid, number }
     })
     .end((error, response) => {
+      if (error) {
+        console.log(error);
+        return dispatch({
+          type: "APARTMENT_CREATION_FAILED",
+          errors: response.body
+        });
+      }
+
       dispatch({ type: "APARTMENT_CREATED" });
+      fetchBuildingByNumber(dispatch)(building.number);
     });
 };
