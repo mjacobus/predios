@@ -1,6 +1,7 @@
 import React from "react";
 import { css } from "glamor";
 import { fontSizes, colors } from "./styles";
+import { Link } from "react-router-dom";
 import {
   Form,
   FormControl,
@@ -78,6 +79,11 @@ export const A = props => {
     },
     className
   );
+
+  if (props.to) {
+    return <Link className={linkStyle} {...otherProps} />;
+  }
+
   return <a className={linkStyle} {...otherProps} />;
 };
 

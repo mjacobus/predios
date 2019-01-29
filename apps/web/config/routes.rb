@@ -15,6 +15,8 @@ resources :users, only: [:index] do
 end
 
 get '/buildings', to: 'frontend#index'
+get '/buildings/:id', to: 'frontend#index'
+get '/legacy/buildings/:id', to: 'buildings#show'
 
 resources :buildings, only: %i[index show edit]
 resources :audits, only: %i[index show]

@@ -44,7 +44,7 @@ const app = (
         <TopMenu />
         <DefaultLayout>
           <Route exact path="/buildings" component={BuildingsIndex} />
-          <Route exact path="/app/buildings/:number" component={BuildingView} />
+          <Route exact path="/buildings/:number" component={BuildingView} />
         </DefaultLayout>
       </div>
     </BrowserRouter>

@@ -3,6 +3,7 @@ import { css } from "glamor";
 import { colors } from "../library/styles";
 import { Button, A, CheckIcon, DateTime } from "../library/html";
 import Icon from "../library/Icon";
+import { Link } from "react-router";
 
 export const BuildingNumber = props => {
   const className = css({
@@ -60,7 +61,7 @@ export const BuildingAddress = props => {
 
 export const BuildingLink = props => {
   const label = props.children || props.number;
-  return <A href={`/buildings/${props.number}`}>{label}</A>;
+  return <A to={`/buildings/${props.number}`}>{label}</A>;
 };
 
 // phone, letter, intercom
