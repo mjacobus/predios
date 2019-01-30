@@ -53,7 +53,7 @@ class ApartmentForm extends React.Component {
         <form onSubmit={this.submitHandler}>
           <div>
             <Input
-              placeholder="número"
+              placeholder="Número do Apartamento"
               onChange={this.setValue("number")}
               disabled={props.loading}
               className={css({ width: "65%", marginRight: "15px" })}
@@ -68,7 +68,7 @@ class ApartmentForm extends React.Component {
             </Button>
             <div>
               <small className={css({ color: colors.red })}>
-                {props.errors && props.errors.message}&nbsp;
+                {props.errors && props.errors.message}
               </small>
             </div>
           </div>
