@@ -61,7 +61,7 @@ export default class ApartmentsController extends BaseController {
   }
 
   get buildingUrl() {
-    return `/buildings/${this.buildingNumber}`;
+    return `/legacy/buildings/${this.buildingNumber}`;
   }
 
   get apartmentsEndpoint() {

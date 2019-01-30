@@ -7,6 +7,7 @@ export default function Icon(props) {
   const style = props.style || "fa";
   const text = props.text || "";
   const className = props.className;
+  const children = props.children;
 
   const iconStyle = css(
     {
@@ -15,10 +16,14 @@ export default function Icon(props) {
     className
   );
 
+  const spanClass = css({
+    marginLeft: children ? "4px" : ""
+  });
+
   return (
     <span>
       <i className={`${style} fa-${type} ${iconStyle}`} />
-      &nbsp;{text}
+      <span className={spanClass}>{children}</span>
     </span>
   );
 }
