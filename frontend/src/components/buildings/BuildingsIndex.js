@@ -1,6 +1,6 @@
 import React from "react";
 import Loader from "../library/Loader";
-import { colors } from "../library/styles";
+import { colors, styles } from "../library/styles";
 import { H1, Input, Label, Button, A } from "../library/html";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
@@ -52,15 +52,8 @@ const Building = ({ building }) => {
 };
 
 const Filter = props => {
-  const className = css({
-    padding: "30px 15px",
-    border: "1px solid #ddd",
-    margin: "30px 15px",
-    background: colors.lightGray
-  });
-
   return (
-    <div className={className}>
+    <div className={styles.formContainer}>
       <form>
         <Input
           className={css({ width: "70%", marginRight: "15px" })}

@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "glamor";
-import { fontSizes, colors } from "./styles";
+import { fontSizes, colors, styles } from "./styles";
 import { Link } from "react-router-dom";
 import {
   Form,
@@ -47,22 +47,7 @@ export const Label = props => {
 export const Button = props => {
   const { color, className, ...otherProps } = props;
   const background = colors[color] || color || colors.jwBlue;
-  const buttonClass = css(
-    {
-      background,
-      border: "none",
-      color: "white",
-      padding: "0px 12px",
-      fontSize: "14px",
-      textAlign: "center",
-      verticalAlign: "middle",
-      lineHeight: "32px",
-      height: "32px",
-      cursor: "pointer",
-      whiteSpace: "nowrap"
-    },
-    className
-  );
+  const buttonClass = css(styles.button, { background }, className);
 
   return <button className={buttonClass} {...otherProps} />;
 };

@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Input } from "../library/html";
+import { Input, Button } from "../library/html";
 import { createApartment } from "../../actions/buildingsActions";
+import { styles, colors } from "../library/styles";
+import { css } from "glamor";
 
 function mapStateToProps(state) {
   return {
@@ -47,18 +49,29 @@ class ApartmentForm extends React.Component {
     const props = this.props;
 
     return (
-      <div>
+      <div className={styles.formContainer}>
         <form onSubmit={this.submitHandler}>
           <div>
             <Input
-              placeholder="número do apartamento"
+              placeholder="número"
               onChange={this.setValue("number")}
               disabled={props.loading}
+              className={css({ width: "65%", marginRight: "15px" })}
               type="text"
             />
-            {props.errors && <small>{props.errors.message}</small>}
+            <Button
+              type="submit"
+              disabled={props.loading}
+              className={styles.button}
+            >
+              Adicionar
+            </Button>
+            <div>
+              <small className={css({ color: colors.red })}>
+                {props.errors && props.errors.message}&nbsp;
+              </small>
+            </div>
           </div>
-          {props.loading || <Input type="submit" value="Submit" />}
         </form>
       </div>
     );
