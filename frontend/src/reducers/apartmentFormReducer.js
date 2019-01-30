@@ -8,6 +8,7 @@ export default function buildingsViewReducer(state = DEFAULT_STATE, action) {
   if (action.type == "CREATING_APARTMENT") {
     return {
       ...state,
+      errors: null,
       loading: true
     };
   }
@@ -15,6 +16,7 @@ export default function buildingsViewReducer(state = DEFAULT_STATE, action) {
   if (action.type == "APARTMENT_CREATED") {
     return {
       ...state,
+      errors: null,
       loading: false
     };
   }
