@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from "react-bootstrap";
 
-export default function AppNavbar(props) {
+export default function TopMenu(props) {
   const user = props.currentUser;
   return (
     <Navbar fixedTop={true}>
@@ -35,6 +35,7 @@ export default function AppNavbar(props) {
           )}
           <NavDropdown eventKey={4} title={user.name} id="basic-nav-dropdown">
             <MenuItem eventKey={4.1}>{user.email}</MenuItem>
+            <MenuItem eventKey={4.2} href={ props.app_version_url }>Versão</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={4.3} href="/logout">
               Sair

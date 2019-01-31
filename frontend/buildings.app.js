@@ -8,6 +8,7 @@ import BuildingView from "./src/components/buildings/BuildingViewContainer";
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+import configReducer from "./src/reducers/configReducer";
 import currentUserReducer from "./src/reducers/currentUserReducer";
 import buildingsReducer from "./src/reducers/buildingsReducer";
 import buildingsListReducer from "./src/reducers/buildingsListReducer";
@@ -15,6 +16,7 @@ import buildingViewReducer from "./src/reducers/buildingViewReducer";
 import apartmentFormReducer from "./src/reducers/apartmentFormReducer";
 
 const reducers = combineReducers({
+  config: configReducer,
   currentUser: currentUserReducer,
   buildingsList: buildingsListReducer,
   buildingView: buildingViewReducer,
@@ -25,6 +27,7 @@ const reducers = combineReducers({
 });
 
 const initialState = {
+  config: window.__DATA__.appConfig,
   currentUser: window.__DATA__.currentUser,
   entities: {
     buildings: []
