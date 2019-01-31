@@ -20,8 +20,11 @@ module Views
 
     def app_data
       {
-        appEnv: Hanami.env,
-        debug: Hanami.env == 'development',
+        appConfig: {
+          env: Hanami.env,
+          debug: Hanami.env == 'development',
+          version_url: app_version_url,
+        },
         currentUser: {
           name: current_user.name,
           email: current_user.email,
