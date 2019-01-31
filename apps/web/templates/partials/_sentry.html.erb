@@ -1,0 +1,6 @@
+<%# <% if ENV['RAVEN_DSN'] %>
+  <script src="https://browser.sentry-cdn.com/4.5.3/bundle.min.js"></script>
+  <script type="text/javascript">
+    Sentry.init({ dsn: '<%= ENV["RAVEN_DSN"] %>' });
+  </script>
+<%# <% end %>
