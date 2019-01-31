@@ -63,3 +63,23 @@ namespace :logs do
 end
 
 after 'deploy:symlink:release', 'whenever:update_crontab'
+
+desc 'generate the client javascripts'
+task :generate_client_assets do
+  dist_files = []
+  run_locally do
+    execute 'npm run build'
+
+    dist_files = Dir['dist/**/*.js']
+  end
+
+  on roles(:app), in: :sequence, wait: 5 do
+    execute :mkdir, "#{release_path}/dist"
+
+    dist_files.each do |file|
+      upload! file, "#{release_path}/#{file}"
+    end
+  end
+end
+
+before 'deploy:compile_assets', :generate_client_assets
