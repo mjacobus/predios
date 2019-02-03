@@ -2,12 +2,7 @@ import React from "react";
 import { css } from "glamor";
 import { fontSizes, colors, styles } from "./styles";
 import { Link } from "react-router-dom";
-import {
-  Form,
-  FormControl,
-  ControlLabel,
-  Button as BootstrapButton
-} from "react-bootstrap";
+import { ControlLabel } from "react-bootstrap";
 
 import Icon from "./Icon";
 
@@ -84,4 +79,14 @@ export const CheckIcon = props => {
 
 export const DateTime = props => {
   return <span>{props.children}</span>;
+};
+
+export const Form = props => {
+  const { onSubmit, ...otherProps } = props;
+  const preventDefault = e => {
+    e.preventDefault();
+  };
+  let submitHandler = onSubmit || preventDefault;
+
+  return <form {...otherProps} onSubmit={submitHandler} />;
 };
