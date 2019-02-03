@@ -30,4 +30,42 @@ RSpec.describe Apartments::ContactAttempt do
       described_class.new(outcome: 'somethingelse', time: Time.now)
     end.to raise_error(ArgumentError, 'Invalid outcome')
   end
+
+  describe '#without_precision' do
+    let(:failed_one) do
+      described_class.new(
+        outcome: 'failed',
+        time: Time.parse('2001-01-02 04:05:06')
+      )
+    end
+    let(:same_time_contacted) do
+      described_class.new(
+        outcome: 'contacted',
+        time: Time.parse('2001-01-02 04:05:06')
+      )
+    end
+    let(:same_failure) do
+      described_class.new(
+        outcome: 'failed',
+        time: Time.parse('2001-01-02 04:05:07')
+      )
+    end
+    let(:other_failure) do
+      described_class.new(
+        outcome: 'failed',
+        time: Time.parse('2001-01-02 04:06:07')
+      )
+    end
+
+    it 'will be considered the same if they belong the same minute' do
+      expect(failed_one).not_to eq(same_failure)
+      expect(failed_one).not_to eq(other_failure)
+      expect(failed_one.without_precision).to eq(same_failure.without_precision)
+      expect(failed_one.without_precision).not_to eq(other_failure.without_precision)
+
+      expect(failed_one).not_to eq(same_time_contacted)
+      expect(failed_one.without_precision)
+        .not_to eq(same_time_contacted.without_precision)
+    end
+  end
 end

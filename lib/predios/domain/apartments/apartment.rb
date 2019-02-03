@@ -47,7 +47,7 @@ module Apartments
     def when_contact_attempt_assigned(event)
       attempt = ContactAttempt.new(
         outcome: event.outcome,
-        time: event.time
+        time: event.time.utc
       )
 
       @contact_attempts << attempt

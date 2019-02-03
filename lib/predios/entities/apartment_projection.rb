@@ -5,6 +5,14 @@ class ApartmentProjection < Entity
     super.sort_by(&:time)
   end
 
+  def domain_contact_attempts
+    attempts = contact_attempts.map do |attempt|
+      Apartments::ContactAttempt.new(outcome: attempt.outcome, time: attempt.time)
+    end
+
+    Apartments::ContactAttempts.new(attempts)
+  end
+
   def last_contacted_time
     contact_attempts.select(&:successful?).last&.time
   end

@@ -16,11 +16,26 @@ module Apartments
       end
 
       @outcome = outcome.to_s
-      @time = time.to_time
+      @time = time.to_time.utc
     end
 
     def successful?
       @outcome == 'contacted'
+    end
+
+    def without_precision
+      time_without_precision = Time.new(
+        time.year,
+        time.month,
+        time.day,
+        time.hour,
+        time.min
+      )
+      self.class.new(outcome: outcome, time: time_without_precision)
+    end
+
+    def ==(other)
+      other.outcome == outcome && other.time == time
     end
   end
 end
