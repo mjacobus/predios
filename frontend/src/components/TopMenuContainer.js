@@ -5,7 +5,7 @@ import { fetchCurrentuser } from "../processes/userProcesses";
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    app_version_url: state.config.version_url,
+    app_version_url: state.config.version_url
   };
 }
 
