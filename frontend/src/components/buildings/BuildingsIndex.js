@@ -1,7 +1,7 @@
 import React from "react";
 import Loader from "../library/Loader";
 import { colors, styles } from "../library/styles";
-import { H1, Input, Label, Button, A } from "../library/html";
+import { H1, Input, Label, Button, A, Form } from "../library/html";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 
@@ -54,7 +54,7 @@ const Building = ({ building }) => {
 const Filter = props => {
   return (
     <div className={styles.formContainer}>
-      <form>
+      <Form>
         <Input
           className={css({ width: "70%", marginRight: "15px" })}
           placeholder="Filtro"
@@ -64,7 +64,7 @@ const Filter = props => {
         <Button type="reset" color={"jwBlue"} onClick={() => props.filter("")}>
           Limpar
         </Button>
-      </form>
+      </Form>
     </div>
   );
 };
