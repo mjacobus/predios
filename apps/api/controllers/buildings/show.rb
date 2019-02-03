@@ -39,7 +39,7 @@ module Api
             uuid: apartment.uuid,
             number: apartment.number,
             last_contact_attempt: contact_attempt_to_json(apartment.last_contact_attempt),
-            contact_attempts: apartment.contact_attempts.map do |attempt|
+            contact_attempts: apartment.domain_contact_attempts.map do |attempt|
               contact_attempt_to_json(attempt)
             end,
           }
