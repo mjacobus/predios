@@ -23,7 +23,7 @@ class ApartmentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      apartment: {}
+      apartment: { number: "" }
     };
     this.submitHandler = this.submitHandler.bind(this);
   }
@@ -42,7 +42,9 @@ class ApartmentForm extends React.Component {
     const { building } = this.props;
     const { number } = this.state.apartment;
     const payload = { building, number };
-    this.props.createApartment(payload);
+    this.props.createApartment(payload).then(() => {
+      this.setState({ apartment: { number: "" } })
+    })
   }
 
   render() {
@@ -56,6 +58,7 @@ class ApartmentForm extends React.Component {
               placeholder="Número do Apartamento"
               onChange={this.setValue("number")}
               disabled={props.loading}
+              value={ this.state.apartment.number }
               className={css({ width: "65%", marginRight: "15px" })}
               type="text"
             />

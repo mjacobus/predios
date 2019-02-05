@@ -55,23 +55,29 @@ export const createContactAttempt = dispatch => ({
     });
 };
 
-export const createApartment = dispatch => ({ building, number }) => {
-  dispatch({ type: "CREATING_APARTMENT" });
+export const createApartment = dispatch => {
+  return ({ building, number }) => {
+    return new Promise((resolve, reject) => {
+      dispatch({ type: "CREATING_APARTMENT" });
 
-  apiPost(`/api/buildings/${building.number}/apartments`)
-    .send({
-      apartment: { building_id: building.uuid, number }
-    })
-    .end((error, response) => {
-      if (error) {
-        console.log(error);
-        return dispatch({
-          type: "APARTMENT_CREATION_FAILED",
-          errors: response.body
+      apiPost(`/api/buildings/${building.number}/apartments`)
+        .send({
+          apartment: { building_id: building.uuid, number }
+        })
+        .end((error, response) => {
+          if (error) {
+            reject(error);
+            console.log(error);
+            return dispatch({
+              type: "APARTMENT_CREATION_FAILED",
+              errors: response.body
+            });
+          }
+
+          dispatch({ type: "APARTMENT_CREATED" });
+          fetchBuildingByNumber(dispatch)(building.number);
+          resolve();
         });
-      }
-
-      dispatch({ type: "APARTMENT_CREATED" });
-      fetchBuildingByNumber(dispatch)(building.number);
     });
+  };
 };
