@@ -57,7 +57,7 @@ export const createContactAttempt = dispatch => ({
 
 export const createApartment = dispatch => {
   return ({ building, number }) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       dispatch({ type: "CREATING_APARTMENT" });
 
       apiPost(`/api/buildings/${building.number}/apartments`)
@@ -66,7 +66,6 @@ export const createApartment = dispatch => {
         })
         .end((error, response) => {
           if (error) {
-            reject(error);
             console.log(error);
             return dispatch({
               type: "APARTMENT_CREATION_FAILED",
