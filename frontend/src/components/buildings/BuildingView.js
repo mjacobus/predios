@@ -95,7 +95,7 @@ export default function BuildingView(props) {
 
   const bellClick = props.bellClick;
 
-  if (fetching) {
+  if (fetching && !building) {
     return <Loader />;
   }
 
