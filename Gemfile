@@ -6,6 +6,7 @@ gem 'hanami', '~> 1.3'
 gem 'hanami-model', '~> 1.3'
 gem 'rake'
 
+gem 'addressable'
 gem 'dotenv', '~> 2.4'
 gem 'mysql2'
 

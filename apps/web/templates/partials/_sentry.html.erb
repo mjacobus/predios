@@ -1,6 +1,11 @@
-<%# <% if ENV['RAVEN_DSN'] %>
+<% if ENV['RAVEN_DSN'] %>
+  <%
+    dsn = Addressable::URI.parse(ENV['RAVEN_DSN']).tap do |url|
+      url.password = nil
+    end
+  %>
   <script src="https://browser.sentry-cdn.com/4.5.3/bundle.min.js"></script>
   <script type="text/javascript">
-    Sentry.init({ dsn: '<%= ENV["RAVEN_DSN"] %>' });
+    Sentry.init({ dsn: '<%= dsn.to_s %>' });
   </script>
-<%# <% end %>
+<% end %>
