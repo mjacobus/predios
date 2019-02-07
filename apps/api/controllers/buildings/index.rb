@@ -28,6 +28,9 @@ module Api
               name: building.name,
               neighborhood: building.neighborhood,
               call_options: building.call_options,
+              has_geolocation: building.has_geolocation?,
+              lat: building.lat,
+              long: building.lon
             }
           end
         end

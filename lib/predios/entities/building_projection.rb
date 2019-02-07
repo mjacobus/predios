@@ -8,6 +8,8 @@ class BuildingProjection < Entity
   mutator_for :has_individual_letterboxes
   mutator_for :neighborhood
   mutator_for :updated_at
+  mutator_for :lat
+  mutator_for :lon
 
   def phone?
     !(intercom? && letter?)
@@ -44,5 +46,13 @@ class BuildingProjection < Entity
         options << 'letter'
       end
     end
+  end
+
+  def complete_address(city = nil)
+    [address, neighborhood, city].compact.join(', ')
+  end
+
+  def has_geolocation?
+    [lat, lon].compact.length == 2
   end
 end

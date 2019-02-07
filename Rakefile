@@ -61,3 +61,45 @@ namespace :backup do
     Backup.new(files: files).perform(strategy: strategy)
   end
 end
+
+desc 'email backup files'
+task email_backup: %i[environment] do
+  files_to_backup = ['bkp/mysql_latest.sql']
+  file = Hanami.root.join(files_to_backup.last)
+
+  if File.exist?(file)
+    FileUtils.rm(file)
+  end
+
+  Rake::Task['mysql:dump_latest'].invoke(files_to_backup.last)
+  Rake::Task['backup:files'].invoke(*files_to_backup)
+end
+
+namespace :geolocation do
+  task :update, [:city_name] => [:environment] do |_t, args|
+    google_maps_client = Koine::GoogleMapsClient.new(
+      api_key: ENV.fetch('GOOGLE_MAPS_STATIC_API_KEY')
+    )
+    repository = BuildingProjectionRepository.new
+    repository.all.each do |building|
+      if building.has_geolocation?
+        puts "Skipping: #{building.number} has geolocation"
+        next
+      end
+
+      address = building.complete_address(args[:city_name])
+      data = google_maps_client.geocode(address: address)
+
+      if data['results'].empty?
+        puts "Skipping: Geolocation for #{building.number} (#{address}) not found"
+        next
+      end
+
+      result = data['results'].first
+      location = result['geometry']['location']
+      building = building.with_lat(location['lat']).with_lon(location['lng'])
+      repository.save(building)
+      puts "Saved geolocation for #{building.number} (#{address})"
+    end
+  end
+end

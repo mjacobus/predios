@@ -8,6 +8,7 @@ gem 'rake'
 
 gem 'addressable'
 gem 'dotenv', '~> 2.4'
+gem 'koine-google_maps_client'
 gem 'mysql2'
 
 # domain
