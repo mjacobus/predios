@@ -13,6 +13,7 @@ get '/users', to: 'frontend#index'
 get '/buildings', to: 'frontend#index'
 get '/buildings/:id', to: 'frontend#index'
 get '/buildings/:id/edit', to: 'frontend#index'
+get 'map', to: 'map#index'
 
 resources :audits, only: %i[index show]
 
