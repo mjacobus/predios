@@ -21,6 +21,7 @@ module Views
     def app_data
       {
         appConfig: {
+          google_maps_api_key: ENV['GOOGLE_MAPS_STATIC_API_KEY'],
           env: Hanami.env,
           debug: Hanami.env == 'development',
           version_url: app_version_url,
