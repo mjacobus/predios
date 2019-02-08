@@ -7,6 +7,9 @@ import { ControlLabel } from "react-bootstrap";
 import Icon from "./Icon";
 export { Icon };
 
+import DefaultLayout from "./DefaultLayout";
+export { DefaultLayout };
+
 export const H1 = props => {
   const { children, className, ...otherProps } = props;
   const classNames = css(
