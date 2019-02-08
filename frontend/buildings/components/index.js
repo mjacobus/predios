@@ -11,6 +11,7 @@ import NumberOfApartments from "./NumberOfApartments";
 import Neighborhood from "./Neighborhood";
 import BuildingName from "./BuildingName";
 import BuildingAddress from "./BuildingAddress";
+import BuildingLink from "./BuildingAddress";
 
 export {
   ApartmentForm,
@@ -19,12 +20,8 @@ export {
   NumberOfApartments,
   Neighborhood,
   BuildingAddress,
+  BuildingLink,
   BuildingName
-};
-
-export const BuildingLink = props => {
-  const label = props.children || props.number;
-  return <A to={`/buildings/${props.number}`}>{label}</A>;
 };
 
 // phone, letter, intercom
