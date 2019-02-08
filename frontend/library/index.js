@@ -14,18 +14,9 @@ import Label from "./Label";
 import A from "./A";
 import Input from "./Input";
 import Button from "./Button";
+import CheckIcon from "./CheckIcon";
 
-export { Loader, H1, Label, Input, A, Button };
-
-export const CheckIcon = props => {
-  const { on, ...otherProps } = props;
-  const type = on ? "check" : "times";
-  const className = css({
-    color: on ? colors.green : colors.red,
-    minWidth: "14px"
-  });
-  return <Icon className={className} type={type} {...otherProps} />;
-};
+export { Loader, H1, Label, Input, A, Button, CheckIcon };
 
 export const DateTime = props => {
   return <span>{props.children}</span>;
