@@ -1,4 +1,4 @@
-import Show from "./show.js";
+import Show from "./showContainer";
 
 const Buildings = {
   Show
