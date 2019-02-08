@@ -13,6 +13,7 @@ import BuildingName from "./BuildingName";
 import BuildingAddress from "./BuildingAddress";
 import BuildingLink from "./BuildingAddress";
 import CallOptions from "./CallOptions";
+import ContactAttempt from "./ContactAttempt";
 
 export {
   ApartmentForm,
@@ -23,23 +24,8 @@ export {
   BuildingAddress,
   BuildingLink,
   CallOptions,
+  ContactAttempt,
   BuildingName
-};
-
-export const ContactAttempt = props => {
-  const { contactAttempt, otherProps } = props;
-
-  if (!contactAttempt) {
-    return <span />;
-  }
-
-  return (
-    <div {...otherProps}>
-      <CheckIcon on={contactAttempt.successful}>
-        <DateTime>{contactAttempt.time}</DateTime>
-      </CheckIcon>
-    </div>
-  );
 };
 
 export const DoorBell = props => {
