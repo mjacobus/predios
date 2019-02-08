@@ -4,6 +4,9 @@ import { colors } from "../../library/styles";
 import { Button, A, CheckIcon, DateTime, Icon } from "../../library";
 import { Link } from "react-router";
 
+import ApartmentForm from "./ApartmentFormContainer";
+export { ApartmentForm };
+
 export const BuildingNumber = props => {
   const className = css({
     width: "35px",
