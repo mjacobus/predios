@@ -1,5 +1,5 @@
 import List from "./ListContainer";
-import Show from "./showContainer";
+import Show from "./ShowContainer";
 
 const Buildings = {
   List,
