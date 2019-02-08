@@ -1,7 +1,7 @@
 import React from "react";
 import Loader from "../library/Loader";
 import { colors, styles } from "../library/styles";
-import { H1, Input, Label, Button, A, Form } from "../library/html";
+import { H1, Input, Button, Form } from "../../../library";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 

@@ -2,7 +2,7 @@ import React from "react";
 import Loader from "../../src/components/library/Loader";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
-import { A, Button, Input } from "../../src/components/library/html";
+import { Button } from "../../library";
 
 import {
   BuildingNumber,
