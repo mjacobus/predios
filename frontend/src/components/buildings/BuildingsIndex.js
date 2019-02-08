@@ -13,7 +13,7 @@ import {
   BuildingLink,
   CallOptions,
   BuildingName
-} from "./index";
+} from "../../../buildings/index";
 
 const Building = ({ building }) => {
   const buildingClass = css({
