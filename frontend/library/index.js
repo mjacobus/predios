@@ -4,7 +4,8 @@ import { fontSizes, colors, styles } from "../src/components/library/styles";
 import { Link } from "react-router-dom";
 import { ControlLabel } from "react-bootstrap";
 
-import Icon from "../src/components/library/Icon";
+import Icon from "./Icon";
+export { Icon };
 
 export const H1 = props => {
   const { children, className, ...otherProps } = props;
