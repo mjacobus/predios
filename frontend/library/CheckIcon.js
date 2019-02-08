@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "glamor";
 import { colors } from "./styles";
-import { Icon } from "./";
+import Icon from "./Icon";
 
 export default function CheckIcon(props) {
   const { on, ...otherProps } = props;
