@@ -4,7 +4,7 @@ const DEFAULT_STATE = {
   errors: null
 };
 
-export default function buildingsViewReducer(state = DEFAULT_STATE, action) {
+export default function apartmentFormReducer(state = DEFAULT_STATE, action) {
   if (action.type == "CREATING_APARTMENT") {
     return {
       ...state,

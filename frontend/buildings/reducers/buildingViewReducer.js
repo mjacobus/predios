@@ -5,7 +5,7 @@ const DEFAULT_STATE = {
   contactAttemptOn: null
 };
 
-export default function buildingsViewReducer(state = DEFAULT_STATE, action) {
+export default function buildingViewReducer(state = DEFAULT_STATE, action) {
   if (action.type == "FETCHING_BUILDING") {
     return {
       ...state,

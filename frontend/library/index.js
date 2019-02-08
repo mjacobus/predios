@@ -5,6 +5,13 @@ import { Link } from "react-router-dom";
 import { ControlLabel } from "react-bootstrap";
 
 import Icon from "./Icon";
+export { Icon };
+
+import DefaultLayout from "./DefaultLayout";
+export { DefaultLayout };
+
+import Loader from "./Loader";
+export { Loader };
 
 export const H1 = props => {
   const { children, className, ...otherProps } = props;

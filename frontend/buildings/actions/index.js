@@ -1,4 +1,4 @@
-import { apiGet, apiPost } from "../utils/api.js";
+import { apiGet, apiPost } from "../../src/utils/api.js";
 
 const fetchBuildings = dispatch => () => {
   dispatch({ type: "FETCHING_BUILDINGS" });

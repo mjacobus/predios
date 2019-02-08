@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import BuildingView from "./BuildingView";
-import ApartmentForm from "./ApartmentFormContainer";
+import Show from "./Show";
+import { ApartmentForm } from "../components";
 import {
   fetchBuildingByNumber,
   attemptContactOn,
   createContactAttempt
-} from "../../actions/buildingsActions";
+} from "../actions";
 
 function mapStateToProps(state) {
   return {
@@ -24,7 +24,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-class BuildingViewContainer extends React.Component {
+class ShowContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = { contactAttemptOn: null };
@@ -86,11 +86,11 @@ class BuildingViewContainer extends React.Component {
       ...otherProps
     };
 
-    return <BuildingView {...props} />;
+    return <Show {...props} />;
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BuildingViewContainer);
+)(ShowContainer);

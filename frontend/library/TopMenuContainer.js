@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
-import TopMenu from "./library/TopMenu";
-import { fetchCurrentuser } from "../processes/userProcesses";
+import TopMenu from "./TopMenu";
 
 function mapStateToProps(state) {
   return {

@@ -1,9 +1,9 @@
 import React from "react";
-import Loader from "../library/Loader";
-import { colors, styles } from "../library/styles";
-import { H1, Input, Label, Button, A, Form } from "../library/html";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
+import { H1, Input, Button, Form } from "../../library";
+import { Loader } from "../../library";
+import { colors, styles } from "../../library/styles";
 
 import {
   BuildingNumber,
@@ -13,7 +13,7 @@ import {
   BuildingLink,
   CallOptions,
   BuildingName
-} from "./index";
+} from "../components";
 
 const Building = ({ building }) => {
   const buildingClass = css({

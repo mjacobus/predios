@@ -1,8 +1,7 @@
 import React from "react";
-import Loader from "../library/Loader";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
-import { A, Button, Input } from "../library/html";
+import { Button, Loader } from "../../library";
 
 import {
   BuildingNumber,
@@ -15,7 +14,7 @@ import {
   ContactAttempt,
   DoorBell,
   BuildingName
-} from "./index";
+} from "../components";
 
 class ContactAttempts extends React.Component {
   constructor(props) {

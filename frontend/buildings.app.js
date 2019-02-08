@@ -1,23 +1,26 @@
 import React from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
-import TopMenu from "./src/components/TopMenuContainer";
-import DefaultLayout from "./src/components/library/Layouts.js";
-import BuildingsIndex from "./src/components/buildings/BuildingsIndexContainer";
-import BuildingView from "./src/components/buildings/BuildingViewContainer";
+import TopMenu from "./library/TopMenuContainer";
+import { DefaultLayout } from "./library";
+import Buildings from "./buildings/pages";
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import configReducer from "./src/reducers/configReducer";
-import currentUserReducer from "./src/reducers/currentUserReducer";
-import buildingsReducer from "./src/reducers/buildingsReducer";
-import buildingsListReducer from "./src/reducers/buildingsListReducer";
-import buildingViewReducer from "./src/reducers/buildingViewReducer";
-import apartmentFormReducer from "./src/reducers/apartmentFormReducer";
+import {
+  buildingsReducer,
+  buildingsListReducer,
+  apartmentFormReducer,
+  buildingViewReducer
+} from "./buildings/reducers";
+
+const nullReducer = (state = {}, action) => {
+  return state;
+};
 
 const reducers = combineReducers({
-  config: configReducer,
-  currentUser: currentUserReducer,
+  config: nullReducer,
+  currentUser: nullReducer,
   buildingsList: buildingsListReducer,
   buildingView: buildingViewReducer,
   apartmentForm: apartmentFormReducer,
@@ -48,8 +51,8 @@ const app = (
       <div>
         <TopMenu />
         <DefaultLayout>
-          <Route exact path="/buildings" component={BuildingsIndex} />
-          <Route exact path="/buildings/:number" component={BuildingView} />
+          <Route exact path="/buildings" component={Buildings.List} />
+          <Route exact path="/buildings/:number" component={Buildings.Show} />
         </DefaultLayout>
       </div>
     </BrowserRouter>

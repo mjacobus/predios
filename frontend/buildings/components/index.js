@@ -1,9 +1,11 @@
 import React from "react";
 import { css } from "glamor";
-import { colors } from "../library/styles";
-import { Button, A, CheckIcon, DateTime } from "../library/html";
-import Icon from "../library/Icon";
+import { colors } from "../../library/styles";
+import { Button, A, CheckIcon, DateTime, Icon } from "../../library";
 import { Link } from "react-router";
+
+import ApartmentForm from "./ApartmentFormContainer";
+export { ApartmentForm };
 
 export const BuildingNumber = props => {
   const className = css({

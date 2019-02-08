@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Input, Button } from "../library/html";
-import { createApartment } from "../../actions/buildingsActions";
-import { styles, colors } from "../library/styles";
 import { css } from "glamor";
+
+import { Input, Button } from "../../library";
+import { createApartment } from "../../buildings/actions";
+import { styles, colors } from "../../library/styles";
 
 function mapStateToProps(state) {
   return {
