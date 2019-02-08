@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import BuildingView from "./BuildingView";
-import ApartmentForm from "./ApartmentFormContainer";
+import BuildingView from "../../src/components/buildings/BuildingView";
+import ApartmentForm from "../../src/components/buildings/ApartmentFormContainer";
 import {
   fetchBuildingByNumber,
   attemptContactOn,
   createContactAttempt
-} from "../../actions/buildingsActions";
+} from "../../src/actions/buildingsActions";
 
 function mapStateToProps(state) {
   return {

@@ -1,7 +1,7 @@
-import Show from "../../src/components/buildings/BuildingViewContainer";
+import Show from "./show.js";
 
 const Buildings = {
-  Show,
+  Show
 };
 
 export default Buildings;
