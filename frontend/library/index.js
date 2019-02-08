@@ -11,20 +11,9 @@ import DefaultLayout from "./DefaultLayout";
 export { DefaultLayout };
 
 import Loader from "./Loader";
-export { Loader };
+import H1 from "./H1";
 
-export const H1 = props => {
-  const { children, className, ...otherProps } = props;
-  const classNames = css(
-    { fontSize: fontSizes.h1, padding: "0 15px 0 15px" },
-    className
-  );
-  return (
-    <h1 className={classNames} {...otherProps}>
-      {children}
-    </h1>
-  );
-};
+export { Loader, H1 };
 
 export const Input = props => {
   const { className, ...otherProps } = props;
