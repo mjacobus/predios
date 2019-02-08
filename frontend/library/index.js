@@ -15,12 +15,9 @@ import A from "./A";
 import Input from "./Input";
 import Button from "./Button";
 import CheckIcon from "./CheckIcon";
+import DateTime from "./DateTime";
 
-export { Loader, H1, Label, Input, A, Button, CheckIcon };
-
-export const DateTime = props => {
-  return <span>{props.children}</span>;
-};
+export { Loader, H1, Label, Input, A, Button, CheckIcon, DateTime };
 
 export const Form = props => {
   const { onSubmit, ...otherProps } = props;
