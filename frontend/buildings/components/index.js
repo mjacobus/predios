@@ -9,17 +9,15 @@ import ApartmentForm from "./ApartmentFormContainer";
 import ApartmentNumber from "./ApartmentNumber";
 import NumberOfApartments from "./NumberOfApartments";
 import Neighborhood from "./Neighborhood";
+import BuildingName from "./BuildingName";
 
 export {
   ApartmentForm,
   BuildingNumber,
   ApartmentNumber,
   NumberOfApartments,
-  Neighborhood
-};
-
-export const BuildingName = props => {
-  return <strong>{props.children}</strong>;
+  Neighborhood,
+  BuildingName
 };
 
 export const BuildingAddress = props => {
