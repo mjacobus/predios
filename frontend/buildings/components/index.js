@@ -6,6 +6,7 @@ import { Link } from "react-router";
 
 import BuildingNumber from "./BuildingNumber";
 import ApartmentForm from "./ApartmentFormContainer";
+import DoorBell from "./DoorBell";
 import ApartmentNumber from "./ApartmentNumber";
 import NumberOfApartments from "./NumberOfApartments";
 import Neighborhood from "./Neighborhood";
@@ -17,6 +18,7 @@ import ContactAttempt from "./ContactAttempt";
 
 export {
   ApartmentForm,
+  DoorBell,
   BuildingNumber,
   ApartmentNumber,
   NumberOfApartments,
@@ -26,12 +28,4 @@ export {
   CallOptions,
   ContactAttempt,
   BuildingName
-};
-
-export const DoorBell = props => {
-  return (
-    <Button color="#ddd" {...props}>
-      <Icon css={css({ color: "white" })} type="bell" />
-    </Button>
-  );
 };
