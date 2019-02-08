@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "glamor";
-import { fontSizes, colors, styles } from "../src/components/library/styles";
+import { fontSizes, colors, styles } from "./styles";
 import { Link } from "react-router-dom";
 import { ControlLabel } from "react-bootstrap";
 

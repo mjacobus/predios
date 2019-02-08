@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "glamor";
-import { colors } from "../src/components/library/styles";
+import { colors } from "./styles";
 
 export default function Icon(props) {
   const type = props.type;

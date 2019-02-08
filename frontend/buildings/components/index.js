@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "glamor";
-import { colors } from "../../src/components/library/styles";
+import { colors } from "../../library/styles";
 import { Button, A, CheckIcon, DateTime, Icon } from "../../library";
 import { Link } from "react-router";
 
