@@ -13,4 +13,4 @@ export default function H1(props) {
       {children}
     </h1>
   );
-};
+}
