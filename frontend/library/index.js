@@ -2,7 +2,6 @@ import React from "react";
 import { css } from "glamor";
 import { fontSizes, colors, styles } from "./styles";
 import { Link } from "react-router-dom";
-import { ControlLabel } from "react-bootstrap";
 
 import Icon from "./Icon";
 export { Icon };
@@ -12,8 +11,9 @@ export { DefaultLayout };
 
 import Loader from "./Loader";
 import H1 from "./H1";
+import Label from "./Label";
 
-export { Loader, H1 };
+export { Loader, H1, Label };
 
 export const Input = props => {
   const { className, ...otherProps } = props;
@@ -29,10 +29,6 @@ export const Input = props => {
     className
   );
   return <input className={inputClass} {...otherProps} />;
-};
-
-export const Label = props => {
-  return <ControlLabel {...props} />;
 };
 
 export const Button = props => {
