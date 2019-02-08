@@ -15,7 +15,7 @@ import {
   ContactAttempt,
   DoorBell,
   BuildingName
-} from "../../src/components/buildings";
+} from "../index";
 
 class ContactAttempts extends React.Component {
   constructor(props) {
