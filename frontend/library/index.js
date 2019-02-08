@@ -15,16 +15,7 @@ import A from "./A";
 import Input from "./Input";
 import Button from "./Button";
 import CheckIcon from "./CheckIcon";
+import Form from "./Form";
 import DateTime from "./DateTime";
 
-export { Loader, H1, Label, Input, A, Button, CheckIcon, DateTime };
-
-export const Form = props => {
-  const { onSubmit, ...otherProps } = props;
-  const preventDefault = e => {
-    e.preventDefault();
-  };
-  let submitHandler = onSubmit || preventDefault;
-
-  return <form {...otherProps} onSubmit={submitHandler} />;
-};
+export { Loader, H1, Label, Input, A, Button, CheckIcon, DateTime, Form };
