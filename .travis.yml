@@ -9,6 +9,8 @@ env:
   - TRAVIS=ci DB=mysql HANAMI_ENV=test DATABASE_URL="mysql2://root@127.0.0.1:3306/predios_test"
 
 before_script:
+before_install:
+  - npm i -g npm
 
 script:
   - bundle exec hanami db create
