@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import BuildingView from "../../src/components/buildings/BuildingView";
+import BuildingView from "./show";
 import ApartmentForm from "../../src/components/buildings/ApartmentFormContainer";
 import {
   fetchBuildingByNumber,
