@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
-import TopMenu from "./src/components/TopMenuContainer";
+import TopMenu from "./library/TopMenuContainer";
 import { DefaultLayout } from "./library";
 import BuildingsIndex from "./src/components/buildings/BuildingsIndexContainer";
 import Buildings from "./buildings/pages";
