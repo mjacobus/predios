@@ -1,7 +1,6 @@
 import React from "react";
 import { css } from "glamor";
 import { fontSizes, colors, styles } from "./styles";
-import { Link } from "react-router-dom";
 
 import Icon from "./Icon";
 export { Icon };
@@ -12,24 +11,10 @@ export { DefaultLayout };
 import Loader from "./Loader";
 import H1 from "./H1";
 import Label from "./Label";
+import A from "./A";
+import Input from "./Input";
 
-export { Loader, H1, Label };
-
-export const Input = props => {
-  const { className, ...otherProps } = props;
-  const inputClass = css(
-    {
-      lineHeight: "32px",
-      outline: "none",
-      height: "32px",
-      padding: "0 4px",
-      margin: "none",
-      border: "1px solid #ddd"
-    },
-    className
-  );
-  return <input className={inputClass} {...otherProps} />;
-};
+export { Loader, H1, Label, Input, A };
 
 export const Button = props => {
   const { color, className, ...otherProps } = props;
@@ -37,26 +22,6 @@ export const Button = props => {
   const buttonClass = css(styles.button, { background }, className);
 
   return <button className={buttonClass} {...otherProps} />;
-};
-
-export const A = props => {
-  const { className, ...otherProps } = props;
-  const linkStyle = css(
-    {
-      color: colors.jwBlue,
-      textDecoration: "",
-      ":hover": {
-        textDecoration: "none"
-      }
-    },
-    className
-  );
-
-  if (props.to) {
-    return <Link className={linkStyle} {...otherProps} />;
-  }
-
-  return <a className={linkStyle} {...otherProps} />;
 };
 
 export const CheckIcon = props => {
