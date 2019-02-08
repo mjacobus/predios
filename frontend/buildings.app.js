@@ -48,8 +48,8 @@ const app = (
       <div>
         <TopMenu />
         <DefaultLayout>
-          <Route exact path="/buildings" component={Buildings.List} />
-          <Route exact path="/buildings/:number" component={Buildings.View} />
+          <Route exact path="/buildings" component={BuildingsIndex} />
+          <Route exact path="/buildings/:number" component={Buildings.Show} />
         </DefaultLayout>
       </div>
     </BrowserRouter>
