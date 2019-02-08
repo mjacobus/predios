@@ -9,4 +9,4 @@ export {
   ContactAttempt,
   DoorBell,
   BuildingName
-} from "../src/components/buildings";
+} from "../../src/components/buildings";
