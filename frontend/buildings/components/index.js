@@ -4,43 +4,11 @@ import { colors } from "../../library/styles";
 import { Button, A, CheckIcon, DateTime, Icon } from "../../library";
 import { Link } from "react-router";
 
+import BuildingNumber from "./BuildingNumber";
 import ApartmentForm from "./ApartmentFormContainer";
-export { ApartmentForm };
+import ApartmentNumber from "./ApartmentNumber";
 
-export const BuildingNumber = props => {
-  const className = css({
-    width: "35px",
-    lineHeight: "35px",
-    display: "block",
-    color: "white",
-    background: colors.jwBlue,
-    textAlign: "center",
-    verticalAlign: "middle"
-  });
-  return <span className={className}>{props.children}</span>;
-};
-
-const recentlyContacted = () => {
-  return true;
-};
-
-export const ApartmentNumber = props => {
-  const { contactAttempts, children, otherProps } = props;
-  const className = css({
-    width: "35px",
-    lineHeight: "35px",
-    display: "block",
-    color: "white",
-    background: colors.jwBlue,
-    textAlign: "center",
-    verticalAlign: "middle"
-  });
-  return (
-    <span className={className} {...otherProps}>
-      {children}
-    </span>
-  );
-};
+export { ApartmentForm, BuildingNumber, ApartmentNumber };
 
 export const NumberOfApartments = props => (
   <Icon type="users">{props.children}</Icon>
