@@ -13,16 +13,9 @@ import H1 from "./H1";
 import Label from "./Label";
 import A from "./A";
 import Input from "./Input";
+import Button from "./Button";
 
-export { Loader, H1, Label, Input, A };
-
-export const Button = props => {
-  const { color, className, ...otherProps } = props;
-  const background = colors[color] || color || colors.jwBlue;
-  const buttonClass = css(styles.button, { background }, className);
-
-  return <button className={buttonClass} {...otherProps} />;
-};
+export { Loader, H1, Label, Input, A, Button };
 
 export const CheckIcon = props => {
   const { on, ...otherProps } = props;
