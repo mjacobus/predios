@@ -6,7 +6,7 @@ import {
   fetchBuildingByNumber,
   attemptContactOn,
   createContactAttempt
-} from "../../src/actions/buildingsActions";
+} from "../actions";
 
 function mapStateToProps(state) {
   return {

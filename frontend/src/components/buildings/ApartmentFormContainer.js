@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Input, Button } from "../../../library";
-import { createApartment } from "../../actions/buildingsActions";
+import { createApartment } from "../../../buildings/actions";
 import { styles, colors } from "../../../library/styles";
 import { css } from "glamor";
 

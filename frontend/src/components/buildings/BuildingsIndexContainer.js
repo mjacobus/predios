@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import BuildingsIndex from "./BuildingsIndex";
-import { fetchBuildings } from "../../actions/buildingsActions";
+import { fetchBuildings } from "../../../buildings/actions";
 import { debug } from "../../utils/log";
 
 function mapStateToProps(state) {
