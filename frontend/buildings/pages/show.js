@@ -1,8 +1,7 @@
 import React from "react";
-import Loader from "../../src/components/library/Loader";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
-import { Button } from "../../library";
+import { Button, Loader } from "../../library";
 
 import {
   BuildingNumber,

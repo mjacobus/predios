@@ -1,5 +1,5 @@
 import React from "react";
-import Loader from "../library/Loader";
+import { Loader } from "../../../library";
 import { colors, styles } from "../library/styles";
 import { H1, Input, Button, Form } from "../../../library";
 import { Grid, Col, Row } from "react-bootstrap";

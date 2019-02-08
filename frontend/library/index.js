@@ -10,6 +10,9 @@ export { Icon };
 import DefaultLayout from "./DefaultLayout";
 export { DefaultLayout };
 
+import Loader from "./Loader";
+export { Loader };
+
 export const H1 = props => {
   const { children, className, ...otherProps } = props;
   const classNames = css(
