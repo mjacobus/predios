@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import TopMenu from "./src/components/TopMenuContainer";
 import DefaultLayout from "./src/components/library/Layouts.js";
 import BuildingsIndex from "./src/components/buildings/BuildingsIndexContainer";
-import BuildingView from "./src/components/buildings/BuildingViewContainer";
+import Buildings from "./buildings/pages";
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -48,8 +48,8 @@ const app = (
       <div>
         <TopMenu />
         <DefaultLayout>
-          <Route exact path="/buildings" component={BuildingsIndex} />
-          <Route exact path="/buildings/:number" component={BuildingView} />
+          <Route exact path="/buildings" component={Buildings.List} />
+          <Route exact path="/buildings/:number" component={Buildings.View} />
         </DefaultLayout>
       </div>
     </BrowserRouter>
