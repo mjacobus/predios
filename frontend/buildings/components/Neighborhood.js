@@ -1,7 +1,5 @@
 import React from "react";
 
-const Neighborhood = props => {
+export default function Neighborhood(props) {
   return <div>{props.children}</div>;
-};
-
-export default Neighborhood;
+}

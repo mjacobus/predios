@@ -1,7 +1,5 @@
 import React from "react";
 
-const BuildingName = props => {
+export default function BuildingName(props) {
   return <strong>{props.children}</strong>;
-};
-
-export default BuildingName;
+}

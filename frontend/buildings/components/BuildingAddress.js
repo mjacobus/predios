@@ -1,7 +1,5 @@
 import React from "react";
 
-const BuildingAddress = props => {
+export default function BuildingAddress(props) {
   return <div>{props.children}</div>;
-};
-
-export default BuildingAddress;
+}

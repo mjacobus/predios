@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon } from "../../library";
 
-const NumberOfApartments = props => <Icon type="users">{props.children}</Icon>;
-
-export default NumberOfApartments;
+export default function NumberOfApartments(props) {
+  return <Icon type="users">{props.children}</Icon>;
+}
