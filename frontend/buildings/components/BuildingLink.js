@@ -1,4 +1,5 @@
 import React from "react";
+import { A } from "../../library";
 
 export default function BuildingLink(props) {
   const label = props.children || props.number;
