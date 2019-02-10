@@ -12,7 +12,7 @@ export default function List(props) {
     <div>
       <H1>Edifícios</H1>
       {fetching && <Loader />}
-      {fetching || <Filter filter={filter} />}
+      {fetching || <Filter />}
       {fetching ||
         buildings.map((building, i) => (
           <Building building={building} key={i} />
