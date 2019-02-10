@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import List from "./List";
 import { fetchBuildings } from "../actions";
 import { Loader } from "../../library";
 import Filter from "./list/FilterContainer";
