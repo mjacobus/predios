@@ -56,6 +56,7 @@ class ApartmentForm extends React.Component {
         <form onSubmit={this.submitHandler}>
           <div>
             <Input
+              autoFocus={ true }
               placeholder="Número do Apartamento"
               onChange={this.setValue("number")}
               disabled={props.loading}
