@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 import { Loader } from "../../library";
-import ContactAttemptForm from "./show/ContactAttemptForm";
+import ContactAttemptForm from "./show/ContactAttemptFormContainer";
 import Apartment from "./show/Apartment";
 
 import {
