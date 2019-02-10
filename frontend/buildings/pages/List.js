@@ -1,10 +1,9 @@
 import React from "react";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
-import { H1, Input, Button, Form } from "../../library";
+import { H1 } from "../../library";
 import { Loader } from "../../library";
-import { colors, styles } from "../../library/styles";
-
+import Filter from "./list/Filter";
 import {
   BuildingNumber,
   NumberOfApartments,
@@ -47,24 +46,6 @@ const Building = ({ building }) => {
           </Col>
         </Row>
       </Grid>
-    </div>
-  );
-};
-
-const Filter = props => {
-  return (
-    <div className={styles.formContainer}>
-      <Form>
-        <Input
-          className={css({ width: "70%", marginRight: "15px" })}
-          placeholder="Filtro"
-          type="text"
-          onKeyUp={e => props.filter(e.target.value)}
-        />
-        <Button type="reset" color={"jwBlue"} onClick={() => props.filter("")}>
-          Limpar
-        </Button>
-      </Form>
     </div>
   );
 };
