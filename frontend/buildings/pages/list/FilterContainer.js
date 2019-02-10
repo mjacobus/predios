@@ -29,7 +29,11 @@ const Filter = props => {
           type="text"
           onKeyUp={e => props.filterBuildings(e.target.value)}
         />
-        <Button type="reset" color={"jwBlue"} onClick={() => props.filter("")}>
+        <Button
+          type="reset"
+          color={"jwBlue"}
+          onClick={() => props.filterBuildings("")}
+        >
           Limpar
         </Button>
       </Form>
