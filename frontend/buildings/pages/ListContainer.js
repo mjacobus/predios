@@ -7,6 +7,7 @@ import { debug } from "../../src/utils/log";
 function mapStateToProps(state) {
   return {
     buildings: state.buildingsList.buildings,
+    filteredBuildings: state.buildingsList.buildings,
     fetching: state.buildingsList.fetching,
     currentUser: state.currentUser
   };
@@ -17,14 +18,6 @@ function mapDispatchToProps(dispatch) {
     fetchBuildings: fetchBuildings(dispatch)
   };
 }
-
-const compactFilter = element => {
-  return !!element;
-};
-
-const toString = value => {
-  return value.toString().toLowerCase();
-};
 
 class BuildingsContainer extends React.Component {
   constructor(props) {
@@ -39,33 +32,8 @@ class BuildingsContainer extends React.Component {
     this.props.fetchBuildings();
   }
 
-  filteredBuildings(buildings) {
-    const filter = this.state.filter;
-
-    if (filter == "") {
-      return buildings;
-    }
-
-    return buildings.filter(building => {
-      const values = [
-        building.number,
-        building.address,
-        building.neighborhood,
-        building.name
-      ];
-
-      const string = values
-        .filter(compactFilter)
-        .map(toString)
-        .join(" ");
-
-      return string.search(filter) >= 0;
-    });
-  }
-
   render() {
-    const props = Object.assign({}, this.props);
-    const buildings = this.props.buildings || [];
+    const buildings = this.props.filteredBuildings || [];
     return <List buildings={buildings} />;
   }
 }

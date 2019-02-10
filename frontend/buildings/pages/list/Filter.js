@@ -27,7 +27,7 @@ const Filter = props => {
           className={css({ width: "70%", marginRight: "15px" })}
           placeholder="Filtro"
           type="text"
-          onKeyUp={e => props.filter(e.target.value)}
+          onKeyUp={e => props.filterBuildings(e.target.value)}
         />
         <Button type="reset" color={"jwBlue"} onClick={() => props.filter("")}>
           Limpar
