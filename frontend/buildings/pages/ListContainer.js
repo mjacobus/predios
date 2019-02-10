@@ -2,12 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import List from "./List";
 import { fetchBuildings } from "../actions";
-import { debug } from "../../src/utils/log";
 
 function mapStateToProps(state) {
   return {
     buildings: state.buildingsList.buildings,
-    filteredBuildings: state.buildingsList.buildings,
+    filteredBuildings: state.buildingsList.filteredBuildings,
     fetching: state.buildingsList.fetching,
     currentUser: state.currentUser
   };
@@ -25,15 +24,11 @@ class BuildingsContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchBuildings();
-  }
-
-  fetchBuildings() {
     this.props.fetchBuildings();
   }
 
   render() {
-    const buildings = this.props.filteredBuildings || [];
+    const buildings = this.props.filteredBuildings;
     return <List buildings={buildings} />;
   }
 }
