@@ -3,7 +3,7 @@ import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 import { H1 } from "../../library";
 import { Loader } from "../../library";
-import Filter from "./list/Filter";
+import Filter from "./list/FilterContainer";
 import Building from "./list/Building";
 
 export default function List(props) {
