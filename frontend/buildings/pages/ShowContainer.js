@@ -1,7 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
-import Show from "./Show";
-import { ApartmentForm } from "../components";
+import { Grid, Col, Row } from "react-bootstrap";
+import { css } from "glamor";
+import { Loader } from "../../library";
+import ContactAttemptForm from "./show/ContactAttemptForm";
+import Apartment from "./show/Apartment";
+
+import {
+  ApartmentForm,
+  BuildingAddress,
+  BuildingLink,
+  BuildingName,
+  BuildingNumber,
+  CallOptions,
+  Neighborhood,
+  NumberOfApartments
+} from "../components";
+
 import {
   fetchBuildingByNumber,
   attemptContactOn,
@@ -22,6 +37,76 @@ function mapDispatchToProps(dispatch) {
     fetchBuildingByNumber: fetchBuildingByNumber(dispatch),
     attemptContactOn: attemptContactOn(dispatch)
   };
+}
+
+function Show(props) {
+  const {
+    fetching,
+    building,
+    cancelContactAttempt,
+    createContactAttempt
+  } = props;
+
+  const bellClick = props.bellClick;
+
+  if (fetching && !building) {
+    return <Loader />;
+  }
+
+  let apartments = building.apartments;
+  const apartment = props.contactAttemptOn;
+
+  const { handleCreateContactAttempt } = props;
+
+  const contactAttemptProps = {
+    apartment,
+    handleCreateContactAttempt,
+    cancelContactAttempt
+  };
+
+  if (props.contactAttemptOn) {
+    apartments = [];
+  }
+
+  return (
+    <div>
+      <Grid>
+        <Row>
+          <Col xs={2}>
+            <BuildingNumber>{building.number}</BuildingNumber>
+            <NumberOfApartments>
+              {building.number_of_apartments}
+            </NumberOfApartments>
+          </Col>
+          <Col xs={8}>
+            <BuildingLink number={building.number}>
+              <BuildingName>{building.name}</BuildingName>
+            </BuildingLink>
+            <BuildingLink number={building.number}>
+              <BuildingAddress>{building.address}</BuildingAddress>
+            </BuildingLink>
+            <Neighborhood>{building.neighborhood}</Neighborhood>
+          </Col>
+          <Col xs={2}>
+            <CallOptions options={building.call_options} />
+          </Col>
+        </Row>
+      </Grid>
+      {props.building.has_all_apartments || props.apartmentForm}
+      <div className={css({ marginTop: "32px" })}>
+        {props.contactAttemptOn && (
+          <ContactAttemptForm {...contactAttemptProps} />
+        )}
+        {apartments.map(a => (
+          <Apartment
+            apartment={a}
+            key={a.uuid}
+            bellClick={() => bellClick(a)}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 class ShowContainer extends React.Component {
