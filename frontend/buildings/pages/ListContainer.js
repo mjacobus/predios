@@ -1,14 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import BuildingsIndex from "./List";
 import { fetchBuildings } from "../actions";
-import { debug } from "../../src/utils/log";
+import { Loader } from "../../library";
+import Filter from "./list/FilterContainer";
+import Building from "./list/Building";
+import { H1 } from "../../library";
 
 function mapStateToProps(state) {
   return {
+    buildings: state.buildingsList.buildings,
+    filteredBuildings: state.buildingsList.filteredBuildings,
     fetching: state.buildingsList.fetching,
-    currentUser: state.currentUser,
-    buildings: state.entities.buildings
+    currentUser: state.currentUser
   };
 }
 
@@ -18,67 +21,30 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const compactFilter = element => {
-  return !!element;
-};
-
-const toString = value => {
-  return value.toString().toLowerCase();
-};
-
 class BuildingsContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.fetchBuildings = this.fetchBuildings.bind(this);
-    this.filter = this.filter.bind(this);
-    this.state = {
-      filter: ""
-    };
   }
 
   componentDidMount() {
-    this.fetchBuildings();
-  }
-
-  fetchBuildings() {
     this.props.fetchBuildings();
   }
 
-  filter(filter) {
-    this.setState({ filter: filter.toString().toLowerCase() });
-  }
-
-  filteredBuildings(buildings) {
-    const filter = this.state.filter;
-
-    if (filter == "") {
-      return buildings;
-    }
-
-    return buildings.filter(building => {
-      const values = [
-        building.number,
-        building.address,
-        building.neighborhood,
-        building.name
-      ];
-
-      const string = values
-        .filter(compactFilter)
-        .map(toString)
-        .join(" ");
-
-      return string.search(filter) >= 0;
-    });
-  }
-
   render() {
-    const { buildings, currentUser, fetching } = this.props;
-    const props = { currentUser, fetching };
-    props.filter = this.filter;
-    props.buildings = this.filteredBuildings(buildings);
-    debug(`Filtered with ${this.state.filter}`, props.buildings);
-    return <BuildingsIndex {...props} />;
+    const buildings = this.props.filteredBuildings;
+    const { filter, fetching } = this.props;
+
+    return (
+      <div>
+        <H1>Edifícios</H1>
+        <Filter />
+        {fetching && <Loader />}
+        {fetching ||
+          buildings.map((building, i) => (
+            <Building building={building} key={i} />
+          ))}
+      </div>
+    );
   }
 }
 
