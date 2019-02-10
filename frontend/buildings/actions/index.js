@@ -66,7 +66,6 @@ export const createApartment = dispatch => {
         })
         .end((error, response) => {
           if (error) {
-            console.log(error);
             return dispatch({
               type: "APARTMENT_CREATION_FAILED",
               errors: response.body
@@ -78,5 +77,11 @@ export const createApartment = dispatch => {
           resolve();
         });
     });
+  };
+};
+
+export const filterBuildings = dispatch => {
+  return searchString => {
+    dispatch({ type: "BUILDINGS_FILTERED", searchString: searchString });
   };
 };

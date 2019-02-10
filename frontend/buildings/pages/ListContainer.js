@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import BuildingsIndex from "./List";
+import List from "./List";
 import { fetchBuildings } from "../actions";
 import { debug } from "../../src/utils/log";
 
 function mapStateToProps(state) {
   return {
+    buildings: state.buildingsList.buildings,
     fetching: state.buildingsList.fetching,
-    currentUser: state.currentUser,
-    buildings: state.entities.buildings
+    currentUser: state.currentUser
   };
 }
 
@@ -29,11 +29,6 @@ const toString = value => {
 class BuildingsContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.fetchBuildings = this.fetchBuildings.bind(this);
-    this.filter = this.filter.bind(this);
-    this.state = {
-      filter: ""
-    };
   }
 
   componentDidMount() {
@@ -42,10 +37,6 @@ class BuildingsContainer extends React.Component {
 
   fetchBuildings() {
     this.props.fetchBuildings();
-  }
-
-  filter(filter) {
-    this.setState({ filter: filter.toString().toLowerCase() });
   }
 
   filteredBuildings(buildings) {
@@ -73,12 +64,9 @@ class BuildingsContainer extends React.Component {
   }
 
   render() {
-    const { buildings, currentUser, fetching } = this.props;
-    const props = { currentUser, fetching };
-    props.filter = this.filter;
-    props.buildings = this.filteredBuildings(buildings);
-    debug(`Filtered with ${this.state.filter}`, props.buildings);
-    return <BuildingsIndex {...props} />;
+    const props = Object.assign({}, this.props);
+    const buildings = this.props.buildings || [];
+    return <List buildings={buildings} />;
   }
 }
 

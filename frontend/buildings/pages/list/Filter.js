@@ -1,9 +1,25 @@
 import React from "react";
+import { connect } from "react-redux";
 import { css } from "glamor";
 import { H1, Input, Button, Form } from "../../../library";
 import { colors, styles } from "../../../library/styles";
+import { filterBuildings } from "../../actions";
 
-export default function Filter(props) {
+function mapStateToProps(state) {
+  return {
+    fetching: state.buildingsList.fetching,
+    currentUser: state.currentUser,
+    buildings: state.entities.buildings
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    filterBuildings: filterBuildings(dispatch)
+  };
+}
+
+const Filter = props => {
   return (
     <div className={styles.formContainer}>
       <Form>
@@ -19,4 +35,9 @@ export default function Filter(props) {
       </Form>
     </div>
   );
-}
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Filter);

@@ -6,8 +6,8 @@ import { Loader } from "../../library";
 import Filter from "./list/Filter";
 import Building from "./list/Building";
 
-export default function BuildingsIndex(props) {
-  const { filter, buildings, currentUser, fetching } = props;
+export default function List(props) {
+  const { filter, buildings, fetching } = props;
   return (
     <div>
       <H1>Edifícios</H1>
