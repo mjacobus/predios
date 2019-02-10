@@ -30,14 +30,9 @@ class ShowContainer extends React.Component {
     this.state = { contactAttemptOn: null };
     this.bellClick = this.bellClick.bind(this);
     this.cancelContactAttempt = this.cancelContactAttempt.bind(this);
-    this.createApartmentHandler = this.createApartmentHandler.bind(this);
     this.handleCreateContactAttempt = this.handleCreateContactAttempt.bind(
       this
     );
-  }
-
-  createApartmentHandler() {
-    console.log();
   }
 
   componentDidMount() {
@@ -66,12 +61,7 @@ class ShowContainer extends React.Component {
   render() {
     const { fetching, building, reload, ...otherProps } = this.props;
 
-    const apartmentForm = (
-      <ApartmentForm
-        building={building}
-        submitHandler={this.props.createApartmentHandler}
-      />
-    );
+    const apartmentForm = <ApartmentForm />;
 
     const bellClick = this.bellClick;
     const handleCreateContactAttempt = this.handleCreateContactAttempt;
