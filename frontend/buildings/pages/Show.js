@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 import { Button, Loader } from "../../library";
+import ContactAttempts from "./show/ContactAttempts";
 
 import {
   BuildingNumber,
@@ -11,49 +12,9 @@ import {
   Neighborhood,
   BuildingLink,
   ApartmentNumber,
-  ContactAttempt,
   DoorBell,
   BuildingName
 } from "../components";
-
-class ContactAttempts extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { open: false };
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    console.log("toggling");
-    this.setState({ open: !this.state.open });
-  }
-
-  render() {
-    const attempts = this.props.contactAttempts.slice().reverse();
-
-    if (attempts.length == 0) {
-      return <span />;
-    }
-
-    const first = attempts.shift();
-
-    let firstEntry = <ContactAttempt contactAttempt={first} />;
-
-    if (attempts.length > 0) {
-      firstEntry = <a onClick={this.toggle}>{firstEntry}</a>;
-    }
-
-    return (
-      <div>
-        {firstEntry}
-        {this.state.open &&
-          attempts.map((attempt, key) => (
-            <ContactAttempt contactAttempt={attempt} key={key} />
-          ))}
-      </div>
-    );
-  }
-}
 
 const Apartment = props => {
   const { apartment } = props;
