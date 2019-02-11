@@ -2,8 +2,26 @@ import React from "react";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 import { Button } from "../../../library";
+import { connect } from "react-redux";
 
-export default function ContactAttemptForm(props) {
+function mapStateToProps(state) {
+  return {
+    // building: state.buildingView.building,
+    // fetching: state.buildingView.fetching,
+    // contactAttemptOn: state.buildingView.contactAttemptOn
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    // createContactAttempt: createContactAttempt(dispatch),
+    // fetchBuildingByNumber: fetchBuildingByNumber(dispatch),
+    // attemptContactOn: attemptContactOn(dispatch)
+  };
+}
+
+
+function ContactAttemptForm(props) {
   const { apartment } = props;
   const actionsClass = css({
     " button": {
@@ -58,3 +76,8 @@ export default function ContactAttemptForm(props) {
     </div>
   );
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ContactAttemptForm);
