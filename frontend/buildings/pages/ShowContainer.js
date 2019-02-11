@@ -103,18 +103,8 @@ class ShowContainer extends React.Component {
   }
 
   render() {
-    const { fetching, building, ...otherProps } = this.props;
-
-    const bellClick = this.bellClick;
-    const props = {
-      contactAttemptOn: this.props.contactAttemptOn,
-      bellClick,
-      building,
-      fetching,
-      ...otherProps
-    };
-
-    return <Show {...props} />;
+    const props = this.props;
+    return <Show {...props} bellClick={this.bellClick} />;
   }
 }
 
