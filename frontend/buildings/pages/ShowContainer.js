@@ -33,7 +33,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function Show(props) {
-  const { fetching, building, cancelContactAttempt } = props;
+  const { fetching, building } = props;
 
   const bellClick = props.bellClick;
 
@@ -42,13 +42,6 @@ function Show(props) {
   }
 
   let apartments = building.apartments;
-
-  const { handleCreateContactAttempt } = props;
-
-  const contactAttemptProps = {
-    handleCreateContactAttempt,
-    cancelContactAttempt
-  };
 
   if (props.contactAttemptOn) {
     apartments = [];
@@ -80,9 +73,7 @@ function Show(props) {
       </Grid>
       {props.building.has_all_apartments || props.apartmentForm}
       <div className={css({ marginTop: "32px" })}>
-        {props.contactAttemptOn && (
-          <ContactAttemptForm {...contactAttemptProps} />
-        )}
+        {props.contactAttemptOn && <ContactAttemptForm />}
         {apartments.map(a => (
           <Apartment
             apartment={a}
@@ -117,10 +108,8 @@ class ShowContainer extends React.Component {
     const apartmentForm = <ApartmentForm />;
 
     const bellClick = this.bellClick;
-    const handleCreateContactAttempt = this.handleCreateContactAttempt;
     const props = {
       contactAttemptOn: this.props.contactAttemptOn,
-      handleCreateContactAttempt,
       bellClick,
       building,
       fetching,
