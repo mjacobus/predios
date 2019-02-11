@@ -20,6 +20,13 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+const actionsClass = css({
+  " button": {
+    width: "100px",
+    margin: "10px"
+  }
+});
+
 class ContactAttemptForm extends React.Component {
   constructor(props) {
     super(props);
@@ -42,12 +49,6 @@ class ContactAttemptForm extends React.Component {
   render() {
     const props = this.props;
     const { apartment } = props;
-    const actionsClass = css({
-      " button": {
-        width: "100px",
-        margin: "10px"
-      }
-    });
 
     return (
       <div>
