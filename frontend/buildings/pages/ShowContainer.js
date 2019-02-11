@@ -44,7 +44,6 @@ function Show(props) {
     fetching,
     building,
     cancelContactAttempt,
-    createContactAttempt
   } = props;
 
   const bellClick = props.bellClick;
