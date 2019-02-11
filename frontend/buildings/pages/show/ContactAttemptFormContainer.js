@@ -4,7 +4,7 @@ import { css } from "glamor";
 import { Button } from "../../../library";
 import { connect } from "react-redux";
 
-import { createContactAttempt } from "../../actions";
+import { createContactAttempt, attemptContactOn } from "../../actions";
 
 function mapStateToProps(state) {
   return {
@@ -15,7 +15,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createContactAttempt: createContactAttempt(dispatch)
+    createContactAttempt: createContactAttempt(dispatch),
+    attemptContactOn: attemptContactOn(dispatch)
   };
 }
 
@@ -32,6 +33,10 @@ class ContactAttemptForm extends React.Component {
       outcome
     };
     this.props.createContactAttempt(payload);
+  }
+
+  cancelContactAttempt() {
+    this.props.attemptContactOn(null);
   }
 
   render() {

@@ -17,11 +17,7 @@ import {
   NumberOfApartments
 } from "../components";
 
-import {
-  fetchBuildingByNumber,
-  attemptContactOn,
-  createContactAttempt
-} from "../actions";
+import { fetchBuildingByNumber, attemptContactOn } from "../actions";
 
 function mapStateToProps(state) {
   return {
@@ -33,9 +29,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createContactAttempt: createContactAttempt(dispatch),
-    fetchBuildingByNumber: fetchBuildingByNumber(dispatch),
-    attemptContactOn: attemptContactOn(dispatch)
+    attemptContactOn: attemptContactOn(dispatch),
+    fetchBuildingByNumber: fetchBuildingByNumber(dispatch)
   };
 }
 
@@ -107,19 +102,11 @@ class ShowContainer extends React.Component {
     super(props);
     this.state = { contactAttemptOn: null };
     this.bellClick = this.bellClick.bind(this);
-    this.cancelContactAttempt = this.cancelContactAttempt.bind(this);
-    // this.handleCreateContactAttempt = this.handleCreateContactAttempt.bind(
-    //   this
-    // );
   }
 
   componentDidMount() {
     const { number } = this.props.match.params;
     this.props.fetchBuildingByNumber(number);
-  }
-
-  cancelContactAttempt() {
-    this.props.attemptContactOn(null);
   }
 
   bellClick(apartment) {
@@ -135,7 +122,6 @@ class ShowContainer extends React.Component {
     const handleCreateContactAttempt = this.handleCreateContactAttempt;
     const props = {
       contactAttemptOn: this.props.contactAttemptOn,
-      cancelContactAttempt: this.cancelContactAttempt,
       handleCreateContactAttempt,
       bellClick,
       building,
