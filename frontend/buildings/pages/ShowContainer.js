@@ -40,11 +40,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function Show(props) {
-  const {
-    fetching,
-    building,
-    cancelContactAttempt,
-  } = props;
+  const { fetching, building, cancelContactAttempt } = props;
 
   const bellClick = props.bellClick;
 
@@ -112,9 +108,9 @@ class ShowContainer extends React.Component {
     this.state = { contactAttemptOn: null };
     this.bellClick = this.bellClick.bind(this);
     this.cancelContactAttempt = this.cancelContactAttempt.bind(this);
-    this.handleCreateContactAttempt = this.handleCreateContactAttempt.bind(
-      this
-    );
+    // this.handleCreateContactAttempt = this.handleCreateContactAttempt.bind(
+    //   this
+    // );
   }
 
   componentDidMount() {
@@ -124,16 +120,6 @@ class ShowContainer extends React.Component {
 
   cancelContactAttempt() {
     this.props.attemptContactOn(null);
-  }
-
-  handleCreateContactAttempt(apartment, outcome) {
-    const { building } = this.props;
-    let payload = {
-      building,
-      apartment,
-      outcome
-    };
-    this.props.createContactAttempt(payload);
   }
 
   bellClick(apartment) {
