@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import Show from "./Show";
+import { Grid, Col, Row } from "react-bootstrap";
+import { css } from "glamor";
+import { Loader } from "../../library";
+import ContactAttemptForm from "./show/ContactAttemptFormContainer";
+import Apartment from "./show/Apartment";
+import BuildingHeader from "./show/BuildingHeader";
 import { ApartmentForm } from "../components";
-import {
-  fetchBuildingByNumber,
-  attemptContactOn,
-  createContactAttempt
-} from "../actions";
+import { fetchBuildingByNumber, attemptContactOn } from "../actions";
 
 function mapStateToProps(state) {
   return {
@@ -18,9 +19,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createContactAttempt: createContactAttempt(dispatch),
-    fetchBuildingByNumber: fetchBuildingByNumber(dispatch),
-    attemptContactOn: attemptContactOn(dispatch)
+    attemptContactOn: attemptContactOn(dispatch),
+    fetchBuildingByNumber: fetchBuildingByNumber(dispatch)
   };
 }
 
@@ -29,15 +29,6 @@ class ShowContainer extends React.Component {
     super(props);
     this.state = { contactAttemptOn: null };
     this.bellClick = this.bellClick.bind(this);
-    this.cancelContactAttempt = this.cancelContactAttempt.bind(this);
-    this.createApartmentHandler = this.createApartmentHandler.bind(this);
-    this.handleCreateContactAttempt = this.handleCreateContactAttempt.bind(
-      this
-    );
-  }
-
-  createApartmentHandler() {
-    console.log();
   }
 
   componentDidMount() {
@@ -45,48 +36,42 @@ class ShowContainer extends React.Component {
     this.props.fetchBuildingByNumber(number);
   }
 
-  cancelContactAttempt() {
-    this.props.attemptContactOn(null);
-  }
-
-  handleCreateContactAttempt(apartment, outcome) {
-    const { building } = this.props;
-    let payload = {
-      building,
-      apartment,
-      outcome
-    };
-    this.props.createContactAttempt(payload);
-  }
-
   bellClick(apartment) {
     this.props.attemptContactOn(apartment);
   }
 
   render() {
-    const { fetching, building, reload, ...otherProps } = this.props;
-
-    const apartmentForm = (
-      <ApartmentForm
-        building={building}
-        submitHandler={this.props.createApartmentHandler}
-      />
-    );
+    const props = this.props;
+    const { fetching, building } = props;
 
     const bellClick = this.bellClick;
-    const handleCreateContactAttempt = this.handleCreateContactAttempt;
-    const props = {
-      contactAttemptOn: this.props.contactAttemptOn,
-      cancelContactAttempt: this.cancelContactAttempt,
-      handleCreateContactAttempt,
-      bellClick,
-      building,
-      fetching,
-      apartmentForm,
-      ...otherProps
-    };
 
-    return <Show {...props} />;
+    if (fetching && !building) {
+      return <Loader />;
+    }
+
+    let apartments = building.apartments;
+
+    if (props.contactAttemptOn) {
+      apartments = [];
+    }
+
+    return (
+      <div>
+        <BuildingHeader building={building} />
+        {props.building.has_all_apartments || <ApartmentForm />}
+        <div className={css({ marginTop: "32px" })}>
+          {props.contactAttemptOn && <ContactAttemptForm />}
+          {apartments.map(a => (
+            <Apartment
+              apartment={a}
+              key={a.uuid}
+              bellClick={() => bellClick(a)}
+            />
+          ))}
+        </div>
+      </div>
+    );
   }
 }
 
