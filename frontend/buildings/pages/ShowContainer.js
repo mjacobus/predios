@@ -5,7 +5,6 @@ import { css } from "glamor";
 import { Loader } from "../../library";
 import ContactAttemptForm from "./show/ContactAttemptFormContainer";
 import Apartment from "./show/Apartment";
-
 import {
   ApartmentForm,
   BuildingAddress,
@@ -16,7 +15,6 @@ import {
   Neighborhood,
   NumberOfApartments
 } from "../components";
-
 import { fetchBuildingByNumber, attemptContactOn } from "../actions";
 
 function mapStateToProps(state) {
