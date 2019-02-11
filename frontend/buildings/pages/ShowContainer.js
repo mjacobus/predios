@@ -71,7 +71,7 @@ function Show(props) {
           </Col>
         </Row>
       </Grid>
-      {props.building.has_all_apartments || props.apartmentForm}
+      {props.building.has_all_apartments || <ApartmentForm />}
       <div className={css({ marginTop: "32px" })}>
         {props.contactAttemptOn && <ContactAttemptForm />}
         {apartments.map(a => (
@@ -103,9 +103,7 @@ class ShowContainer extends React.Component {
   }
 
   render() {
-    const { fetching, building, reload, ...otherProps } = this.props;
-
-    const apartmentForm = <ApartmentForm />;
+    const { fetching, building, ...otherProps } = this.props;
 
     const bellClick = this.bellClick;
     const props = {
@@ -113,7 +111,6 @@ class ShowContainer extends React.Component {
       bellClick,
       building,
       fetching,
-      apartmentForm,
       ...otherProps
     };
 
