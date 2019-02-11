@@ -54,12 +54,10 @@ function Show(props) {
   }
 
   let apartments = building.apartments;
-  const apartment = props.contactAttemptOn;
 
   const { handleCreateContactAttempt } = props;
 
   const contactAttemptProps = {
-    apartment,
     handleCreateContactAttempt,
     cancelContactAttempt
   };

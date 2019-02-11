@@ -8,7 +8,7 @@ function mapStateToProps(state) {
   return {
     // building: state.buildingView.building,
     // fetching: state.buildingView.fetching,
-    // contactAttemptOn: state.buildingView.contactAttemptOn
+    apartment: state.buildingView.contactAttemptOn
   };
 }
 
@@ -19,7 +19,6 @@ function mapDispatchToProps(dispatch) {
     // attemptContactOn: attemptContactOn(dispatch)
   };
 }
-
 
 function ContactAttemptForm(props) {
   const { apartment } = props;
