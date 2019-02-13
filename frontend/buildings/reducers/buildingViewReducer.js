@@ -2,6 +2,7 @@ const DEFAULT_STATE = {
   fetching: true,
   building: null,
   creatingApartment: null,
+  creatingContactAttempt: null,
   contactAttemptOn: null
 };
 
@@ -25,13 +26,14 @@ export default function buildingViewReducer(state = DEFAULT_STATE, action) {
   if (action.type == "CREATING_CONTACT_ATTEMPT") {
     return {
       ...state,
-      fetching: true
+      creatingContactAttempt: true
     };
   }
 
   if (action.type == "CONTACT_ATTEMPT_CREATED") {
     return {
       ...state,
+      creatingContactAttempt: null,
       contactAttemptOn: null
     };
   }
