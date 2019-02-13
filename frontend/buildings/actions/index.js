@@ -81,7 +81,7 @@ export const createApartment = dispatch => {
 };
 
 export const filterBuildings = dispatch => {
-  return searchString => {
-    dispatch({ type: "BUILDINGS_FILTERED", searchString: searchString });
+  return filter => {
+    dispatch({ type: "BUILDINGS_FILTERED", filter });
   };
 };

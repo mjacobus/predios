@@ -1,7 +1,8 @@
-import { filterBuildings } from "../selectors";
+import { applyFilter } from "../selectors";
 
 const DEFAULT_STATE = {
   fetching: true,
+  filter: { callOption: "all", text: "" },
   buildings: [],
   filteredBuildings: []
 };
@@ -24,11 +25,11 @@ export default function buildingsListReducer(state = DEFAULT_STATE, action) {
   }
 
   if (action.type == "BUILDINGS_FILTERED") {
-    const filtered = filterBuildings(state.buildings, action.searchString);
+    const filtered = applyFilter(state.buildings, action.filter);
 
     return {
       ...state,
-      filter: action.searchString,
+      filter: action.filter,
       filteredBuildings: filtered, // this is not working
       fetching: false
     };

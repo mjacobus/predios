@@ -4,6 +4,7 @@ import CheckIcon from "./CheckIcon";
 import DateTime from "./DateTime";
 import DefaultLayout from "./DefaultLayout";
 import Form from "./Form";
+import FormRow from "./FormRow";
 import H1 from "./H1";
 import Icon from "./Icon";
 import Input from "./Input";
@@ -17,6 +18,7 @@ export {
   DateTime,
   DefaultLayout,
   Form,
+  FormRow,
   H1,
   Icon,
   Input,
