@@ -25,6 +25,11 @@ function merge(original, replacements) {
   return Object.assign({}, original, replacements);
 }
 
+const labelClass = css({
+  marginRight: "10px",
+  float: "left"
+});
+
 const Filter = props => {
   const mergeFilter = newProps => {
     props.filterBuildings(merge(props.filter, newProps));
@@ -52,7 +57,7 @@ const Filter = props => {
         <Button type="reset" color={"jwBlue"} onClick={resetForm}>
           Limpar
         </Button>
-        <Label>
+        <Label className={labelClass}>
           <input
             type="radio"
             value="intercom"
@@ -62,7 +67,7 @@ const Filter = props => {
           />{" "}
           Interfone
         </Label>
-        <Label>
+        <Label className={labelClass}>
           <input
             type="radio"
             value="phone"
@@ -72,7 +77,7 @@ const Filter = props => {
           />{" "}
           Telefone
         </Label>
-        <Label>
+        <Label className={labelClass}>
           <input
             type="radio"
             value="letter"
@@ -82,7 +87,7 @@ const Filter = props => {
           />{" "}
           Cartas
         </Label>
-        <Label>
+        <Label className={labelClass}>
           <input
             type="radio"
             value="all"
