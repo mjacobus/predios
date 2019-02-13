@@ -46,7 +46,7 @@ export const applyFilter = (buildings, filter) => {
   }
 
   if (filter.callOption) {
-    filtered = filterByCallOption(buildings, filter.callOption);
+    filtered = filterByCallOption(filtered, filter.callOption);
   }
 
   return filtered;

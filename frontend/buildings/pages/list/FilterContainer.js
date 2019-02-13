@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { css } from "glamor";
 import { H1, Input, Button, Form } from "../../../library";
 import { colors, styles } from "../../../library/styles";
-import { filterBuildings, selectContactOption } from "../../actions";
+import { filterBuildings } from "../../actions";
 import { Label } from "../../../library";
 
 function mapStateToProps(state) {
@@ -21,14 +21,22 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+function merge(original, replacements) {
+  return Object.assign({}, original, replacements);
+}
+
 const Filter = props => {
+  const mergeFilter = newProps => {
+    props.filterBuildings(merge(props.filter, newProps));
+  };
+
   const resetForm = () => {
-    props.filterBuildings("text", "", props.filter);
-    props.filterBuildings("callOption", "", props.filter);
+    mergeFilter({ text: "", callOption: "all" });
   };
 
   const handleCallOptionChange = event => {
-    props.filterBuildings("callOption", event.target.value);
+    const callOption = event.target.value;
+    props.filterBuildings(merge(props.filter, { callOption }));
   };
 
   return (
@@ -39,9 +47,9 @@ const Filter = props => {
           className={css({ width: "70%", marginRight: "15px" })}
           placeholder="Filtro"
           type="text"
-          onKeyUp={e => props.filterBuildings("text", e.target.value)}
+          onKeyUp={e => mergeFilter({ text: e.target.value })}
         />
-        <Button type="reset" color={"jwBlue"} onClick={() => resetForm()}>
+        <Button type="reset" color={"jwBlue"} onClick={resetForm}>
           Limpar
         </Button>
         <Label>
