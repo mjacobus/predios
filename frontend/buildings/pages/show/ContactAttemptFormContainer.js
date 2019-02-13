@@ -7,6 +7,7 @@ import { createContactAttempt, attemptContactOn } from "../../actions";
 
 function mapStateToProps(state) {
   return {
+    loading: state.buildingView.creatingContactAttempt,
     building: state.buildingView.building,
     apartment: state.buildingView.contactAttemptOn
   };
@@ -65,6 +66,7 @@ class ContactAttemptForm extends React.Component {
               <div className={actionsClass}>
                 <Button
                   color="green"
+                  disabled={this.props.loading}
                   onClick={e =>
                     this.handleCreateContactAttempt(apartment, "contacted")
                   }
@@ -73,6 +75,7 @@ class ContactAttemptForm extends React.Component {
                 </Button>
                 <Button
                   color="red"
+                  disabled={this.props.loading}
                   onClick={e =>
                     this.handleCreateContactAttempt(apartment, "failed")
                   }
@@ -85,7 +88,10 @@ class ContactAttemptForm extends React.Component {
           <Row>
             <Col xs={12}>
               <div className={actionsClass}>
-                <Button onClick={e => this.cancelContactAttempt()}>
+                <Button
+                  onClick={e => this.cancelContactAttempt()}
+                  disabled={this.props.loading}
+                >
                   Cancelar
                 </Button>
               </div>
