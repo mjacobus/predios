@@ -6,12 +6,12 @@ const toString = value => {
   return value.toString().toLowerCase();
 };
 
-export const filterBuildings = (buildings, filter) => {
+const filterByText = (buildings, filter) => {
   if (filter == "") {
     return buildings;
   }
 
-  const filtered = buildings.filter(building => {
+  return buildings.filter(building => {
     const values = [
       building.number,
       building.address,
@@ -26,6 +26,28 @@ export const filterBuildings = (buildings, filter) => {
 
     return string.search(filter) >= 0;
   });
+};
+
+const filterByCallOption = (buildings, option) => {
+  if (option == "all") {
+    return buildings;
+  }
+
+  return buildings.filter(building => {
+    return building.call_options.indexOf(option) >= 0;
+  });
+};
+
+export const applyFilter = (buildings, filter) => {
+  let filtered = buildings;
+
+  if (filter.text) {
+    filtered = filterByText(buildings, filter.text);
+  }
+
+  if (filter.callOption) {
+    filtered = filterByCallOption(buildings, filter.callOption);
+  }
 
   return filtered;
 };

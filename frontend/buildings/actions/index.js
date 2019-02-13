@@ -81,7 +81,10 @@ export const createApartment = dispatch => {
 };
 
 export const filterBuildings = dispatch => {
-  return searchString => {
-    dispatch({ type: "BUILDINGS_FILTERED", searchString: searchString });
+  return (field, value, existingFilter) => {
+    const newFilter = Object.assign({}, existingFilter);
+    newFilter[field] = value;
+
+    dispatch({ type: "BUILDINGS_FILTERED", filter: newFilter });
   };
 };
