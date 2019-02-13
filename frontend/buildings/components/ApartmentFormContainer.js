@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { css } from "glamor";
 
-import { Input, Button } from "../../library";
+import { Input, Button, FormRow } from "../../library";
 import { createApartment } from "../../buildings/actions";
 import { styles, colors } from "../../library/styles";
 
@@ -54,7 +54,7 @@ class ApartmentForm extends React.Component {
     return (
       <div className={styles.formContainer}>
         <form onSubmit={this.submitHandler}>
-          <div>
+          <FormRow>
             <Input
               autoFocus={true}
               placeholder="Número do Apartamento"
@@ -76,7 +76,7 @@ class ApartmentForm extends React.Component {
                 {props.errors && props.errors.message}
               </small>
             </div>
-          </div>
+          </FormRow>
         </form>
       </div>
     );
