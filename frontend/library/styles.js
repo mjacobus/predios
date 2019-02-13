@@ -29,8 +29,7 @@ export const fontSizes = {
 };
 
 const formContainer = css({
-  height: "95px",
-  padding: "30px 15px",
+  padding: "0 15px",
   border: "1px solid #ddd",
   margin: "30px 15px",
   background: colors.lightGray

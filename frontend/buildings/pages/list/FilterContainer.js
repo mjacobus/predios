@@ -4,7 +4,7 @@ import { css } from "glamor";
 import { H1, Input, Button, Form } from "../../../library";
 import { colors, styles } from "../../../library/styles";
 import { filterBuildings } from "../../actions";
-import { Label } from "../../../library";
+import { Label, FormRow } from "../../../library";
 
 function mapStateToProps(state) {
   return {
@@ -25,11 +25,6 @@ function merge(original, replacements) {
   return Object.assign({}, original, replacements);
 }
 
-const labelClass = css({
-  marginRight: "10px",
-  float: "left"
-});
-
 const Filter = props => {
   const mergeFilter = newProps => {
     props.filterBuildings(merge(props.filter, newProps));
@@ -47,56 +42,60 @@ const Filter = props => {
   return (
     <div className={styles.formContainer}>
       <Form>
-        <Input
-          autoFocus={true}
-          className={css({ width: "70%", marginRight: "15px" })}
-          placeholder="Filtro"
-          type="text"
-          onKeyUp={e => mergeFilter({ text: e.target.value })}
-        />
-        <Button type="reset" color={"jwBlue"} onClick={resetForm}>
-          Limpar
-        </Button>
-        <Label className={labelClass}>
-          <input
-            type="radio"
-            value="intercom"
-            name="callOption"
-            onChange={handleCallOptionChange}
-            checked={props.filter.callOption == "intercom"}
-          />{" "}
-          Interfone
-        </Label>
-        <Label className={labelClass}>
-          <input
-            type="radio"
-            value="phone"
-            name="callOption"
-            onChange={handleCallOptionChange}
-            checked={props.filter.callOption == "phone"}
-          />{" "}
-          Telefone
-        </Label>
-        <Label className={labelClass}>
-          <input
-            type="radio"
-            value="letter"
-            name="callOption"
-            onChange={handleCallOptionChange}
-            checked={props.filter.callOption == "letter"}
-          />{" "}
-          Cartas
-        </Label>
-        <Label className={labelClass}>
-          <input
-            type="radio"
-            value="all"
-            name="callOption"
-            onChange={handleCallOptionChange}
-            checked={props.filter.callOption == "all"}
-          />{" "}
-          Todos
-        </Label>
+        <FormRow>
+          <Label>
+            <input
+              type="radio"
+              value="all"
+              name="callOption"
+              onChange={handleCallOptionChange}
+              checked={props.filter.callOption == "all"}
+            />{" "}
+            Todos
+          </Label>
+          <Label>
+            <input
+              type="radio"
+              value="intercom"
+              name="callOption"
+              onChange={handleCallOptionChange}
+              checked={props.filter.callOption == "intercom"}
+            />{" "}
+            Interfone
+          </Label>
+          <Label>
+            <input
+              type="radio"
+              value="phone"
+              name="callOption"
+              onChange={handleCallOptionChange}
+              checked={props.filter.callOption == "phone"}
+            />{" "}
+            Telefone
+          </Label>
+          <Label>
+            <input
+              type="radio"
+              value="letter"
+              name="callOption"
+              onChange={handleCallOptionChange}
+              checked={props.filter.callOption == "letter"}
+            />{" "}
+            Cartas
+          </Label>
+        </FormRow>
+        <FormRow>
+          <Input
+            autoFocus={true}
+            className={css({ width: "70%", marginRight: "15px" })}
+            placeholder="Filtro"
+            type="text"
+            onKeyUp={e => mergeFilter({ text: e.target.value })}
+          />
+          <Button type="reset" color={"jwBlue"} onClick={resetForm}>
+            Limpar
+          </Button>
+        </FormRow>
       </Form>
     </div>
   );
