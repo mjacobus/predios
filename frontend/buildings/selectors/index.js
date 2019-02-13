@@ -24,7 +24,7 @@ const filterByText = (buildings, filter) => {
       .map(toString)
       .join(" ");
 
-    return string.search(filter) >= 0;
+    return string.search(filter.toLowerCase()) >= 0;
   });
 };
 
