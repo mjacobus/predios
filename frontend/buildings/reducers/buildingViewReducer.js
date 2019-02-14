@@ -1,8 +1,9 @@
 const DEFAULT_STATE = {
-  fetching: true,
   building: null,
+  contactAttemptTime: null,
   creatingApartment: null,
   creatingContactAttempt: null,
+  fetching: true,
   contactAttemptOn: null
 };
 
@@ -35,6 +36,13 @@ export default function buildingViewReducer(state = DEFAULT_STATE, action) {
       ...state,
       creatingContactAttempt: null,
       contactAttemptOn: null
+    };
+  }
+
+  if (action.type == "CONTACT_ATTEMPT_TIME_CHANGED") {
+    return {
+      ...state,
+      contactAttemptTime: action.time
     };
   }
 

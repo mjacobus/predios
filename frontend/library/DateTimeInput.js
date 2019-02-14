@@ -16,7 +16,10 @@ export default class DateTimeInput extends React.Component {
     this.setState({
       date: date
     });
-    this.props.onDateChange(this);
+
+    if (this.props.onDateChange) {
+      this.props.onDateChange(this.state.date);
+    }
   }
 
   date() {

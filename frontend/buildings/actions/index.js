@@ -28,6 +28,12 @@ export const attemptContactOn = dispatch => apartment => {
   dispatch({ type: "ATTEMPT_CONTACT_ON", apartment });
 };
 
+export const changeContactAttemptTime = dispatch => {
+  return time => {
+    dispatch({ type: "CONTACT_ATTEMPT_TIME_CHANGED", time });
+  };
+};
+
 export const createContactAttempt = dispatch => ({
   building,
   apartment,

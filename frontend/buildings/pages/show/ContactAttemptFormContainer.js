@@ -1,12 +1,17 @@
 import React from "react";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
-import { Button } from "../../../library";
+import { Button, DateTimeInput } from "../../../library";
 import { connect } from "react-redux";
-import { createContactAttempt, attemptContactOn } from "../../actions";
+import {
+  createContactAttempt,
+  attemptContactOn,
+  changeContactAttemptTime
+} from "../../actions";
 
 function mapStateToProps(state) {
   return {
+    contactAttemptTime: state.buildingView.contactAttemptTime,
     loading: state.buildingView.creatingContactAttempt,
     building: state.buildingView.building,
     apartment: state.buildingView.contactAttemptOn
@@ -16,6 +21,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     createContactAttempt: createContactAttempt(dispatch),
+    changeContactAttemptTime: changeContactAttemptTime(dispatch),
     attemptContactOn: attemptContactOn(dispatch)
   };
 }
@@ -30,6 +36,7 @@ const actionsClass = css({
 class ContactAttemptForm extends React.Component {
   constructor(props) {
     super(props);
+    this.onDateChange = this.onDateChange.bind(this);
   }
 
   handleCreateContactAttempt(apartment, outcome) {
@@ -39,11 +46,20 @@ class ContactAttemptForm extends React.Component {
       apartment,
       outcome
     };
+
+    if (this.props.contactAttemptTime) {
+      payload.time = this.props.contactAttemptTime;
+    }
+
     this.props.createContactAttempt(payload);
   }
 
   cancelContactAttempt() {
     this.props.attemptContactOn(null);
+  }
+
+  onDateChange(time) {
+    this.props.changeContactAttemptTime(time);
   }
 
   render() {
@@ -61,6 +77,9 @@ class ContactAttemptForm extends React.Component {
               </p>
             </Col>
           </Row>
+          {this.props.contactAttemptTime || (
+            <DateTimeInput onDateChange={this.onDateChange} />
+          )}
           <Row>
             <Col xs={12}>
               <div className={actionsClass}>

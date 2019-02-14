@@ -10,12 +10,9 @@ import {
   NumberOfApartments
 } from "../../components";
 
-import { DateTimeInput } from "../../../library";
-
 export default function BuildingHeader({ building }) {
   return (
     <div>
-      <DateTimeInput />
       <Grid>
         <Row>
           <Col xs={2}>
