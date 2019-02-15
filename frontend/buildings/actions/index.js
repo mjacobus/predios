@@ -85,3 +85,7 @@ export const filterBuildings = dispatch => {
     dispatch({ type: "BUILDINGS_FILTERED", filter });
   };
 };
+
+export default {
+  fetchBuildingByNumber
+};

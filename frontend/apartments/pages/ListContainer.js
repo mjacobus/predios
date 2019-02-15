@@ -4,6 +4,7 @@ import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 import { Loader } from "../../library";
 import actions from "../actions";
+import Apartment from "../../buildings/pages/show/Apartment";
 
 function mapStateToProps(state) {
   return {
@@ -18,12 +19,30 @@ function mapDispatchToProps(dispatch) {
 }
 
 class ListContainer extends React.Component {
-  componentDidMout() {
-    const buildingNumber = "1";
+  componentDidMount() {
+    if (this.props.apartments == null) {
+      this.fetchApartments();
+    }
+  }
+
+  fetchApartments() {
+    const { buildingNumber } = this.props.match.params;
     this.props.fetchApartments({ buildingNumber });
   }
+
   render() {
-    return <h1>Apartments</h1>;
+    return (
+      <div>
+        {this.props.apartments &&
+          this.props.apartments.map(a => (
+            <Apartment
+              apartment={a}
+              key={a.uuid}
+              bellClick={() => bellClick(a)}
+            />
+          ))}
+      </div>
+    );
   }
 }
 

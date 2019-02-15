@@ -15,7 +15,7 @@ export default function Routes() {
           <Route exact path="/buildings/:number" component={Buildings.Show} />
           <Route
             exact
-            path="/buildings/:number/apartments"
+            path="/buildings/:buildingNumber/apartments"
             component={Apartments.List}
           />
         </DefaultLayout>
