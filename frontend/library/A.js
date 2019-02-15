@@ -7,7 +7,7 @@ export default function A({ buttonStyle, ...props }) {
   let linkStyle = null;
 
   if (buttonStyle) {
-    linkStyle = buttonStyler(buttonStyle)
+    linkStyle = buttonStyler(buttonStyle);
   }
 
   if (props.to) {

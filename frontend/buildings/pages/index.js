@@ -1,7 +1,7 @@
 import List from "./ListContainer";
 
 const Buildings = {
-  List,
+  List
 };
 
 export default Buildings;

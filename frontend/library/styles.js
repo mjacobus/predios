@@ -1,7 +1,7 @@
 import { css } from "glamor";
 
 export const colors = {
-  white: 'white',
+  white: "white",
   red: "#ce2b2b",
   green: "#006100",
   lightGray: "#ddd",
@@ -42,7 +42,7 @@ const button = css({
   }),
   ":hover": css({
     opacity: 0.9,
-    textDecoration: 'none'
+    textDecoration: "none"
   }),
   background: colors.jwBlue,
   border: "none",
@@ -55,7 +55,7 @@ const button = css({
   height: "32px",
   cursor: "pointer",
   whiteSpace: "nowrap",
-  float: 'left'
+  float: "left"
 });
 
 export const styles = {
@@ -67,7 +67,7 @@ const buttonStyles = {
   blue: {
     background: colors.jwBlue,
     color: colors.white,
-    ':hover': {
+    ":hover": {
       color: colors.white
     }
   },
@@ -75,15 +75,15 @@ const buttonStyles = {
     background: colors.green,
     color: colors.white,
     color: colors.white,
-    ':hover': {
+    ":hover": {
       color: colors.white
     }
   },
   red: {
     background: colors.red,
-    color: colors.white,
+    color: colors.white
   }
-}
+};
 
 export const buttonStyler = (style, otherClass) => {
   return css(button, buttonStyles[style], otherClass);

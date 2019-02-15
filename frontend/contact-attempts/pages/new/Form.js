@@ -5,7 +5,6 @@ import { Button, Loader, A } from "../../../library";
 import { BuildingHeader } from "../../../shared/components";
 import { css } from "glamor";
 
-
 const actionsClass = css({
   " button": {
     width: "100px",
@@ -18,7 +17,7 @@ export default function Form(props) {
 
   return (
     <div>
-      <BuildingHeader building={ props.building } />
+      <BuildingHeader building={props.building} />
       <Grid>
         <Row>
           <Col xs={12}>
@@ -34,16 +33,16 @@ export default function Form(props) {
               <Button
                 style="green"
                 disabled={props.creating}
-                onClick={e => assignAttempt(apartment, "contacted") }
+                onClick={e => assignAttempt(apartment, "contacted")}
               >
-                  Sim
+                Sim
               </Button>
               <Button
                 style="red"
                 disabled={props.creating}
-                onClick={e => assignAttempt(apartment, "failed") }
+                onClick={e => assignAttempt(apartment, "failed")}
               >
-                  Não
+                Não
               </Button>
             </div>
           </Col>
@@ -51,7 +50,13 @@ export default function Form(props) {
         <Row>
           <Col xs={12}>
             <div className={actionsClass}>
-              <A buttonStyle="blue" to={ `/buildings/${building.number}/apartments` }> Cancelar </A>
+              <A
+                buttonStyle="blue"
+                to={`/buildings/${building.number}/apartments`}
+              >
+                {" "}
+                Cancelar{" "}
+              </A>
             </div>
           </Col>
         </Row>

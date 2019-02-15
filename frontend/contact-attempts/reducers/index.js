@@ -1,5 +1,5 @@
-import newContactAttemptReducer from "./newContactAttemptReducer"
+import newContactAttemptReducer from "./newContactAttemptReducer";
 
 export default {
-  newContactAttemptReducer,
-}
+  newContactAttemptReducer
+};

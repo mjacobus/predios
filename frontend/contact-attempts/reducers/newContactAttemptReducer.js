@@ -5,40 +5,39 @@ const DEFAULT_STATE = {
   building: null,
   apartment: null,
   building: null
-}
+};
 
-const apartmentsUrl = (state) => {
+const apartmentsUrl = state => {
   const { building } = state;
 
-  return `/buildings/${building.number}/apartments`
-}
+  return `/buildings/${building.number}/apartments`;
+};
 
-export default function (state = DEFAULT_STATE, action) {
-  if (action.type == 'BUILDING_FETCHED') {
+export default function(state = DEFAULT_STATE, action) {
+  if (action.type == "BUILDING_FETCHED") {
     return {
       ...state,
-      building: action.building,
-    }
+      building: action.building
+    };
   }
 
-  if (action.type == 'APARTMENT_FETCHED') {
+  if (action.type == "APARTMENT_FETCHED") {
     return {
       ...state,
       fetching: false,
-      apartment: action.apartment,
-    }
+      apartment: action.apartment
+    };
   }
 
-  if (action.type == 'CONTACT_ATTEMPT_CREATED') {
+  if (action.type == "CONTACT_ATTEMPT_CREATED") {
     return Object.assign({}, DEFAULT_STATE, {
       redirectTo: apartmentsUrl(state)
-    })
+    });
   }
 
-  if (action.type == 'CLEAR_REDIRECT') {
+  if (action.type == "CLEAR_REDIRECT") {
     return Object.assign({}, DEFAULT_STATE);
   }
 
   return state;
 }
-
