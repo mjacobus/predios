@@ -47,7 +47,6 @@ class NewContactAttemptForm extends React.Component {
   }
 
   handleCreateContactAttempt(apartment, outcome) {
-    console.log(this.props);
     const { building } = this.props;
     let payload = {
       building,
