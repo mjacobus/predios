@@ -1,5 +1,5 @@
 import React from "react";
-import { ContactAttempt } from "../../components";
+import { ContactAttempt } from "../../../shared/components";
 
 export default class ContactAttempts extends React.Component {
   constructor(props) {
