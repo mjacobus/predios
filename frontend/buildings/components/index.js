@@ -1,4 +1,3 @@
-import ApartmentForm from "./ApartmentFormContainer";
 import ApartmentNumber from "./ApartmentNumber";
 import BuildingAddress from "./BuildingAddress";
 import BuildingLink from "./BuildingLink";
@@ -11,7 +10,6 @@ import Neighborhood from "./Neighborhood";
 import NumberOfApartments from "./NumberOfApartments";
 
 export {
-  ApartmentForm,
   ApartmentNumber,
   BuildingAddress,
   BuildingLink,
