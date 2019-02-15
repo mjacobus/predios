@@ -4,8 +4,7 @@ import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 import { Loader } from "../../library";
 import actions from "../actions";
-import BuildingHeader from "../../buildings/pages/show/BuildingHeader";
-import { ApartmentForm } from "../../shared/components";
+import { ApartmentForm, BuildingHeader } from "../../shared/components";
 import { Apartments } from "../components";
 
 function mapStateToProps(state) {

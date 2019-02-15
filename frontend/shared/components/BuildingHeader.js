@@ -8,7 +8,7 @@ import {
   CallOptions,
   Neighborhood,
   NumberOfApartments
-} from "../../../shared/components";
+} from "./";
 
 export default function BuildingHeader({ building }) {
   return (
