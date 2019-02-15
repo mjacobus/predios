@@ -5,10 +5,14 @@ import { css } from "glamor";
 import { Loader } from "../../library";
 import actions from "../actions";
 import Apartment from "../../buildings/pages/show/Apartment";
+import BuildingHeader from "../../buildings/pages/show/BuildingHeader";
+
 
 function mapStateToProps(state) {
   return {
-    apartments: state.apartmentsList.apartments
+    building: state.apartmentsList.building,
+    apartments: state.apartmentsList.apartments,
+    fetching: state.apartmentsList.fetching
   };
 }
 
@@ -31,8 +35,13 @@ class ListContainer extends React.Component {
   }
 
   render() {
+    if (this.props.fetching) {
+      return <Loader />;
+    }
+
     return (
       <div>
+        <BuildingHeader building={this.props.building} />
         {this.props.apartments &&
           this.props.apartments.map(a => (
             <Apartment
