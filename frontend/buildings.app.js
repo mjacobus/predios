@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import buildings from "./buildings/reducers";
 import apartments from "./apartments/reducers";
+import contactAttempts from "./contact-attempts/reducers";
 import Routes from "./routes";
 
 const nullReducer = (state = {}, action) => {
@@ -18,6 +19,7 @@ const reducers = combineReducers({
   buildingView: buildings.buildingViewReducer,
   apartmentForm: buildings.apartmentFormReducer,
   apartmentsList: apartments.apartmentsListReducer,
+  newContactAttempt: contactAttempts.newContactAttemptReducer,
   entities: combineReducers({
     buildings: buildings.buildingsReducer
   })
