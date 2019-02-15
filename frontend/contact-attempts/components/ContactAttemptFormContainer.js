@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
-import { Button } from "../../../library";
+import { Button } from "../../library";
 import { connect } from "react-redux";
-import { createContactAttempt, attemptContactOn } from "../../actions";
+import { createContactAttempt, attemptContactOn } from "../actions";
 
 function mapStateToProps(state) {
   return {
