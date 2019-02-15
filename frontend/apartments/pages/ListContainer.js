@@ -5,7 +5,7 @@ import { css } from "glamor";
 import { Loader } from "../../library";
 import actions from "../actions";
 import { ApartmentForm, BuildingHeader } from "../../shared/components";
-import { Apartments } from "../components";
+import Apartments from "./list/Apartments";
 
 function mapStateToProps(state) {
   return {
