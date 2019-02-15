@@ -1,11 +1,10 @@
 import React from "react";
 import { Redirect } from 'react-router-dom';
-import { Grid, Col, Row } from "react-bootstrap";
-import { css } from "glamor";
-import { Button, Loader } from "../../library";
+import { Loader } from "../../library";
 import { connect } from "react-redux";
 import { createContactAttempt, attemptContactOn } from "../../buildings/actions";
 import { BuildingHeader } from "../../shared/components";
+import Form from "./new/Form";
 import actions from "../actions";
 import { clearRedirect } from "../../shared/actions"
 
@@ -28,16 +27,12 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const actionsClass = css({
-  " button": {
-    width: "100px",
-    margin: "10px"
-  }
-});
 
 class NewContactAttemptForm extends React.Component {
   constructor(props) {
     super(props);
+    this.handleCreateContactAttempt = this.handleCreateContactAttempt.bind(this);
+    this.cancelContactAttempt = this.cancelContactAttempt.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +47,7 @@ class NewContactAttemptForm extends React.Component {
   }
 
   handleCreateContactAttempt(apartment, outcome) {
+    console.log(this.props);
     const { building } = this.props;
     let payload = {
       building,
@@ -78,57 +74,11 @@ class NewContactAttemptForm extends React.Component {
 
     const { apartment, building } = props;
 
-    return (
-      <div>
-        <BuildingHeader building={ this.props.building } />
-        <Grid>
-          <Row>
-            <Col xs={12}>
-              <p>
-                Conseguiu falar com o morador do apartamento{" "}
-                <strong>{apartment.number}</strong>?
-              </p>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <div className={actionsClass}>
-                <Button
-                  color="green"
-                  disabled={this.props.loading}
-                  onClick={e =>
-                    this.handleCreateContactAttempt(apartment, "contacted")
-                  }
-                >
-                  Sim
-                </Button>
-                <Button
-                  color="red"
-                  disabled={this.props.loading}
-                  onClick={e =>
-                    this.handleCreateContactAttempt(apartment, "failed")
-                  }
-                >
-                  Não
-                </Button>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <div className={actionsClass}>
-                <Button
-                  onClick={e => this.cancelContactAttempt()}
-                  disabled={this.props.loading}
-                >
-                  Cancelar
-                </Button>
-              </div>
-            </Col>
-          </Row>
-        </Grid>
-      </div>
-    );
+    return <Form
+      apartment={ apartment }
+      building={ building }
+      assignAttempt={ this.handleCreateContactAttempt }
+      />
   }
 }
 

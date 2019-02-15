@@ -1,12 +1,9 @@
 import React from "react";
 import { css } from "glamor";
-import { colors, styles } from "./styles";
-import A from "./A";
+import { colors, buttonStyler } from "./styles";
 
-export default function Button(props) {
-  const { color, className, ...otherProps } = props;
-  const background = colors[color] || color || colors.jwBlue;
-  const buttonClass = css(styles.button, { background }, className);
+export default function Button({ style = 'blue', className, ...otherProps }) {
+  const buttonClass = buttonStyler(style, className);
 
   return <button className={buttonClass} {...otherProps} />;
 }

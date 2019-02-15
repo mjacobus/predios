@@ -1,24 +1,18 @@
 import React from "react";
 import { css } from "glamor";
-import { colors } from "./styles";
+import { colors, buttonStyler } from "./styles";
 import { Link } from "react-router-dom";
 
-export default function A(props) {
-  const { className, ...otherProps } = props;
-  const linkStyle = css(
-    {
-      color: colors.jwBlue,
-      textDecoration: "",
-      ":hover": {
-        textDecoration: "none"
-      }
-    },
-    className
-  );
+export default function A({ buttonStyle, ...props }) {
+  let linkStyle = null;
 
-  if (props.to) {
-    return <Link className={linkStyle} {...otherProps} />;
+  if (buttonStyle) {
+    linkStyle = buttonStyler(buttonStyle)
   }
 
-  return <a className={linkStyle} {...otherProps} />;
+  if (props.to) {
+    return <Link className={linkStyle} {...props} />;
+  }
+
+  return <a className={linkStyle} {...props} />;
 }
