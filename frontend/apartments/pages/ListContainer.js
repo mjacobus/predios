@@ -6,15 +6,25 @@ import { Loader } from "../../library";
 import actions from "../actions";
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    apartments: state.apartmentsList.apartments
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    fetchApartments: actions.fetchApartments(dispatch)
+  };
 }
 
-function ListContainer() {
-  return <h1>Apartments</h1>;
+class ListContainer extends React.Component {
+  componentDidMout() {
+    const buildingNumber = "1";
+    this.props.fetchApartments({ buildingNumber });
+  }
+  render() {
+    return <h1>Apartments</h1>;
+  }
 }
 
 export default connect(
