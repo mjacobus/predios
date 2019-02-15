@@ -1,14 +1,14 @@
-import ApartmentForm      from "../../buildings/components/ApartmentFormContainer";
-import ApartmentNumber    from "../../buildings/components/ApartmentNumber";
-import BuildingAddress    from "../../buildings/components/BuildingAddress";
-import BuildingLink       from "../../buildings/components/BuildingLink";
-import BuildingName       from "../../buildings/components/BuildingName";
-import BuildingNumber     from "../../buildings/components/BuildingNumber";
-import CallOptions        from "../../buildings/components/CallOptions";
-import ContactAttempt     from "../../buildings/components/ContactAttempt";
-import DoorBell           from "../../buildings/components/DoorBell";
-import Neighborhood       from "../../buildings/components/Neighborhood";
-import NumberOfApartments from "../../buildings/components/NumberOfApartments";
+import ApartmentForm      from "./ApartmentFormContainer";
+import ApartmentNumber    from "./ApartmentNumber";
+import BuildingAddress    from "./BuildingAddress";
+import BuildingLink       from "./BuildingLink";
+import BuildingName       from "./BuildingName";
+import BuildingNumber     from "./BuildingNumber";
+import CallOptions        from "./CallOptions";
+import ContactAttempt     from "./ContactAttempt";
+import DoorBell           from "./DoorBell";
+import Neighborhood       from "./Neighborhood";
+import NumberOfApartments from "./NumberOfApartments";
 
 export {
   ApartmentForm,
