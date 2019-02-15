@@ -53,6 +53,7 @@ const app = (
         <DefaultLayout>
           <Route exact path="/buildings" component={Buildings.List} />
           <Route exact path="/buildings/:number" component={Buildings.Show} />
+          <Route exact path="/buildings/:number/apartments/:apartment_number/contact-attempts/new" component={Buildings.Show} />
         </DefaultLayout>
       </div>
     </BrowserRouter>
