@@ -5,7 +5,6 @@ import { css } from "glamor";
 import { Button, Loader } from "../../library";
 import { connect } from "react-redux";
 import { createContactAttempt, attemptContactOn } from "../../buildings/actions";
-import ContactAttemptForm from "../components/ContactAttemptFormContainer";
 import { BuildingHeader } from "../../shared/components";
 import actions from "../actions";
 import { clearRedirect } from "../../shared/actions"
