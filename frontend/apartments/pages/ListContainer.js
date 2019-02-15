@@ -4,10 +4,9 @@ import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 import { Loader } from "../../library";
 import actions from "../actions";
-import Apartment from "../../buildings/pages/show/Apartment";
 import BuildingHeader from "../../buildings/pages/show/BuildingHeader";
 import { ApartmentForm } from "../../buildings/components";
-
+import { Apartments } from "../components";
 
 function mapStateToProps(state) {
   return {
@@ -44,14 +43,7 @@ class ListContainer extends React.Component {
       <div>
         <BuildingHeader building={this.props.building} />
         <ApartmentForm building={this.props.building} />
-        {this.props.apartments &&
-          this.props.apartments.map(a => (
-            <Apartment
-              apartment={a}
-              key={a.uuid}
-              bellClick={() => this.bellClick(a)}
-            />
-          ))}
+        <Apartments apartments={this.props.apartments} />
       </div>
     );
   }

@@ -52,7 +52,7 @@ class ApartmentForm extends React.Component {
     const props = this.props;
 
     if (this.props.building.has_all_apartments) {
-      return <span />
+      return <span />;
     }
 
     return (
