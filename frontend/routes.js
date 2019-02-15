@@ -15,12 +15,6 @@ export default function Routes() {
           <Route exact path="/buildings" component={Buildings.List} />
           <Route
             exact
-            path="/buildings/:number"
-            component={Buildings.Show}
-          />{" "}
-          {/* TODO: This will be removed */}
-          <Route
-            exact
             path="/buildings/:buildingNumber/apartments"
             component={Apartments.List}
           />
