@@ -1,21 +1,11 @@
 import React from "react";
 import ReactDom from "react-dom";
-import { BrowserRouter, Route } from "react-router-dom";
-import TopMenu from "./library/TopMenuContainer";
-import { DefaultLayout } from "./library";
-import Buildings from "./buildings/pages";
-import Apartments from "./apartments/pages";
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import {
-  buildingsReducer,
-  buildingsListReducer,
-  apartmentFormReducer,
-  buildingViewReducer
-} from "./buildings/reducers";
-
-import apartmentReducers from "./apartments/reducers";
+import buildings from "./buildings/reducers";
+import apartments from "./apartments/reducers";
+import Routes from "./routes";
 
 const nullReducer = (state = {}, action) => {
   return state;
@@ -24,12 +14,12 @@ const nullReducer = (state = {}, action) => {
 const reducers = combineReducers({
   config: nullReducer,
   currentUser: nullReducer,
-  buildingsList: buildingsListReducer,
-  buildingView: buildingViewReducer,
-  apartmentForm: apartmentFormReducer,
-  apartmentsList: apartmentReducers.apartmentsListReducer,
+  buildingsList: buildings.buildingsListReducer,
+  buildingView: buildings.buildingViewReducer,
+  apartmentForm: buildings.apartmentFormReducer,
+  apartmentsList: apartments.apartmentsListReducer,
   entities: combineReducers({
-    buildings: buildingsReducer
+    buildings: buildings.buildingsReducer
   })
 });
 
@@ -51,20 +41,7 @@ let store = createStore(
 
 const app = (
   <Provider store={store}>
-    <BrowserRouter>
-      <div>
-        <TopMenu />
-        <DefaultLayout>
-          <Route exact path="/buildings" component={Buildings.List} />
-          <Route exact path="/buildings/:number" component={Buildings.Show} />
-          <Route
-            exact
-            path="/buildings/:number/apartments"
-            component={Apartments.List}
-          />
-        </DefaultLayout>
-      </div>
-    </BrowserRouter>
+    <Routes />
   </Provider>
 );
 
