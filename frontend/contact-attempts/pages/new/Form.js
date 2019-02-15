@@ -1,20 +1,12 @@
 import React from "react";
-
 import { Grid, Col, Row } from "react-bootstrap";
+import { css } from "glamor";
 import { Button, Loader, A } from "../../../library";
 import {
   BuildingHeader,
   PageBlock,
   ButtonGroup
 } from "../../../shared/components";
-import { css } from "glamor";
-
-const actionsClass = css({
-  " button": {
-    width: "100px",
-    margin: "10px"
-  }
-});
 
 export default function Form(props) {
   const { apartment, building, assignAttempt, cancelAttempt } = props;
