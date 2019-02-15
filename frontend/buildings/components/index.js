@@ -1,4 +1,3 @@
-import ApartmentNumber from "./ApartmentNumber";
 import BuildingAddress from "./BuildingAddress";
 import BuildingLink from "./BuildingLink";
 import BuildingName from "./BuildingName";
@@ -10,7 +9,6 @@ import Neighborhood from "./Neighborhood";
 import NumberOfApartments from "./NumberOfApartments";
 
 export {
-  ApartmentNumber,
   BuildingAddress,
   BuildingLink,
   BuildingName,
