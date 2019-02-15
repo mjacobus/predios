@@ -51,6 +51,10 @@ class ApartmentForm extends React.Component {
   render() {
     const props = this.props;
 
+    if (this.props.building.has_all_apartments) {
+      return <span />
+    }
+
     return (
       <div className={styles.formContainer}>
         <form onSubmit={this.submitHandler}>

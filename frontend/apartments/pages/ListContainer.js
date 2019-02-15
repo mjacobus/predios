@@ -6,6 +6,7 @@ import { Loader } from "../../library";
 import actions from "../actions";
 import Apartment from "../../buildings/pages/show/Apartment";
 import BuildingHeader from "../../buildings/pages/show/BuildingHeader";
+import { ApartmentForm } from "../../buildings/components";
 
 
 function mapStateToProps(state) {
@@ -42,12 +43,13 @@ class ListContainer extends React.Component {
     return (
       <div>
         <BuildingHeader building={this.props.building} />
+        <ApartmentForm building={this.props.building} />
         {this.props.apartments &&
           this.props.apartments.map(a => (
             <Apartment
               apartment={a}
               key={a.uuid}
-              bellClick={() => bellClick(a)}
+              bellClick={() => this.bellClick(a)}
             />
           ))}
       </div>
