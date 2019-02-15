@@ -1,10 +1,6 @@
 import React from "react";
 import Apartment from "../../buildings/pages/show/Apartment";
 
-const bellClick = apartment => {
-  console.log("apartment bell -> ", apartment);
-};
-
 export default function Apartments({ apartments, building }) {
   if (!apartments) {
     return <span />;
