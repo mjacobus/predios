@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import TopMenu from "./library/TopMenuContainer";
 import { DefaultLayout } from "./library";
 import Buildings from "./buildings/pages";
+import Apartments from "./apartments/pages";
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -13,6 +14,8 @@ import {
   apartmentFormReducer,
   buildingViewReducer
 } from "./buildings/reducers";
+
+import apartmentReducers from "./apartments/reducers";
 
 const nullReducer = (state = {}, action) => {
   return state;
@@ -24,6 +27,7 @@ const reducers = combineReducers({
   buildingsList: buildingsListReducer,
   buildingView: buildingViewReducer,
   apartmentForm: apartmentFormReducer,
+  apartmentsList: apartmentReducers.apartmentsListReducer,
   entities: combineReducers({
     buildings: buildingsReducer
   })
@@ -53,7 +57,11 @@ const app = (
         <DefaultLayout>
           <Route exact path="/buildings" component={Buildings.List} />
           <Route exact path="/buildings/:number" component={Buildings.Show} />
-          <Route exact path="/buildings/:number/apartments/:apartment_number/contact-attempts/new" component={Buildings.Show} />
+          <Route
+            exact
+            path="/buildings/:number/apartments"
+            component={Apartments.List}
+          />
         </DefaultLayout>
       </div>
     </BrowserRouter>
