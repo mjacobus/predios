@@ -1,7 +1,7 @@
 import List from "./ListContainer";
 
-const Buildings = {
+const Apartments = {
   List
 };
 
-export default Buildings;
+export default Apartments;

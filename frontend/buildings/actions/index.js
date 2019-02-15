@@ -14,10 +14,14 @@ const fetchBuildings = dispatch => () => {
 const fetchBuildingByNumber = dispatch => number => {
   dispatch({ type: "FETCHING_BUILDING" });
 
-  apiGet(`/api/buildings/${number}`).end((erro, resp) => {
-    dispatch({
-      type: "BUILDING_FETCHED",
-      building: resp.body
+  return new Promise((resolve, reject) => {
+    apiGet(`/api/buildings/${number}`).end((erro, resp) => {
+      dispatch({
+        type: "BUILDING_FETCHED",
+        building: resp.body
+      });
+
+      resolve(resp.body);
     });
   });
 };
@@ -84,4 +88,8 @@ export const filterBuildings = dispatch => {
   return filter => {
     dispatch({ type: "BUILDINGS_FILTERED", filter });
   };
+};
+
+export default {
+  fetchBuildingByNumber
 };

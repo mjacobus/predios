@@ -3,7 +3,7 @@ import buildingViewReducer from "./buildingViewReducer";
 import buildingsListReducer from "./buildingsListReducer";
 import buildingsReducer from "./buildingsReducer";
 
-export {
+export default {
   apartmentFormReducer,
   buildingViewReducer,
   buildingsListReducer,

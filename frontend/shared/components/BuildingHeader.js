@@ -8,7 +8,7 @@ import {
   CallOptions,
   Neighborhood,
   NumberOfApartments
-} from "../../components";
+} from "./";
 
 export default function BuildingHeader({ building }) {
   return (

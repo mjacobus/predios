@@ -9,7 +9,7 @@ import {
   BuildingLink,
   CallOptions,
   BuildingName
-} from "../../components";
+} from "../../../shared/components";
 
 export default function Building({ building }) {
   const buildingClass = css({
