@@ -4,8 +4,7 @@ import { css } from "glamor";
 import ContactAttempts from "./ContactAttempts";
 import { DoorBell, ApartmentNumber } from "../../components";
 
-export default function Apartment(props) {
-  const { apartment } = props;
+export default function Apartment({ apartment, building }) {
   const className = css({
     padding: "15px 0",
     borderBottom: "1px solid #ddd"
@@ -23,7 +22,8 @@ export default function Apartment(props) {
           </Col>
           <Col xs={4}>
             <DoorBell
-              onClick={() => props.bellClick(apartment.uuid)}
+              apartment={apartment}
+              building={building}
               className={css({ float: "right" })}
             />
           </Col>

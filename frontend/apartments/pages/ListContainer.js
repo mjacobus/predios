@@ -43,7 +43,10 @@ class ListContainer extends React.Component {
       <div>
         <BuildingHeader building={this.props.building} />
         <ApartmentForm building={this.props.building} />
-        <Apartments apartments={this.props.apartments} />
+        <Apartments
+          apartments={this.props.apartments}
+          building={this.props.building}
+        />
       </div>
     );
   }

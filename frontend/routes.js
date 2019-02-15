@@ -12,7 +12,12 @@ export default function Routes() {
         <TopMenu />
         <DefaultLayout>
           <Route exact path="/buildings" component={Buildings.List} />
-          <Route exact path="/buildings/:number" component={Buildings.Show} /> {/* TODO: This will be removed */}
+          <Route
+            exact
+            path="/buildings/:number"
+            component={Buildings.Show}
+          />{" "}
+          {/* TODO: This will be removed */}
           <Route
             exact
             path="/buildings/:buildingNumber/apartments"
