@@ -2,7 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { css } from "glamor";
 
-import { Input, Button, FormRow } from "../../library";
+import Input from "../../library/Input";
+import Button from "../../library/Button";
+import FormRow from "../../library/FormRow";
 import { createApartment } from "../../buildings/actions";
 import { styles, colors } from "../../library/styles";
 
