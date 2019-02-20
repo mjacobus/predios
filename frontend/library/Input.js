@@ -10,7 +10,8 @@ export default function Input(props) {
       height: "32px",
       padding: "0 4px",
       margin: "none",
-      border: "1px solid #ddd"
+      border: "1px solid #ddd",
+      width: "100%"
     },
     className
   );

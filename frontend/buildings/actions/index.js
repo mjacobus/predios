@@ -35,13 +35,18 @@ export const attemptContactOn = dispatch => apartment => {
 export const createContactAttempt = dispatch => ({
   building,
   apartment,
-  outcome
+  outcome,
+  time
 }) => {
   dispatch({ type: "CREATING_CONTACT_ATTEMPT" });
 
   const payload = {
-    contact_attempt: { apartment_id: apartment.uuid, outcome }
+    contact_attempt: { apartment_id: apartment.uuid, outcome, time }
   };
+
+  if (time == "") {
+    delete payload.contact_attempt.time;
+  }
 
   apiPost(
     `/api/buildings/${building.number}/apartments/${

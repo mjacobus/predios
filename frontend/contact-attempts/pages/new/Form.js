@@ -4,12 +4,21 @@ import { css } from "glamor";
 import { Button, Loader, A } from "../../../library";
 import {
   BuildingHeader,
+  DateTimeInput,
   PageBlock,
   ButtonGroup
 } from "../../../shared/components";
+import { Label } from "../../../library";
 
 export default function Form(props) {
-  const { apartment, building, assignAttempt, cancelAttempt } = props;
+  const {
+    apartment,
+    building,
+    assignAttempt,
+    cancelAttempt,
+    currentUser
+  } = props;
+  const dateTimeChangeListener = props.inputListenerFactory("time");
 
   return (
     <div>
@@ -19,6 +28,11 @@ export default function Form(props) {
           Conseguiu falar com o morador do apartamento{" "}
           <strong>{apartment.number}</strong>?
         </p>
+      </PageBlock>
+      <PageBlock visible={currentUser.master}>
+        <Label>Data e hora no formato 2019/12/31 18:32</Label>
+        <DateTimeInput onChange={dateTimeChangeListener} />
+        <small>Deixe em branco para usar a data e hora atual</small>
       </PageBlock>
       <PageBlock>
         <ButtonGroup>
