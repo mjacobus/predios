@@ -1,8 +1,9 @@
 import React from "react";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
-import { Button, Loader, A } from "../../../library";
+import { Button, Loader, A, H1 } from "../../../library";
 import {
+  ContactAttempts,
   BuildingHeader,
   DateTimeInput,
   PageBlock,
@@ -55,6 +56,16 @@ export default function Form(props) {
             Não tentei{" "}
           </A>
         </ButtonGroup>
+      </PageBlock>
+      <PageBlock>
+        <Grid>
+          <Row>
+            <Col xs={6}>Histórico</Col>
+            <Col xs={6}>
+              <ContactAttempts contactAttempts={apartment.contact_attempts} />
+            </Col>
+          </Row>
+        </Grid>
       </PageBlock>
     </div>
   );
