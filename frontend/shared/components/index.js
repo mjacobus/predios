@@ -8,6 +8,7 @@ import BuildingNumber from "./BuildingNumber";
 import ButtonGroup from "./ButtonGroup";
 import CallOptions from "./CallOptions";
 import ContactAttempt from "./ContactAttempt";
+import ContactAttempts from "./ContactAttempts";
 import DateTimeInput from "./DateTimeInput";
 import DoorBell from "./DoorBell";
 import Neighborhood from "./Neighborhood";
@@ -25,6 +26,7 @@ export {
   ButtonGroup,
   CallOptions,
   ContactAttempt,
+  ContactAttempts,
   DateTimeInput,
   DoorBell,
   Neighborhood,

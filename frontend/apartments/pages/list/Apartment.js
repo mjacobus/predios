@@ -1,8 +1,11 @@
 import React from "react";
 import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
-import ContactAttempts from "./ContactAttempts";
-import { DoorBell, ApartmentNumber } from "../../../shared/components";
+import {
+  ApartmentNumber,
+  ContactAttempts,
+  DoorBell
+} from "../../../shared/components";
 
 export default function Apartment({ apartment, building }) {
   const className = css({
