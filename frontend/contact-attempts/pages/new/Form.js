@@ -3,11 +3,12 @@ import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 import { Button, Loader, A, H1 } from "../../../library";
 import {
-  ContactAttempts,
   BuildingHeader,
+  ButtonGroup,
+  ContactAttempts,
   DateTimeInput,
   PageBlock,
-  ButtonGroup
+  Question
 } from "../../../shared/components";
 import { Label } from "../../../library";
 
@@ -25,10 +26,13 @@ export default function Form(props) {
     <div>
       <BuildingHeader building={props.building} />
       <PageBlock>
-        <p>
-          Conseguiu falar com o morador do apartamento{" "}
-          <strong>{apartment.number}</strong>?
-        </p>
+        <Question>
+          Conseguiu falar com o morador do{" "}
+          <span>
+            <strong>apartamento {apartment.number}</strong>
+          </span>
+          ?
+        </Question>
       </PageBlock>
       <PageBlock visible={currentUser.master}>
         <Label>Data e hora no formato 2019/12/31 18:32</Label>

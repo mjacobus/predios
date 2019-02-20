@@ -14,6 +14,7 @@ import DoorBell from "./DoorBell";
 import Neighborhood from "./Neighborhood";
 import NumberOfApartments from "./NumberOfApartments";
 import PageBlock from "./PageBlock";
+import Question from "./Question";
 
 export {
   ApartmentForm,
@@ -31,5 +32,6 @@ export {
   DoorBell,
   Neighborhood,
   NumberOfApartments,
-  PageBlock
+  PageBlock,
+  Question
 };
