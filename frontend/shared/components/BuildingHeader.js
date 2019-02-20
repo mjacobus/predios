@@ -1,14 +1,12 @@
 import React from "react";
 import { Grid, Col, Row } from "react-bootstrap";
-import {
-  BuildingAddress,
-  BuildingLink,
-  BuildingName,
-  BuildingNumber,
-  CallOptions,
-  Neighborhood,
-  NumberOfApartments
-} from "./";
+import BuildingAddress from "./BuildingAddress";
+import BuildingLink from "./BuildingLink";
+import BuildingName from "./BuildingName";
+import BuildingNumber from "./BuildingNumber";
+import CallOptions from "./CallOptions";
+import Neighborhood from "./Neighborhood";
+import NumberOfApartments from "./NumberOfApartments";
 
 export default function BuildingHeader({ building }) {
   return (
