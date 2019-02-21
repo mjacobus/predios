@@ -36,9 +36,7 @@ export const fontSizes = {
 
 const formContainer = css({
   padding: "0 15px",
-  border: "1px solid #ddd",
-  margin: "30px 15px",
-  background: colors.lightGray
+  margin: "30px 15px"
 });
 
 const button = css({

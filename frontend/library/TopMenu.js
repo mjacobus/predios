@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 
 const linkTo = (location, history) => {
   return e => {
+    e.preventDefault();
+    document.querySelector(".navbar-toggle").click();
     history.push(location);
   };
 };
@@ -23,11 +25,7 @@ const TopMenu = ({ currentUser, history, app_version_url }) => {
             {" "}
             Home{" "}
           </NavItem>
-          <NavItem
-            eventKey={1}
-            href="#"
-            onClick={linkTo("/buildings", history)}
-          >
+          <NavItem eventKey={1} onClick={linkTo("/buildings", history)}>
             {" "}
             Prédios{" "}
           </NavItem>
