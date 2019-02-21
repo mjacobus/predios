@@ -74,7 +74,6 @@ const Filter = props => {
         </FormRow>
         <FormRow>
           <Input
-            autoFocus={true}
             className={css({ width: "70%", marginRight: "15px" })}
             placeholder="Filtro"
             type="text"
