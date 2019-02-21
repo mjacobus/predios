@@ -1,13 +1,14 @@
 import React from "react";
 import { css } from "glamor";
 import { CheckIcon, DateTime, Icon } from "../../library";
+import { colors } from "../../styles";
 
 const successClass = css({
-  color: "green"
+  color: colors.green
 });
 
 const failureClass = css({
-  color: "red"
+  color: colors.red
 });
 
 export default function ContactAttempt(props) {
