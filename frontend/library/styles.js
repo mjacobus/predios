@@ -15,7 +15,12 @@ export const colors = {
   jwOtherOrange: "#e7ab7f",
   jwButtonOrange: "#eb6a00",
   jwGreen: "#92ce9d",
-  jwPurple: "#a799b9"
+  jwPurple: "#a799b9",
+  jwDarkPurple: "#3b3546",
+  jwMiddlePurple: "#544a63",
+  jwSoftPurple: "#746985",
+  jwBrightPurple: "#63378d",
+  fontRegular: "#555555"
 };
 
 const biggestFontSize = 28;
@@ -31,9 +36,7 @@ export const fontSizes = {
 
 const formContainer = css({
   padding: "0 15px",
-  border: "1px solid #ddd",
-  margin: "30px 15px",
-  background: colors.lightGray
+  margin: "30px 15px"
 });
 
 const button = css({
@@ -44,7 +47,7 @@ const button = css({
     opacity: 0.9,
     textDecoration: "none"
   }),
-  background: colors.jwBlue,
+  background: colors.jwBrightPurple,
   border: "none",
   color: "white",
   padding: "0px 12px",

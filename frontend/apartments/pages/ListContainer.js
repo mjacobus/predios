@@ -4,7 +4,11 @@ import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 import { Loader } from "../../library";
 import actions from "../actions";
-import { ApartmentForm, BuildingHeader } from "../../shared/components";
+import {
+  ApartmentForm,
+  BuildingHeader,
+  PageBlock
+} from "../../shared/components";
 import Apartments from "./list/Apartments";
 
 function mapStateToProps(state) {
@@ -23,9 +27,7 @@ function mapDispatchToProps(dispatch) {
 
 class ListContainer extends React.Component {
   componentDidMount() {
-    if (this.props.apartments == null) {
-      this.fetchApartments();
-    }
+    this.fetchApartments();
   }
 
   fetchApartments() {
@@ -39,14 +41,20 @@ class ListContainer extends React.Component {
     }
 
     return (
-      <div>
-        <BuildingHeader building={this.props.building} />
-        <ApartmentForm building={this.props.building} />
-        <Apartments
-          apartments={this.props.apartments}
-          building={this.props.building}
-        />
-      </div>
+      <>
+        <PageBlock>
+          <ApartmentForm building={this.props.building} />
+        </PageBlock>
+        <PageBlock>
+          <BuildingHeader building={this.props.building} />
+        </PageBlock>
+        <PageBlock>
+          <Apartments
+            apartments={this.props.apartments}
+            building={this.props.building}
+          />
+        </PageBlock>
+      </>
     );
   }
 }

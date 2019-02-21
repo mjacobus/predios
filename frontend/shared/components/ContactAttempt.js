@@ -1,13 +1,14 @@
 import React from "react";
 import { css } from "glamor";
 import { CheckIcon, DateTime, Icon } from "../../library";
+import { colors } from "../../library/styles";
 
 const successClass = css({
-  color: "green"
+  color: colors.green
 });
 
 const failureClass = css({
-  color: "red"
+  color: colors.red
 });
 
 export default function ContactAttempt(props) {
@@ -31,11 +32,11 @@ export default function ContactAttempt(props) {
     type = "envelope";
   }
 
-  const className = contactAttempt.successful ? successClass : failureClass;
+  const color = contactAttempt.successful ? colors.green : colors.red;
 
   return (
     <div {...otherProps}>
-      <Icon type={type} className={className}>
+      <Icon type={type} color={color}>
         <DateTime>{contactAttempt.time}</DateTime>
       </Icon>
     </div>

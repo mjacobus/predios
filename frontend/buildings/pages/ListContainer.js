@@ -4,7 +4,6 @@ import { fetchBuildings } from "../actions";
 import { Loader } from "../../library";
 import Filter from "./list/FilterContainer";
 import Building from "./list/Building";
-import { H1 } from "../../library";
 
 function mapStateToProps(state) {
   return {
@@ -36,7 +35,6 @@ class BuildingsContainer extends React.Component {
 
     return (
       <div>
-        <H1>Edifícios</H1>
         <Filter />
         {fetching && <Loader />}
         {fetching ||

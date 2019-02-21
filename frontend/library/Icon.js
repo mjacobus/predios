@@ -2,19 +2,15 @@ import React from "react";
 import { css } from "glamor";
 import { colors } from "./styles";
 
-export default function Icon(props) {
-  const type = props.type;
-  const style = props.style || "fa";
-  const text = props.text || "";
-  const className = props.className;
-  const children = props.children;
-
-  const iconStyle = css(
-    {
-      color: colors.jwBlue
-    },
-    className
-  );
+export default function Icon({
+  type,
+  style = "fa",
+  text = "",
+  children,
+  className,
+  color = colors.jwSoftPurple
+}) {
+  const iconStyle = css({ color }, className);
 
   const spanClass = css({
     marginLeft: children ? "4px" : ""

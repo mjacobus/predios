@@ -5,6 +5,12 @@ const DEFAULT_STATE = {
 };
 
 export default (state = DEFAULT_STATE, action) => {
+  if (action.type == "FETCHING_BUILDING") {
+    return {
+      ...state,
+      fetching: true
+    };
+  }
   if (action.type == "BUILDING_FETCHED") {
     return {
       ...state,
