@@ -43,7 +43,7 @@ namespace :deploy do
   task :warmup do
     on roles(:app), in: :sequence, wait: 5 do
       within(release_path) do
-        execute :curl, "#{fetch(:application)}/", '>', 'tmp/warmpu.txt'
+        execute :curl, "#{fetch(:application)}/", '>', 'tmp/warmpu.txt || echo "skip warmup"'
       end
     end
   end
