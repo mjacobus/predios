@@ -11,34 +11,15 @@ import Form from "./new/Form";
 import actions from "../actions";
 import { clearRedirect } from "../../shared/actions";
 
-function mapStateToProps(state) {
-  return {
-    fetching: state.newContactAttempt.fetching,
-    building: state.newContactAttempt.building,
-    apartment: state.newContactAttempt.apartment,
-    creating: state.newContactAttempt.creating,
-    redirectTo: state.newContactAttempt.redirectTo
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    createContactAttempt: createContactAttempt(dispatch),
-    attemptContactOn: attemptContactOn(dispatch),
-    fetchApartmentByBuildingNumber: actions.fetchApartmentByBuildingNumber(
-      dispatch
-    ),
-    clearRedirect: clearRedirect(dispatch)
-  };
-}
-
 class NewContactAttemptForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleCreateContactAttempt = this.handleCreateContactAttempt.bind(
       this
     );
+    this.inputListenerFactory = this.inputListenerFactory.bind(this);
     this.cancelContactAttempt = this.cancelContactAttempt.bind(this);
+    this.state = { formData: {} };
   }
 
   componentDidMount() {
@@ -49,6 +30,14 @@ class NewContactAttemptForm extends React.Component {
         apartmentNumber
       });
     }
+  }
+
+  inputListenerFactory(name) {
+    return event => {
+      const value = event.target.value;
+      const formData = Object.assign(this.state.formData, { [name]: value });
+      this.setState({ formData });
+    };
   }
 
   componentWillUnmount() {
@@ -62,6 +51,9 @@ class NewContactAttemptForm extends React.Component {
       apartment,
       outcome
     };
+
+    payload = Object.assign(payload, this.state.formData);
+
     this.props.createContactAttempt(payload);
   }
 
@@ -84,12 +76,36 @@ class NewContactAttemptForm extends React.Component {
 
     return (
       <Form
+        currentUser={this.props.currentUser}
         apartment={apartment}
         building={building}
         assignAttempt={this.handleCreateContactAttempt}
+        inputListenerFactory={this.inputListenerFactory}
       />
     );
   }
+}
+
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser,
+    fetching: state.newContactAttempt.fetching,
+    building: state.newContactAttempt.building,
+    apartment: state.newContactAttempt.apartment,
+    creating: state.newContactAttempt.creating,
+    redirectTo: state.newContactAttempt.redirectTo
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    createContactAttempt: createContactAttempt(dispatch),
+    attemptContactOn: attemptContactOn(dispatch),
+    fetchApartmentByBuildingNumber: actions.fetchApartmentByBuildingNumber(
+      dispatch
+    ),
+    clearRedirect: clearRedirect(dispatch)
+  };
 }
 
 export default connect(

@@ -5,7 +5,11 @@ import { css } from "glamor";
 const style = css({
   margin: "18px 0"
 });
-export default function PageBlock({ children }) {
+export default function PageBlock({ visible = true, children }) {
+  if (!visible) {
+    return <span />;
+  }
+
   return (
     <Grid>
       <Row>

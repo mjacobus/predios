@@ -1,5 +1,5 @@
 import React from "react";
-import { ContactAttempt } from "../../../shared/components";
+import ContactAttempt from "./ContactAttempt";
 
 export default class ContactAttempts extends React.Component {
   constructor(props) {
@@ -9,7 +9,6 @@ export default class ContactAttempts extends React.Component {
   }
 
   toggle() {
-    console.log("toggling");
     this.setState({ open: !this.state.open });
   }
 
