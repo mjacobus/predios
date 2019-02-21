@@ -11,7 +11,7 @@ export default function Icon(props) {
 
   const iconStyle = css(
     {
-      color: colors.jwBlue
+      color: colors.jwSoftPurple
     },
     className
   );

@@ -8,7 +8,7 @@ export default function BuildingNumber(props) {
     lineHeight: "35px",
     display: "block",
     color: "white",
-    background: colors.jwBlue,
+    background: colors.jwDarkPurple,
     textAlign: "center",
     verticalAlign: "middle"
   });

@@ -9,7 +9,7 @@ export default function ApartmentNumber(props) {
     lineHeight: "35px",
     display: "block",
     color: "white",
-    background: colors.jwBlue,
+    background: colors.jwMiddlePurple,
     textAlign: "center",
     verticalAlign: "middle"
   });

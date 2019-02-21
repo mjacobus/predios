@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "glamor";
 import { CheckIcon, DateTime, Icon } from "../../library";
-import { colors } from "../../styles";
+import { colors } from "../../library/styles";
 
 const successClass = css({
   color: colors.green
