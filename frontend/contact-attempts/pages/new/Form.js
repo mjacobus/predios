@@ -11,6 +11,7 @@ import {
   Question
 } from "../../../shared/components";
 import { Label } from "../../../library";
+import ContactAttemptOptions from "./ContactAttemptOptions";
 
 export default function Form(props) {
   const {
@@ -21,6 +22,7 @@ export default function Form(props) {
     currentUser
   } = props;
   const dateTimeChangeListener = props.inputListenerFactory("time");
+  const contactAttemptChangeListener = props.inputListenerFactory("type");
 
   return (
     <div>
@@ -38,6 +40,12 @@ export default function Form(props) {
         <Label>Data e hora no formato 2019/12/31 18:32</Label>
         <DateTimeInput onChange={dateTimeChangeListener} />
         <small>Deixe em branco para usar a data e hora atual</small>
+      </PageBlock>
+      <PageBlock>
+        <ContactAttemptOptions
+          defaultValue="intercom"
+          onChange={contactAttemptChangeListener}
+        />
       </PageBlock>
       <PageBlock>
         <ButtonGroup>

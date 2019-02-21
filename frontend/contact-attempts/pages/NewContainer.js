@@ -2,10 +2,6 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { Loader } from "../../library";
 import { connect } from "react-redux";
-import {
-  createContactAttempt,
-  attemptContactOn
-} from "../../buildings/actions";
 import { BuildingHeader } from "../../shared/components";
 import Form from "./new/Form";
 import actions from "../actions";
@@ -99,8 +95,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createContactAttempt: createContactAttempt(dispatch),
-    attemptContactOn: attemptContactOn(dispatch),
+    createContactAttempt: actions.createContactAttempt(dispatch),
     fetchApartmentByBuildingNumber: actions.fetchApartmentByBuildingNumber(
       dispatch
     ),

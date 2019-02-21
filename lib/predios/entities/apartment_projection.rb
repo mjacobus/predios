@@ -7,7 +7,11 @@ class ApartmentProjection < Entity
 
   def domain_contact_attempts
     attempts = contact_attempts.map do |attempt|
-      Apartments::ContactAttempt.new(outcome: attempt.outcome, time: attempt.time)
+      Apartments::ContactAttempt.new(
+        outcome: attempt.outcome,
+        time: attempt.time,
+        type: attempt.type
+      )
     end
 
     Apartments::ContactAttempts.new(attempts)

@@ -32,38 +32,6 @@ export const attemptContactOn = dispatch => apartment => {
   dispatch({ type: "ATTEMPT_CONTACT_ON", apartment });
 };
 
-export const createContactAttempt = dispatch => ({
-  building,
-  apartment,
-  outcome,
-  time
-}) => {
-  dispatch({ type: "CREATING_CONTACT_ATTEMPT" });
-
-  const payload = {
-    contact_attempt: { apartment_id: apartment.uuid, outcome, time }
-  };
-
-  if (time == "") {
-    delete payload.contact_attempt.time;
-  }
-
-  apiPost(
-    `/api/buildings/${building.number}/apartments/${
-      apartment.id
-    }/assign_visit_attempt`
-  )
-    .send(payload)
-    .end((error, resp) => {
-      if (error) {
-        throw new Error(error);
-      }
-
-      dispatch({ type: "CONTACT_ATTEMPT_CREATED" });
-      fetchBuildingByNumber(dispatch)(building.number);
-    });
-};
-
 export const createApartment = dispatch => {
   return ({ building, number }) => {
     return new Promise((resolve, _reject) => {
