@@ -32,11 +32,11 @@ export default function ContactAttempt(props) {
     type = "envelope";
   }
 
-  const className = contactAttempt.successful ? successClass : failureClass;
+  const color = contactAttempt.successful ? colors.green : colors.red;
 
   return (
     <div {...otherProps}>
-      <Icon type={type} className={className}>
+      <Icon type={type} color={color}>
         <DateTime>{contactAttempt.time}</DateTime>
       </Icon>
     </div>
