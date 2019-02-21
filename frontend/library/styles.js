@@ -15,7 +15,10 @@ export const colors = {
   jwOtherOrange: "#e7ab7f",
   jwButtonOrange: "#eb6a00",
   jwGreen: "#92ce9d",
-  jwPurple: "#a799b9"
+  jwPurple: "#a799b9",
+  jwDarkPurple: "#3b3546",
+  jwMiddlePurple: "#746985",
+  jwSoftPurple: "#746985"
 };
 
 const biggestFontSize = 28;
