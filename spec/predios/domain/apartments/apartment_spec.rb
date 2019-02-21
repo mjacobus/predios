@@ -46,6 +46,7 @@ RSpec.describe Apartments::Apartment do
       )
       attempt2 = Apartments::ContactAttempt.new(
         outcome: 'contacted',
+        type: 'phone',
         time: Time.parse('2001-02-04')
       )
 

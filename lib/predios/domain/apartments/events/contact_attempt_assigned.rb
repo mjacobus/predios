@@ -12,6 +12,10 @@ module Apartments
       def outcome
         payload[:outcome].to_s
       end
+
+      def type
+        (payload[:type] || 'intercom').to_s
+      end
     end
   end
 end

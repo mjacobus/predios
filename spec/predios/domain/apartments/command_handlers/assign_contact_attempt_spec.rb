@@ -12,6 +12,7 @@ RSpec.describe Apartments::CommandHandlers::AssignContactAttempt do
     {
       outcome: 'contacted',
       apartment_id: 'the-uuid',
+      type: 'phone',
       time: '2001-02-03',
     }
   end
@@ -52,6 +53,7 @@ RSpec.describe Apartments::CommandHandlers::AssignContactAttempt do
       it 'saves apartment' do
         expected_attempt = Apartments::ContactAttempt.new(
           outcome: 'contacted',
+          type: 'phone',
           time: Time.parse('2001-02-03').utc
         )
 

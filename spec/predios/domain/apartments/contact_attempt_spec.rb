@@ -28,7 +28,13 @@ RSpec.describe Apartments::ContactAttempt do
   it 'raises error when outcome is not whitelisted' do
     expect do
       described_class.new(outcome: 'somethingelse', time: Time.now)
-    end.to raise_error(ArgumentError, 'Invalid outcome')
+    end.to raise_error(ArgumentError, "Invalid outcome 'somethingelse'")
+  end
+
+  it 'raises error when type is not whitelisted' do
+    expect do
+      described_class.new(type: 'somethingelse', outcome: 'failed', time: Time.now)
+    end.to raise_error(ArgumentError, "Invalid contact type 'somethingelse'")
   end
 
   describe '#without_precision' do

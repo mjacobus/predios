@@ -7,6 +7,7 @@ module Apartments
         apartment_id
         outcome
         time
+        type
       ].freeze
 
       def initialize(payload)

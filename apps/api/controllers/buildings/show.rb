@@ -53,6 +53,7 @@ module Api
           {
             successful: attempt.successful?,
             outcome: attempt.outcome,
+            type: attempt.type,
             time: as_time(attempt.time),
           }
         end

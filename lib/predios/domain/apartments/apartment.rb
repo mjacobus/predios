@@ -31,6 +31,7 @@ module Apartments
 
     def assign_contact_attempt(contact_attempt)
       record_that(Events::ContactAttemptAssigned.new(
+        type: contact_attempt.type,
         outcome: contact_attempt.outcome,
         time: contact_attempt.time
       ))
@@ -46,6 +47,7 @@ module Apartments
 
     def when_contact_attempt_assigned(event)
       attempt = ContactAttempt.new(
+        type: event.type,
         outcome: event.outcome,
         time: event.time.utc
       )
