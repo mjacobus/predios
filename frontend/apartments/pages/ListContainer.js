@@ -45,10 +45,10 @@ class ListContainer extends React.Component {
     return (
       <>
         <PageBlock>
-          <BuildingHeader building={this.props.building} />
+          <ApartmentForm building={this.props.building} />
         </PageBlock>
         <PageBlock>
-          <ApartmentForm building={this.props.building} />
+          <BuildingHeader building={this.props.building} />
         </PageBlock>
         <PageBlock>
           <Apartments

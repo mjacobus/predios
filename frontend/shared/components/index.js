@@ -11,6 +11,7 @@ import ContactAttempt from "./ContactAttempt";
 import ContactAttempts from "./ContactAttempts";
 import DateTimeInput from "./DateTimeInput";
 import DoorBell from "./DoorBell";
+import Float from "./Float";
 import Neighborhood from "./Neighborhood";
 import NumberOfApartments from "./NumberOfApartments";
 import PageBlock from "./PageBlock";
@@ -30,6 +31,7 @@ export {
   ContactAttempts,
   DateTimeInput,
   DoorBell,
+  Float,
   Neighborhood,
   NumberOfApartments,
   PageBlock,
