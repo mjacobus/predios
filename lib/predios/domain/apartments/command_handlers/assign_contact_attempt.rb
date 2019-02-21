@@ -16,6 +16,7 @@ module Apartments
         apartment = @repository.find(command[:apartment_id])
 
         attempt = ContactAttempt.new(
+          type: command.payload.fetch(:type, 'intercom'),
           outcome: command[:outcome],
           time: to_time(command.payload.fetch(:time, Time.now)).utc
         )

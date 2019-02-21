@@ -1,5 +1,14 @@
 import React from "react";
-import { CheckIcon, DateTime } from "../../library";
+import { css } from "glamor";
+import { CheckIcon, DateTime, Icon } from "../../library";
+
+const successClass = css({
+  color: "green"
+});
+
+const failureClass = css({
+  color: "red"
+});
 
 export default function ContactAttempt(props) {
   const { contactAttempt, otherProps } = props;
@@ -8,11 +17,27 @@ export default function ContactAttempt(props) {
     return <span />;
   }
 
+  let type = null;
+
+  if (contactAttempt.type == "intercom") {
+    type = "building";
+  }
+
+  if (contactAttempt.type == "phone") {
+    type = "phone";
+  }
+
+  if (contactAttempt.type == "letter") {
+    type = "envelope";
+  }
+
+  const className = contactAttempt.successful ? successClass : failureClass;
+
   return (
     <div {...otherProps}>
-      <CheckIcon on={contactAttempt.successful}>
+      <Icon type={type} className={className}>
         <DateTime>{contactAttempt.time}</DateTime>
-      </CheckIcon>
+      </Icon>
     </div>
   );
 }

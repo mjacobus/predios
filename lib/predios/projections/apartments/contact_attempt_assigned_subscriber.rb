@@ -8,6 +8,7 @@ module Apartments
       attempt = ContactAttemptProjection.new(
         apartment_id: apartment.id,
         outcome: event[:outcome],
+        type: event[:type],
         time: event[:time]
       )
 

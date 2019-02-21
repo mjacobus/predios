@@ -7,6 +7,7 @@ RSpec.describe Apartments::ContactAttemptAssignedSubscriber do
   let(:time) { Time.parse('2001-12-31 00:01:02') }
   let(:event) do
     Apartments::Events::ContactAttemptAssigned.new(
+      type: 'phone',
       outcome: 'contacted',
       time: time
     ).with_aggregate_id(UniqueId.new('the-uuid'))
@@ -35,5 +36,9 @@ RSpec.describe Apartments::ContactAttemptAssignedSubscriber do
 
   it 'assigns the correct time' do
     expect(attempts.all.first.time).to eq time
+  end
+
+  it 'assigns the correct type' do
+    expect(attempts.all.first.type).to eq 'phone'
   end
 end
