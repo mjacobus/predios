@@ -6,6 +6,6 @@ const classNames = {
   right: css({ float: "right" })
 };
 
-export default function Float({ direction = "left", ...otherProps }) {
+export default function Float({ direction = "right", ...otherProps }) {
   return <div className={classNames[direction]} {...otherProps} />;
 }

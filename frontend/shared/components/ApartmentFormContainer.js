@@ -5,22 +5,11 @@ import { css } from "glamor";
 import Input from "../../library/Input";
 import Button from "../../library/Button";
 import FormRow from "../../library/FormRow";
+import Float from "./Float";
 import { createApartment } from "../../buildings/actions";
 import { styles, colors } from "../../library/styles";
 
-function mapStateToProps(state) {
-  return {
-    building: state.buildingView.building,
-    loading: state.apartmentForm.loading,
-    errors: state.apartmentForm.errors
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    createApartment: createApartment(dispatch)
-  };
-}
+const inputClass = css({ width: "65%", marginRight: "15px" });
 
 class ApartmentForm extends React.Component {
   constructor(props) {
@@ -67,16 +56,18 @@ class ApartmentForm extends React.Component {
               onChange={this.setValue("number")}
               disabled={props.loading}
               value={this.state.apartment.number}
-              className={css({ width: "65%", marginRight: "15px" })}
+              className={inputClass}
               type="text"
             />
-            <Button
-              type="submit"
-              disabled={props.loading}
-              className={styles.button}
-            >
-              Adicionar
-            </Button>
+            <Float direction="right">
+              <Button
+                type="submit"
+                disabled={props.loading}
+                className={styles.button}
+              >
+                Adicionar
+              </Button>
+            </Float>
             <div>
               <small className={css({ color: colors.red })}>
                 {props.errors && props.errors.message}
@@ -87,6 +78,20 @@ class ApartmentForm extends React.Component {
       </div>
     );
   }
+}
+
+function mapStateToProps(state) {
+  return {
+    building: state.buildingView.building,
+    loading: state.apartmentForm.loading,
+    errors: state.apartmentForm.errors
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    createApartment: createApartment(dispatch)
+  };
 }
 
 export default connect(
