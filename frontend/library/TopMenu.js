@@ -1,13 +1,19 @@
 import React from "react";
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
-export default function TopMenu(props) {
-  const user = props.currentUser;
+const linkTo = (location, history) => {
+  return e => {
+    history.push(location);
+  };
+};
+
+const TopMenu = ({ currentUser, history, app_version_url }) => {
   return (
     <Navbar fixedTop={true}>
       <Navbar.Header>
         <Navbar.Brand>
-          <img src={`${user.avatar}?sz=25`} />
+          <img src={`${currentUser.avatar}?sz=25`} />
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
@@ -17,25 +23,33 @@ export default function TopMenu(props) {
             {" "}
             Home{" "}
           </NavItem>
-          <NavItem eventKey={1} href="/buildings">
+          <NavItem
+            eventKey={1}
+            href="#"
+            onClick={linkTo("/buildings", history)}
+          >
             {" "}
             Prédios{" "}
           </NavItem>
-          {user.master && (
+          {currentUser.master && (
             <NavItem eventKey={2} href="/users">
               {" "}
               Usuários{" "}
             </NavItem>
           )}
-          {user.master && (
+          {currentUser.master && (
             <NavItem eventKey={3} href="/audits">
               {" "}
               Auditoria{" "}
             </NavItem>
           )}
-          <NavDropdown eventKey={4} title={user.name} id="basic-nav-dropdown">
-            <MenuItem eventKey={4.1}>{user.email}</MenuItem>
-            <MenuItem eventKey={4.2} href={props.app_version_url}>
+          <NavDropdown
+            eventKey={4}
+            title={currentUser.name}
+            id="basic-nav-dropdown"
+          >
+            <MenuItem eventKey={4.1}>{currentUser.email}</MenuItem>
+            <MenuItem eventKey={4.2} href={app_version_url}>
               Versão
             </MenuItem>
             <MenuItem divider />
@@ -47,4 +61,6 @@ export default function TopMenu(props) {
       </Navbar.Collapse>
     </Navbar>
   );
-}
+};
+
+export default withRouter(TopMenu);

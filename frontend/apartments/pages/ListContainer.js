@@ -27,9 +27,7 @@ function mapDispatchToProps(dispatch) {
 
 class ListContainer extends React.Component {
   componentDidMount() {
-    if (this.props.apartments == null) {
-      this.fetchApartments();
-    }
+    this.fetchApartments();
   }
 
   fetchApartments() {

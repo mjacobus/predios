@@ -3,8 +3,12 @@ import { css } from "glamor";
 import { colors, buttonStyler } from "./styles";
 import { Link } from "react-router-dom";
 
+const defaultLinkStyle = css({
+  color: colors.fontRegular
+});
+
 export default function A({ buttonStyle, ...props }) {
-  let linkStyle = null;
+  let linkStyle = defaultLinkStyle;
 
   if (buttonStyle) {
     linkStyle = buttonStyler(buttonStyle);

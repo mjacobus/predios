@@ -17,8 +17,10 @@ export const colors = {
   jwGreen: "#92ce9d",
   jwPurple: "#a799b9",
   jwDarkPurple: "#3b3546",
-  jwMiddlePurple: "#746985",
-  jwSoftPurple: "#746985"
+  jwMiddlePurple: "#544a63",
+  jwSoftPurple: "#746985",
+  jwBrightPurple: "#63378d",
+  fontRegular: "#555555"
 };
 
 const biggestFontSize = 28;
@@ -47,7 +49,7 @@ const button = css({
     opacity: 0.9,
     textDecoration: "none"
   }),
-  background: colors.jwBlue,
+  background: colors.jwBrightPurple,
   border: "none",
   color: "white",
   padding: "0px 12px",
