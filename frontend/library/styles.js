@@ -35,7 +35,6 @@ export const fontSizes = {
 };
 
 const formContainer = css({
-  padding: "0 15px",
   margin: "30px 15px"
 });
 
