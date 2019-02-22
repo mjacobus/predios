@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import actions from "../actions";
+import { clearRedirect } from "../../shared/actions";
 import { Loader } from "../../library";
 import Buildings from "../components";
 
@@ -8,7 +10,12 @@ class EditContainer extends React.Component {
   constructor(props) {
     super(props);
     this.onAttributeChange = this.onAttributeChange.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
     this.state = { formData: {} };
+  }
+
+  componentWillUnmount() {
+    this.props.clearRedirect();
   }
 
   componentDidMount() {
@@ -23,16 +30,27 @@ class EditContainer extends React.Component {
     console.log(this.state);
   }
 
+  submitHandler(event) {
+    event.preventDefault();
+    const { building } = this.props;
+    this.props.updateBuilding(building.uuid, this.state.formData);
+  }
+
   render() {
-    const { building, fetching, updating } = this.props;
+    const { building, fetching, updating, redirectTo } = this.props;
+
+    if (redirectTo) {
+      return <Redirect to={redirectTo} />;
+    }
 
     if (fetching) {
       return <Loader />;
     }
 
-    const { onAttributeChange } = this;
+    const { onAttributeChange, submitHandler } = this;
     return (
       <Buildings.Form
+        onSubmit={ submitHandler }
         onAttributeChange={onAttributeChange}
         building={building}
         updating={updating}
@@ -43,6 +61,8 @@ class EditContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    redirectTo: state.editBuilding.redirectTo,
+    updating: state.editBuilding.updating,
     fetching: state.editBuilding.fetching,
     building: state.editBuilding.building
   };
@@ -50,6 +70,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    clearRedirect: clearRedirect(dispatch),
+    updateBuilding: actions.updateBuilding(dispatch),
     fetchBuildingByNumber: actions.fetchBuildingByNumber(dispatch)
   };
 }

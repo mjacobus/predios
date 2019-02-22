@@ -1,10 +1,6 @@
 import React from "react";
-import { SelectField, InputField, Form, FormRow } from "../../library";
+import { SelectField, InputField, Form, FormRow, Button } from "../../library";
 import { PageBlock } from "../../shared/components";
-
-const MOCK_BUILDING = {
-  number: "Number"
-};
 
 const optionalBooleanValue = value => {
   if (value === undefined) {
@@ -33,7 +29,6 @@ const makeOnChangeHandler = onAttributeChange => {
 };
 
 export default function BuildingForm({
-  _building = MOCK_BUILDING,
   onAttributeChange,
   updating,
   building,
@@ -79,7 +74,6 @@ export default function BuildingForm({
             onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.neighborhood}
             name="neighborhood"
-            readOnly={true}
             label="Bairro"
           />
         </FormRow>
@@ -90,7 +84,6 @@ export default function BuildingForm({
             defaultValue={optionalBooleanValue(
               building.has_individual_intercoms
             )}
-            readOnly={true}
             label="Tem interfones individuais?"
             options={selectOptions}
           />
@@ -102,10 +95,12 @@ export default function BuildingForm({
             defaultValue={optionalBooleanValue(
               building.has_individual_letterboxes
             )}
-            readOnly={true}
             label="Tem caixinhas individuais de corrêio?"
             options={selectOptions}
           />
+        </FormRow>
+        <FormRow>
+          <Button type="submit" disabled={ updating }>Salvar</Button>
         </FormRow>
       </Form>
     </PageBlock>

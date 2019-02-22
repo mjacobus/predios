@@ -1,4 +1,4 @@
-import { apiGet, apiPost } from "../../src/utils/api.js";
+import { apiGet, apiPost, apiPatch } from "../../src/utils/api.js";
 
 const fetchBuildings = dispatch => () => {
   dispatch({ type: "FETCHING_BUILDINGS" });
@@ -25,8 +25,6 @@ const fetchBuildingByNumber = dispatch => number => {
     });
   });
 };
-
-export { fetchBuildings, fetchBuildingByNumber };
 
 export const attemptContactOn = dispatch => apartment => {
   dispatch({ type: "ATTEMPT_CONTACT_ON", apartment });
@@ -63,6 +61,24 @@ export const filterBuildings = dispatch => {
   };
 };
 
+
+const updateBuilding = dispatch => (uuid, changedAttributes) => {
+  dispatch({ type: "UPDATING_BUILDING" });
+
+  const payload = { building: changedAttributes };
+  console.log(`Patching ${uuid} with:`, payload)
+
+  return new Promise((resolve, reject) => {
+    apiPatch(`/api/buildings/${uuid}`).send(payload).end((erro, resp) => {
+      dispatch({ type: "BUILDING_UPDATED" });
+      resolve(resp.body);
+    });
+  });
+};
+
+export { fetchBuildings, fetchBuildingByNumber, updateBuilding };
+
 export default {
-  fetchBuildingByNumber
+  fetchBuildingByNumber,
+  updateBuilding
 };
