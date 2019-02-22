@@ -6,6 +6,10 @@ export default function BuildingLink({ label, children, number, type }) {
 
   let link = `/buildings/${number}/apartments`;
 
+  if (type == "none") {
+    return content;
+  }
+
   if (type == "edit") {
     link = `/buildings/${number}/edit`;
   }

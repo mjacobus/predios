@@ -32,7 +32,7 @@ class ListContainer extends React.Component {
           <ApartmentForm building={this.props.building} />
         </PageBlock>
         <PageBlock>
-          <BuildingHeader linkType="edit" building={this.props.building} />
+          <BuildingHeader building={this.props.building} />
         </PageBlock>
         <PageBlock>
           <Apartments

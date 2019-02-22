@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { css } from "glamor";
 import { Grid, Col, Row } from "react-bootstrap";
 import BuildingAddress from "./BuildingAddress";
@@ -10,7 +11,8 @@ import Neighborhood from "./Neighborhood";
 import NumberOfApartments from "./NumberOfApartments";
 import Float from "./Float";
 
-export default function BuildingHeader({ building, linkType }) {
+function BuildingHeader({ building, currentUser }) {
+  const linkType = currentUser.master ? "edit" : "none";
   return (
     <Grid>
       <Row>
@@ -38,3 +40,11 @@ export default function BuildingHeader({ building, linkType }) {
     </Grid>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser
+  };
+}
+
+export default connect(mapStateToProps)(BuildingHeader);
