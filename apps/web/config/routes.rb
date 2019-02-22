@@ -13,9 +13,7 @@ get '/users', to: 'frontend#index'
 get '/buildings', to: 'frontend#index'
 get '/buildings/:id', to: 'frontend#index'
 get '/buildings/:id/edit', to: 'frontend#index'
-get '/legacy/buildings/:id', to: 'buildings#show'
 
-resources :buildings, only: %i[index show]
 resources :audits, only: %i[index show]
 
 if Hanami.env == 'development'
