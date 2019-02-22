@@ -3,6 +3,8 @@ import { css } from "glamor";
 import { colors } from "./styles";
 import Label from "./Label";
 
+const size = 30;
+
 const onStyle = css({
   background: colors.green,
   float: "right"
@@ -14,22 +16,25 @@ const offStyle = css({
 });
 
 const switchFlagStyle = css({
-  height: "20px",
-  width: "20px",
-  borderRadius: "12px"
+  height: `${size}px`,
+  width: `${size}px`,
+  borderRadius: "100px"
 });
 
 const switchContainerStyle = css({
-  width: "35px",
-  height: "22px",
+  width: `${size * 1.5}px`,
+  height: `${size + 2}px`,
   float: "left",
   border: "1px solid #ddd",
   marginRight: "10px",
-  borderRadius: "12px"
+  borderRadius: "100px"
 });
 
 const labelStyle = css({
-  cursor: "pointer"
+  cursor: "pointer",
+  padding: "10px",
+  lineHeight: `${size + 2}px`,
+  verticalAligh: "middle"
 });
 
 const defaultToggler = (event, entity) => {
