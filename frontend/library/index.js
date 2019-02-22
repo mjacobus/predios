@@ -1,3 +1,5 @@
+import { Grid, Col, Row } from "react-bootstrap";
+
 import A from "./A";
 import Button from "./Button";
 import CheckIcon from "./CheckIcon";
@@ -12,8 +14,13 @@ import InputField from "./InputField";
 import Label from "./Label";
 import Loader from "./Loader";
 import SelectField from "./SelectField";
+import Title from "./Title";
+import Toggler from "./Toggler";
 
 export {
+  Grid,
+  Col,
+  Row,
   A,
   Button,
   CheckIcon,
@@ -27,5 +34,7 @@ export {
   InputField,
   Label,
   Loader,
-  SelectField
+  SelectField,
+  Title,
+  Toggler
 };

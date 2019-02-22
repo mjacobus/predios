@@ -14,3 +14,7 @@ resources :buildings do
     end
   end
 end
+resources :users, only: [:index] do
+  resource :enable, only: %i[create destroy]
+  resource :master, only: %i[create destroy]
+end

@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import buildings from "./buildings/reducers";
 import apartments from "./apartments/reducers";
+import users from "./users/reducers";
 import contactAttempts from "./contact-attempts/reducers";
 import Routes from "./routes";
 
@@ -15,6 +16,7 @@ const nullReducer = (state = {}, action) => {
 const reducers = combineReducers({
   config: nullReducer,
   currentUser: nullReducer,
+  usersList: users.usersListReducer,
   buildingsList: buildings.buildingsListReducer,
   buildingView: buildings.buildingViewReducer,
   editBuilding: buildings.editBuildingReducer,
