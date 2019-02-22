@@ -8,7 +8,6 @@
     "lib": "lib"
   },
   "dependencies": {
-    "@stimulus/polyfills": "^1.1.1",
     "glamor": "^2.20.40",
     "react": "^16.7.0",
     "react-bootstrap": "^0.32.4",
@@ -17,9 +16,7 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "stimulus": "^1.1.1",
-    "superagent": "^4.1.0",
-    "turbolinks": "^5.2.0"
+    "superagent": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
