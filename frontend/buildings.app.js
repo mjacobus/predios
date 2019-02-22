@@ -17,6 +17,7 @@ const reducers = combineReducers({
   currentUser: nullReducer,
   buildingsList: buildings.buildingsListReducer,
   buildingView: buildings.buildingViewReducer,
+  editBuilding: buildings.editBuildingReducer,
   apartmentForm: buildings.apartmentFormReducer,
   apartmentsList: apartments.apartmentsListReducer,
   newContactAttempt: contactAttempts.newContactAttemptReducer,
