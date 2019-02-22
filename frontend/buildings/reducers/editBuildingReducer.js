@@ -1,6 +1,6 @@
 const DEFAULT_STATE = {
   building: null,
-  feching: true,
+  fetching: true,
   updating: false,
   redirectTo: null
 };

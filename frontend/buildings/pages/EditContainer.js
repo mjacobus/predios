@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import actions from "../actions";
+import { Loader } from "../../library";
+import Buildings from "../components";
 
 class EditContainer extends React.Component {
   componentDidMount() {
@@ -9,16 +11,19 @@ class EditContainer extends React.Component {
   }
 
   render() {
-    if (this.props.building) {
-      return <p>Editing building {this.props.building.number}</p>;
+    const { building, fetching, updating } = this.props;
+
+    if (fetching) {
+      return <Loader />;
     }
 
-    return <p>Nothing yet</p>;
+    return <Buildings.Form building={building} updating={updating} />;
   }
 }
 
 function mapStateToProps(state) {
   return {
+    fetching: state.editBuilding.fetching,
     building: state.editBuilding.building
   };
 }
