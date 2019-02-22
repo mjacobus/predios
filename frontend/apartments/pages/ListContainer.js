@@ -28,18 +28,12 @@ class ListContainer extends React.Component {
 
     return (
       <>
-        <PageBlock>
-          <ApartmentForm building={this.props.building} />
-        </PageBlock>
-        <PageBlock>
-          <BuildingHeader building={this.props.building} />
-        </PageBlock>
-        <PageBlock>
-          <Apartments
-            apartments={this.props.apartments}
-            building={this.props.building}
-          />
-        </PageBlock>
+        <ApartmentForm building={this.props.building} />
+        <BuildingHeader building={this.props.building} />
+        <Apartments
+          apartments={this.props.apartments}
+          building={this.props.building}
+        />
       </>
     );
   }
