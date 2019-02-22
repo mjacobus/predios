@@ -6,6 +6,20 @@ const MOCK_BUILDING = {
   number: "Number"
 };
 
+const optionalBooleanValue = value => {
+  if (value === undefined) {
+    return "";
+  }
+
+  if (value === true) {
+    return "1";
+  }
+
+  if (value === false) {
+    return "0";
+  }
+};
+
 const selectOptions = [
   { value: "", description: "Não sabemos" },
   { value: "1", description: "Sim" },
@@ -73,7 +87,9 @@ export default function BuildingForm({
           <SelectField
             onChange={makeOnChangeHandler(onAttributeChange)}
             name="has_individual_intercoms"
-            defaultValue={building.has_individual_intercoms}
+            defaultValue={optionalBooleanValue(
+              building.has_individual_intercoms
+            )}
             readOnly={true}
             label="Tem interfones individuais?"
             options={selectOptions}
@@ -83,7 +99,9 @@ export default function BuildingForm({
           <SelectField
             onChange={makeOnChangeHandler(onAttributeChange)}
             name="has_individual_letterboxes"
-            defaultValue={building.has_individual_letterboxes}
+            defaultValue={optionalBooleanValue(
+              building.has_individual_letterboxes
+            )}
             readOnly={true}
             label="Tem caixinhas individuais de corrêio?"
             options={selectOptions}

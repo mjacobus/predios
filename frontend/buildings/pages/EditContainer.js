@@ -8,6 +8,7 @@ class EditContainer extends React.Component {
   constructor(props) {
     super(props);
     this.onAttributeChange = this.onAttributeChange.bind(this);
+    this.state = { formData: {} };
   }
 
   componentDidMount() {
@@ -16,7 +17,10 @@ class EditContainer extends React.Component {
   }
 
   onAttributeChange(name, value) {
-    console.log(name, value);
+    const { formData } = this.state;
+    formData[name] = value;
+    this.setState({ formData });
+    console.log(this.state);
   }
 
   render() {
