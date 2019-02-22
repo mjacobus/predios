@@ -1,6 +1,13 @@
 import React from "react";
-import { SelectField, InputField, Form, FormRow, Button } from "../../library";
-import { PageBlock } from "../../shared/components";
+import {
+  SelectField,
+  InputField,
+  Form,
+  FormRow,
+  Button,
+  A
+} from "../../library";
+import { ButtonGroup, PageBlock } from "../../shared/components";
 
 const optionalBooleanValue = value => {
   if (value === undefined) {
@@ -100,8 +107,20 @@ export default function BuildingForm({
           />
         </FormRow>
         <FormRow>
-          <Button type="submit" disabled={ updating }>Salvar</Button>
+          <ButtonGroup>
+            <A
+              buttonStyle="purple"
+              to={`/buildings/${building.number}/apartments`}
+            >
+              Cancelar
+            </A>
+
+            <Button type="submit" disabled={updating}>
+              Salvar
+            </Button>
+          </ButtonGroup>
         </FormRow>
+        <FormRow />
       </Form>
     </PageBlock>
   );

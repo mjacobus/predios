@@ -3,7 +3,7 @@ import { Grid, Col, Row } from "react-bootstrap";
 import { css } from "glamor";
 
 const style = css({
-  margin: "18px 0"
+  margin: "0 0 36px 0"
 });
 export default function PageBlock({ visible = true, children }) {
   if (!visible) {

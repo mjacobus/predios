@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import actions from "../actions";
 import { clearRedirect } from "../../shared/actions";
-import { Loader } from "../../library";
+import { Loader, H1 } from "../../library";
 import Buildings from "../components";
 
 class EditContainer extends React.Component {
@@ -49,12 +49,15 @@ class EditContainer extends React.Component {
 
     const { onAttributeChange, submitHandler } = this;
     return (
-      <Buildings.Form
-        onSubmit={ submitHandler }
-        onAttributeChange={onAttributeChange}
-        building={building}
-        updating={updating}
-      />
+      <>
+        <H1>Alteração de Prédio</H1>
+        <Buildings.Form
+          onSubmit={submitHandler}
+          onAttributeChange={onAttributeChange}
+          building={building}
+          updating={updating}
+        />
+      </>
     );
   }
 }

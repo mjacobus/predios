@@ -89,6 +89,13 @@ export const styles = {
 };
 
 const buttonStyles = {
+  purple: {
+    background: colors.jwLightPurple,
+    color: colors.white,
+    ":hover": {
+      color: colors.white
+    }
+  },
   blue: {
     background: colors.jwBlue,
     color: colors.white,

@@ -4,7 +4,7 @@ export default function Form(props) {
   const { onSubmit, ...otherProps } = props;
   const preventDefault = e => {
     e.preventDefault();
-    console.log('Default prevented')
+    console.log("Default prevented");
   };
   let submitHandler = onSubmit || preventDefault;
 
