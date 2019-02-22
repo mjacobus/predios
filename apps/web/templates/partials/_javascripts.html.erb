@@ -12,14 +12,3 @@
     crossorigin: 'anonymous'
   %>
 
-<% if current_user.master? %>
-  <%= custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js' %>
-  <%=
-    custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/locale/pt-br.js',
-      alternative: 'moment-pt-br'
-    %>
-  <%= custom_javascript 'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js' %>
-  <%= javascript 'datetimepicker', defer: true %>
-<% end %>
-
-<%= javascript 'buildings.28b9b9cc', defer: true %>
