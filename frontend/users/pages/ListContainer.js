@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { Loader } from "../../library";
 import actions from "../actions";
 import UserListItem from "./list/ItemContainer";
+import { PageBlock } from "../../shared/components";
+
+import { H1, Col, Row } from "../../library";
 
 const Users = ({ users }) => {
   return (
@@ -30,7 +33,14 @@ class UsersList extends React.Component {
       return <Loader />;
     }
 
-    return <Users users={users} />;
+    return (
+      <>
+        <PageBlock>
+          <H1>Usuários</H1>
+        </PageBlock>
+        <Users users={users} />
+      </>
+    );
   }
 }
 

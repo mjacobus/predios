@@ -22,7 +22,7 @@ module Api
             {
               name: user.name,
               email: user.email,
-              avatar_url: user.avatar_url,
+              avatar_url: user.avatar_url('{SIZE}'),
               master: user.master,
               enabled: user.enabled,
             }
