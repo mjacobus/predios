@@ -60,7 +60,6 @@ Explore Hanami [guides](http://hanamirb.org/guides/), [API docs](http://docs.han
 - https://getbootstrap.com/docs/4.1/components/buttons/
 - https://github.com/threepointone/glamor
 - https://parceljs.org/
-- https://github.com/stimulusjs/stimulus
 
 
 ## Tips
