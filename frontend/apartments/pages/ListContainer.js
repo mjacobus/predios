@@ -11,20 +11,6 @@ import {
 } from "../../shared/components";
 import Apartments from "./list/Apartments";
 
-function mapStateToProps(state) {
-  return {
-    building: state.apartmentsList.building,
-    apartments: state.apartmentsList.apartments,
-    fetching: state.apartmentsList.fetching
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchApartments: actions.fetchApartments(dispatch)
-  };
-}
-
 class ListContainer extends React.Component {
   componentDidMount() {
     this.fetchApartments();
@@ -46,7 +32,7 @@ class ListContainer extends React.Component {
           <ApartmentForm building={this.props.building} />
         </PageBlock>
         <PageBlock>
-          <BuildingHeader building={this.props.building} />
+          <BuildingHeader linkType="edit" building={this.props.building} />
         </PageBlock>
         <PageBlock>
           <Apartments
@@ -57,6 +43,20 @@ class ListContainer extends React.Component {
       </>
     );
   }
+}
+
+function mapStateToProps(state) {
+  return {
+    building: state.apartmentsList.building,
+    apartments: state.apartmentsList.apartments,
+    fetching: state.apartmentsList.fetching
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchApartments: actions.fetchApartments(dispatch)
+  };
 }
 
 export default connect(

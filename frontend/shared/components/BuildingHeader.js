@@ -10,15 +10,15 @@ import Neighborhood from "./Neighborhood";
 import NumberOfApartments from "./NumberOfApartments";
 import Float from "./Float";
 
-export default function BuildingHeader({ building }) {
+export default function BuildingHeader({ building, linkType }) {
   return (
     <Grid>
       <Row>
         <Col xs={8}>
-          <BuildingLink number={building.number}>
+          <BuildingLink type={linkType} number={building.number}>
             <BuildingName>{building.name}</BuildingName>
           </BuildingLink>
-          <BuildingLink number={building.number}>
+          <BuildingLink type={linkType} number={building.number}>
             <BuildingAddress>{building.address}</BuildingAddress>
           </BuildingLink>
           <Neighborhood>{building.neighborhood}</Neighborhood>
