@@ -25,10 +25,6 @@ export default function BuildingForm({
   building,
   ...formProps
 }) {
-  console.log(building);
-
-  // const building = MOCK_BUILDING;
-  // const building = MOCK_BUILDING;
   return (
     <PageBlock>
       <Form {...formProps}>
