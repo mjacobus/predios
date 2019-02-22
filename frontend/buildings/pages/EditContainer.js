@@ -7,15 +7,15 @@ import Buildings from "../components";
 class EditContainer extends React.Component {
   componentDidMount() {
     const { buildingNumber } = this.props.match.params;
-    this.props.fetchBuildingByNumber(buildingNumber);
+    // this.props.fetchBuildingByNumber(buildingNumber);
   }
 
   render() {
     const { building, fetching, updating } = this.props;
 
-    if (fetching) {
-      return <Loader />;
-    }
+    // if (fetching) {
+    //   return <Loader />;
+    // }
 
     return <Buildings.Form building={building} updating={updating} />;
   }

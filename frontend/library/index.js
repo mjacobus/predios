@@ -8,6 +8,7 @@ import FormRow from "./FormRow";
 import H1 from "./H1";
 import Icon from "./Icon";
 import Input from "./Input";
+import InputField from "./InputField";
 import Label from "./Label";
 import Loader from "./Loader";
 
@@ -22,6 +23,7 @@ export {
   H1,
   Icon,
   Input,
+  InputField,
   Label,
   Loader
 };
