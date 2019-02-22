@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import TopMenu from "./library/TopMenuContainer";
 import Buildings from "./buildings/pages";
 import Apartments from "./apartments/pages";
+import Users from "./users/pages";
 import ContactAttempts from "./contact-attempts/pages";
 import { DefaultLayout } from "./library";
 
@@ -12,6 +13,7 @@ export default function Routes() {
       <div>
         <TopMenu />
         <DefaultLayout>
+          <Route exact path="/users" component={Users.List} />
           <Route exact path="/buildings" component={Buildings.List} />
           <Route
             exact

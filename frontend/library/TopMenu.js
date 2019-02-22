@@ -30,7 +30,7 @@ const TopMenu = ({ currentUser, history, app_version_url }) => {
             Prédios{" "}
           </NavItem>
           {currentUser.master && (
-            <NavItem eventKey={2} href="/users">
+            <NavItem eventKey={2} onClick={linkTo("/users", history)}>
               {" "}
               Usuários{" "}
             </NavItem>
