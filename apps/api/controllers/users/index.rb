@@ -20,6 +20,8 @@ module Api
         def to_json(users)
           users.map do |user|
             {
+              id: user.id,
+              uuid: user.uuid,
               name: user.name,
               email: user.email,
               avatar_url: user.avatar_url('{SIZE}'),

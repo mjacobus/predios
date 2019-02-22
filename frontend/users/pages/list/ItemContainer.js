@@ -3,7 +3,16 @@ import { connect } from "react-redux";
 import actions from "../../actions";
 import { Grid, Col, Row, Title, Toggler } from "../../../library";
 
-const UserListItem = ({ user }) => {
+const nullToggler = () => {
+  console.log("Action forbidden");
+};
+
+const UserListItem = ({
+  user,
+  currentUser,
+  toggleEnabledFlag,
+  toggleMasterFlag
+}) => {
   return (
     <>
       <Grid>
@@ -18,21 +27,29 @@ const UserListItem = ({ user }) => {
         </Row>
         <Row>
           <Col xs={2} />
-          <Col xs={5}>
-            <Toggler
-              entity={user}
-              toggler={() => {}}
-              label="Enabled"
-              on={user.enabled}
-            />
-          </Col>
-          <Col xs={5}>
-            <Toggler
-              entity={user}
-              toggler={() => {}}
-              label="Admin"
-              on={user.master}
-            />
+          <Col xs={10}>
+            <div>
+              <Toggler
+                entity={user}
+                toggler={
+                  currentUser.id == user.id ? nullToggler : toggleEnabledFlag
+                }
+                label="Enabled"
+                locked={currentUser.id == user.id}
+                on={user.enabled}
+              />
+            </div>
+            <div>
+              <Toggler
+                entity={user}
+                toggler={
+                  currentUser.id == user.id ? nullToggler : toggleMasterFlag
+                }
+                label="Admin"
+                locked={currentUser.id == user.id}
+                on={user.master}
+              />
+            </div>
           </Col>
         </Row>
       </Grid>
@@ -42,7 +59,9 @@ const UserListItem = ({ user }) => {
 };
 
 function mapStateToPros(state) {
-  return {};
+  return {
+    currentUser: state.currentUser
+  };
 }
 
 function mapDispatchToProps(dispatch) {

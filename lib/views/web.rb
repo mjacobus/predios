@@ -26,6 +26,8 @@ module Views
           version_url: app_version_url,
         },
         currentUser: {
+          id: current_user.id,
+          uuid: current_user.uuid,
           name: current_user.name,
           email: current_user.email,
           master: current_user.master?,

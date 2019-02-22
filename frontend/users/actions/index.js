@@ -1,4 +1,4 @@
-import { apiGet } from "../../src/utils/api.js";
+import { apiGet, apiPost, apiDelete } from "../../src/utils/api.js";
 
 const fetchUsers = dispatch => () => {
   dispatch({ type: "FETCHING_USERS" });
@@ -16,11 +16,21 @@ const fetchUsers = dispatch => () => {
 };
 
 const toggleMasterFlag = dispatch => user => {
-  console.log("toggling master flat of ", user);
+  const request = user.master ? apiDelete : apiPost;
+
+  request(`/api/users/${user.id}/master`).end((error, resp) => {
+    const replacement = Object.assign({}, user, { master: !user.master });
+    dispatch({ type: "USER_REPLACED", user: replacement });
+  });
 };
 
 const toggleEnabledFlag = dispatch => user => {
-  console.log("toggling enable flat of ", user);
+  const request = user.enabled ? apiDelete : apiPost;
+
+  request(`/api/users/${user.id}/enable`).end((error, resp) => {
+    const replacement = Object.assign({}, user, { enabled: !user.enabled });
+    dispatch({ type: "USER_REPLACED", user: replacement });
+  });
 };
 
 export default {

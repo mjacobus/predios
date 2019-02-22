@@ -1,4 +1,4 @@
-import { get, post, put, patch } from "superagent";
+import { get, post, put, patch, del } from "superagent";
 
 const apiRequest = request => {
   return request.type("json").accept("json");
@@ -18,4 +18,8 @@ export function apiPut(url) {
 
 export function apiPatch(url) {
   return apiRequest(patch(url));
+}
+
+export function apiDelete(url) {
+  return apiRequest(del(url));
 }
