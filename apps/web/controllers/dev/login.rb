@@ -23,7 +23,7 @@ module Web
 
           self.body = [
             "Logged in as #{user_id}. ",
-            "Redirect to <a href=\"#{routes.buildings_url}\">Buildings</a>",
+            'Redirect to <a href="/buildings">Buildings</a>',
           ]
         end
       end

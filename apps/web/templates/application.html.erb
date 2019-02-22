@@ -10,7 +10,7 @@
     <%= render partial: 'partials/stylesheets' %>
     <%= render partial: 'partials/javascripts' %>
   </head>
-  <body class="<%= routes.buildings_url.to_s.match('staging') ? 'staging' : '' %> <%= routes.buildings_url.to_s.match('localhost') ? 'staging' : '' %>">
+  <body class="">
     <% if current_user.enabled? %>
       <%= render partial: 'partials/menu' %>
     <% end %>

@@ -16,7 +16,7 @@
       %>
     <%= javascript 'buildings.app.d2e579e0', defer: true %>
   </head>
-  <body class="<%= routes.buildings_url.to_s.match('staging') ? 'staging' : '' %> <%= routes.buildings_url.to_s.match('localhost') ? 'staging' : '' %>">
+  <body class="<%= test_environment? ? 'staging' : '' %>">
     <script type="text/javascript" charset="utf-8">
       window.__DATA__ = <%= raw app_data.to_json %>;
     </script>
