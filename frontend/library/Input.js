@@ -1,19 +1,9 @@
 import React from "react";
 import { css } from "glamor";
+import { styles } from "./styles";
 
 export default function Input(props) {
   const { className, ...otherProps } = props;
-  const inputClass = css(
-    {
-      lineHeight: "32px",
-      outline: "none",
-      height: "32px",
-      padding: "0 4px",
-      margin: "none",
-      border: "1px solid #ddd",
-      width: "100%"
-    },
-    className
-  );
+  const inputClass = css(styles.input, className);
   return <input className={inputClass} {...otherProps} />;
 }

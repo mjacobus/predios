@@ -11,6 +11,7 @@ import Input from "./Input";
 import InputField from "./InputField";
 import Label from "./Label";
 import Loader from "./Loader";
+import SelectField from "./SelectField";
 
 export {
   A,
@@ -25,5 +26,6 @@ export {
   Input,
   InputField,
   Label,
-  Loader
+  Loader,
+  SelectField
 };

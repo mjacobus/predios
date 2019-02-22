@@ -1,17 +1,34 @@
 import React from "react";
-import { InputField, Form, FormRow } from "../../library";
+import { SelectField, InputField, Form, FormRow } from "../../library";
 import { PageBlock } from "../../shared/components";
 
 const MOCK_BUILDING = {
   number: "Number"
 };
 
+const selectOptions = [
+  { value: "", description: "Não sabemos" },
+  { value: "1", description: "Sim" },
+  { value: "0", description: "Não" }
+];
+
+const makeOnChangeHandler = onAttributeChange => {
+  return event => {
+    onAttributeChange(event.target.name, event.target.value);
+  };
+};
+
 export default function BuildingForm({
   _building = MOCK_BUILDING,
+  onAttributeChange,
   updating,
+  building,
   ...formProps
 }) {
-  const building = MOCK_BUILDING;
+  console.log(building);
+
+  // const building = MOCK_BUILDING;
+  // const building = MOCK_BUILDING;
   return (
     <PageBlock>
       <Form {...formProps}>
@@ -19,43 +36,63 @@ export default function BuildingForm({
           <InputField
             defaultValue={building.number}
             name="number"
-            readOnly={true}
+            disabled={true}
             label="Número"
           />
         </FormRow>
         <FormRow>
           <InputField
+            onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.address}
             name="address"
-            readOnly={true}
             label="Endereço"
           />
         </FormRow>
         <FormRow>
           <InputField
+            onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.name}
             name="name"
-            readOnly={true}
             label="Nome do Condomínio"
           />
         </FormRow>
         <FormRow>
           <InputField
+            onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.number_of_apartments}
             name="number_of_apartments"
-            readOnly={true}
             label="Número de Apartamentos"
           />
         </FormRow>
         <FormRow>
           <InputField
+            onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.neighborhood}
             name="neighborhood"
             readOnly={true}
             label="Bairro"
           />
         </FormRow>
-        <p> has_individual_intercoms || has_individual_letterboxes </p>
+        <FormRow>
+          <SelectField
+            onChange={makeOnChangeHandler(onAttributeChange)}
+            name="has_individual_intercoms"
+            defaultValue={building.has_individual_intercoms}
+            readOnly={true}
+            label="Tem interfones individuais?"
+            options={selectOptions}
+          />
+        </FormRow>
+        <FormRow>
+          <SelectField
+            onChange={makeOnChangeHandler(onAttributeChange)}
+            name="has_individual_letterboxes"
+            defaultValue={building.has_individual_letterboxes}
+            readOnly={true}
+            label="Tem caixinhas individuais de corrêio?"
+            options={selectOptions}
+          />
+        </FormRow>
       </Form>
     </PageBlock>
   );
