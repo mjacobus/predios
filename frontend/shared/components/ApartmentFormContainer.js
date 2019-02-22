@@ -34,9 +34,7 @@ class ApartmentForm extends React.Component {
     const { building } = this.props;
     const { number } = this.state.apartment;
     const payload = { building, number };
-    this.props.createApartment(payload).then(() => {
-      this.setState({ apartment: { number: "" } });
-    });
+    this.props.createApartment(payload);
   }
 
   render() {
