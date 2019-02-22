@@ -16,10 +16,12 @@ export default function buildingsListReducer(state = DEFAULT_STATE, action) {
   }
 
   if (action.type == "BUILDINGS_FETCHED") {
+    const filtered = applyFilter(action.buildings, state.filter);
+
     return {
       ...state,
       buildings: action.buildings,
-      filteredBuildings: action.buildings,
+      filteredBuildings: filtered,
       fetching: false
     };
   }
@@ -30,7 +32,7 @@ export default function buildingsListReducer(state = DEFAULT_STATE, action) {
     return {
       ...state,
       filter: action.filter,
-      filteredBuildings: filtered, // this is not working
+      filteredBuildings: filtered,
       fetching: false
     };
   }
