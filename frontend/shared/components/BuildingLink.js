@@ -1,7 +1,18 @@
 import React from "react";
 import { A } from "../../library";
 
-export default function BuildingLink(props) {
-  const label = props.children || props.number;
-  return <A to={`/buildings/${props.number}/apartments`}>{label}</A>;
+export default function BuildingLink({ label, children, number, type }) {
+  const content = children || number;
+
+  let link = `/buildings/${number}/apartments`;
+
+  if (type == "none") {
+    return content;
+  }
+
+  if (type == "edit") {
+    link = `/buildings/${number}/edit`;
+  }
+
+  return <A to={link}>{content}</A>;
 }

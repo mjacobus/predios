@@ -61,12 +61,41 @@ const button = css({
   float: "left"
 });
 
+const input = css({
+  backround: "white",
+  border: "1px solid #ddd",
+  height: "32px",
+  lineHeight: "32px",
+  margin: "none",
+  outline: "none",
+  padding: "0 4px",
+  width: "100%",
+  ":disabled": {
+    background: "#eee"
+  }
+});
+
+const select = css(input, {
+  " option": {
+    bagckground: "gold"
+  }
+});
+
 export const styles = {
+  input,
+  select,
   formContainer,
   button
 };
 
 const buttonStyles = {
+  purple: {
+    background: colors.jwLightPurple,
+    color: colors.white,
+    ":hover": {
+      color: colors.white
+    }
+  },
   blue: {
     background: colors.jwBlue,
     color: colors.white,

@@ -27,6 +27,8 @@ module Api
             neighborhood: building.neighborhood,
             call_options: building.call_options,
             has_all_apartments: building.has_all_apartments?,
+            has_individual_intercoms: building.has_individual_intercoms,
+            has_individual_letterboxes: building.has_individual_letterboxes,
             apartments: building.apartments.map do |apartment|
               apartment_to_json(apartment)
             end,

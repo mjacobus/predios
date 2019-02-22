@@ -15,6 +15,11 @@ export default function Routes() {
           <Route exact path="/buildings" component={Buildings.List} />
           <Route
             exact
+            path="/buildings/:buildingNumber/edit"
+            component={Buildings.Edit}
+          />
+          <Route
+            exact
             path="/buildings/:buildingNumber/apartments"
             component={Apartments.List}
           />
