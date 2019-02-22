@@ -9,11 +9,7 @@ get '/', to: 'home#index'
 get '/auth/:provider/callback', to: 'sessions#create'
 get 'logout', to: 'sessions#destroy'
 
-resources :users, only: [:index] do
-  resource :enable, only: %i[create destroy]
-  resource :master, only: %i[create destroy]
-end
-
+get '/users', to: 'frontend#index'
 get '/buildings', to: 'frontend#index'
 get '/buildings/:id', to: 'frontend#index'
 get '/buildings/:id/edit', to: 'frontend#index'
