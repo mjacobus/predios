@@ -9,7 +9,6 @@
     <%= render partial: 'partials/sentry' %>
     <%= render partial: 'partials/stylesheets' %>
     <%= render partial: 'partials/javascripts' %>
-    <meta name="turbolinks-cache-control" content="no-cache">
   </head>
   <body class="<%= routes.buildings_url.to_s.match('staging') ? 'staging' : '' %> <%= routes.buildings_url.to_s.match('localhost') ? 'staging' : '' %>">
     <% if current_user.enabled? %>

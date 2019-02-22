@@ -56,7 +56,6 @@ Explore Hanami [guides](http://hanamirb.org/guides/), [API docs](http://docs.han
 ## Tools
 
 - https://github.com/danklammer/bytesize-icons
-- https://github.com/turbolinks/turbolinks
 - https://getbootstrap.com/docs/4.1/components/buttons/
 - https://github.com/threepointone/glamor
 - https://parceljs.org/
