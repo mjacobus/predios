@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import { css } from "glamor";
 import { colors } from "./styles";
 import Label from "./Label";
