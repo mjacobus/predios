@@ -5,21 +5,6 @@ import { Loader } from "../../library";
 import Filter from "./list/FilterContainer";
 import Building from "./list/Building";
 
-function mapStateToProps(state) {
-  return {
-    buildings: state.buildingsList.buildings,
-    filteredBuildings: state.buildingsList.filteredBuildings,
-    fetching: state.buildingsList.fetching,
-    currentUser: state.currentUser
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchBuildings: fetchBuildings(dispatch)
-  };
-}
-
 class BuildingsContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -44,6 +29,21 @@ class BuildingsContainer extends React.Component {
       </div>
     );
   }
+}
+
+function mapStateToProps(state) {
+  return {
+    buildings: state.buildingsList.buildings,
+    filteredBuildings: state.buildingsList.filteredBuildings,
+    fetching: state.buildingsList.fetching,
+    currentUser: state.currentUser
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchBuildings: fetchBuildings(dispatch)
+  };
 }
 
 export default connect(

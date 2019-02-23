@@ -10,9 +10,10 @@ import { Float } from "../../../shared/components";
 function merge(original, replacements) {
   return Object.assign({}, original, replacements);
 }
-const Filter = props => {
+
+const Filter = ({ filter, ...props }) => {
   const mergeFilter = newProps => {
-    props.filterBuildings(merge(props.filter, newProps));
+    props.filterBuildings(merge(filter, newProps));
   };
 
   const resetForm = () => {
@@ -21,7 +22,7 @@ const Filter = props => {
 
   const handleCallOptionChange = event => {
     const callOption = event.target.value;
-    props.filterBuildings(merge(props.filter, { callOption }));
+    props.filterBuildings(merge(filter, { callOption }));
   };
 
   return (
@@ -37,7 +38,7 @@ const Filter = props => {
               value="all"
               name="callOption"
               onChange={handleCallOptionChange}
-              checked={props.filter.callOption == "all"}
+              checked={filter.callOption == "all"}
             />{" "}
             Todos
           </Label>
@@ -47,7 +48,7 @@ const Filter = props => {
               value="intercom"
               name="callOption"
               onChange={handleCallOptionChange}
-              checked={props.filter.callOption == "intercom"}
+              checked={filter.callOption == "intercom"}
             />{" "}
             Interfone
           </Label>
@@ -57,7 +58,7 @@ const Filter = props => {
               value="phone"
               name="callOption"
               onChange={handleCallOptionChange}
-              checked={props.filter.callOption == "phone"}
+              checked={filter.callOption == "phone"}
             />{" "}
             Telefone
           </Label>
@@ -67,7 +68,7 @@ const Filter = props => {
               value="letter"
               name="callOption"
               onChange={handleCallOptionChange}
-              checked={props.filter.callOption == "letter"}
+              checked={filter.callOption == "letter"}
             />{" "}
             Cartas
           </Label>
@@ -75,12 +76,13 @@ const Filter = props => {
         <FormRow>
           <Input
             className={css({ width: "70%", marginRight: "15px" })}
+            value={filter.text}
             placeholder="Filtro"
             type="text"
-            onKeyUp={e => mergeFilter({ text: e.target.value })}
+            onChange={e => mergeFilter({ text: e.target.value })}
           />
           <Float>
-            <Button type="reset" color={"jwBlue"} onClick={resetForm}>
+            <Button type="button" color={"jwBlue"} onClick={resetForm}>
               Limpar
             </Button>
           </Float>
