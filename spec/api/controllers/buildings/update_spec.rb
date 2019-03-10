@@ -12,20 +12,34 @@ RSpec.describe Api::Controllers::Buildings::Update, type: :action do
     allow(action).to receive(:execute)
   end
 
-  it 'has proper superclass' do
-    expect(action).to be_a(Actions::Api)
+  context 'when user is a guest' do
+    it 'has proper response' do
+      expect(unsafe_response).to be_unauthorized
+    end
   end
 
-  it 'executes proper action' do
-    response
+  context 'when user is logged in' do
+    let(:current_user) { active_user }
 
-    expected_command = Buildings::Commands::UpdateBuilding.new(
-      params[:id],
-      params[:building]
-    )
+    it 'has proper superclass' do
+      expect(action).to be_a(Actions::Api)
+    end
 
-    expect(action).to have_received(:execute) do |command|
-      expect(command).to be_equal_to(expected_command)
+    it 'executes proper action' do
+      response
+
+      expected_command = Buildings::Commands::UpdateBuilding.new(
+        params[:id],
+        params[:building]
+      )
+
+      expect(action).to have_received(:execute) do |command|
+        expect(command).to be_equal_to(expected_command)
+      end
+    end
+
+    it 'has proper response' do
+      expect(unsafe_response).to be_successful
     end
   end
 end
