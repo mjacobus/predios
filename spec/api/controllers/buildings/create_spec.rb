@@ -1,9 +1,44 @@
-RSpec.describe Api::Controllers::Buildings::Create, type: :action do
-  let(:action) { described_class.new }
-  let(:params) { Hash[] }
+# frozen_string_literal: true
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 200
+RSpec.describe Api::Controllers::Buildings::Create, type: :action do
+  let(:params) { Hash[building: building] }
+  let(:building) do
+    {
+      number: 'the-number',
+    }
+  end
+
+  before do
+    allow(action).to receive(:execute)
+  end
+
+  context 'when user is a guest' do
+    it 'has proper response' do
+      expect(unsafe_response).to be_unauthorized
+    end
+  end
+
+  context 'when user is logged in' do
+    let(:current_user) { active_user }
+
+    it 'has proper superclass' do
+      expect(action).to be_a(Actions::Api)
+    end
+
+    it 'executes proper action' do
+      response
+
+      expected_command = Buildings::Commands::CreateBuilding.new(
+        params[:building]
+      )
+
+      expect(action).to have_received(:execute) do |command|
+        expect(command).to be_equal_to(expected_command)
+      end
+    end
+
+    it 'has proper response' do
+      expect(unsafe_response).to be_successful
+    end
   end
 end
