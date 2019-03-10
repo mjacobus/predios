@@ -84,7 +84,7 @@ const createBuilding = dispatch => attributes => {
   console.log("Creating building with payload:", payload);
 
   return new Promise((resolve, reject) => {
-    apiPost(`/api/buildings/${building.number}`)
+    apiPost('/api/buildings')
       .send(payload)
       .end((erro, resp) => {
         dispatch({ type: "BUILDING_CREATED" });
@@ -93,14 +93,10 @@ const createBuilding = dispatch => attributes => {
   });
 };
 
-export {
-  fetchBuildings,
-  fetchBuildingByNumber,
-  updateBuilding,
-  createBuilding
-};
+export { fetchBuildings, fetchBuildingByNumber, updateBuilding };
 
 export default {
   fetchBuildingByNumber,
-  updateBuilding
+  updateBuilding,
+  createBuilding
 };

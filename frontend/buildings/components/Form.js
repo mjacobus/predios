@@ -47,8 +47,9 @@ export default function BuildingForm({
         <FormRow>
           <InputField
             defaultValue={building.number}
+            onChange={makeOnChangeHandler(onAttributeChange)}
             name="number"
-            disabled={true}
+            disabled={!!building.number}
             label="Número"
           />
         </FormRow>
