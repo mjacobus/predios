@@ -1,6 +1,7 @@
 const DEFAULT_STATE = {
   fetching: true,
   creating: false,
+  formErrors: {},
   redirectTo: null
 };
 
@@ -9,6 +10,14 @@ export default function editBuildingReducer(state = DEFAULT_STATE, action) {
     return {
       ...state,
       updating: true
+    };
+  }
+
+  if (action.type == "INVALID_BUILDING") {
+    console.log(action);
+    return {
+      ...state,
+      formErrors: action.errors
     };
   }
 

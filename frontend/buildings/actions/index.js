@@ -3,7 +3,7 @@ import { apiGet, apiPost, apiPatch } from "../../src/utils/api.js";
 const fetchBuildings = dispatch => () => {
   dispatch({ type: "FETCHING_BUILDINGS" });
 
-  apiGet("/api/buildings").end((erro, resp) => {
+  apiGet("/api/buildings").end((error, resp) => {
     dispatch({
       type: "BUILDINGS_FETCHED",
       buildings: resp.body
@@ -15,7 +15,7 @@ const fetchBuildingByNumber = dispatch => number => {
   dispatch({ type: "FETCHING_BUILDING" });
 
   return new Promise((resolve, reject) => {
-    apiGet(`/api/buildings/${number}`).end((erro, resp) => {
+    apiGet(`/api/buildings/${number}`).end((error, resp) => {
       dispatch({
         type: "BUILDING_FETCHED",
         building: resp.body
@@ -70,7 +70,7 @@ const updateBuilding = dispatch => (uuid, changedAttributes) => {
   return new Promise((resolve, reject) => {
     apiPatch(`/api/buildings/${uuid}`)
       .send(payload)
-      .end((erro, resp) => {
+      .end((error, resp) => {
         dispatch({ type: "BUILDING_UPDATED" });
         resolve(resp.body);
       });
@@ -84,9 +84,14 @@ const createBuilding = dispatch => attributes => {
   console.log("Creating building with payload:", payload);
 
   return new Promise((resolve, reject) => {
-    apiPost('/api/buildings')
+    apiPost("/api/buildings")
       .send(payload)
-      .end((erro, resp) => {
+      .end((error, resp) => {
+        if (error) {
+          dispatch({ type: "INVALID_BUILDING", errors: resp.body.errors });
+          return;
+        }
+
         dispatch({ type: "BUILDING_CREATED" });
         resolve(resp.body);
       });
