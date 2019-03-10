@@ -16,10 +16,12 @@ module Buildings
 
         if attributes[:number].to_s.empty?
           errors.add('Não pode ficar em branco', field: :number)
+        elsif @repository.find_by_number(attributes[:number])
+          errors.add('Já está sendo usado', field: :number)
         end
 
-        if @repository.find_by_number(attributes[:number])
-          errors.add('Já está sendo usado', field: :number)
+        if attributes[:address].to_s.empty?
+          errors.add('Não pode ficar em branco', field: :address)
         end
       end
     end

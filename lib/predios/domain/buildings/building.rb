@@ -38,13 +38,13 @@ module Buildings
     def self.create(data)
       event = Events::BuildingCreated.new(
         id: UniqueId.new,
-        number: data.fetch(:number),
-        number_of_apartments: data.fetch(:number_of_apartments),
-        name: data.fetch(:name),
-        neighborhood: data.fetch(:neighborhood),
-        address: data.fetch(:address),
-        has_individual_letterboxes: data.fetch(:has_individual_letterboxes),
-        has_individual_intercoms: data.fetch(:has_individual_intercoms)
+        number: data[:number],
+        number_of_apartments: data[:number_of_apartments],
+        name: data[:name],
+        neighborhood: data[:neighborhood],
+        address: data[:address],
+        has_individual_letterboxes: data[:has_individual_letterboxes],
+        has_individual_intercoms: data[:has_individual_intercoms]
       )
 
       create_with_event(event)

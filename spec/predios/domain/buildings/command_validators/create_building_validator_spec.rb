@@ -53,4 +53,12 @@ RSpec.describe Buildings::CommandValidators::CreateBuildingValidator do
       expect(errors.to_h[:number]).to include('Já está sendo usado')
     end
   end
+
+  context 'when address is missing' do
+    it 'is invalid' do
+      command_data[:address] = nil
+
+      expect(errors.to_h[:address]).to include('Não pode ficar em branco')
+    end
+  end
 end
