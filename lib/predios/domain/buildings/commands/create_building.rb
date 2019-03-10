@@ -9,7 +9,6 @@ module Buildings
         name
         neighborhood
         address
-        address
         has_individual_letterboxes
         has_individual_intercoms
       ].freeze
