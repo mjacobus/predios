@@ -77,7 +77,28 @@ const updateBuilding = dispatch => (uuid, changedAttributes) => {
   });
 };
 
-export { fetchBuildings, fetchBuildingByNumber, updateBuilding };
+const createBuilding = dispatch => attributes => {
+  dispatch({ type: "CREATING_BUILDING" });
+
+  const payload = { building: attributes };
+  console.log("Creating building with payload:", payload);
+
+  return new Promise((resolve, reject) => {
+    apiPost(`/api/buildings/${building.number}`)
+      .send(payload)
+      .end((erro, resp) => {
+        dispatch({ type: "BUILDING_CREATED" });
+        resolve(resp.body);
+      });
+  });
+};
+
+export {
+  fetchBuildings,
+  fetchBuildingByNumber,
+  updateBuilding,
+  createBuilding
+};
 
 export default {
   fetchBuildingByNumber,
