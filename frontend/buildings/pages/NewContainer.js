@@ -40,6 +40,7 @@ class NewContainer extends React.Component {
       <>
         <H1>Criação de Prédio</H1>
         <Buildings.Form
+          errors={this.props.formErrors}
           onSubmit={submitHandler}
           onAttributeChange={onAttributeChange}
           building={{}}
@@ -53,6 +54,7 @@ class NewContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     redirectTo: state.newBuilding.redirectTo,
+    formErrors: state.newBuilding.formErrors,
     creating: state.newBuilding.creating
   };
 }

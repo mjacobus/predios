@@ -81,11 +81,16 @@ const select = css(input, {
   }
 });
 
+const redText = css({
+  color: colors.red
+});
+
 export const styles = {
   input,
   select,
   formContainer,
-  button
+  button,
+  redText
 };
 
 const buttonStyles = {

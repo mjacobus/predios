@@ -39,6 +39,7 @@ export default function BuildingForm({
   onAttributeChange,
   updating,
   building,
+  errors = {},
   ...formProps
 }) {
   return (
@@ -50,6 +51,7 @@ export default function BuildingForm({
             onChange={makeOnChangeHandler(onAttributeChange)}
             name="number"
             disabled={!!building.number}
+            errors={errors.number}
             label="Número"
           />
         </FormRow>
@@ -58,6 +60,7 @@ export default function BuildingForm({
             onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.address}
             name="address"
+            errors={errors.address}
             label="Endereço"
           />
         </FormRow>
@@ -66,6 +69,7 @@ export default function BuildingForm({
             onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.name}
             name="name"
+            errors={errors.name}
             label="Nome do Condomínio"
           />
         </FormRow>
@@ -74,6 +78,7 @@ export default function BuildingForm({
             onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.number_of_apartments}
             name="number_of_apartments"
+            errors={errors.number_of_apartments}
             label="Número de Apartamentos"
           />
         </FormRow>
@@ -82,6 +87,7 @@ export default function BuildingForm({
             onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.neighborhood}
             name="neighborhood"
+            errors={errors.neighborhood}
             label="Bairro"
           />
         </FormRow>

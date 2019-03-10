@@ -14,7 +14,6 @@ export default function editBuildingReducer(state = DEFAULT_STATE, action) {
   }
 
   if (action.type == "INVALID_BUILDING") {
-    console.log(action);
     return {
       ...state,
       formErrors: action.errors
