@@ -15,6 +15,7 @@ export default function Routes() {
         <DefaultLayout>
           <Route exact path="/users" component={Users.List} />
           <Route exact path="/buildings" component={Buildings.List} />
+          <Route exact path="/buildings/new" component={Buildings.New} />
           <Route
             exact
             path="/buildings/:buildingNumber/edit"
