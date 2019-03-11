@@ -42,6 +42,10 @@ export default function BuildingForm({
   errors = {},
   ...formProps
 }) {
+  const cancelLink = building.number
+    ? `/buildings/${building.number}/apartments`
+    : "/buildings";
+
   return (
     <PageBlock>
       <Form {...formProps}>
@@ -115,10 +119,7 @@ export default function BuildingForm({
         </FormRow>
         <FormRow>
           <ButtonGroup>
-            <A
-              buttonStyle="purple"
-              to={`/buildings/${building.number}/apartments`}
-            >
+            <A buttonStyle="purple" to={cancelLink}>
               Cancelar
             </A>
 
