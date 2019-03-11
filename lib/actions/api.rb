@@ -35,6 +35,8 @@ module Actions
 
     def handle_errors
       yield
+    rescue Validators::ValidationErrors => error
+      render(status: 422, body: { errors: error.errors.to_h })
     rescue Errors::NotFound => error
       body = { message: error.message }
       render(body: body, status: 404)

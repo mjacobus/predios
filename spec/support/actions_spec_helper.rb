@@ -15,6 +15,7 @@ module ActionsSpecHelper
       let(:guest_user) { LoggedOutUser.new }
       let(:session) { action.session || {} }
       let(:json_response) { symbolize_keys(JSON.parse(unsafe_response[2].join(''))) }
+      let(:response_code) { unsafe_response[0] }
 
       before do
         stub_user(current_user)

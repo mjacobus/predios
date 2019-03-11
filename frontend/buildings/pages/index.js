@@ -1,9 +1,11 @@
-import List from "./ListContainer";
 import Edit from "./EditContainer";
+import List from "./ListContainer";
+import New from "./NewContainer";
 
 const Buildings = {
+  Edit,
   List,
-  Edit
+  New
 };
 
 export default Buildings;

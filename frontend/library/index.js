@@ -10,6 +10,7 @@ import FormRow from "./FormRow";
 import H1 from "./H1";
 import Icon from "./Icon";
 import Input from "./Input";
+import InputErrors from "./InputErrors";
 import InputField from "./InputField";
 import Label from "./Label";
 import Loader from "./Loader";
@@ -31,6 +32,7 @@ export {
   H1,
   Icon,
   Input,
+  InputErrors,
   InputField,
   Label,
   Loader,

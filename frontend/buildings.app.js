@@ -19,6 +19,7 @@ const reducers = combineReducers({
   usersList: users.usersListReducer,
   buildingsList: buildings.buildingsListReducer,
   buildingView: buildings.buildingViewReducer,
+  newBuilding: buildings.newBuildingReducer,
   editBuilding: buildings.editBuildingReducer,
   apartmentForm: buildings.apartmentFormReducer,
   apartmentsList: apartments.apartmentsListReducer,

@@ -39,16 +39,23 @@ export default function BuildingForm({
   onAttributeChange,
   updating,
   building,
+  errors = {},
   ...formProps
 }) {
+  const cancelLink = building.number
+    ? `/buildings/${building.number}/apartments`
+    : "/buildings";
+
   return (
     <PageBlock>
       <Form {...formProps}>
         <FormRow>
           <InputField
             defaultValue={building.number}
+            onChange={makeOnChangeHandler(onAttributeChange)}
             name="number"
-            disabled={true}
+            disabled={!!building.number}
+            errors={errors.number}
             label="Número"
           />
         </FormRow>
@@ -57,6 +64,7 @@ export default function BuildingForm({
             onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.address}
             name="address"
+            errors={errors.address}
             label="Endereço"
           />
         </FormRow>
@@ -65,6 +73,7 @@ export default function BuildingForm({
             onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.name}
             name="name"
+            errors={errors.name}
             label="Nome do Condomínio"
           />
         </FormRow>
@@ -73,6 +82,7 @@ export default function BuildingForm({
             onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.number_of_apartments}
             name="number_of_apartments"
+            errors={errors.number_of_apartments}
             label="Número de Apartamentos"
           />
         </FormRow>
@@ -81,6 +91,7 @@ export default function BuildingForm({
             onChange={makeOnChangeHandler(onAttributeChange)}
             defaultValue={building.neighborhood}
             name="neighborhood"
+            errors={errors.neighborhood}
             label="Bairro"
           />
         </FormRow>
@@ -108,10 +119,7 @@ export default function BuildingForm({
         </FormRow>
         <FormRow>
           <ButtonGroup>
-            <A
-              buttonStyle="purple"
-              to={`/buildings/${building.number}/apartments`}
-            >
+            <A buttonStyle="purple" to={cancelLink}>
               Cancelar
             </A>
 

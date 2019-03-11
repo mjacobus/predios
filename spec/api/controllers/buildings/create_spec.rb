@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Api::Controllers::Buildings::Update, type: :action do
-  let(:params) { Hash[building: building, id: 'the-id'] }
+RSpec.describe Api::Controllers::Buildings::Create, type: :action do
+  let(:params) { Hash[building: building] }
   let(:building) do
     {
       number: 'the-number',
@@ -28,8 +28,7 @@ RSpec.describe Api::Controllers::Buildings::Update, type: :action do
     it 'executes proper action' do
       response
 
-      expected_command = Buildings::Commands::UpdateBuilding.new(
-        params[:id],
+      expected_command = Buildings::Commands::CreateBuilding.new(
         params[:building]
       )
 
