@@ -14,9 +14,7 @@ export default function DoorBell({
 
   return (
     <A to={link} {...otherProps}>
-      <Icon type="bell">
-        {children}
-      </Icon>
+      <Icon type="bell">{children}</Icon>
     </A>
   );
 }

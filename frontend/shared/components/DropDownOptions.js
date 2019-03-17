@@ -1,5 +1,6 @@
 import React from "react";
 import { css } from "glamor";
+import Icon from "../../library/Icon";
 
 const containerClass = css({
   padding: "4px",
@@ -11,11 +12,19 @@ const closeButtonClass = css({
 });
 
 const CloseElement = props => {
-  return <span className={closeButtonClass}>x</span>;
+  return (
+    <span className={closeButtonClass}>
+      <Icon type="angle-double-up" />
+    </span>
+  );
 };
 
 const OpenElement = props => {
-  return <span className={closeButtonClass}>...</span>;
+  return (
+    <span className={closeButtonClass}>
+      <Icon type="angle-double-down" />
+    </span>
+  );
 };
 
 export default class DropDownOptions extends React.Component {
