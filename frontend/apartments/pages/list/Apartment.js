@@ -8,7 +8,12 @@ import {
   DropDownOptions
 } from "../../../shared/components";
 
+import { A, Icon } from "../../../library";
+
 export default function Apartment({ apartment, building }) {
+  const removeApartmentLink = `/buildings/${building.number}/apartments/${
+    apartment.number
+  }/remove`;
   const className = css({
     padding: "15px 0",
     borderBottom: "1px solid #ddd"
@@ -27,9 +32,16 @@ export default function Apartment({ apartment, building }) {
             </div>
             <div>
               <DropDownOptions>
-                <DoorBell apartment={apartment} building={building}>
-                  Tentar Contato
-                </DoorBell>
+                <div>
+                  <DoorBell apartment={apartment} building={building}>
+                    Tentar Contato
+                  </DoorBell>
+                </div>
+                <div>
+                  <A to={removeApartmentLink}>
+                    <Icon type="trash-alt">Remover Apartamento</Icon>
+                  </A>
+                </div>
               </DropDownOptions>
             </div>
           </Col>
