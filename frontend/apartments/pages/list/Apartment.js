@@ -4,7 +4,8 @@ import { css } from "glamor";
 import {
   ApartmentNumber,
   ContactAttempts,
-  DoorBell
+  DoorBell,
+  DropDownOptions
 } from "../../../shared/components";
 
 export default function Apartment({ apartment, building }) {
@@ -17,18 +18,20 @@ export default function Apartment({ apartment, building }) {
     <div className={className}>
       <Grid>
         <Row>
-          <Col xs={2}>
+          <Col xs={4}>
             <ApartmentNumber>{apartment.number}</ApartmentNumber>
           </Col>
-          <Col xs={6}>
-            <ContactAttempts contactAttempts={apartment.contact_attempts} />
-          </Col>
-          <Col xs={4}>
-            <DoorBell
-              apartment={apartment}
-              building={building}
-              className={css({ float: "right" })}
-            />
+          <Col xs={8}>
+            <div>
+              <ContactAttempts contactAttempts={apartment.contact_attempts} />
+            </div>
+            <div>
+              <DropDownOptions>
+                <DoorBell apartment={apartment} building={building}>
+                  Tentar Contato
+                </DoorBell>
+              </DropDownOptions>
+            </div>
           </Col>
         </Row>
       </Grid>

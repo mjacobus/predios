@@ -11,6 +11,7 @@ import ContactAttempt from "./ContactAttempt";
 import ContactAttempts from "./ContactAttempts";
 import DateTimeInput from "./DateTimeInput";
 import DoorBell from "./DoorBell";
+import DropDownOptions from "./DropDownOptions";
 import Float from "./Float";
 import Neighborhood from "./Neighborhood";
 import NumberOfApartments from "./NumberOfApartments";
@@ -31,6 +32,7 @@ export {
   ContactAttempts,
   DateTimeInput,
   DoorBell,
+  DropDownOptions,
   Float,
   Neighborhood,
   NumberOfApartments,
