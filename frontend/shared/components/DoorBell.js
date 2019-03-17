@@ -14,7 +14,7 @@ export default function DoorBell({
 
   return (
     <A to={link} {...otherProps}>
-      <Icon css={css({ color: "white" })} type="bell">
+      <Icon type="bell">
         {children}
       </Icon>
     </A>
