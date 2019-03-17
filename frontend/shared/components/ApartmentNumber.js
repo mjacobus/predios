@@ -5,7 +5,8 @@ import { colors } from "../../library/styles";
 export default function ApartmentNumber(props) {
   const { contactAttempts, children, otherProps } = props;
   const className = css({
-    width: "35px",
+    maxWidth: "80px",
+    width: "auto",
     lineHeight: "35px",
     display: "block",
     color: "white",
