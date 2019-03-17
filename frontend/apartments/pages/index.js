@@ -1,7 +1,9 @@
 import List from "./ListContainer";
+import Remove from "./RemoveContainer";
 
 const Apartments = {
-  List
+  List,
+  Remove
 };
 
 export default Apartments;

@@ -30,6 +30,11 @@ export default function Routes() {
           />
           <Route
             exact
+            path="/buildings/:buildingNumber/apartments/:apartmentNumber/remove"
+            component={Apartments.Remove}
+          />
+          <Route
+            exact
             path="/buildings/:buildingNumber/apartments/:apartmentNumber/contact-attempts/new"
             component={ContactAttempts.New}
           />

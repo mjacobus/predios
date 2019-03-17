@@ -27,7 +27,6 @@ class EditContainer extends React.Component {
     const { formData } = this.state;
     formData[name] = value;
     this.setState({ formData });
-    console.log(this.state);
   }
 
   submitHandler(event) {
