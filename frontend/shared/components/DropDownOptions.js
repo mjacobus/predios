@@ -1,19 +1,11 @@
 import React from "react";
 import { css } from "glamor";
 import Icon from "../../library/Icon";
-
-const containerClass = css({
-  padding: "4px",
-  border: "1px solid white"
-});
-
-const closeButtonClass = css({
-  float: "right"
-});
+import { styles } from "../../library/styles";
 
 const CloseElement = props => {
   return (
-    <span className={closeButtonClass}>
+    <span className={styles.floatRight}>
       <Icon type="angle-double-up" />
     </span>
   );
@@ -21,7 +13,7 @@ const CloseElement = props => {
 
 const OpenElement = props => {
   return (
-    <span className={closeButtonClass}>
+    <span className={styles.floatRight}>
       <Icon type="angle-double-down" />
     </span>
   );
@@ -56,9 +48,7 @@ export default class DropDownOptions extends React.Component {
             <CloseElement />
           </a>
         )}
-        <div className={containerClass}>
-          {collapsed || <div>{children}</div>}
-        </div>
+        <div>{collapsed || <div>{children}</div>}</div>
       </>
     );
   }

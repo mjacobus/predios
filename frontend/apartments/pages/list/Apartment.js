@@ -28,9 +28,6 @@ export default function Apartment({ apartment, building }) {
           </Col>
           <Col xs={8}>
             <div>
-              <ContactAttempts contactAttempts={apartment.contact_attempts} />
-            </div>
-            <div>
               <DropDownOptions>
                 <div>
                   <DoorBell apartment={apartment} building={building}>
@@ -43,6 +40,9 @@ export default function Apartment({ apartment, building }) {
                   </A>
                 </div>
               </DropDownOptions>
+            </div>
+            <div>
+              <ContactAttempts contactAttempts={apartment.contact_attempts} />
             </div>
           </Col>
         </Row>

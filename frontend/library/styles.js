@@ -90,7 +90,10 @@ export const styles = {
   select,
   formContainer,
   button,
-  redText
+  redText,
+  floatRight: css({
+    float: "right"
+  })
 };
 
 const buttonStyles = {
