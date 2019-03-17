@@ -31,12 +31,12 @@ export default function Apartment({ apartment, building }) {
               <DropDownOptions>
                 <div>
                   <DoorBell apartment={apartment} building={building}>
-                    Tentar Contato
+                    Tentar contato
                   </DoorBell>
                 </div>
                 <div>
                   <A to={removeApartmentLink}>
-                    <Icon type="trash-alt">Remover Apartamento</Icon>
+                    <Icon type="trash-alt">Remover apartamento</Icon>
                   </A>
                 </div>
               </DropDownOptions>
