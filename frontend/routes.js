@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import TopMenu from "./library/TopMenuContainer";
+import EnvironmentBanner from "./library/EnvironmentBanner";
 import Buildings from "./buildings/pages";
 import Apartments from "./apartments/pages";
 import Users from "./users/pages";
@@ -12,6 +13,7 @@ export default function Routes() {
     <BrowserRouter>
       <div>
         <TopMenu />
+        <EnvironmentBanner />
         <DefaultLayout>
           <Route exact path="/users" component={Users.List} />
           <Route exact path="/buildings" component={Buildings.List} />
