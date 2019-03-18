@@ -5,7 +5,7 @@ import { styles } from "../../library/styles";
 
 const CloseElement = props => {
   return (
-    <span className={styles.floatRight}>
+    <span>
       <Icon type="angle-double-up" />
     </span>
   );
@@ -13,7 +13,7 @@ const CloseElement = props => {
 
 const OpenElement = props => {
   return (
-    <span className={styles.floatRight}>
+    <span>
       <Icon type="angle-double-down" />
     </span>
   );

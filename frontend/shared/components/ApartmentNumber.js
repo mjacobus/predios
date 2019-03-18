@@ -7,7 +7,7 @@ export default function ApartmentNumber(props) {
   const className = css({
     maxWidth: "80px",
     width: "auto",
-    lineHeight: "35px",
+    lineHeight: "40px",
     display: "block",
     color: "white",
     background: colors.jwSoftPurple,

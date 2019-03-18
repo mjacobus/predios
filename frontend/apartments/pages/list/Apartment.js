@@ -11,6 +11,8 @@ import {
 
 import { A, Icon } from "../../../library";
 
+const contactAttemptsContainer = css({ width: "100%", float: "left" });
+
 const buttonStyle = css({
   width: "100%",
   margin: "4px 0",
@@ -39,32 +41,34 @@ function Apartment({ currentUser, apartment, building }) {
             <ApartmentNumber>{apartment.number}</ApartmentNumber>
           </Col>
           <Col xs={8}>
-            <div>
-              <DropDownOptions className={dropDownStyle}>
-                <DoorBell
-                  className={buttonStyle}
-                  buttonStyle="purple"
-                  apartment={apartment}
-                  building={building}
-                >
-                  Tentar contato
-                </DoorBell>
-                {currentUser.master && (
-                  <A
-                    className={buttonStyle}
-                    buttonStyle="purple"
-                    to={removeApartmentLink}
-                  >
-                    <Icon color="white" type="trash-alt">
-                      Remover apartamento
-                    </Icon>
-                  </A>
-                )}
-              </DropDownOptions>
-            </div>
-            <div>
+            <div className={contactAttemptsContainer}>
               <ContactAttempts contactAttempts={apartment.contact_attempts} />
             </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <DropDownOptions>
+              <DoorBell
+                className={buttonStyle}
+                buttonStyle="purple"
+                apartment={apartment}
+                building={building}
+              >
+                Tentar contato
+              </DoorBell>
+              {currentUser.master && (
+                <A
+                  className={buttonStyle}
+                  buttonStyle="purple"
+                  to={removeApartmentLink}
+                >
+                  <Icon color="white" type="trash-alt">
+                    Remover apartamento
+                  </Icon>
+                </A>
+              )}
+            </DropDownOptions>
           </Col>
         </Row>
       </Grid>
