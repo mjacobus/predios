@@ -33,11 +33,11 @@ export default class DropDownOptions extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, ...otherProps } = this.props;
     const { collapsed } = this.state;
 
     return (
-      <>
+      <div {...otherProps}>
         {collapsed && (
           <a href="#" onClick={this.toggle}>
             <OpenElement />
@@ -49,7 +49,7 @@ export default class DropDownOptions extends React.Component {
           </a>
         )}
         <div>{collapsed || <div>{children}</div>}</div>
-      </>
+      </div>
     );
   }
 }
