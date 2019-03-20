@@ -3,7 +3,7 @@ import { css } from "glamor";
 import { colors } from "../../library/styles";
 
 export default function ApartmentNumber(props) {
-  const { contactAttempts, children, otherProps } = props;
+  const { contactAttempts, children, ...otherProps } = props;
   const className = css({
     maxWidth: "80px",
     width: "auto",

@@ -8,7 +8,8 @@ export default function Icon({
   text = "",
   children,
   className,
-  color = colors.jwSoftPurple
+  color = colors.jwSoftPurple,
+  ...otherProps
 }) {
   const iconStyle = css({ color }, className);
 
@@ -17,7 +18,7 @@ export default function Icon({
   });
 
   return (
-    <span>
+    <span {...otherProps}>
       <i className={`${style} fa-${type} ${iconStyle}`} />
       <span className={spanClass}>{children}</span>
     </span>

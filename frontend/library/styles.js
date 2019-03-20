@@ -122,6 +122,10 @@ const buttonStyles = {
   red: {
     background: colors.red,
     color: colors.white
+  },
+  orange: {
+    background: colors.jwOrange,
+    color: colors.white
   }
 };
 
