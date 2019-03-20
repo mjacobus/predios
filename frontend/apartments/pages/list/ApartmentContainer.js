@@ -78,8 +78,7 @@ function Apartment({ currentUser, apartment, building }) {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser,
-    app_version_url: state.config.version_url
+    currentUser: state.currentUser
   };
 }
 

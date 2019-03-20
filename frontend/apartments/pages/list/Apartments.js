@@ -1,5 +1,5 @@
 import React from "react";
-import Apartment from "./Apartment";
+import Apartment from "./ApartmentContainer";
 
 export default function Apartments({ apartments, building }) {
   if (!apartments) {
