@@ -7,12 +7,14 @@ const defaultLinkStyle = css({
   color: colors.fontRegular
 });
 
-export default function A({ buttonStyle, ...props }) {
+export default function A({ buttonStyle, className, ...props }) {
   let linkStyle = defaultLinkStyle;
 
   if (buttonStyle) {
     linkStyle = buttonStyler(buttonStyle);
   }
+
+  linkStyle = css(linkStyle, className);
 
   if (props.to) {
     return <Link className={linkStyle} {...props} />;

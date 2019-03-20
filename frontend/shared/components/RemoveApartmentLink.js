@@ -1,11 +1,14 @@
 import React from "react";
+
 import { css } from "glamor";
 import { A, Button, Icon } from "../../library";
+
+const bellClass = css({ color: "white" });
 
 export default function DoorBell({
   apartment,
   building,
-  children,
+  children = Excluir,
   ...otherProps
 }) {
   const link = `/buildings/${building.number}/apartments/${
@@ -14,7 +17,7 @@ export default function DoorBell({
 
   return (
     <A to={link} {...otherProps}>
-      <Icon type="bell" color="white">
+      <Icon css={bellClass} type="bell">
         {children}
       </Icon>
     </A>

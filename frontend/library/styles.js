@@ -90,7 +90,10 @@ export const styles = {
   select,
   formContainer,
   button,
-  redText
+  redText,
+  floatRight: css({
+    float: "right"
+  })
 };
 
 const buttonStyles = {
@@ -118,6 +121,10 @@ const buttonStyles = {
   },
   red: {
     background: colors.red,
+    color: colors.white
+  },
+  orange: {
+    background: colors.jwOrange,
     color: colors.white
   }
 };

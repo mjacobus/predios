@@ -3,10 +3,11 @@ import { css } from "glamor";
 import { colors } from "../../library/styles";
 
 export default function ApartmentNumber(props) {
-  const { contactAttempts, children, otherProps } = props;
+  const { contactAttempts, children, ...otherProps } = props;
   const className = css({
-    width: "35px",
-    lineHeight: "35px",
+    maxWidth: "80px",
+    width: "auto",
+    lineHeight: "40px",
     display: "block",
     color: "white",
     background: colors.jwSoftPurple,
