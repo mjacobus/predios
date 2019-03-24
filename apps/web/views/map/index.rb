@@ -1,10 +1,8 @@
+# frozen_string_literal: true
+
 module Web
   module Views
-    module Map
-      class Index < ::Views::Web
-        def current_user(*args)
-        end
-      end
+    class Map < ::Views::Web
     end
   end
 end
