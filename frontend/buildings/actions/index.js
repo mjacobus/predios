@@ -1,4 +1,4 @@
-import { apiGet, apiPost, apiPatch } from "../../src/utils/api.js";
+import { apiGet, apiPost, apiPatch, apiDelete } from "../../src/utils/api.js";
 
 const fetchBuildings = dispatch => () => {
   dispatch({ type: "FETCHING_BUILDINGS" });
@@ -97,9 +97,28 @@ const createBuilding = dispatch => attributes => {
   });
 };
 
-export { fetchBuildings, fetchBuildingByNumber, updateBuilding };
+const deleteBuilding = dispatch => building => {
+  dispatch({ type: "DELETING_BUILDING" });
+
+  apiDelete(`/api/buildings/${building.uuid}`).end((error, response) => {
+    if (error) {
+      dispatch({ type: "BUILDING_DELETE_ERROR", errors: resp.body.errors });
+      return;
+    }
+
+    dispatch({ type: "BUILDING_DELETED" });
+  });
+};
+
+export {
+  deleteBuilding,
+  fetchBuildings,
+  fetchBuildingByNumber,
+  updateBuilding
+};
 
 export default {
+  deleteBuilding,
   fetchBuildingByNumber,
   updateBuilding,
   createBuilding
