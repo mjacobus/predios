@@ -109,4 +109,10 @@ RSpec.describe Buildings::Building do
       end.to change(domain_events, :length).by(1)
     end
   end
+
+  describe '#delete' do
+    it 'marks building as deleted' do
+      expect { building.delete }.to change(building, :deleted?).from(nil).to true
+    end
+  end
 end
