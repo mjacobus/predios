@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 module Web
   module Controllers
     module Map
-      class Index
-        include Web::Action
+      class Index < Actions::Web
+        private
 
-        def call(params)
-        end
+        def safe_call(params); end
       end
     end
   end

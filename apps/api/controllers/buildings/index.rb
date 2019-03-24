@@ -30,7 +30,7 @@ module Api
               call_options: building.call_options,
               has_geolocation: building.has_geolocation?,
               lat: building.lat,
-              long: building.lon
+              long: building.lon,
             }
           end
         end

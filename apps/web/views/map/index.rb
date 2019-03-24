@@ -2,7 +2,10 @@
 
 module Web
   module Views
-    class Map < ::Views::Web
+    module Map
+      class Index < ::Views::Web
+        layout false
+      end
     end
   end
 end

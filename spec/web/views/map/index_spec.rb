@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Web::Views::Map::Index, type: :view do
   let(:exposures) { Hash[format: :html] }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/map/index.html.erb') }
