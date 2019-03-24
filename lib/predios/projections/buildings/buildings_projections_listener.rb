@@ -3,7 +3,7 @@
 require 'event_listener'
 
 module Buildings
-  class BuildingsProjections < EventListener
+  class BuildingsProjectionsListener < EventListener
     def initialize
       super
       subscribe(BuildingCreatedSubscriber.new, to: Buildings::Events::BuildingCreated)

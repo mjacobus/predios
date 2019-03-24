@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Buildings::BuildingsProjections do
+RSpec.describe Buildings::BuildingsProjectionsListener do
   before do
     buildings.clear
   end
