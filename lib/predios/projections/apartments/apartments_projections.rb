@@ -3,7 +3,7 @@
 require 'event_listener'
 
 module Apartments
-  class ApartmentsProjections < EventListener
+  class ApartmentsProjectionsListener < EventListener
     def initialize
       super
       subscribe(ApartmentCreatedSubscriber.new, to: Apartments::Events::ApartmentCreated)

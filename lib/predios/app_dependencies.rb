@@ -40,8 +40,8 @@ class AppDependencies < Nurse::DependencyContainer
 
     share('es.projection_events') do |_container|
       Koine::EventManager::EventManager.new.tap do |manager|
-        manager.attach_listener(Buildings::BuildingsProjections.new)
-        manager.attach_listener(Apartments::ApartmentsProjections.new)
+        manager.attach_listener(Buildings::BuildingsProjectionsListener.new)
+        manager.attach_listener(Apartments::ApartmentsProjectionsListener.new)
       end
     end
 
