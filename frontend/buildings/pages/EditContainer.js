@@ -36,7 +36,13 @@ class EditContainer extends React.Component {
   }
 
   render() {
-    const { building, fetching, updating, redirectTo } = this.props;
+    const {
+      building,
+      currentUser,
+      fetching,
+      updating,
+      redirectTo
+    } = this.props;
 
     if (redirectTo) {
       return <Redirect to={redirectTo} />;
@@ -56,6 +62,7 @@ class EditContainer extends React.Component {
           building={building}
           updating={updating}
         />
+        {currentUser.master && <Buildings.DeleteButton />}
       </>
     );
   }
@@ -63,6 +70,7 @@ class EditContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    currentUser: state.currentUser,
     redirectTo: state.editBuilding.redirectTo,
     updating: state.editBuilding.updating,
     fetching: state.editBuilding.fetching,

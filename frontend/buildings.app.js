@@ -24,6 +24,7 @@ const reducers = combineReducers({
   apartmentForm: buildings.apartmentFormReducer,
   apartmentsList: apartments.apartmentsListReducer,
   removeApartment: apartments.removeApartmentReducer,
+  removeBuilding: buildings.removeBuildingReducer,
   newContactAttempt: contactAttempts.newContactAttemptReducer,
   entities: combineReducers({
     buildings: buildings.buildingsReducer
