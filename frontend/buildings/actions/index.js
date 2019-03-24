@@ -65,7 +65,6 @@ const updateBuilding = dispatch => (uuid, changedAttributes) => {
   dispatch({ type: "UPDATING_BUILDING" });
 
   const payload = { building: changedAttributes };
-  console.log(`Patching ${uuid} with:`, payload);
 
   return new Promise((resolve, reject) => {
     apiPatch(`/api/buildings/${uuid}`)
