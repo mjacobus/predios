@@ -35,6 +35,14 @@ module Buildings
       updated(:has_individual_intercoms, boolean)
     end
 
+    def delete
+      record_that(Events::BuildingDeleted.new)
+    end
+
+    def deleted?
+      @deleted
+    end
+
     def self.create(data)
       event = Events::BuildingCreated.new(
         id: UniqueId.new,
@@ -68,6 +76,10 @@ module Buildings
       event.given_attributes.each do |attr, value|
         write_attribute(attr, value)
       end
+    end
+
+    def when_deleted(_event)
+      @deleted = true
     end
 
     def updated(attr, value)
