@@ -2,15 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title></title>
-    <script type="application/javascript">
+    <title>Mapa</title>
+    <script type="text/javascript">
       var MapData = {
         buildings: <%= JSON.dump(buildings) %>
     }
     </script>
+    <style type="text/css" media="screen">
+      #map {
+        min-height: 600px;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <%= javascript 'maps' %>
   </head>
   <body>
-    <h1>Sup</h1>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= google_maps_helper.api_key  %>&callback=initMap" async defer></script>
   </body>
 </html>
 
