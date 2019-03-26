@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <title>Mapa</title>
     <script type="text/javascript">
+      // <%= "<p></p>" %>
+      // <%= raw asset_url('pin.png') %>
+      // <%= URI.decode asset_url('pin.png') %>
       var MapData = {
+        markers: {
+          pin: "<%= _raw asset_url('pin.png') %>"
+        },
         buildings: <%= JSON.dump(buildings) %>
-    }
+    };
     </script>
     <style type="text/css" media="screen">
       body { margin: 0 }

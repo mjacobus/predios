@@ -8,7 +8,8 @@ class BuildingMarker {
     this.marker = new google.maps.Marker({
       position,
       map,
-      label: building.number
+      label: building.number,
+      icon: MapData.markers.pin
     });
 
     this.marker.addListener("click", () => {
