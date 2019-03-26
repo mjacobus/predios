@@ -4,8 +4,23 @@ RSpec.describe Web::Controllers::Map::Index, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 200
+  it 'has proper superclass' do
+    expect(action).to be_a(Actions::Api)
+  end
+
+  context 'with valid user' do
+    let(:current_user) { guest_user }
+
+    it 'executes proper action' do
+      expect(unsafe_response).to redirect_to_root
+    end
+  end
+
+  context 'with valid user' do
+    let(:current_user) { active_user }
+
+    it 'executes proper action' do
+      expect(unsafe_response).to be_successful
+    end
   end
 end

@@ -5,8 +5,7 @@ const initMap = () => {
 
   const map = new google.maps.Map(document.getElementById('map'), {
     center,
-    // zoom: 15
-    zoom: 14
+    zoom: 15
   });
 
   addMarkers(MapData.buildings, map);
