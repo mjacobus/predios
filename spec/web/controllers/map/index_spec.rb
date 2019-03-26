@@ -5,7 +5,7 @@ RSpec.describe Web::Controllers::Map::Index, type: :action do
   let(:params) { Hash[] }
 
   it 'has proper superclass' do
-    expect(action).to be_a(Actions::Api)
+    expect(action).to be_a(Actions::Web)
   end
 
   context 'with valid user' do
