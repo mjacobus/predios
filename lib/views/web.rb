@@ -18,6 +18,14 @@ module Views
       hostname.match(/(localhost|staging)/)
     end
 
+    def app_favicon
+      if test_environment?
+        return favicon
+      end
+
+      favicon('building.ico')
+    end
+
     def app_data
       {
         appConfig: {
