@@ -9,7 +9,7 @@
       // <%= URI.decode asset_url('pin.png') %>
       var MapData = {
         markers: {
-          pin: "<%= _raw asset_url('pin.png') %>"
+          pin: "<%= _raw asset_url('map/pin_not.png').gsub('&#x2F;', '/') %>"
         },
         buildings: <%= JSON.dump(buildings) %>
     };
