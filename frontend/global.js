@@ -1,4 +1,5 @@
 import BuildingMarker from './maps/BuildingMarker';
+import CurrentLocationMarker from './maps/CurrentLocationMarker';
 
 const initMap = () => {
   const average = averageLocation(MapData.buildings);
@@ -9,6 +10,7 @@ const initMap = () => {
     zoom: 15
   });
 
+  new CurrentLocationMarker({ map, navigator })
   addMarkers(MapData.buildings, map);
 };
 
