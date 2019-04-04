@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'dotenv'
+Dotenv.load
+
 every 1.hours, roles: [:mysql_dump] do
   rake 'mysql:dump'
 end
