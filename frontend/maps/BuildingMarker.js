@@ -7,9 +7,9 @@ export default class BuildingMarker {
 
     const marker = new google.maps.Marker({
       position,
-      map,
+      map
       // label: building.number,
-      icon: MapData.markers.pin
+      // icon: MapData.markers.pin
     });
     this.marker = marker;
     const url = `/buildings/${this.building.number}/apartments`;
