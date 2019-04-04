@@ -7,9 +7,9 @@ export default class BuildingMarker {
 
     const marker = new google.maps.Marker({
       position,
-      map
+      map,
       // label: building.number,
-      // icon: MapData.markers.pin
+      icon: MapData.markers.pin
     });
     this.marker = marker;
     const url = `/buildings/${this.building.number}/apartments`;
@@ -18,6 +18,10 @@ export default class BuildingMarker {
     <div>
       <p><b>Prédio ${building.number}</b></p>
       <a target="blank" href="${url}">${building.address}</a>
+
+      <p>
+      Apartamentos: ${building.number_of_apartments}
+      </p>
       <p>
       Cartas: ${building.call_options.indexOf("phone") >= 0 ? "Sim" : "Não"}
       <br/>
@@ -25,7 +29,6 @@ export default class BuildingMarker {
         building.call_options.indexOf("intercom") >= 0 ? "Sim" : "Não"
       }
       <br/>
-      Apartamentos: ${building.number_of_apartments}
       </p>
     </div>
     `;
