@@ -5,16 +5,36 @@ export default class BuildingMarker {
 
     const position = new google.maps.LatLng(building.lat, building.long);
 
-    this.marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position,
-      map,
-      label: building.number,
-      icon: MapData.markers.pin
+      map
+      // label: building.number,
+      // icon: MapData.markers.pin
+    });
+    this.marker = marker;
+    const url = `/buildings/${this.building.number}/apartments`;
+
+    const contentString = `
+    <div>
+      <p><b>Prédio ${building.number}</b></p>
+      <a target="blank" href="${url}">${building.address}</a>
+      <p>
+      Cartas: ${building.call_options.indexOf("phone") >= 0 ? "Sim" : "Não"}
+      <br/>
+      Intefone: ${
+        building.call_options.indexOf("intercom") >= 0 ? "Sim" : "Não"
+      }
+      <br/>
+      Apartamentos: ${building.number_of_apartments}
+      </p>
+    </div>
+    `;
+    const infowindow = new google.maps.InfoWindow({
+      content: contentString
     });
 
-    this.marker.addListener("click", () => {
-      const url = `/buildings/${this.building.number}/apartments`;
-      window.open(url);
+    marker.addListener("click", function() {
+      infowindow.open(map, marker);
     });
   }
 
