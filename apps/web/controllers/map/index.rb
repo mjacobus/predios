@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-module Api
+module Web
   module Controllers
-    module Buildings
-      class Index < Actions::Api
-        include Api::Action
+    module Map
+      class Index < Actions::Web
+        expose :buildings
 
         def initialize(repository: BuildingProjectionRepository.new)
           @repository = repository
@@ -13,8 +13,7 @@ module Api
         private
 
         def safe_call(_params)
-          body = buildings_to_json(@repository.all)
-          render(status: 200, body: body)
+          @buildings = buildings_to_json(@repository.all)
         end
 
         def buildings_to_json(buildings)

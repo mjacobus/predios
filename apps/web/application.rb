@@ -262,11 +262,11 @@ module Web
         frame-ancestors 'self';
         base-uri 'self';
         default-src 'none';
-        script-src 'self' #{script} stackpath.bootstrapcdn.com code.jquery.com unpkg.com browser.sentry-cdn.com;
+        script-src 'self' #{script} stackpath.bootstrapcdn.com code.jquery.com unpkg.com browser.sentry-cdn.com maps.googleapis.com ;
         connect-src 'self' #{connect};
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;
-        font-src 'self' use.fontawesome.com maxcdn.bootstrapcdn.com;
+        font-src 'self' use.fontawesome.com maxcdn.bootstrapcdn.com fonts.gstatic.com;
         object-src 'none';
         plugin-types application/pdf;
         child-src 'self';

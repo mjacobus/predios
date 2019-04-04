@@ -61,3 +61,32 @@ namespace :backup do
     Backup.new(files: files).perform(strategy: strategy)
   end
 end
+
+namespace :geolocation do
+  task :update, [:city_name] => [:environment] do |_t, args|
+    google_maps_client = Koine::GoogleMapsClient.new(
+      api_key: ENV.fetch('GOOGLE_MAPS_STATIC_API_KEY')
+    )
+    repository = BuildingProjectionRepository.new
+    repository.all.each do |building|
+      if building.has_geolocation?
+        puts "Skipping: #{building.number} has geolocation"
+        next
+      end
+
+      address = building.complete_address(args[:city_name])
+      data = google_maps_client.geocode(address: address)
+
+      if data['results'].empty?
+        puts "Skipping: Geolocation for #{building.number} (#{address}) not found"
+        next
+      end
+
+      result = data['results'].first
+      location = result['geometry']['location']
+      building = building.with_lat(location['lat']).with_lon(location['lng'])
+      repository.save(building)
+      puts "Saved geolocation for #{building.number} (#{address})"
+    end
+  end
+end
