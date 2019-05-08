@@ -43,6 +43,41 @@ module FeatureHelpers
 
   def login_as(user)
     visit("/dev/login?user_id=#{user.id}")
+    visit('/buildings')
+  end
+
+  def click_menu(item)
+    browser.button(class: 'navbar-toggle').click
+    browser.link(text: item).click
+  end
+
+  def fill_in(name = nil, with:)
+    if name
+      element = browser.text_field(name: name.to_s)
+    end
+
+    element.set(with)
+  end
+
+  def select(value, from: nil)
+    if from
+      element = browser.select_list(name: from.to_s)
+    end
+
+    element.select(value)
+  end
+
+  def click_on(text)
+    element = [
+      browser.link(text: text),
+      browser.button(text: text)
+    ].select(&:present?).first
+
+    unless element
+      raise "Did not find element with text #{text}"
+    end
+
+    element.click
   end
 
   def create_user
