@@ -1,8 +1,6 @@
 language: ruby
 sudo: false
 cache: bundler
-# services:
-#   - xvfb
 
 rvm:
   - 2.4.4
@@ -24,8 +22,7 @@ script:
   - sleep 5
   - npm install
   - npm run build
-  - bundle exec rspec
-  # - xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rspec
+  - bundle exec rspec --exclude-pattern "spec/{feature}/**/*_spec.rb"
 
 addons:
   chrome: stable
