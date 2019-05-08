@@ -3,10 +3,12 @@
 require 'features_helper'
 
 RSpec.describe 'Managing buildings', type: :feature do
-  before { clear_all }
-
-  it 'does something' do
+  before do
+    clear_all
     login_as_master
+  end
+
+  specify 'creating a building' do
     visit('/buildings/new')
 
     expect(page).to have_content('Criação de Prédio')
@@ -41,5 +43,35 @@ RSpec.describe 'Managing buildings', type: :feature do
     fill_in(:name, with: 'Foo Bar')
     click_on('Salvar')
     click_on('Foo Bar')
+  end
+
+  specify 'adding apartments' do
+    building = building_factory.create(number_of_apartments: 2)
+
+    visit('/buildings')
+    click_on(building.name)
+
+    expect(page).to have_element(placeholder: 'Número do Apartamento')
+
+    # blank
+    click_button('Adicionar')
+    expect(page).to have_content('Número não pode ficar em branco')
+
+    # first insert
+    fill_in(nil, placeholder: 'Número do Apartamento', with: '01')
+    click_button('Adicionar')
+    expect(page).to have_element(tag_name: 'span', text: '01')
+
+    # duplicate attempt
+    fill_in(nil, placeholder: 'Número do Apartamento', with: '01')
+    click_button('Adicionar')
+    expect(page).to have_content('Apartamento já existe')
+
+    # new record created
+    fill_in(nil, placeholder: 'Número do Apartamento', with: '02')
+    click_button('Adicionar')
+
+    # form disapears
+    expect(page).to have_no_element(placeholder: 'Número do Apartamento')
   end
 end

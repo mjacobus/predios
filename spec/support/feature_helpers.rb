@@ -48,12 +48,15 @@ module FeatureHelpers
     browser.link(text: item).click
   end
 
-  def fill_in(name = nil, with:)
+  def fill_in(name = nil, options = {})
+    with = options.fetch(:with)
+    options.delete(:with)
+
     if name
-      element = browser.text_field(name: name.to_s)
+      options[:name] = name.to_s
     end
 
-    element.set(with)
+    browser.text_field(options).set(with)
   end
 
   def select(value, from: nil)
@@ -66,6 +69,10 @@ module FeatureHelpers
 
   def click_on(text)
     browser.element(text: text).click
+  end
+
+  def click_button(text)
+    browser.button(text: text).click
   end
 
   def create_user

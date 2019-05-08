@@ -41,6 +41,12 @@ class CurrentTestPage
     false
   end
 
+  def has_no_element?(options = {})
+    wait_until { browser.element(options).present? == false }
+  rescue Watir::Wait::TimeoutError => _error
+    false
+  end
+
   def wait_until(*args, &block)
     Watir::Wait.until(*args, &block)
   end

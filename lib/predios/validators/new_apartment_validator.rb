@@ -16,7 +16,7 @@ class NewApartmentValidator
     )
 
     if found
-      raise ValidationError, 'Apartmamento já existe'
+      raise ValidationError, 'Apartamento já existe'
     end
   end
 end
