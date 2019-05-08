@@ -58,6 +58,7 @@ group :test, :development do
 
   gem 'watir'
   gem 'webdrivers', require: false
+  gem 'byebug'
 end
 
 group :production do
