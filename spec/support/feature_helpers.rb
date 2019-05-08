@@ -11,12 +11,9 @@ module FeatureHelpers
       let(:browser) { BrowserFactory.new.from_options(browser_options) }
       let(:page) { CurrentTestPage.new(browser) }
 
-      before do
-        UserRepository.new.clear
-      end
-
       after do
         browser.close
+        clear_all
       end
     end
   end
@@ -68,16 +65,7 @@ module FeatureHelpers
   end
 
   def click_on(text)
-    element = [
-      browser.link(text: text),
-      browser.button(text: text)
-    ].select(&:present?).first
-
-    unless element
-      raise "Did not find element with text #{text}"
-    end
-
-    element.click
+    browser.element(text: text).click
   end
 
   def create_user
