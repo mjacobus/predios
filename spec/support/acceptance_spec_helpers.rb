@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module FeatureHelpers
+module AcceptanceSpecHelpers
   def self.included(base)
     base.class_eval do
       let(:browser_options) do

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'features_helper'
+require 'acceptance_helper'
 
-RSpec.describe 'Managing buildings', type: :feature do
+RSpec.describe 'Managing buildings', type: :acceptance do
   before do
     clear_all
     login_as_master

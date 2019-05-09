@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Require this file for feature tests
 require_relative './spec_helper'
 require 'webdrivers'
 
@@ -9,6 +8,6 @@ Webdrivers::Chromedriver.required_version = '72.0.3626.7'
 Watir.default_timeout = 5
 
 RSpec.configure do |config|
-  config.include FeatureHelpers, type: :feature
-  config.include RepositorySpecHelper, type: :feature
+  config.include AcceptanceSpecHelpers, type: :acceptance
+  config.include RepositorySpecHelper, type: :acceptance
 end
