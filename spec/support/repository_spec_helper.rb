@@ -4,6 +4,7 @@ module RepositorySpecHelper
   # rubocop:disable Metrics/AbcSize
   def self.included(base)
     base.class_eval do
+      let(:user_factory) { UserFactory.new }
       let(:building_factory) { BuildingProjectionFactory.new }
       let(:apartment_factory) { ApartmentProjectionFactory.new }
       let(:contact_attempt_factory) { ContactAttemptProjectionFactory.new }
@@ -24,5 +25,6 @@ module RepositorySpecHelper
     building_factory.clear
     apartment_factory.clear
     contact_attempt_factory.clear
+    user_factory.clear
   end
 end

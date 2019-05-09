@@ -55,6 +55,10 @@ group :test, :development do
   gem 'coveralls', '~> 0.8.22', require: false
   gem 'object_comparator', '~> 0.1.3'
   gem 'simplecov', '~> 0.16.1', require: false
+
+  gem 'watir'
+  gem 'webdrivers', require: false
+  gem 'byebug'
 end
 
 group :production do

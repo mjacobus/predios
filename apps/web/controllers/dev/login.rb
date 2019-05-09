@@ -7,7 +7,7 @@ module Web
         include Web::Action
 
         def initialize(env: Hanami.env)
-          unless env == 'development'
+          unless authorized?(env)
             raise 'Not authorized'
           end
         end
@@ -25,6 +25,10 @@ module Web
             "Logged in as #{user_id}. ",
             'Redirect to <a href="/buildings">Buildings</a>',
           ]
+        end
+
+        def authorized?(env)
+          %w[test development].include?(env)
         end
       end
     end

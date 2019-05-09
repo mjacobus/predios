@@ -6,7 +6,7 @@ rvm:
   - 2.4.4
 
 env:
-  - TRAVIS=ci DB=mysql HANAMI_ENV=test DATABASE_URL="mysql2://root@127.0.0.1:3306/predios_test"
+  - COVERALLS=1 TRAVIS=ci DB=mysql HANAMI_ENV=test DATABASE_URL="mysql2://root@127.0.0.1:3306/predios_test" LOCAL_ASSETS=true BROWSER_OPTIONS='--browser=chrome --headless'
 
 before_script:
 before_install:
@@ -15,11 +15,17 @@ before_install:
 script:
   - bundle exec hanami db create
   - bundle exec hanami db migrate
-  - COVERALLS=1 bundle exec rspec
+  # - "export DISPLAY=:99.0"
+  # - "sh -e /etc/init.d/xvfb start"
+  # - sleep 3 # give xvfb some time to start
+  - hanami server --port=4000 &
+  - sleep 5
   - npm install
   - npm run build
+  - bundle exec rspec --exclude-pattern "spec/{acceptance}/**/*_spec.rb"
 
 addons:
+  chrome: stable
   apt:
     sources:
       - mysql-5.7-trusty

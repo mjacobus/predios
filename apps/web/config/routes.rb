@@ -17,7 +17,7 @@ get '/map', to: 'map#index'
 
 resources :audits, only: %i[index show]
 
-if Hanami.env == 'development'
+if Hanami.env == 'development' || Hanami.env == 'test'
   get '/dev/login', to: 'dev#login'
 end
 
