@@ -90,10 +90,3 @@ namespace :geolocation do
     end
   end
 end
-
-desc 'Starts a server in the background and run integration tasks'
-task :integration_tests do
-  sh 'HANAMI_ENV=test bundle exec hanami server --port 4000 &'
-  sleep 4
-  sh 'bundle exec rspec spec/feature'
-end
