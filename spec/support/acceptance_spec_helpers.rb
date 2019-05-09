@@ -13,7 +13,6 @@ module AcceptanceSpecHelpers
 
       after do
         browser.close
-        clear_all
       end
     end
   end
