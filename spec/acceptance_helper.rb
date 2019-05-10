@@ -3,6 +3,8 @@
 require_relative './spec_helper'
 require 'webdrivers'
 
+Watir::Rack.test_app = Hanami.app
+
 # Chrome
 Webdrivers::Chromedriver.required_version = '72.0.3626.7'
 Watir.default_timeout = 5

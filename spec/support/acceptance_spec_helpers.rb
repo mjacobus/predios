@@ -17,12 +17,8 @@ module AcceptanceSpecHelpers
     end
   end
 
-  def url(path = '/')
-    "http://localhost:4000#{path}"
-  end
-
   def visit(path)
-    browser.goto(url(path))
+    browser.goto(path)
   end
 
   def login_as_master

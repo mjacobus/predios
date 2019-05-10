@@ -57,6 +57,7 @@ group :test, :development do
   gem 'simplecov', '~> 0.16.1', require: false
 
   gem 'watir'
+  gem 'watir-rack'
   gem 'webdrivers', require: false
   gem 'byebug'
 end
