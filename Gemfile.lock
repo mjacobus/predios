@@ -1,3 +1,10 @@
+PATH
+  remote: ../watir-rack
+  specs:
+    watir-rack (0.1)
+      rack
+      watir (>= 6.0.0.beta4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -349,6 +356,7 @@ DEPENDENCIES
   shotgun
   simplecov (~> 0.16.1)
   watir
+  watir-rack!
   webdrivers
   whenever
 
