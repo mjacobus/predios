@@ -59,7 +59,9 @@ group :test, :development do
   gem 'watir'
   gem 'watir-rack'
   gem 'webdrivers', require: false
+
   gem 'byebug'
+  gem 'rb-readline'
 end
 
 group :production do
