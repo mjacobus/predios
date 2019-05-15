@@ -3,7 +3,10 @@
 require_relative './spec_helper'
 require 'webdrivers'
 
-Watir::Rack.test_app = Hanami.app
+unless ENV['WATIR_SKIP_RACK']
+  require 'watir/rack'
+  Watir::Rack.test_app = Hanami.app
+end
 
 # Chrome
 Webdrivers::Chromedriver.required_version = '72.0.3626.7'
