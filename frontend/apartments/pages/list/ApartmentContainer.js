@@ -48,7 +48,11 @@ class Apartment extends React.Component {
     });
 
     return (
-      <div className={className}>
+      <div
+        className={className}
+        data-apartment={apartment.number}
+        data-apartment-id={apartment.id}
+      >
         <Grid>
           <Row>
             <Col xs={4}>
@@ -63,6 +67,8 @@ class Apartment extends React.Component {
             </Col>
             <Col xs={2}>
               <Icon
+                data-action="options"
+                data-apartment={apartment.number}
                 color="purple"
                 type={collapsed ? "plus" : "minus"}
                 onClick={this.toggleActions}
