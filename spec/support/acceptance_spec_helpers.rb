@@ -74,6 +74,10 @@ module AcceptanceSpecHelpers
     browser.element(*options).click
   end
 
+  def click_label(text)
+    browser.label(text: text).click
+  end
+
   def click_button(text)
     browser.button(text: text).click
   end
