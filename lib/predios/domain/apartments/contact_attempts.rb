@@ -6,10 +6,8 @@ module Apartments
 
     def initialize(attempts)
       @attempts = []
-      attempts.sort_by(&:time).each do |attempt|
-        unless include?(attempt)
-          @attempts << attempt
-        end
+      attempts.each do |attempt|
+        add(attempt)
       end
     end
 
@@ -21,7 +19,13 @@ module Apartments
       @attempts.dup.pop
     end
 
-    private
+    def add(attempt)
+      unless include?(attempt)
+        @attempts << attempt
+      end
+
+      @attempts = @attempts.sort_by(&:time)
+    end
 
     def include?(attempt)
       map(&:without_precision).include?(attempt.without_precision)

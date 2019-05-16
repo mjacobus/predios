@@ -18,6 +18,10 @@ module AcceptanceSpecHelpers
   end
 
   def visit(path)
+    if ENV['WATIR_SKIP_RACK']
+      path = "http://localhost:4000#{path}"
+    end
+
     browser.goto(path)
   end
 
@@ -64,6 +68,14 @@ module AcceptanceSpecHelpers
 
   def click_on(text)
     browser.element(text: text).click
+  end
+
+  def click_element(*options)
+    browser.element(*options).click
+  end
+
+  def click_label(text)
+    browser.label(text: text).click
   end
 
   def click_button(text)

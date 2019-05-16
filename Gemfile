@@ -51,15 +51,19 @@ group :test do
 end
 
 group :test, :development do
+  gem 'awesome_print'
+
   # code coverage
   gem 'coveralls', '~> 0.8.22', require: false
   gem 'object_comparator', '~> 0.1.3'
   gem 'simplecov', '~> 0.16.1', require: false
 
   gem 'watir'
-  gem 'watir-rack'
+  gem 'watir-rack', require: false
   gem 'webdrivers', require: false
+
   gem 'byebug'
+  gem 'rb-readline'
 end
 
 group :production do

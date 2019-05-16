@@ -43,11 +43,11 @@ module Apartments
         time.hour,
         time.min
       )
-      self.class.new(outcome: outcome, time: time_without_precision)
+      self.class.new(outcome: outcome, time: time_without_precision, type: type)
     end
 
     def ==(other)
-      other.outcome == outcome && other.time == time
+      other.outcome == outcome && other.time == time && other.type == type
     end
   end
 end
