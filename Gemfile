@@ -51,6 +51,8 @@ group :test do
 end
 
 group :test, :development do
+  gem 'awesome_print'
+
   # code coverage
   gem 'coveralls', '~> 0.8.22', require: false
   gem 'object_comparator', '~> 0.1.3'
