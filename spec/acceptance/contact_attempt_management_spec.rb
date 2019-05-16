@@ -62,7 +62,6 @@ RSpec.describe 'contact attempt management', type: :acceptance do
     click_element(tag_name: 'span', data_apartment: apartment.number)
     click_on('Tentar contato')
     click_label('Carta')
-    # when byebug is opened here it works
     click_button('Sim')
 
     expand_entries
