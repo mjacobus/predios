@@ -13,6 +13,7 @@ class ApartmentProjectionFactory < EntityFactory
     super(attributes)
   end
 
+  # TODO: Move it somewhere else. Maybe it deserves a factory of its own
   def create_with_aggregate(attributes = {})
     attributes = sample_attributes.merge(attributes)
     command = Apartments::Commands::CreateApartment.new(attributes)

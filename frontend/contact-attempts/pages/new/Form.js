@@ -38,7 +38,7 @@ export default function Form(props) {
       </PageBlock>
       <PageBlock visible={currentUser.master}>
         <Label>Data e hora no formato 2019/12/31 18:32</Label>
-        <DateTimeInput onChange={dateTimeChangeListener} />
+        <DateTimeInput name="when" onChange={dateTimeChangeListener} />
         <small>Deixe em branco para usar a data e hora atual</small>
       </PageBlock>
       <PageBlock>
