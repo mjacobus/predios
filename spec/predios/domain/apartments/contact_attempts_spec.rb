@@ -25,39 +25,35 @@ RSpec.describe Apartments::ContactAttempts do
       time: Time.parse('2001-02-03 04:05:06')
     )
     end
-    let(:second) do
-      Apartments::ContactAttempt.new(
-      outcome: 'contacted',
-      time: Time.parse('2001-02-03 04:05:07'),
-      type: 'letter'
-    )
-    end
-    let(:duplicate1) do
+    let(:first_duplicate) do
       Apartments::ContactAttempt.new(
       outcome: 'contacted',
       time: Time.parse('2001-02-03 04:05:09')
     )
     end
-    let(:last) do
+    let(:second) do
       Apartments::ContactAttempt.new(
-      outcome: 'failed',
-      time: Time.parse('2001-02-03 04:05:08')
+      outcome: 'contacted',
+      time: Time.parse('2001-02-03 04:05:17'),
+      type: 'letter'
     )
     end
-    let(:duplicate2) do
+    let(:third) do
       Apartments::ContactAttempt.new(
       outcome: 'failed',
-      time: Time.parse('2001-02-03 04:05:08')
+      time: Time.parse('2001-02-03 04:06:08')
     )
     end
-    let(:attempts) { described_class.new([first, second, duplicate1, duplicate2, last]) }
+    let(:third_duplicate) do
+      Apartments::ContactAttempt.new(
+      outcome: 'failed',
+      time: Time.parse('2001-02-03 04:06:02')
+    )
+    end
+    let(:attempts) { described_class.new([second, first, first_duplicate, third, third_duplicate]) }
 
     it 'removes duplicates' do
-      expect(attempts.to_a.size).to eq(3)
-      expect(attempts.to_a[0]).to eq(first)
-      expect(attempts.to_a[1]).to eq(second)
-      expect(attempts.to_a[2]).to eq(last)
-      expect(attempts.to_a).to eq([first, second, last])
+      expect(attempts.to_a).to eq([first, second, third])
     end
   end
 
