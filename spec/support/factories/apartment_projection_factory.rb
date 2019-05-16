@@ -13,6 +13,20 @@ class ApartmentProjectionFactory < EntityFactory
     super(attributes)
   end
 
+  def create_with_aggregate(attributes = {})
+    attributes = sample_attributes.merge(attributes)
+    command = Apartments::Commands::CreateApartment.new(attributes)
+    dependencies = AppDependencies.new
+    dependencies.set('es.metadata_strategy') do
+      Koine::EventSourcing::MetadataStrategy.new do |event|
+        metadata = { user_id: 'test:factory' }
+        event.with_metadata(metadata)
+      end
+    end
+    aggregate = dependencies.service('command_bus').handle(command)
+    repository.by_uuid(aggregate.id)
+  end
+
   private
 
   def sampled_attributes

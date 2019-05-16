@@ -4,11 +4,16 @@ require 'acceptance_helper'
 
 RSpec.describe 'contact attempt management', type: :acceptance do
   let(:building) { building_factory.create(number_of_apartments: 2) }
-  let(:apartment1) { apartment_factory.create(building: building) }
-  let(:apartment2) { apartment_factory.create(building: building) }
+  let(:apartment1) do
+    apartment_factory.create_with_aggregate(building_id: building.uuid)
+  end
+  let(:apartment2) do
+    apartment_factory.create_with_aggregate(building_id: building.uuid)
+  end
 
   before do
     clear_all
+
     login_as_master
     apartment1
     apartment2
@@ -19,14 +24,11 @@ RSpec.describe 'contact attempt management', type: :acceptance do
 
     click_element(tag_name: 'span', data_apartment: apartment1.number)
     click_on('Tentar contato')
-    byebug
-    click_label('Telefone')
-    click_button(/Sim/)
-    # byebug
+    click_button('Sim')
 
-    # # default intercom
+    # default intercom
     page.wait_until do
-      page.has_element?(
+      expect(page).to have_element(
         tag_name: 'span',
         data_contact_attempt_success: 'true',
         data_contact_attempt_type: 'intercom',
