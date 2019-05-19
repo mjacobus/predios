@@ -34,7 +34,10 @@ module AcceptanceSpecHelpers
   end
 
   def login
-    login_as(create_user {})
+    user = create_user do |u|
+      u
+    end
+    login_as(user)
   end
 
   def login_as(user)

@@ -76,6 +76,7 @@ const Filter = ({ filter, ...props }) => {
         <FormRow>
           <Input
             className={css({ width: "70%", marginRight: "15px" })}
+            name="filter"
             value={filter.text}
             placeholder="Filtro"
             type="text"

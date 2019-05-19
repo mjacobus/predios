@@ -74,4 +74,29 @@ RSpec.describe 'Managing buildings', type: :acceptance do
     # form disapears
     expect(page).to have_no_element(placeholder: 'Número do Apartamento')
   end
+
+  specify 'removing apartment' do
+    # setup
+    building = building_factory.create(number_of_apartments: 2)
+    kept_apartment = apartment_factory.create_with_aggregate(building_id: building.uuid)
+    apartment = apartment_factory.create_with_aggregate(building_id: building.uuid)
+
+    visit("/buildings/#{building.number}/apartments")
+
+    # all apartments exists
+    expect(page).to have_no_element(placeholder: 'Número do Apartamento')
+
+    click_element(tag_name: 'span', data_apartment: apartment.number)
+    click_on('Remover apartamento')
+    click_on('Cancelar')
+    expect(page).to have_no_element(placeholder: 'Número do Apartamento')
+
+    click_element(tag_name: 'span', data_apartment: apartment.number)
+    click_on('Remover apartamento')
+    click_button('Remover')
+    expect(page).to have_element(placeholder: 'Número do Apartamento')
+
+    expect(page).to have_no_content(apartment.number)
+    expect(page).to have_content(kept_apartment.number)
+  end
 end

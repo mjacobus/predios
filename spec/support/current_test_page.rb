@@ -31,6 +31,26 @@ class CurrentTestPage
     false
   end
 
+  def has_contents?(contents)
+    contents.each do |content|
+      unless has_content?(content)
+        return false
+      end
+    end
+
+    true
+  end
+
+  def has_no_contents?(contents)
+    contents.each do |content|
+      unless has_no_content?(content)
+        return false
+      end
+    end
+
+    true
+  end
+
   def text
     browser.text
   end
