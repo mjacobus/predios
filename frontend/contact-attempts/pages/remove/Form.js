@@ -1,4 +1,5 @@
 import React from "react";
+import { css } from "glamor";
 import { Grid, Col, Row } from "react-bootstrap";
 import { Button, A } from "../../../library";
 import {
@@ -14,6 +15,10 @@ import {
   removeItem,
   duplicate
 } from "../../../src/utils/collections";
+
+const checkboxClass = css({
+  marginRight: "10px !important"
+});
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -50,7 +55,6 @@ export default class Form extends React.Component {
   }
 
   render() {
-    // TODO: Align checkbox
     const { apartment, building, submitHandler, value } = this.props;
     const submit = this.submit;
 
@@ -71,6 +75,7 @@ export default class Form extends React.Component {
             <div key={index}>
               <Label>
                 <input
+                  className={checkboxClass}
                   type="checkbox"
                   name="contactAttempt"
                   value={index}
