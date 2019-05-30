@@ -3,5 +3,5 @@ import removeContactAttemptsReducer from "./removeContactAttemptsReducer";
 
 export default {
   newContactAttemptReducer,
-  removeContactAttemptsReducer,
+  removeContactAttemptsReducer
 };

@@ -20,13 +20,17 @@ const fetchApartmentByBuildingNumber = dispatch => {
   };
 };
 
-const removeContactAttempts = dispatch => ({ contactAttempts, building, apartment }) => {
+const removeContactAttempts = dispatch => ({
+  contactAttempts,
+  building,
+  apartment
+}) => {
   dispatch({ type: "REMOVE_CONTACT_ATTEMPTS" });
-  const payload = { contactAttempts };
+  const payload = { contact_attempts: contactAttempts };
 
   apiDelete(
-    `/api/buildings/${building.number}/apartments/${
-      apartment.id
+    `/api/buildings/${building.uuid}/apartments/${
+      apartment.uuid
     }/contact_attempts`
   )
     .send(payload)

@@ -1,5 +1,5 @@
 import React from "react";
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Loader } from "../../library";
 import { connect } from "react-redux";
 import Form from "./remove/Form";

@@ -39,5 +39,5 @@ export {
   NumberOfApartments,
   PageBlock,
   Question,
-  RemoveContactAttemptLink,
+  RemoveContactAttemptLink
 };
