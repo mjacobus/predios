@@ -9,11 +9,7 @@ import { clearRedirect } from "../../shared/actions";
 class RemoveContactAttempt extends React.Component {
   constructor(props) {
     super(props);
-    this.submitHandler = this.submitHandler.bind(
-      this
-    );
-    // this.inputListenerFactory = this.inputListenerFactory.bind(this);
-    // this.cancelContactAttempt = this.cancelContactAttempt.bind(this);
+    this.submitValues = this.submitValues.bind(this);
     this.state = { formData: {} };
   }
 
@@ -27,35 +23,14 @@ class RemoveContactAttempt extends React.Component {
     }
   }
 
-  onCheckboxChange(event) {
-    console.log(event)
-    // return event => {
-    //   const value = event.target.value;
-    //   const formData = Object.assign(this.state.formData, { [name]: value });
-    //   this.setState({ formData });
-    // };
-  }
-
   componentWillUnmount() {
     this.props.clearRedirect();
   }
 
-  submitHandler(apartment, outcome) {
-    // const { building } = this.props;
-    // let payload = {
-    //   building,
-    //   apartment,
-    //   outcome
-    // };
-    //
-    // payload = Object.assign(payload, this.state.formData);
-    //
-    // this.props.createContactAttempt(payload);
+  submitValues(values) {
+    // TODO: Sumit for real
+    console.log("submiting", values.remove);
   }
-
-  // cancelContactAttempt() {
-  //   this.props.attemptContactOn(null);
-  // }
 
   render() {
     const props = this.props;
@@ -75,9 +50,8 @@ class RemoveContactAttempt extends React.Component {
         currentUser={this.props.currentUser}
         apartment={apartment}
         building={building}
-        submitHandler={this.submitHandler}
+        submitValues={this.submitValues}
         assignAttempt={this.handleCreateContactAttempt}
-        inputListenerFactory={this.inputListenerFactory}
       />
     );
   }
