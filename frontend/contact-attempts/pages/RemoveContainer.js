@@ -27,9 +27,9 @@ class RemoveContactAttempt extends React.Component {
     this.props.clearRedirect();
   }
 
-  submitValues(values) {
-    // TODO: Sumit for real
-    console.log("submiting", values.remove);
+  submitValues({ contactAttempts }) {
+    const { building, apartment } = this.props;
+    this.props.handleSubmit({ contactAttempts, building, apartment });
   }
 
   render() {
@@ -45,6 +45,7 @@ class RemoveContactAttempt extends React.Component {
 
     const { apartment, building } = props;
 
+    // frontend/contact-attempts/pages/RemoveContainer.js
     return (
       <Form
         currentUser={this.props.currentUser}
@@ -70,7 +71,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createContactAttempt: actions.createContactAttempt(dispatch),
+    handleSubmit: actions.removeContactAttempts(dispatch),
     fetchApartmentByBuildingNumber: actions.fetchApartmentByBuildingNumber(
       dispatch
     ),

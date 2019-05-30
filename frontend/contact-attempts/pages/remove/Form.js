@@ -43,11 +43,11 @@ export default class Form extends React.Component {
 
   submit(event) {
     event.preventDefault();
-    const remove = selectIndexes(
+    const contactAttempts = selectIndexes(
       this.state.indexesToRemove,
       this.props.apartment.contact_attempts
     );
-    this.props.submitValues({ remove });
+    this.props.submitValues({ contactAttempts });
   }
 
   isEmpty() {
