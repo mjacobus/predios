@@ -33,7 +33,6 @@ RSpec.describe Apartments::CommandHandlers::UnassignContactAttempt do
     it 'validates the command' do
     end
 
-
     it 'unassigns attempt from apartment' do
       # expected_attempt = Apartments::ContactAttempt.new(
       #   outcome: 'contacted',

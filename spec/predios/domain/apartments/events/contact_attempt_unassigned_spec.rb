@@ -31,4 +31,3 @@ RSpec.describe Apartments::Events::ContactAttemptUnassigned do
     end
   end
 end
-

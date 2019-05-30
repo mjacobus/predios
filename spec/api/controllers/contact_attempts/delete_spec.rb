@@ -26,4 +26,3 @@ RSpec.describe Api::Controllers::ContactAttempts::Destroy, type: :action do
     # end
   end
 end
-
