@@ -34,7 +34,6 @@ export default function ContactAttempt(props) {
 
   const color = contactAttempt.successful ? colors.green : colors.red;
 
-  console.log(contactAttempt);
   return (
     <div {...otherProps}>
       <Icon

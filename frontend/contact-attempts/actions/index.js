@@ -20,6 +20,10 @@ const fetchApartmentByBuildingNumber = dispatch => {
   };
 };
 
+const removeContactAttempts = dispatch => (args) => {
+  console.log('removing contact attempts')
+}
+
 const createContactAttempt = dispatch => ({
   building,
   apartment,
@@ -55,5 +59,6 @@ const createContactAttempt = dispatch => ({
 
 export default {
   fetchApartmentByBuildingNumber,
-  createContactAttempt
+  createContactAttempt,
+  removeContactAttempts
 };

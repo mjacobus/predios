@@ -17,6 +17,7 @@ import Neighborhood from "./Neighborhood";
 import NumberOfApartments from "./NumberOfApartments";
 import PageBlock from "./PageBlock";
 import Question from "./Question";
+import RemoveContactAttemptLink from "./RemoveContactAttemptLink";
 
 export {
   ApartmentForm,
@@ -37,5 +38,6 @@ export {
   Neighborhood,
   NumberOfApartments,
   PageBlock,
-  Question
+  Question,
+  RemoveContactAttemptLink,
 };
