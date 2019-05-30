@@ -57,6 +57,28 @@ RSpec.describe Apartments::Apartment do
     end
   end
 
+  describe '#unassign_contact_attempt' do
+    it 'removes the contact attempt' do
+      attempt1 = Apartments::ContactAttempt.new(
+        outcome: 'contacted',
+        time: Time.new,
+        type: 'letter'
+      )
+      attempt2 = Apartments::ContactAttempt.new(
+        outcome: 'failed',
+        time: Time.new,
+        type: 'letter'
+      )
+
+      apartment.assign_contact_attempt(attempt1)
+      apartment.assign_contact_attempt(attempt2)
+
+      apartment.unassign_contact_attempt(attempt2)
+
+      expect(apartment.contact_attempts).to be_equal_to([attempt1])
+    end
+  end
+
   describe '#delete' do
     it 'marks the apartment as deleted' do
       expect { apartment.delete }.to change(apartment, :deleted?).to true
