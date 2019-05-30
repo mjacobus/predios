@@ -2,7 +2,6 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { Loader } from "../../library";
 import { connect } from "react-redux";
-import { BuildingHeader } from "../../shared/components";
 import Form from "./new/Form";
 import actions from "../actions";
 import { clearRedirect } from "../../shared/actions";
