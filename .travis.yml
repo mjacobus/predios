@@ -27,8 +27,6 @@ script:
 addons:
   chrome: stable
   apt:
-    sources:
-      - mysql-5.7
     packages:
       - mysql-server
       - mysql-client
