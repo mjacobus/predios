@@ -1,6 +1,7 @@
 language: ruby
 sudo: false
 cache: bundler
+dist: trusty
 
 rvm:
   - 2.4.4
@@ -27,6 +28,8 @@ script:
 addons:
   chrome: stable
   apt:
+    sources:
+      - mysql-5.7-trusty
     packages:
       - mysql-server
       - mysql-client
