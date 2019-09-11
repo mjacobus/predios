@@ -1,6 +1,7 @@
 language: ruby
 sudo: false
 cache: bundler
+dist: xenial
 
 rvm:
   - 2.4.4
@@ -24,12 +25,7 @@ script:
   - npm run build
   - bundle exec rspec --exclude-pattern "spec/{acceptance}/**/*_spec.rb"
 
+services:
+  - mysql
 addons:
   chrome: stable
-  apt:
-    sources:
-      - mysql-5.7-trusty
-    packages:
-      - mysql-server
-      - mysql-client
-
