@@ -23,7 +23,7 @@ script:
   - sleep 5
   - npm install
   - npm run build
-  - bundle exec rspec --exclude-pattern "spec/{acceptance}/**/*_spec.rb"
+  - bundle exec rspec
 
 services:
   - mysql
