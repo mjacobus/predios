@@ -38,6 +38,11 @@ export default function Routes() {
             path="/buildings/:buildingNumber/apartments/:apartmentNumber/contact-attempts/new"
             component={ContactAttempts.New}
           />
+          <Route
+            exact
+            path="/buildings/:buildingNumber/apartments/:apartmentNumber/contact-attempts/remove"
+            component={ContactAttempts.Remove}
+          />
         </DefaultLayout>
       </div>
     </BrowserRouter>

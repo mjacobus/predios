@@ -22,6 +22,7 @@
   </head>
   <body class="<%= test_environment? ? 'staging' : '' %>">
     <script type="text/javascript" charset="utf-8">
+      var testData = null;
       window.__DATA__ = <%= raw app_data.to_json %>;
     </script>
     <div id="react-app">Carregando...</div>

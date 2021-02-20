@@ -97,6 +97,13 @@ class AppDependencies < Nurse::DependencyContainer
       )
     end
 
+    add_command_handler('apartments.unassign_contact_attempt') do |container|
+      Apartments::CommandHandlers::UnassignContactAttempt.new(
+        repository: container.repository('aggregate_root'),
+        validator: NullValidator.new
+      )
+    end
+
     add_service('csv_parser') do
       CsvParser.new
     end

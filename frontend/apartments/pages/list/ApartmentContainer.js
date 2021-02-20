@@ -6,7 +6,8 @@ import {
   ApartmentNumber,
   ContactAttempts,
   DoorBell,
-  DropDownOptions
+  DropDownOptions,
+  RemoveContactAttemptLink
 } from "../../../shared/components";
 
 import { A, Icon } from "../../../library";
@@ -87,6 +88,15 @@ class Apartment extends React.Component {
                 >
                   Tentar contato
                 </DoorBell>
+                {apartment.contact_attempts.length > 0 && (
+                  <RemoveContactAttemptLink
+                    buttonStyle="red"
+                    apartment={apartment}
+                    building={building}
+                  >
+                    Remover contato
+                  </RemoveContactAttemptLink>
+                )}
                 {currentUser.master && (
                   <A
                     className={buttonStyle}

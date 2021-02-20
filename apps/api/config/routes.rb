@@ -9,11 +9,13 @@ resource :session
 
 resources :buildings do
   resources :apartments, only: %i[create destroy], controller: :apartments do
+    resource :contact_attempts, controller: :contact_attempts
     member do
       post :assign_visit_attempt
     end
   end
 end
+
 resources :users, only: [:index] do
   resource :enable, only: %i[create destroy]
   resource :master, only: %i[create destroy]

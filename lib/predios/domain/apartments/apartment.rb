@@ -37,6 +37,14 @@ module Apartments
       ))
     end
 
+    def unassign_contact_attempt(contact_attempt)
+      record_that(Events::ContactAttemptUnassigned.new(
+        type: contact_attempt.type,
+        outcome: contact_attempt.outcome,
+        time: contact_attempt.time
+      ))
+    end
+
     private
 
     def when_created(event)
@@ -53,6 +61,16 @@ module Apartments
       )
 
       @contact_attempts << attempt
+    end
+
+    def when_contact_attempt_unassigned(event)
+      attempt = ContactAttempt.new(
+        type: event.type,
+        outcome: event.outcome,
+        time: event.time.utc
+      )
+
+      @contact_attempts = @contact_attempts.reject { |c| c == attempt }
     end
 
     def when_deleted(_event)
