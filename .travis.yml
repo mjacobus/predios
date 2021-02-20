@@ -8,13 +8,16 @@ rvm:
 
 env:
   - COVERALLS=1 TRAVIS=ci DB=mysql HANAMI_ENV=test DATABASE_URL="mysql2://root@127.0.0.1:3306/predios_test" LOCAL_ASSETS=true BROWSER_OPTIONS='--browser=chrome --headless'
+  - COVERALLS=1 TRAVIS=ci DB=pg    HANAMI_ENV=test DATABASE_URL="postgres://postgres@localhost:5432/predios_test" LOCAL_ASSETS=true BROWSER_OPTIONS='--browser=chrome --headless'
 
 before_script:
+  - psql -c 'create database predios_test;' -U postgres
+  - mysql -e 'CREATE DATABASE predios_test;'
 before_install:
   - npm i -g npm
 
 script:
-  - bundle exec hanami db create
+  # - bundle exec hanami db create
   - bundle exec hanami db migrate
   # - "export DISPLAY=:99.0"
   # - "sh -e /etc/init.d/xvfb start"
@@ -29,3 +32,8 @@ services:
   - mysql
 addons:
   chrome: stable
+  postgresql: "10"
+  apt:
+    packages:
+      - postgresql-10
+      - postgresql-client-10
