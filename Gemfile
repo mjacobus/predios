@@ -21,7 +21,7 @@ gem 'sentry-raven', '~> 2.7.4'
 gem 'whenever', require: false
 
 # authentication
-gem 'omniauth', '~> 1.9.2'
+gem 'omniauth', '~> 2.0.0'
 gem 'omniauth-facebook', '~> 5.0.0'
 gem 'omniauth-google-oauth2', '~> 0.5.3'
 
