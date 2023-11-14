@@ -10,6 +10,7 @@ gem 'addressable'
 gem 'dotenv', '~> 2.4'
 gem 'koine-google_maps_client'
 gem 'mysql2'
+gem 'pg'
 
 # domain
 gem 'koine-command_bus', '~> 1.0'

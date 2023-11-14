@@ -208,6 +208,7 @@ GEM
     parallel (1.19.1)
     parser (2.6.5.0)
       ast (~> 2.4.0)
+    pg (1.2.2)
     powerpack (0.1.2)
     public_suffix (4.0.1)
     rack (2.2.4)
@@ -349,6 +350,7 @@ DEPENDENCIES
   omniauth (~> 1.9.2)
   omniauth-facebook (~> 5.0.0)
   omniauth-google-oauth2 (~> 0.5.3)
+  pg
   rake
   rb-readline
   rspec
@@ -364,4 +366,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
