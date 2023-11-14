@@ -2,18 +2,14 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { Loader } from "../../library";
 import { connect } from "react-redux";
-import Form from "./new/Form";
+import Form from "./remove/Form";
 import actions from "../actions";
 import { clearRedirect } from "../../shared/actions";
 
-class NewContactAttemptForm extends React.Component {
+class RemoveContactAttempt extends React.Component {
   constructor(props) {
     super(props);
-    this.handleCreateContactAttempt = this.handleCreateContactAttempt.bind(
-      this
-    );
-    this.inputListenerFactory = this.inputListenerFactory.bind(this);
-    this.cancelContactAttempt = this.cancelContactAttempt.bind(this);
+    this.submitValues = this.submitValues.bind(this);
     this.state = { formData: {} };
   }
 
@@ -27,33 +23,13 @@ class NewContactAttemptForm extends React.Component {
     }
   }
 
-  inputListenerFactory(name) {
-    return event => {
-      const value = event.target.value;
-      const formData = Object.assign(this.state.formData, { [name]: value });
-      this.setState({ formData });
-    };
-  }
-
   componentWillUnmount() {
     this.props.clearRedirect();
   }
 
-  handleCreateContactAttempt(apartment, outcome) {
-    const { building } = this.props;
-    let payload = {
-      building,
-      apartment,
-      outcome
-    };
-
-    payload = Object.assign(payload, this.state.formData);
-
-    this.props.createContactAttempt(payload);
-  }
-
-  cancelContactAttempt() {
-    this.props.attemptContactOn(null);
+  submitValues({ contactAttempts }) {
+    const { building, apartment } = this.props;
+    this.props.handleSubmit({ contactAttempts, building, apartment });
   }
 
   render() {
@@ -69,13 +45,14 @@ class NewContactAttemptForm extends React.Component {
 
     const { apartment, building } = props;
 
+    // frontend/contact-attempts/pages/RemoveContainer.js
     return (
       <Form
         currentUser={this.props.currentUser}
         apartment={apartment}
         building={building}
+        submitValues={this.submitValues}
         assignAttempt={this.handleCreateContactAttempt}
-        inputListenerFactory={this.inputListenerFactory}
       />
     );
   }
@@ -84,17 +61,17 @@ class NewContactAttemptForm extends React.Component {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    fetching: state.newContactAttempt.fetching,
-    building: state.newContactAttempt.building,
-    apartment: state.newContactAttempt.apartment,
-    creating: state.newContactAttempt.creating,
-    redirectTo: state.newContactAttempt.redirectTo
+    fetching: state.removeContactAttempts.fetching,
+    building: state.removeContactAttempts.building,
+    apartment: state.removeContactAttempts.apartment,
+    removing: state.removeContactAttempts.removing,
+    redirectTo: state.removeContactAttempts.redirectTo
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    createContactAttempt: actions.createContactAttempt(dispatch),
+    handleSubmit: actions.removeContactAttempts(dispatch),
     fetchApartmentByBuildingNumber: actions.fetchApartmentByBuildingNumber(
       dispatch
     ),
@@ -105,4 +82,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewContactAttemptForm);
+)(RemoveContactAttempt);

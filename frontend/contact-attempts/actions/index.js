@@ -1,6 +1,6 @@
 import buildings from "../../buildings/actions";
 
-import { apiPost } from "../../src/utils/api.js";
+import { apiPost, apiDelete } from "../../src/utils/api.js";
 
 const fetchApartmentByBuildingNumber = dispatch => {
   return ({ buildingNumber, apartmentNumber }) => {
@@ -18,6 +18,29 @@ const fetchApartmentByBuildingNumber = dispatch => {
         dispatch({ type: "APARTMENT_FETCHED", apartment });
       });
   };
+};
+
+const removeContactAttempts = dispatch => ({
+  contactAttempts,
+  building,
+  apartment
+}) => {
+  dispatch({ type: "REMOVE_CONTACT_ATTEMPTS" });
+  const payload = { contact_attempts: contactAttempts };
+
+  apiDelete(
+    `/api/buildings/${building.uuid}/apartments/${
+      apartment.uuid
+    }/contact_attempts`
+  )
+    .send(payload)
+    .end((error, resp) => {
+      if (error) {
+        throw new Error(error);
+      }
+
+      dispatch({ type: "CONTACT_ATTEMPTS_REMOVED" });
+    });
 };
 
 const createContactAttempt = dispatch => ({
@@ -55,5 +78,6 @@ const createContactAttempt = dispatch => ({
 
 export default {
   fetchApartmentByBuildingNumber,
-  createContactAttempt
+  createContactAttempt,
+  removeContactAttempts
 };

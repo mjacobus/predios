@@ -32,7 +32,9 @@ export default class ContactAttempts extends React.Component {
         {firstEntry}
         {this.state.open &&
           attempts.map((attempt, key) => (
-            <ContactAttempt contactAttempt={attempt} key={key} />
+            <div key={key}>
+              <ContactAttempt contactAttempt={attempt} />
+            </div>
           ))}
       </div>
     );
