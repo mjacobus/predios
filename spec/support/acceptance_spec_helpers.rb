@@ -43,6 +43,7 @@ module AcceptanceSpecHelpers
   def login_as(user)
     visit("/dev/login?user_id=#{user.id}")
     visit('/buildings')
+    page.wait_until(timeout: 60) { !page.text.match('Carregando') }
   end
 
   def click_menu(item)
